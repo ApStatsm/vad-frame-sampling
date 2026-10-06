@@ -1,0 +1,17 @@
+# Direct dependencies observed in the existing Python 3.10 environment.
+# Fresh installation is not verified; this is not a complete transitive lockfile.
+torch==2.8.0
+torchvision==0.23.0
+numpy==2.2.6
+scipy==1.15.3
+pandas==2.2.3
+scikit-learn==1.7.2
+Pillow==11.3.0
+tqdm==4.67.1
+ftfy==6.3.1
+regex==2025.11.3
+packaging==25.0
+# Bundled CLIP imports pkg_resources; preserve the observed setuptools version.
+setuptools==57.4.0
+# Used by the upstream raw-frame extraction code; raw reference is unvalidated.
+opencv-python-headless==5.0.0.93

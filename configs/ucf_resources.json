@@ -1,0 +1,5 @@
+{
+  "features_root": "features/official/ucf/UCFClipFeatures",
+  "ucf_checkpoint": "checkpoints/vadclip/model_ucf.pth",
+  "clip_checkpoint": "checkpoints/clip/ViT-B-16.pt"
+}

@@ -1,0 +1,153 @@
+{
+  "record_kind": "Summary of existing user-run checks; not rerun by Codex",
+  "date": "2026-10-06",
+  "full_benchmark_metrics": null,
+  "original_reports": [
+    "outputs/setup/ucf_test_preparation_report.json",
+    "outputs/setup/ucf_resource_check.json",
+    "outputs/setup/ucf_baseline_input_check.json"
+  ],
+  "raw_preparation": {
+    "generated_at": "2026-10-06T17:26:44.836841+09:00",
+    "verified_zip_crc_and_size": 290,
+    "metadata_probe_passed": 290,
+    "full_video_decode_performed": "Only the 5 annotation-warning videos; remaining 285 metadata only",
+    "input_sha256": {
+      "UCF-Crime/Temporal_Anomaly_Annotation_for_Testing_Videos.txt": "3b9542413f2ed9e94f73bf0488c151b3d7d595a8d2ad30f524e9243a2ae2a17c",
+      "VadCLIP/list/Anomaly_Test.txt": "afcb2a6bffe7286607e08c864425964d8784cbd5b1f263e03b76025e11548de7",
+      "VadCLIP/list/ucf_CLIP_rgbtest.csv": "d621f4ccfb3e26274d215ad53b83fd1f596bb7e9f85cde69e01399db3da97c7f"
+    },
+    "videos": 290,
+    "normal": 150,
+    "anomaly": 140,
+    "annotation_warnings": [
+      {
+        "filename": "Arson011_x264.mp4",
+        "issue": "annotation endpoint exceeds header frame count",
+        "frame_count_header": 1266,
+        "intervals_raw": [
+          [
+            150,
+            420
+          ],
+          [
+            680,
+            1267
+          ]
+        ]
+      },
+      {
+        "filename": "Arson016_x264.mp4",
+        "issue": "annotation endpoint exceeds header frame count",
+        "frame_count_header": 1795,
+        "intervals_raw": [
+          [
+            1000,
+            1796
+          ]
+        ]
+      },
+      {
+        "filename": "Explosion033_x264.mp4",
+        "issue": "annotation endpoint exceeds header frame count",
+        "frame_count_header": 3154,
+        "intervals_raw": [
+          [
+            970,
+            1350
+          ],
+          [
+            1550,
+            3156
+          ]
+        ]
+      },
+      {
+        "filename": "Fighting003_x264.mp4",
+        "issue": "annotation endpoint exceeds header frame count",
+        "frame_count_header": 3102,
+        "intervals_raw": [
+          [
+            1820,
+            3103
+          ]
+        ]
+      },
+      {
+        "filename": "Shooting015_x264.mp4",
+        "issue": "annotation endpoint exceeds header frame count",
+        "frame_count_header": 1713,
+        "intervals_raw": [
+          [
+            855,
+            1715
+          ]
+        ]
+      }
+    ]
+  },
+  "resource_inventory": {
+    "generated_at": "2026-10-06T19:59:32.718937+09:00",
+    "issues": [],
+    "path_inventory_complete": true,
+    "official_csv_count": 290,
+    "manifest_order_and_labels_match": true,
+    "matched_feature_count": 290,
+    "feature_mapping_ok": true,
+    "missing_features": [],
+    "duplicate_features": {},
+    "empty_features": [],
+    "missing_test_videos": [],
+    "ignored_same_name_feature_count": 50
+  },
+  "baseline_input": {
+    "generated_at": "2026-10-06T20:05:51.763043+09:00",
+    "scope": "Feature arrays/GT alignment and optional CPU model loading; no inference",
+    "data_checks_passed": true,
+    "feature_count": 290,
+    "feature_arrays_ok": true,
+    "expected_gt_length": 1109888,
+    "gt_check": {
+      "performed": true,
+      "path": "VadCLIP/list/gt_ucf.npy",
+      "shape": [
+        1109888
+      ],
+      "dtype": "float32",
+      "length_match": true,
+      "rule": "Official feature T * 16 timeline; published intervals sliced [start:end]",
+      "raw_video_coordinate_convention_verified": false,
+      "binary_values_ok": true,
+      "mismatch_frames": 0,
+      "annotation_alignment_under_official_rule": true
+    },
+    "input_sha256": {
+      "script": "540cebf10907c01eefbc9e71009d78d6d4b763d5144bc74f18d1605c04441b9f",
+      "config": "f1e80f6b1b7d0bcb374e7a5b3ba8ee0e6a24ca70c7c2c22169a2d39243cea4c8",
+      "local_csv": "0c4b91f2fa42b27a32628f97512672c1ea9363c4a548ff72ccf9e6199df1a328",
+      "manifest": "1a41c94b4f49c39fea47d26ea0b553736565bf44194950d9721e1480a3512d46",
+      "gt": "c6448801e0f73d19adf82506cd58d60a90c4f0913e49dcc1ad1d677ee12d6301",
+      "model_source": "9f3ef2c2a6e064b8a3987e91f21d3d03db0cb77fc61ec17bd41e208d43b74b59"
+    },
+    "issues": []
+  },
+  "cpu_model_loading": {
+    "performed": true,
+    "torch_version": "2.8.0",
+    "load_device": "cpu",
+    "inference_performed": false,
+    "cuda_available": false,
+    "mps_available": true,
+    "ok": true,
+    "classes": 14,
+    "visual_length": 256,
+    "visual_width": 512,
+    "strict_state_dict_loading": true,
+    "parameter_entries": 349
+  },
+  "validation_limit": "Historical checks used pre-sharing source hashes. Not a loading/inference validation of the updated source notices and research-version logging.",
+  "checkpoint_hashes": {
+    "clip": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f",
+    "ucf": "d064aba05190ce5f6652151e6259b24ca6dda83a1e6289bf343afb6f905a2c79"
+  }
+}

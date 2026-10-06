@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/nwpu-zxr/VadCLIP",
+  "commit": "c41067f07d252efcda18008bea367886070c33b0",
+  "license": "Apache-2.0",
+  "integration": "Vendored source snapshot with documented local modifications; not a submodule",
+  "local_changes": "LOCAL_CHANGES.md"
+}
