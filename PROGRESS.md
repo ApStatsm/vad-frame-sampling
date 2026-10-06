@@ -331,3 +331,9 @@ Raw test 입력은 official test 목록의 290개를 기준으로 선택한다. 
 - 사용자 화면: 브라우저 authentication complete 뒤 `/Users/apstat/.config/gh` 생성 permission denied, 이후 not logged in 및 Git 명령의 not a git repository가 보고됐다. 업로드 성공으로 기록하지 않는다.
 - 읽기 확인: `/Users/apstat/.config`는 root 소유의 755 디렉터리이고 gh 하위 폴더는 없다. 프로젝트 루트에는 기존 Git/HTTPS origin과 미커밋 공유 정리가 정상 존재한다. Git 명령의 오류는 사용자 터미널의 프로젝트 밖 실행으로 해석한다.
 - 다음 안내: 사용자가 먼저 실제 프로젝트 루트로 이동하고 `.config` 디렉터리 자체의 소유자만 자신의 계정으로 바꾼 뒤 로그인/인증 연결을 재실행한다. 성공 후 기존 정리를 commit/push한다. Codex는 권한 변경·로그인·commit/push나 프로젝트 코드 실행을 하지 않았으며 이 진행 기록만 보완했다.
+
+### 2026-10-06 — GitHub 업로드 완료 확인
+
+- 사용자 터미널에서 생성한 commit `545d8ef6c0e9de6e4aa8acc2366c73c10d768130` (`chore: simplify sharing and document excluded data`)을 확인했다. GitHub origin의 실제 main을 읽어 로컬 HEAD 및 origin/main과 같은 commit임을 확인했다. 확인 시작 시 작업 트리는 clean이었다.
+- 최신 commit에는 정리된 기존 파일과 README가 있으며 제외 영상·feature·weights·score·가상환경/백업 및 걷어낸 중복 공유 파일은 추적되지 않는다. Codex는 Git/파일 읽기만 수행했으며 프로젝트 코드 실행이나 추가 commit/push는 하지 않았다. 이 업로드 확인 기록은 로컬에서 추가되었으므로 다음 일반 commit에 포함하면 된다.
+- 다음 연구 작업: 사용자가 현재 버전 MPS smoke를 통과한 뒤 full official-feature 평가를 실행한다. 전체 metric은 여전히 미측정이다.
