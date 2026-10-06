@@ -2,7 +2,7 @@
 
 2026-10-06. Codex는 코드 작성·정적 검토만 수행했다. 사용자 MPS smoke 7사례가 통과했으며 전체 평가는 아직 미실행이다.
 
-**GitHub 통합 후 다음 실행:** 기존 MPS smoke는 당시 source hash의 검증 결과다. 공유 준비에서 원본 파일의 변경 표시와 evaluator의 연구/upstream 버전 기록을 수정했으므로 현재 버전의 `--mode smoke --device mps`를 다시 통과한 뒤 `--mode full --device mps`를 실행한다. 모델 계산·가중치·window·prompt·score 복원 규칙은 이 준비에서 바꾸지 않았다. 기존 raw 보고서는 보존하고 공유 요약은 `results/`에 둔다.
+**GitHub 통합 후 다음 실행:** 기존 MPS smoke는 당시 source hash의 검증 결과다. 공유 준비에서 원본 파일의 변경 표시와 evaluator의 연구/upstream 버전 기록을 수정했으므로 현재 버전의 `--mode smoke --device mps`를 다시 통과한 뒤 `--mode full --device mps`를 실행한다. 모델 계산·가중치·window·prompt·score 복원 규칙은 이 준비에서 바꾸지 않았다. 기존 작은 JSON/CSV/텍스트 보고서는 `outputs/`의 원래 위치에서 공유하고 score 배열은 업로드에서 제외한다. 구조·형식은 루트 README에 정리했다.
 
 ## 확인된 준비 결과
 

@@ -1,0 +1,293 @@
+{
+  "run_id": "ucf_official_smoke_mps_20261006_202116_841716",
+  "mode": "smoke",
+  "dataset": "UCF-Crime",
+  "input_type": "official_features",
+  "device": "mps",
+  "sampling": "not_applied",
+  "budget": null,
+  "success": true,
+  "videos": [
+    {
+      "official_csv_index": 0,
+      "video": "Abuse028_x264.mp4",
+      "case": "anomaly_video",
+      "prefix_only": false,
+      "feature_sha256": "172f97755187d98650c0c037c5c73873b730c04ae84afd74f3b781cbad174eca",
+      "gt_offset": 0,
+      "score_file": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/outputs/baseline/ucf_official_smoke_mps_20261006_202116_841716/scores/000_Abuse028_x264_anomaly_video.npz",
+      "token_count": 88,
+      "window_count": 1,
+      "declared_lengths": [
+        88
+      ],
+      "physical_valid_lengths": [
+        88
+      ],
+      "feature_timeline_frames": 1408,
+      "branch1_range": [
+        0.1033044382929802,
+        0.9985141158103943
+      ],
+      "branch2_range": [
+        0.9138175249099731,
+        0.9996578693389893
+      ],
+      "model_forward_seconds": 1.9446944590017665,
+      "valid_scores_finite": true
+    },
+    {
+      "official_csv_index": 182,
+      "video": "Normal_Videos_345_x264.mp4",
+      "case": "short_normal_video",
+      "prefix_only": false,
+      "feature_sha256": "83b672d72d2cfc85794ed00c192a1925e9c4b18bd4cefb6ad7faf666b144b8bc",
+      "gt_offset": 556544,
+      "score_file": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/outputs/baseline/ucf_official_smoke_mps_20261006_202116_841716/scores/001_Normal_Videos_345_x264_short_normal_video.npz",
+      "token_count": 13,
+      "window_count": 1,
+      "declared_lengths": [
+        13
+      ],
+      "physical_valid_lengths": [
+        13
+      ],
+      "feature_timeline_frames": 208,
+      "branch1_range": [
+        0.0010348313953727484,
+        0.015581613406538963
+      ],
+      "branch2_range": [
+        0.00667494535446167,
+        0.020372986793518066
+      ],
+      "model_forward_seconds": 0.0963587090082001,
+      "valid_scores_finite": true
+    },
+    {
+      "official_csv_index": 5,
+      "video": "Arrest030_x264.mp4",
+      "case": "long_video",
+      "prefix_only": false,
+      "feature_sha256": "9a0ac4b31e9e003131400361fb75f6717bbdce10998a11f829608911c0ca776e",
+      "gt_offset": 12064,
+      "score_file": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/outputs/baseline/ucf_official_smoke_mps_20261006_202116_841716/scores/002_Arrest030_x264_long_video.npz",
+      "token_count": 540,
+      "window_count": 3,
+      "declared_lengths": [
+        256,
+        256,
+        28
+      ],
+      "physical_valid_lengths": [
+        256,
+        256,
+        28
+      ],
+      "feature_timeline_frames": 8640,
+      "branch1_range": [
+        0.6918391585350037,
+        0.9999940395355225
+      ],
+      "branch2_range": [
+        0.9773299098014832,
+        0.9999738335609436
+      ],
+      "model_forward_seconds": 0.9565256659989245,
+      "valid_scores_finite": true
+    },
+    {
+      "official_csv_index": 5,
+      "video": "Arrest030_x264.mp4",
+      "case": "boundary_prefix_255",
+      "prefix_only": true,
+      "feature_sha256": "9a0ac4b31e9e003131400361fb75f6717bbdce10998a11f829608911c0ca776e",
+      "gt_offset": 12064,
+      "score_file": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/outputs/baseline/ucf_official_smoke_mps_20261006_202116_841716/scores/003_Arrest030_x264_boundary_prefix_255.npz",
+      "token_count": 255,
+      "window_count": 1,
+      "declared_lengths": [
+        255
+      ],
+      "physical_valid_lengths": [
+        255
+      ],
+      "feature_timeline_frames": 4080,
+      "branch1_range": [
+        0.6917634010314941,
+        0.9999881982803345
+      ],
+      "branch2_range": [
+        0.9772788882255554,
+        0.9999325275421143
+      ],
+      "model_forward_seconds": 0.09139879202120937,
+      "valid_scores_finite": true
+    },
+    {
+      "official_csv_index": 5,
+      "video": "Arrest030_x264.mp4",
+      "case": "boundary_prefix_256",
+      "prefix_only": true,
+      "feature_sha256": "9a0ac4b31e9e003131400361fb75f6717bbdce10998a11f829608911c0ca776e",
+      "gt_offset": 12064,
+      "score_file": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/outputs/baseline/ucf_official_smoke_mps_20261006_202116_841716/scores/004_Arrest030_x264_boundary_prefix_256.npz",
+      "token_count": 256,
+      "window_count": 2,
+      "declared_lengths": [
+        256,
+        256
+      ],
+      "physical_valid_lengths": [
+        256,
+        0
+      ],
+      "feature_timeline_frames": 4096,
+      "branch1_range": [
+        0.6918391585350037,
+        0.9999881982803345
+      ],
+      "branch2_range": [
+        0.9773299098014832,
+        0.9999324679374695
+      ],
+      "model_forward_seconds": 0.3106636250158772,
+      "valid_scores_finite": true
+    },
+    {
+      "official_csv_index": 5,
+      "video": "Arrest030_x264.mp4",
+      "case": "boundary_prefix_257",
+      "prefix_only": true,
+      "feature_sha256": "9a0ac4b31e9e003131400361fb75f6717bbdce10998a11f829608911c0ca776e",
+      "gt_offset": 12064,
+      "score_file": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/outputs/baseline/ucf_official_smoke_mps_20261006_202116_841716/scores/005_Arrest030_x264_boundary_prefix_257.npz",
+      "token_count": 257,
+      "window_count": 2,
+      "declared_lengths": [
+        256,
+        1
+      ],
+      "physical_valid_lengths": [
+        256,
+        1
+      ],
+      "feature_timeline_frames": 4112,
+      "branch1_range": [
+        0.13081945478916168,
+        0.9999881982803345
+      ],
+      "branch2_range": [
+        0.12017667293548584,
+        0.9999324679374695
+      ],
+      "model_forward_seconds": 0.13973070797510445,
+      "valid_scores_finite": true
+    },
+    {
+      "official_csv_index": 5,
+      "video": "Arrest030_x264.mp4",
+      "case": "boundary_prefix_512",
+      "prefix_only": true,
+      "feature_sha256": "9a0ac4b31e9e003131400361fb75f6717bbdce10998a11f829608911c0ca776e",
+      "gt_offset": 12064,
+      "score_file": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/outputs/baseline/ucf_official_smoke_mps_20261006_202116_841716/scores/006_Arrest030_x264_boundary_prefix_512.npz",
+      "token_count": 512,
+      "window_count": 3,
+      "declared_lengths": [
+        256,
+        256,
+        256
+      ],
+      "physical_valid_lengths": [
+        256,
+        256,
+        0
+      ],
+      "feature_timeline_frames": 8192,
+      "branch1_range": [
+        0.6918391585350037,
+        0.9999940395355225
+      ],
+      "branch2_range": [
+        0.9773299098014832,
+        0.9999608993530273
+      ],
+      "model_forward_seconds": 0.08168179201311432,
+      "valid_scores_finite": true
+    }
+  ],
+  "metrics": null,
+  "input_sha256": {
+    "config": "f1e80f6b1b7d0bcb374e7a5b3ba8ee0e6a24ca70c7c2c22169a2d39243cea4c8",
+    "local_csv": "0c4b91f2fa42b27a32628f97512672c1ea9363c4a548ff72ccf9e6199df1a328",
+    "manifest": "1a41c94b4f49c39fea47d26ea0b553736565bf44194950d9721e1480a3512d46",
+    "gt": "c6448801e0f73d19adf82506cd58d60a90c4f0913e49dcc1ad1d677ee12d6301",
+    "script": "8ecbb1b6a9cfe38d988f97aaf203f0d2a708ee498740239c549c4325a01c6d1f",
+    "input_audit": "05e124df1f09ea12d3293ff75c43690d43e361eb712f46bb0cfe2649508cb92c",
+    "model_source": "9f3ef2c2a6e064b8a3987e91f21d3d03db0cb77fc61ec17bd41e208d43b74b59",
+    "layers_source": "88720a0614eeb7e0751df308af62df81d07d1f8f529936a2d1ee051f3fede573",
+    "tools_source": "1f079853afdb5416525d1c6564a1d4cfc568d7e888ead9e628038a030ec11bb2",
+    "official_test_source": "144a58e4fe9a8f94d50081c33a0b55307f6d49c0ed95de59e3f6d3e9c93fe6d1",
+    "clip_checkpoint": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f",
+    "ucf_checkpoint": "d064aba05190ce5f6652151e6259b24ca6dda83a1e6289bf343afb6f905a2c79"
+  },
+  "output_dir": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/outputs/baseline/ucf_official_smoke_mps_20261006_202116_841716",
+  "timing_scope": "Cached-feature execution only; not raw-video efficiency",
+  "smoke_outputs_are_benchmark_results": false,
+  "environment": {
+    "python": "3.10.0 (v3.10.0:b494f5935c, Oct  4 2021, 14:59:19) [Clang 12.0.5 (clang-1205.0.22.11)]",
+    "executable": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/.venv/bin/python",
+    "torch": "2.8.0",
+    "numpy": "2.2.6",
+    "platform": "macOS-15.7.3-arm64-arm-64bit",
+    "machine": "arm64",
+    "torch_cpu_threads": 4,
+    "cuda_device_name": null
+  },
+  "upstream_commit": "c41067f07d252efcda18008bea367886070c33b0",
+  "precision": {
+    "visual_tokens": "model casts to float32",
+    "vad_parameters": "torch.float32",
+    "clip_parameters": "torch.float32"
+  },
+  "model_options": {
+    "classes_num": 14,
+    "embed_dim": 512,
+    "visual_length": 256,
+    "visual_width": 512,
+    "visual_head": 1,
+    "visual_layers": 2,
+    "attn_window": 8,
+    "prompt_prefix": 10,
+    "prompt_postfix": 10,
+    "seed": 234
+  },
+  "prompt_text": [
+    "Normal",
+    "Abuse",
+    "Arrest",
+    "Arson",
+    "Assault",
+    "Burglary",
+    "Explosion",
+    "Fighting",
+    "RoadAccidents",
+    "Robbery",
+    "Shooting",
+    "Shoplifting",
+    "Stealing",
+    "Vandalism"
+  ],
+  "rules": {
+    "crop_variant": "__5.npy",
+    "window_policy": "upstream process_split and declared lengths",
+    "padding_mask": "upstream encode_video passes None to temporal",
+    "score_branch1": "sigmoid(logits1)",
+    "score_branch2": "1 - softmax(logits2)[:, 0]",
+    "score_restore": "repeat each official feature score 16 times",
+    "branch_combination": null,
+    "smoothing": null
+  },
+  "cached_feature_loop_seconds": 3.6543082499993034
+}

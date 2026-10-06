@@ -306,3 +306,28 @@ Raw test 입력은 official test 목록의 290개를 기준으로 선택한다. 
 - 검증: AST/JSON 텍스트 파싱과 업로드 목록·제외 규칙·크기 확인 통과. 프로젝트 코드·테스트·inference·데이터 처리·환경 재설치는 미실행이다. 원격 커밋 및 저장소 visibility는 아직 인증 후 확인해야 한다.
 - 남은 작업: GitHub CLI device 인증 요청을 시작하여 사용자 로그인 완료를 기다린다. 로컬 도구는 `.local-backups/tools/gh/gh_2.102.0_macOS_arm64/bin/gh`, 인증 설정 위치는 `.local-backups/github-cli-config/`로 Git에서 제외된다. 인증 정보는 채팅/커밋에 포함하지 않는다. 이 기록 시점에 push는 미완료다.
 - 바로 다음: 로그인 후 GitHub API로 계정/대상 저장소·기존 branch를 확인하고 HTTPS 인증을 연결한 뒤 force 없이 push한다. 이후 remote main commit과 로컬 HEAD의 일치, 추적 상태·작업 트리를 확인하여 업로드 완료를 기록한다. 팀원 초대는 계정 식별 정보가 아직 없으므로 별도 사용자 작업이다.
+
+### 2026-10-06 — 사용자 터미널에서 직접 업로드하도록 인계
+
+- 최신 지시: GitHub 인증·업로드를 사용자가 자신의 터미널에서 직접 수행하도록 안내한다. Codex가 진행하던 device 인증 대기 세션은 종료했으며 이전 일회용 코드는 사용하지 않는다.
+- 확인: 기존 로컬 commit `6d43d48`, `4936d4b`와 HTTPS origin 연결을 확인했다. 인계 기록 추가 전 작업 트리는 clean이다. Homebrew는 존재하고 전역 `gh`는 아직 없다. 다운로드한 로컬 GitHub CLI는 보존한다.
+- 안내: 사용자가 Homebrew로 GitHub CLI를 설치하고 `gh auth login --hostname github.com --git-protocol https --web`, `gh auth setup-git --hostname github.com`으로 인증한다. 이번 PROGRESS 인계 기록을 commit한 뒤 `git push -u origin main`을 실행한다. 이미 첫 코드 commit과 origin을 준비했으므로 git init/remote add는 반복하지 않는다.
+- 검증 범위/출력: 문서·Git 상태·로컬 도구 존재와 공식 CLI 안내만 읽었다. 이 기록만 수정했으며 Codex는 추가 commit·설치·인증·push 또는 프로젝트 코드 실행을 하지 않았다. 원격 업로드는 아직 미완료다.
+- 바로 다음: 사용자가 자신의 터미널에서 안내 순서를 실행하고 업로드 결과를 확인한다. 인증 실패 또는 non-fast-forward 등 오류가 나오면 force push 없이 오류 메시지를 바탕으로 대응한다. 연구 실행의 다음 작업은 현재 버전 MPS smoke 후 full 평가다.
+
+### 2026-10-06 — 기존 파일 중심으로 공유 범위 단순화
+
+- 최신 지시: 기존 GitHub 저장소에 현재 로컬 파일을 올리되 대용량은 제외하고 제외 자원의 구조·양식을 README에 설명한다. 별도 협업 문서나 공유용 결과 사본을 늘리지 않는다. 인증/업로드는 앞선 지시에 따라 사용자 터미널에서 직접 진행하도록 안내한다.
+- 정리: 앞서 추가한 CONTRIBUTING, PR template, TEAM_SETUP, 데이터 폴더별 중복 README와 results 요약 사본을 작업 트리에서 걷어내고 `.local-backups/share-cleanup-20261006/`에 보관했다. 기존 연구 문서·코드·원본 LICENSE/출처/변경 내역은 보존했다. 원본 영상·feature·checkpoint·원시 결과는 삭제하지 않았다.
+- README: 현재 코드 구조, 제외 영상 ZIP/extracted/test symlink, feature 폴더·파일명·[T,512]/dtype, checkpoint, NPZ score key/shape, 가상환경과 작은 manifest/CSV/annotation/보고서의 형식을 루트에 모았다. 입력 배치·재생성 명령과 실행 조건을 기존 실제 파일/코드에서 정적으로 대조했다.
+- Git 제외 규칙: 대용량 입력 폴더·영상·weights·ZIP·score NPZ·가상환경/cache/백업은 제외한다. 작은 기존 manifest·split·annotation 및 outputs의 JSON/CSV/TXT/LOG는 원래 위치에서 공유한다. 기존 보고서의 절대 경로와 hash는 해당 사용자 실행의 기록이며 다른 컴퓨터의 통과 audit를 대신하지 않는다고 설명했다.
+- GitHub 연결 확인: origin은 이미 `https://github.com/ApStatsm/vad-frame-sampling.git`에 연결되어 있고 `gh` 설치는 현재 확인했다. `gh auth status`는 미로그인을 보고했다. 추가 인증 세션이나 원격 쓰기는 시작하지 않았다.
+- 검증 범위/출력: 문서·Git 상태·기존 파일 목록/형식과 코드 읽기, README/제외 규칙 정리만 수행했다. 프로젝트 코드·테스트·import·inference는 미실행이며 이번에는 모델/평가 코드도 변경하지 않았다. 정리된 파일은 아직 미커밋이며 원격 업로드도 미완료다.
+- 최종 공유 후보 정적 확인: 파일 76개, 진행 기록 마지막 보완 전 총 22,381,459 bytes. 최대 원본 GT 파일 9,325,312 bytes이며 100 MiB 초과 파일·영상 symlink·제외 입력/백업·알려진 인증 token/private-key 표식 후보 없음. README의 로컬 링크 모두 존재하고 작은 기존 outputs 보고서 8개와 manifest 2개가 포함된다. Git 제외 자원 5개 경로를 대표로 확인했다. 실제 push 검증은 아니다.
+- 바로 다음: 최종 공유 후보 목록의 크기·제외 자원·README 연결을 정적으로 확인한 후 사용자가 프로젝트 루트에서 `gh auth login --hostname github.com --git-protocol https --web`, `gh auth setup-git --hostname github.com`, `git add -A`, `git commit`, `git push -u origin main`을 실행한다. 설치/저장소 생성/remote add는 다시 할 필요 없다.
+
+### 2026-10-06 — 사용자 터미널의 인증 저장 권한·실행 위치 오류
+
+- 사용자 화면: 브라우저 authentication complete 뒤 `/Users/apstat/.config/gh` 생성 permission denied, 이후 not logged in 및 Git 명령의 not a git repository가 보고됐다. 업로드 성공으로 기록하지 않는다.
+- 읽기 확인: `/Users/apstat/.config`는 root 소유의 755 디렉터리이고 gh 하위 폴더는 없다. 프로젝트 루트에는 기존 Git/HTTPS origin과 미커밋 공유 정리가 정상 존재한다. Git 명령의 오류는 사용자 터미널의 프로젝트 밖 실행으로 해석한다.
+- 다음 안내: 사용자가 먼저 실제 프로젝트 루트로 이동하고 `.config` 디렉터리 자체의 소유자만 자신의 계정으로 바꾼 뒤 로그인/인증 연결을 재실행한다. 성공 후 기존 정리를 commit/push한다. Codex는 권한 변경·로그인·commit/push나 프로젝트 코드 실행을 하지 않았으며 이 진행 기록만 보완했다.

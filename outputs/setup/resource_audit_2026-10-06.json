@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-06",
+  "project_root": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project",
+  "inspection_scope": "ZIP central-directory metadata and local text/code only; no CRC scan, video decoding, model loading, or inference",
+  "vadclip_commit": "c41067f07d252efcda18008bea367886070c33b0",
+  "annotation": {
+    "path": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/UCF-Crime/Temporal_Anomaly_Annotation_for_Testing_Videos.txt",
+    "sha256": "3b9542413f2ed9e94f73bf0488c151b3d7d595a8d2ad30f524e9243a2ae2a17c",
+    "rows": 290,
+    "labels": {
+      "Abuse": 2,
+      "Arrest": 5,
+      "Arson": 9,
+      "Assault": 3,
+      "Burglary": 13,
+      "Explosion": 21,
+      "Fighting": 5,
+      "Normal": 150,
+      "RoadAccidents": 23,
+      "Robbery": 5,
+      "Shooting": 23,
+      "Shoplifting": 21,
+      "Stealing": 5,
+      "Vandalism": 5
+    }
+  },
+  "test_sets_match": true,
+  "feature_csv_rows": 290,
+  "feature_csv_names_match_annotation": true,
+  "feature_csv_order_matches_annotation": false,
+  "existing_feature_csv_paths": 0,
+  "test_missing_from_archives": [],
+  "archives": [
+    {
+      "path": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/UCF-Crime/Anomaly-Videos-Part-1.zip",
+      "bytes": 6272044173,
+      "video_entries": 200,
+      "test_matches": 19
+    },
+    {
+      "path": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/UCF-Crime/Anomaly-Videos-Part-2.zip",
+      "bytes": 6693096368,
+      "video_entries": 200,
+      "test_matches": 39
+    },
+    {
+      "path": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/UCF-Crime/Anomaly-Videos-Part-3.zip",
+      "bytes": 5616615706,
+      "video_entries": 350,
+      "test_matches": 51
+    },
+    {
+      "path": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/UCF-Crime/Anomaly-Videos-Part-4.zip",
+      "bytes": 6556508044,
+      "video_entries": 200,
+      "test_matches": 31
+    },
+    {
+      "path": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/UCF-Crime/Temporal_Anomaly_Annotation_For_Testing_Videos.zip",
+      "bytes": 177408,
+      "video_entries": 0,
+      "test_matches": 0
+    },
+    {
+      "path": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/UCF-Crime/Testing_Normal_Videos.zip",
+      "bytes": 4661975118,
+      "video_entries": 150,
+      "test_matches": 150
+    }
+  ],
+  "clip_partial_file": {
+    "path": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/checkpoints/clip/ViT-B-16.pt.part",
+    "bytes_observed": 270004224,
+    "valid_checkpoint_verified": false
+  },
+  "metric_measured": false
+}

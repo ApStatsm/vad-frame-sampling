@@ -1,8 +1,6 @@
-# Local history backups and reference synchronization
+# Local backups, synced references and environments
 /.local-backups/
 /sources/
-
-# Python environments and generated caches
 .venv/
 venv/
 __pycache__/
@@ -15,7 +13,7 @@ __pycache__/
 build/
 dist/
 
-# Machine-specific files and credentials
+# Local machine and authentication files
 .DS_Store
 ._*
 .env
@@ -27,24 +25,12 @@ dist/
 *.cookies
 configs/*.local.json
 
-# Raw inputs stay local. Preserve only preparation guidance and small test lists.
-/UCF-Crime/*
-!/UCF-Crime/README.md
-!/UCF-Crime/Temporal_Anomaly_Annotation_for_Testing_Videos.txt
-!/UCF-Crime/test/
-/UCF-Crime/test/*
-!/UCF-Crime/test/README.md
-!/UCF-Crime/test/splits/
-!/UCF-Crime/test/annotations/
-
-# Official feature arrays and pretrained weights
-/features/*
-!/features/README.md
-/checkpoints/*
-!/checkpoints/README.md
-
-# Machine-local audit reports, CSVs, raw scores and logs
-/outputs/
+# Large inputs; small annotations, manifests and split lists remain shareable
+/features/
+/checkpoints/
+/UCF-Crime/extracted/
+/UCF-Crime/test/Anomaly/
+/UCF-Crime/test/Normal/
 *.mp4
 *.avi
 *.mkv
@@ -52,9 +38,16 @@ configs/*.local.json
 *.pt
 *.pth
 *.ckpt
-*.npz
 *.zip
 *.part
-*.log
+*.npz
 
-# Do not globally ignore .npy or .gz: bundled GT and CLIP tokenizer are inputs.
+# Share original small audit reports and summaries, not generated binary outputs
+/outputs/**
+!/outputs/**/
+!/outputs/**/*.json
+!/outputs/**/*.csv
+!/outputs/**/*.txt
+!/outputs/**/*.log
+
+# Bundled GT .npy files and CLIP tokenizer .txt.gz remain tracked.

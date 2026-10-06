@@ -1,0 +1,118 @@
+{
+  "generated_at": "2026-10-06T17:26:44.836841+09:00",
+  "summary": {
+    "videos": 290,
+    "normal": 150,
+    "anomaly": 140,
+    "selected_bytes": 7988909023,
+    "destination": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능 프로젝트/03_Project/UCF-Crime/test",
+    "storage": "relative symlinks to existing extracted videos"
+  },
+  "verified_zip_crc_and_size": 290,
+  "metadata_probe_passed": 290,
+  "frame_count_source": "ffprobe nb_frames header; not a full decode count",
+  "full_video_decode_performed": "Only the 5 annotation-warning videos; remaining 285 metadata only",
+  "annotation_warnings": [
+    {
+      "filename": "Arson011_x264.mp4",
+      "issue": "annotation endpoint exceeds header frame count",
+      "frame_count_header": 1266,
+      "intervals_raw": [
+        [
+          150,
+          420
+        ],
+        [
+          680,
+          1267
+        ]
+      ]
+    },
+    {
+      "filename": "Arson016_x264.mp4",
+      "issue": "annotation endpoint exceeds header frame count",
+      "frame_count_header": 1795,
+      "intervals_raw": [
+        [
+          1000,
+          1796
+        ]
+      ]
+    },
+    {
+      "filename": "Explosion033_x264.mp4",
+      "issue": "annotation endpoint exceeds header frame count",
+      "frame_count_header": 3154,
+      "intervals_raw": [
+        [
+          970,
+          1350
+        ],
+        [
+          1550,
+          3156
+        ]
+      ]
+    },
+    {
+      "filename": "Fighting003_x264.mp4",
+      "issue": "annotation endpoint exceeds header frame count",
+      "frame_count_header": 3102,
+      "intervals_raw": [
+        [
+          1820,
+          3103
+        ]
+      ]
+    },
+    {
+      "filename": "Shooting015_x264.mp4",
+      "issue": "annotation endpoint exceeds header frame count",
+      "frame_count_header": 1713,
+      "intervals_raw": [
+        [
+          855,
+          1715
+        ]
+      ]
+    }
+  ],
+  "input_sha256": {
+    "UCF-Crime/Temporal_Anomaly_Annotation_for_Testing_Videos.txt": "3b9542413f2ed9e94f73bf0488c151b3d7d595a8d2ad30f524e9243a2ae2a17c",
+    "VadCLIP/list/Anomaly_Test.txt": "afcb2a6bffe7286607e08c864425964d8784cbd5b1f263e03b76025e11548de7",
+    "VadCLIP/list/ucf_CLIP_rgbtest.csv": "d621f4ccfb3e26274d215ad53b83fd1f596bb7e9f85cde69e01399db3da97c7f"
+  },
+  "preparation_script_sha256": "35660ce5b65370ebde9477399db84822a6ccee3d0a5954bb84b91fd17bea8d51",
+  "annotation_warning_decode_diagnostics": [
+    {
+      "filename": "Arson011_x264.mp4",
+      "header_frames": 1266,
+      "decoded_frames": 1266,
+      "decoder_errors": ""
+    },
+    {
+      "filename": "Arson016_x264.mp4",
+      "header_frames": 1795,
+      "decoded_frames": 1795,
+      "decoder_errors": ""
+    },
+    {
+      "filename": "Explosion033_x264.mp4",
+      "header_frames": 3154,
+      "decoded_frames": 3154,
+      "decoder_errors": ""
+    },
+    {
+      "filename": "Fighting003_x264.mp4",
+      "header_frames": 3102,
+      "decoded_frames": 3102,
+      "decoder_errors": ""
+    },
+    {
+      "filename": "Shooting015_x264.mp4",
+      "header_frames": 1713,
+      "decoded_frames": 1713,
+      "decoder_errors": ""
+    }
+  ]
+}
