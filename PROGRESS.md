@@ -299,3 +299,10 @@ Raw test 입력은 official test 목록의 290개를 기준으로 선택한다. 
 - GitHub 연결 상태: 저장된 HTTPS 인증 없음, 기존 SSH 키는 GitHub에서 Permission denied(publickey). GitHub 공식 서버 키를 대조했으며 시스템 SSH 파일은 변경하지 않았다. 공식 GitHub CLI 2.102.0을 Git 제외 로컬 도구 폴더에 준비하고 배포 SHA-256을 확인했다. 사용자의 device 로그인 완료를 기다리는 중이며 이 기록 작성 시점에는 remote push 미완료다.
 - 업로드 사전 확인: 첫 commit 대상 75개, 총 21,583,771 bytes(진행 기록 보완 전 metadata 합계), 최대 파일은 원본 XD GT 9,325,312 bytes. 영상 symlink·대용량 입력·가상환경·outputs·이력 백업·로컬 인증 도구가 제외되었고 알려진 인증 token/private-key 표식 검사에서 후보가 없었다. 수정한 evaluator/model/layers는 AST 파싱으로 정적 문법만 확인했고 provenance/공유 요약 JSON 텍스트도 파싱했다. 프로젝트 코드의 실행 검증으로 취급하지 않는다.
 - 바로 다음: 업로드 파일 목록·크기·정적 문법을 확인하여 첫 commit을 만들고 인증 후 지정 저장소로 push한다. 연구 실행은 사용자가 `.venv/bin/python scripts/evaluate_ucf_official.py --mode smoke --device mps`의 7사례 success를 확인한 뒤 동일 장치 full 평가를 실행한다. 새 팀원은 `docs/TEAM_SETUP.md`의 입력 준비부터 수행한다.
+
+### 2026-10-06 — 첫 로컬 commit 완료 / 원격 인증 대기
+
+- 완료: `main`의 첫 commit `6d43d48` (`chore: initialize VAD frame sampling research repository`), 75개 파일. `origin`은 사용자가 제공한 `https://github.com/ApStatsm/vad-frame-sampling.git`이다. 내부 소스를 Git link(160000)로 처리한 항목이 없으며 첫 commit 직후 tracked 작업 트리는 clean이다.
+- 검증: AST/JSON 텍스트 파싱과 업로드 목록·제외 규칙·크기 확인 통과. 프로젝트 코드·테스트·inference·데이터 처리·환경 재설치는 미실행이다. 원격 커밋 및 저장소 visibility는 아직 인증 후 확인해야 한다.
+- 남은 작업: GitHub CLI device 인증 요청을 시작하여 사용자 로그인 완료를 기다린다. 로컬 도구는 `.local-backups/tools/gh/gh_2.102.0_macOS_arm64/bin/gh`, 인증 설정 위치는 `.local-backups/github-cli-config/`로 Git에서 제외된다. 인증 정보는 채팅/커밋에 포함하지 않는다. 이 기록 시점에 push는 미완료다.
+- 바로 다음: 로그인 후 GitHub API로 계정/대상 저장소·기존 branch를 확인하고 HTTPS 인증을 연결한 뒤 force 없이 push한다. 이후 remote main commit과 로컬 HEAD의 일치, 추적 상태·작업 트리를 확인하여 업로드 완료를 기록한다. 팀원 초대는 계정 식별 정보가 아직 없으므로 별도 사용자 작업이다.
