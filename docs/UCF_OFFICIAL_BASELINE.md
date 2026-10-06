@@ -77,7 +77,7 @@ MPS를 선택한 평가 결과는 device·precision과 함께 별도 run으로 �
 - 같은 run의 `scores/*.npz`: 영상/사례별 두 branch의 feature token score와 GT 구간. 원본 frame 위치는 official token당 16개 반복과 summary의 gt_offset으로 복원한다.
 - Smoke의 최신 요약 복사본: `outputs/setup/ucf_smoke_check.json`.
 - Full 성공 시 `frame_scores.npz`와 summary의 `metrics`.
-- 실패 시 `summary.json`의 error, 같은 run의 `error.txt`에 traceback. 입력·GT·checkpoint는 수정하지 않는다.
+- 실패 시 짧은 오류 설명은 `summary.json`의 error에 기록하고 상세 traceback은 터미널에 출력한다. `error.txt`는 생성하지 않는다. 입력·GT·checkpoint는 수정하지 않는다.
 
 Smoke 완료 후 `success: true`와 7개 사례 OK를 확인한다. Full 성공은 전체 frame 수 1,109,888, test 영상 290개와 두 branch의 metric 저장으로 확인한다.
 

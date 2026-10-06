@@ -284,8 +284,7 @@ def main():
         report['success'] = True
     except Exception as error:
         report['error'] = f'{type(error).__name__}: {error}'
-        (output / 'error.txt').write_text(traceback.format_exc())
-        print(report['error'], file=sys.stderr)
+        traceback.print_exc(file=sys.stderr)
     finally:
         summary_path = output / 'summary.json'
         summary_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')

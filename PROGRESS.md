@@ -1,7 +1,7 @@
 # VAD Frame Sampling — 진행 기록
 
 최종 업데이트: 2026-10-06 (Asia/Seoul)  
-현재 단계: 사용자 자원·baseline 입력 점검 및 이전 버전 MPS 소규모 추론 7사례 통과 / GitHub 공유 준비·현재 버전 smoke 재점검 필요  
+현재 단계: UCF official-feature 재현 실행 준비 및 이전 버전 MPS 소규모 추론 7사례 통과 / GitHub 업로드 완료 기록 확인·현재 버전 smoke 재점검 필요
 다음 목표: 사용자가 현재 코드의 `evaluate_ucf_official.py --mode smoke --device mps`를 통과한 뒤 `--mode full --device mps`로 전체 test 290개의 AUC를 평가한다.
 
 이 파일은 새 Codex 작업에서 이어서 진행하기 위한 기록이다. 아래 상태는 이 대화에서 확인한 내용 기준이며, 다른 컴퓨터나 서버에서 수행한 작업은 확인 후 반영한다.
@@ -25,7 +25,7 @@
 | Main benchmarks | 결정 완료 | UCF-Crime, XD-Violence |
 | 상세 연구 계획서 | 작성 완료 | `VAD_Frame_Sampling_Research_Plan.md` |
 | Codex 지침과 진행 기록 | 작성 완료 | `AGENTS.md`, `PROGRESS.md` |
-| 공식 참고 자료 | 문서 안내 확인, 확보 자원 검증 진행 | 공개 자원 파일·CLIP hash·UCF CPU checkpoint loading 확인. Inference/논문 metric 재현은 아직 미수행 |
+| 공식 참고 자료 | 문서 안내 확인, 확보 자원 검증 진행 | 공개 자원 파일·CLIP hash·UCF CPU checkpoint loading 및 이전 버전 MPS 소규모 inference 확인. 전체 논문 metric 재현은 아직 미수행 |
 | 실제 연구 코드 폴더 / 서버 | 로컬 폴더 확인 | 프로젝트 루트와 VadCLIP checkout 확인. 서버는 미확인 |
 | VadCLIP 코드 및 실행 환경 | 사용자 CPU loading 및 MPS smoke 성공 | torch 2.8.0, strict loading 349 entries. MPS 7사례 finite score·길이 검사 통과. CPU forward/전체 평가 미실행 |
 | UCF-Crime 데이터·feature·checkpoint | Raw 정리·자원·배열/GT 점검 통과 | Feature 290개 finite `[T,512]`. __0/__5 shape 동일. GT 1,109,888 및 공식 feature timeline/annotation mismatch 0. CPU loading 성공 |
@@ -337,3 +337,23 @@ Raw test 입력은 official test 목록의 290개를 기준으로 선택한다. 
 - 사용자 터미널에서 생성한 commit `545d8ef6c0e9de6e4aa8acc2366c73c10d768130` (`chore: simplify sharing and document excluded data`)을 확인했다. GitHub origin의 실제 main을 읽어 로컬 HEAD 및 origin/main과 같은 commit임을 확인했다. 확인 시작 시 작업 트리는 clean이었다.
 - 최신 commit에는 정리된 기존 파일과 README가 있으며 제외 영상·feature·weights·score·가상환경/백업 및 걷어낸 중복 공유 파일은 추적되지 않는다. Codex는 Git/파일 읽기만 수행했으며 프로젝트 코드 실행이나 추가 commit/push는 하지 않았다. 이 업로드 확인 기록은 로컬에서 추가되었으므로 다음 일반 commit에 포함하면 된다.
 - 다음 연구 작업: 사용자가 현재 버전 MPS smoke를 통과한 뒤 full official-feature 평가를 실행한다. 전체 metric은 여전히 미측정이다.
+
+### 2026-10-06 — 재현 준비 상태 재확인
+
+- 사용자 질문에 따라 연구 계획, 진행 기록, 기존 입력·MPS smoke 보고서와 평가 코드의 full 진입 조건을 정적으로 대조했다. UCF official-feature baseline의 입력·환경·평가 코드 준비와 이전 버전 소규모 추론 통과를 확인했다. 전체 AUC 재현 완료로 해석하지 않는다.
+- 기존 산출물: `outputs/setup/ucf_baseline_input_check.json`, `outputs/setup/ucf_smoke_check.json`, `outputs/baseline/ucf_official_smoke_mps_20261006_202116_841716/summary.json`. 현재 baseline 파일 목록에 full 결과는 없고 기존 smoke의 metrics는 null이다.
+- 문서 보완: 상단의 GitHub 공유 준비 상태를 기존 업로드 완료 기록에 맞추고, 소규모 inference 통과와 전체 metric 미측정을 구분했다. 새 실험 결과 파일 없음. 프로젝트 코드·테스트·import·inference는 실행하지 않았다.
+- 미해결/바로 다음: 사용자가 프로젝트 루트에서 `.venv/bin/python scripts/evaluate_ucf_official.py --mode smoke --device mps`로 현재 버전 7사례 success를 확인한 뒤 같은 입력·장치로 `--mode full --device mps`를 실행한다. Full 출력은 `outputs/baseline/ucf_official_full_mps_<timestamp>/summary.json` 및 `frame_scores.npz`; 영상 290개, 평가 frame 1,109,888과 두 branch AUC/AP를 확인한다. Raw-video reference·sampling 비교와 XD-Violence 검증은 이후 단계다.
+
+### 2026-10-06 — MPS 평가 소요 시간 추정 안내
+
+- 기존 smoke 보고서의 7사례 cached-feature loop는 약 3.65초다. 이 시간은 import·checkpoint hash 검사·모델 초기 로딩 및 최종 보고서 저장을 포함하지 않는다. 평가 코드의 입출력·추론 반복과 영상별 진행 출력도 정적으로 확인했다.
+- 안내 추정(실측 아님): 동일 Mac/MPS에서 smoke는 수십 초, full official-feature 평가는 수분 정도(우선 1~5분, 여유 있게 10분)로 예상한다. 긴 영상, 초기 MPS 준비, 메모리와 다른 작업 부하에 따라 달라질 수 있다. Raw-video 처리 시간으로 확장하지 않는다.
+- 코드·테스트·inference는 실행하지 않았고 새 결과 파일은 없다. 다음 작업은 사용자의 현재 버전 smoke/full 실행이며, 실제 소요 시간과 성공 여부는 사용자 실행 결과로 확인한다.
+
+### 2026-10-06 — 별도 오류 텍스트 파일 저장 중단
+
+- 사용자 요청에 따라 `scripts/evaluate_ucf_official.py`의 예외 처리에서 `error.txt` 저장을 제거하고 상세 traceback을 터미널 stderr에 출력하도록 변경했다. `summary.json`의 success/짧은 error 기록과 정상 score·metric 저장은 유지한다. 기존 실행 결과 파일은 수정·삭제하지 않았다.
+- `docs/UCF_OFFICIAL_BASELINE.md`의 오류 출력 안내를 수정했다. 코드·문서와 diff를 정적으로 검토했으며 프로젝트 코드·테스트·import·inference는 미실행이다. 새 실행 산출물 없음.
+- 다음 사용자 실행: 기존 config/공식 feature/GT/checkpoint를 사용하여 프로젝트 루트에서 `.venv/bin/python scripts/evaluate_ucf_official.py --mode smoke --device mps`를 실행하고 success=true/7사례 통과 확인 후 동일 장치의 `--mode full --device mps`를 실행한다. Evaluator source hash가 변경되어 새 smoke가 필요하다.
+- 출력/확인: `outputs/baseline/ucf_official_<mode>_mps_<timestamp>/summary.json`과 기존 score 출력, 최신 smoke 보고서 `outputs/setup/ucf_smoke_check.json`. 실패 시 상세 오류는 터미널에서 확인하며 새 run에 `error.txt`가 생성되지 않아야 한다. 실제 실패 경로의 동작은 사용자 실행 전까지 미검증이다.
