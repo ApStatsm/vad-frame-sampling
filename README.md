@@ -7,23 +7,32 @@ Pretrained VadCLIP을 고정하고 frame sampling 방법에 따른 이상 탐지
 ## 저장소 파일 구조
 
 ```text
-VadCLIP/                           모델 소스, 공식 목록·GT, 원본 LICENSE
-scripts/                           데이터 준비·입력 점검·평가 코드
-configs/ucf_resources.json         feature와 checkpoint 경로 설정
-docs/                              기존 자원 준비·baseline 실행 안내
-UCF-Crime/
-  Temporal_Anomaly_Annotation_for_Testing_Videos.txt
-  test/
-    manifest.json, manifest.csv    영상별 경로·metadata·annotation
-    splits/                       test/anomaly/normal 목록
-    annotations/                  원본 temporal annotation 복사본
-outputs/
-  setup/                          기존 자원·입력 점검 JSON, local CSV, 로그
-  baseline/<run_id>/summary.json   기존 실행 보고서
-AGENTS.md                          프로젝트 작업 지침
-PROGRESS.md                        진행 기록
-VAD_Frame_Sampling_Research_Plan.md 연구 계획
-requirements.txt                   기존 환경의 직접 의존성 버전
+├── VadCLIP/                            # 모델 소스, 공식 목록·GT, 원본 LICENSE
+├── scripts/                            # 데이터 준비·입력 점검·평가 코드
+├── configs/
+│   └── ucf_resources.json              # feature·checkpoint 경로 설정
+├── docs/                               # 자원 준비·baseline 실행 안내
+├── UCF-Crime/
+│   ├── Temporal_Anomaly_Annotation_for_Testing_Videos.txt
+│   └── test/
+│       ├── manifest.json               # 영상별 경로·metadata·annotation
+│       ├── manifest.csv                # 동일 정보를 표 형식으로 저장
+│       ├── splits/
+│       │   ├── test.txt                # 전체 test 목록
+│       │   ├── anomaly.txt             # anomaly 영상 목록
+│       │   └── normal.txt              # normal 영상 목록
+│       └── annotations/                # 원본 temporal annotation 복사본
+├── outputs/
+│   ├── setup/                          # 점검 JSON, local CSV, 로그
+│   └── baseline/
+│       └── <run_id>/
+│           └── summary.json            # 실행별 보고서
+├── .gitignore                          # 업로드 제외 규칙
+├── README.md                           # 프로젝트·데이터 구조 안내
+├── AGENTS.md                           # 프로젝트 작업 지침
+├── PROGRESS.md                         # 진행 기록
+├── VAD_Frame_Sampling_Research_Plan.md  # 연구 계획
+└── requirements.txt                    # 실행 환경의 의존성 버전
 ```
 
 작은 manifest·목록·점검 보고서는 현재 파일을 그대로 공유합니다. 기존 CSV와 보고서에 들어 있는 절대 경로는 실행 당시 컴퓨터의 경로입니다. 다른 컴퓨터에서는 자신의 경로로 설정하고 점검 파일을 다시 생성해야 합니다. 원본 공식 feature CSV의 배포자 경로도 변경하지 않고 보존합니다.
@@ -33,29 +42,44 @@ requirements.txt                   기존 환경의 직접 의존성 버전
 아래 자원은 로컬 파일을 보존하면서 `.gitignore`로 업로드에서 제외합니다. 새 clone에는 들어 있지 않으므로 직접 확보해야 합니다.
 
 ```text
-UCF-Crime/
-  Anomaly-Videos-Part-{1,2,3,4}.zip          원본 영상 ZIP
-  Testing_Normal_Videos.zip               normal test 영상 ZIP
-  extracted/
-    Anomaly-Videos-Part-1/Abuse/*.mp4       압축 해제 영상의 경로 예시
-    ...
-  test/
-    Anomaly/<category>/*.mp4               extracted 원본을 가리키는 상대 symlink
-    Normal/*.mp4                          extracted 원본을 가리키는 상대 symlink
-features/official/ucf/
-  UCFClipFeatures.shared.zip               feature ZIP; 배포 ZIP 이름은 달라도 됨
-  UCFClipFeatures/
-    Abuse/Abuse028_x264__5.npy             test feature의 경로 예시
-    Testing_Normal_Videos_Anomaly/*.npy    공식 test normal feature
-    <배포 폴더>/<video_stem>__<crop>.npy    원본 crop/분할 구조 유지
-checkpoints/
-  clip/ViT-B-16.pt                         CLIP encoder 가중치
-  vadclip/model_ucf.pth                    UCF용 VadCLIP 가중치
-outputs/baseline/<run_id>/
-  scores/*.npz                            영상/사례별 score 배열
-  frame_scores.npz                        full 평가의 전체 timeline score
-.venv/                                    로컬 Python 가상환경
-.local-backups/                           이전 Git 이력·정리 파일의 로컬 백업
+├── UCF-Crime/
+│   ├── Anomaly-Videos-Part-{1,2,3,4}.zip    # 원본 anomaly 영상 ZIP
+│   ├── Testing_Normal_Videos.zip           # normal test 영상 ZIP
+│   ├── extracted/                          # 압축 해제한 원본 영상
+│   │   ├── Anomaly-Videos-Part-1/
+│   │   │   └── Abuse/
+│   │   │       └── *.mp4
+│   │   └── ...
+│   └── test/
+│       ├── Anomaly/
+│       │   └── <category>/
+│       │       └── *.mp4                   # extracted 원본으로 연결되는 symlink
+│       └── Normal/
+│           └── *.mp4                       # extracted 원본으로 연결되는 symlink
+├── features/
+│   └── official/
+│       └── ucf/
+│           ├── UCFClipFeatures.shared.zip  # 다운로드한 feature ZIP
+│           └── UCFClipFeatures/
+│               ├── Abuse/
+│               │   └── Abuse028_x264__5.npy
+│               ├── Testing_Normal_Videos_Anomaly/
+│               │   └── *.npy               # 공식 test normal feature
+│               └── <배포 폴더>/
+│                   └── <video_stem>__<crop>.npy
+├── checkpoints/
+│   ├── clip/
+│   │   └── ViT-B-16.pt                      # CLIP encoder 가중치
+│   └── vadclip/
+│       └── model_ucf.pth                    # UCF용 VadCLIP 가중치
+├── outputs/
+│   └── baseline/
+│       └── <run_id>/
+│           ├── scores/
+│           │   └── *.npz                   # 영상·사례별 score 배열
+│           └── frame_scores.npz            # full 평가의 전체 timeline score
+├── .venv/                                  # 로컬 Python 가상환경
+└── .local-backups/                          # 이전 Git 이력·정리 파일 백업
 ```
 
 | 제외 자원 | 파일 형식과 대응 규칙 |
