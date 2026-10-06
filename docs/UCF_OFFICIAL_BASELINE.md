@@ -1,8 +1,8 @@
 # UCF-Crime official-feature baseline 실행 안내
 
-2026-10-06. Codex는 코드 작성·정적 검토만 수행했다. 사용자 MPS smoke 7사례가 통과했으며 전체 평가는 아직 미실행이다.
+2026-10-07. Codex는 코드 작성·정적 검토 및 기존 결과 읽기만 수행했다. 사용자 MPS full run `ucf_full_20261006_235442`가 성공했으며 branch1 AUC 88.02%, branch2 AUC 85.69%다. [실험 결과표](EXPERIMENT_RESULTS.md)에 official-feature 재현과 미측정 raw sampling 표를 구분했다. 아래 명령은 실행 안내이며 동일 조건의 성공 run을 반복할 필요는 없다.
 
-**GitHub 통합 후 다음 실행:** 기존 MPS smoke는 당시 source hash의 검증 결과다. 공유 준비에서 원본 파일의 변경 표시와 evaluator의 연구/upstream 버전 기록을 수정했으므로 현재 버전의 `--mode smoke --device mps`를 다시 통과한 뒤 `--mode full --device mps`를 실행한다. 모델 계산·가중치·window·prompt·score 복원 규칙은 이 준비에서 바꾸지 않았다. 기존 작은 JSON/CSV/텍스트 보고서는 `outputs/`의 원래 위치에서 공유하고 score 배열은 업로드에서 제외한다. 구조·형식은 루트 README에 정리했다.
+**실행 선택:** 사용자 지시에 따라 smoke는 선택적 소규모 점검이며 `--mode full --device mps`를 바로 실행할 수 있다. Full에서는 과거 smoke 보고서를 읽거나 현재 코드 hash와 비교하지 않는다. 자원·입력 audit와 checkpoint 점검, 실행별 source hash 기록은 유지한다. 기존 작은 JSON/CSV/텍스트 보고서는 `outputs/`의 원래 위치에서 공유하고 score 배열은 업로드에서 제외한다. 구조·형식은 루트 README에 정리했다.
 
 ## 확인된 준비 결과
 
@@ -24,9 +24,9 @@
 - `outputs/setup/ucf_resource_check.json`과 `ucf_baseline_input_check.json`의 통과 기록.
 - 기존 `VadCLIP/list/gt_ucf.npy`와 test manifest.
 
-## Step A — CPU 소규모 추론 점검
+## 선택 사항 — CPU 소규모 추론 점검
 
-프로젝트 루트에서 사용자가 실행한다.
+소규모 추론을 확인하고 싶을 때 프로젝트 루트에서 사용자가 실행한다. 전체 평가의 선행 조건은 아니다.
 
 ```sh
 .venv/bin/python scripts/evaluate_ucf_official.py --mode smoke --device cpu
@@ -44,15 +44,15 @@
 
 CPU forward를 가능하게 하기 위해 `DistanceAdj`의 CUDA 고정 위치만 모델 장치에 맞추었다. 거리·상수·exp 식과 가중치는 유지한다. `CLIPVAD`의 선택적 local CLIP path 인수도 사용한다. Source hash와 연구 Git commit/dirty 상태, `VadCLIP/UPSTREAM.json`의 원본 commit을 구분하여 실행 보고서에 남긴다.
 
-## Step B — 전체 test 평가
+## 전체 test 평가
 
-동일 코드·입력·device의 smoke가 통과한 뒤에만 실행한다. 스크립트도 통과한 smoke 보고서와 현재 source/config/checkpoint 식별값을 대조한다.
+Smoke 실행 여부와 관계없이 바로 실행할 수 있다. 기존 입력 audit와 config/list/manifest/GT 일치, checkpoint hash, 장치 availability는 확인한다. 실행 중 feature shape/dtype·score 유효성·GT 길이 검사도 유지한다.
 
 ```sh
 .venv/bin/python scripts/evaluate_ucf_official.py --mode full --device mps
 ```
 
-Normal 150개를 포함한 공식 test 290개 전체의 frame-level ROC-AUC와 AP를 두 branch별로 기록한다. UCF의 주 지표는 AUC이며 AP는 보조 출력이다. Detection mAP는 이번 실행 범위에 포함하지 않는다.
+Normal 150개를 포함한 공식 test 290개 전체의 frame-level ROC-AUC와 AP를 두 branch별로 기록한다. 추가로 manifest에서 is_anomaly=true인 140개 영상의 전체 프레임을 모아 Ano-AUC도 기록한다. 이상 영상 내부 정상 구간은 포함하며 normal-only 150개 영상은 제외한다. UCF의 주 지표는 전체 AUC이며 AP/Ano-AUC는 보조 출력이다. Detection mAP는 이번 실행 범위에 포함하지 않는다.
 
 재현 규칙:
 
@@ -63,7 +63,7 @@ Normal 150개를 포함한 공식 test 290개 전체의 frame-level ROC-AUC와 A
 - Branch 결합·smoothing 없이 각각 기록. 공식 feature score를 16회 반복하여 기존 GT 전체에 평가.
 - 모델 가중치·전처리·window 정책을 sampler별로 변경하지 않는다. Sampling 비교의 주 branch는 이후 논문/공식 재현 조건 확인 후 sampling 결과를 보기 전에 고정한다.
 
-기존 사용자가 통과한 smoke 장치는 MPS이므로 위 full 명령도 MPS를 사용한다. CPU full 평가를 선택하려면 Step A의 CPU smoke부터 별도로 통과해야 한다. 실패 시 CPU로 자동 fallback하지 않는다. MPS smoke 명령은 아래와 같다. 현재 GitHub 통합 버전은 source hash가 변경되어 새 smoke가 필요하며, 이후 코드·입력·장치가 동일한 경우에만 해당 통과 결과를 재사용한다.
+위 full 명령은 MPS를 사용하며 CPU/CUDA에서는 `--device cpu` 또는 `--device cuda`를 지정한다. 실패 시 CPU로 자동 fallback하지 않는다. MPS에서 선택적으로 소규모 추론을 확인하려면 아래 명령을 사용한다. 과거 smoke의 검증 범위는 당시 코드·입력·장치에 한정되지만 그 보고서의 상태로 full 실행을 제한하지 않는다.
 
 ```sh
 .venv/bin/python scripts/evaluate_ucf_official.py --mode smoke --device mps
@@ -73,12 +73,25 @@ MPS를 선택한 평가 결과는 device·precision과 함께 별도 run으로 �
 
 ## 예상 출력과 사용자 확인
 
-- 실행별 `outputs/baseline/ucf_official_<mode>_<device>_<timestamp>/summary.json`.
+- 실행별 `outputs/baseline/ucf_<mode>_<YYYYMMDD_HHMMSS>/summary.json`. 예: `ucf_full_20261006_234239`. 날짜·시간은 Asia/Seoul 기준이며 같은 이름이 이미 있으면 `_2`, `_3` 등을 붙인다. 장치와 입력 종류는 summary에 기록한다.
 - 같은 run의 `scores/*.npz`: 영상/사례별 두 branch의 feature token score와 GT 구간. 원본 frame 위치는 official token당 16개 반복과 summary의 gt_offset으로 복원한다.
 - Smoke의 최신 요약 복사본: `outputs/setup/ucf_smoke_check.json`.
 - Full 성공 시 `frame_scores.npz`와 summary의 `metrics`.
+- 각 branch의 metric key는 `roc_auc`, `ap`, `ano_auc`이며 값은 0~1이다. %로 표시하려면 100을 곱한다. `anomaly_videos`=140, `anomaly_evaluation_frames` 및 `ano_auc_scope`에 Ano-AUC 집계 범위를 기록한다.
 - 실패 시 짧은 오류 설명은 `summary.json`의 error에 기록하고 상세 traceback은 터미널에 출력한다. `error.txt`는 생성하지 않는다. 입력·GT·checkpoint는 수정하지 않는다.
 
 Smoke 완료 후 `success: true`와 7개 사례 OK를 확인한다. Full 성공은 전체 frame 수 1,109,888, test 영상 290개와 두 branch의 metric 저장으로 확인한다.
 
 시간 출력은 official feature cache에서의 실행 기록이다. 영상 decoding·CLIP visual encoding을 포함하지 않으므로 raw-video 효율이나 sampling speedup 근거로 사용하지 않는다. 이 단계의 warm-up/반복 측정은 성능 benchmark 목적이 아니며 원본 입력의 inference 정상 동작과 AUC 재현을 확인한다.
+
+## 기존 결과에 Ano-AUC 추가 — 모델 재실행 없음
+
+기존 full run의 `frame_scores.npz`, `summary.json`과 당시 hash에 일치하는 `VadCLIP/list/gt_ucf.npy`, `UCF-Crime/test/manifest.json`을 사용한다. Checkpoint·feature 파일·MPS는 필요하지 않으며 torch/모델을 import하지 않는다. 프로젝트 루트에서 사용자가 실행한다.
+
+```sh
+.venv/bin/python scripts/update_ucf_metrics.py outputs/baseline/ucf_full_20261006_235442
+```
+
+현재 저장 score로 전체 AUC/AP를 다시 계산하여 원래 값과 절대 오차 1e-12 이내인지 확인하고, 영상별 순서·offset·길이와 anomaly 분류를 검증한 뒤 `metrics.branch1.ano_auc`, `metrics.branch2.ano_auc` 및 집계 범위를 원래 `summary.json`에 추가한다. 기존 AUC/AP, inference source hash·checkpoint hash·device·run_id 및 timing은 유지한다. `metrics_update`에 추가 계산의 시각·코드 및 입력 hash를 별도로 기록한다. Score/GT/manifest는 덮어쓰지 않는다.
+
+`anomaly_videos`=140, 두 `ano_auc`가 finite 0~1인지, 기존 AUC/AP가 보존됐는지 확인한다. 실패하면 터미널에 traceback을 출력하고 summary는 갱신하지 않는다. Codex는 이 명령이나 metric 계산을 실행하지 않았으며 실제 수치는 사용자 실행 후 확인한다.

@@ -51,3 +51,4 @@ configs/*.local.json
 !/outputs/**/*.log
 
 # Bundled GT .npy files and CLIP tokenizer .txt.gz remain tracked.
+PROGRESS.md

@@ -1,5 +1,6 @@
 """User-run smoke/full VadCLIP evaluation on official UCF test features.
 
+Smoke is optional; full evaluation does not require a prior smoke report.
 Retains upstream process_split, declared window lengths, mask behavior, prompts,
 two score branches and 16-fold repetition. Smoke prefixes are execution checks,
 not benchmark results. Cached-feature timings are not raw-video efficiency.
@@ -121,10 +122,17 @@ def main():
     parser.add_argument('--device', choices=['cpu', 'cuda', 'mps'], default='cpu')
     parser.add_argument('--config', type=Path, default=ROOT / 'configs/ucf_resources.json')
     args = parser.parse_args()
-    stamp = datetime.now(ZoneInfo('Asia/Seoul')).strftime('%Y%m%d_%H%M%S_%f')
-    run_id = f'ucf_official_{args.mode}_{args.device}_{stamp}'
-    output = ROOT / 'outputs/baseline' / run_id
-    output.mkdir(parents=True, exist_ok=False)
+    stamp = datetime.now(ZoneInfo('Asia/Seoul')).strftime('%Y%m%d_%H%M%S')
+    base_run_id = f'ucf_{args.mode}_{stamp}'
+    attempt = 1
+    while True:
+        run_id = base_run_id if attempt == 1 else f'{base_run_id}_{attempt}'
+        output = ROOT / 'outputs/baseline' / run_id
+        try:
+            output.mkdir(parents=True, exist_ok=False)
+            break
+        except FileExistsError:
+            attempt += 1
     (output / 'scores').mkdir()
     report = {'run_id': run_id, 'mode': args.mode, 'dataset': 'UCF-Crime',
               'input_type': 'official_features', 'device': args.device,
@@ -157,7 +165,7 @@ def main():
             pass
         import numpy as np
         import torch
-        from sklearn.metrics import roc_auc_score, average_precision_score
+        from ucf_metrics import compute_ucf_metrics
 
         sys.path.insert(0, str(ROOT / 'VadCLIP/src'))
         from model import CLIPVAD
@@ -187,7 +195,8 @@ def main():
             'model_source': sha256(ROOT / 'VadCLIP/src/model.py'),
             'layers_source': sha256(ROOT / 'VadCLIP/src/utils/layers.py'),
             'tools_source': sha256(ROOT / 'VadCLIP/src/utils/tools.py'),
-            'official_test_source': sha256(ROOT / 'VadCLIP/src/ucf_test.py')})
+            'official_test_source': sha256(ROOT / 'VadCLIP/src/ucf_test.py'),
+            'metrics_source': sha256(ROOT / 'scripts/ucf_metrics.py')})
         with local_csv.open(newline='') as handle:
             local_rows = list(csv.DictReader(handle))
         if len(local_rows) != len(audit['videos']) or len(local_rows) != 290:
@@ -203,17 +212,7 @@ def main():
             report['input_sha256'][f'{name}_checkpoint'] = value
             if value != resource_audit['checkpoints'][name]['sha256']:
                 raise ValueError(f'{name} checkpoint changed since the resource audit')
-        if args.mode == 'full':
-            smoke_path = ROOT / 'outputs/setup/ucf_smoke_check.json'
-            smoke = json.loads(smoke_path.read_text())
-            if not smoke.get('success') or smoke.get('device') != args.device or smoke.get('mode') != 'smoke':
-                raise ValueError('Run a successful smoke check on the selected device first')
-            for key in ('config', 'local_csv', 'manifest', 'gt', 'script', 'model_source',
-                        'layers_source', 'tools_source', 'clip_checkpoint', 'ucf_checkpoint',
-                        'upstream_provenance'):
-                if report['input_sha256'][key] != smoke['input_sha256'].get(key):
-                    raise ValueError(f'{key} changed since the smoke check; rerun smoke first')
-            report['input_sha256']['passed_smoke_report'] = sha256(smoke_path)
+        # Smoke is a separate optional run, not a prerequisite for full evaluation.
         torch.manual_seed(defaults.seed)
         model = CLIPVAD(defaults.classes_num, defaults.embed_dim, defaults.visual_length,
                         defaults.visual_width, defaults.visual_head, defaults.visual_layers,
@@ -273,12 +272,8 @@ def main():
             frame1, frame2 = np.concatenate(branch1_frames), np.concatenate(branch2_frames)
             if len(frame1) != len(gt) or len(frame2) != len(gt):
                 raise ValueError('Full restored score length does not equal the full GT length')
-            report['metrics'] = {
-                'evaluation_frames': len(gt), 'test_videos': len(cases), 'includes_normal': True,
-                'branch1': {'roc_auc': float(roc_auc_score(gt, frame1)),
-                            'ap': float(average_precision_score(gt, frame1))},
-                'branch2': {'roc_auc': float(roc_auc_score(gt, frame2)),
-                            'ap': float(average_precision_score(gt, frame2))}}
+            report['metrics'] = compute_ucf_metrics(
+                gt, frame1, frame2, report['videos'], json.loads(manifest.read_text()))
             np.savez_compressed(output / 'frame_scores.npz', branch1=frame1, branch2=frame2)
             print(json.dumps(report['metrics'], indent=2))
         report['success'] = True

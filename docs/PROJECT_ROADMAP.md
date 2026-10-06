@@ -77,7 +77,7 @@ Codex는 자원 점검 코드·로컬 경로 설정·실행 안내를 준비하�
 
 ### Step 2 — Official-feature baseline 재현
 
-1. 작은 입력으로 feature 길이, window 분할, padding, score 길이와 해당 GT 구간의 대응을 확인한다.
+1. 필요하면 선택적 smoke로 작은 입력의 feature 길이, window 분할, padding, score 길이와 해당 GT 구간의 대응을 확인한다. Full 실행은 smoke 통과를 요구하지 않는다.
 2. 정렬을 검증한 전체 290개 feature로 평가한다. Normal 150개를 포함한다.
 3. `sigmoid(logits1)`와 `1 - P(Normal)` 두 branch의 AUC를 각각 저장한다.
 4. 논문 보고값과 차이가 있으면 checkpoint, 입력 feature 버전, branch, GT와 후처리 차이를 설명한다.

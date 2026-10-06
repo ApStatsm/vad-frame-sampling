@@ -2,7 +2,7 @@
 
 Pretrained VadCLIP을 고정하고 frame sampling 방법에 따른 이상 탐지 성능과 계산 비용을 비교하는 프로젝트입니다. UCF-Crime을 먼저 검증한 뒤 XD-Violence로 확장합니다.
 
-현재 UCF test 290개(anomaly 140, normal 150)의 자원·feature/GT 정렬·checkpoint loading 점검과 이전 버전 MPS smoke 7사례가 통과했습니다. 전체 AUC/AP 평가와 raw-video sampling 비교는 아직 진행하지 않았습니다. 자세한 상태는 [PROGRESS.md](PROGRESS.md), 연구 설계는 [연구 계획](VAD_Frame_Sampling_Research_Plan.md)을 참고하세요.
+현재 UCF test 290개(anomaly 140, normal 150)의 official-feature full 평가가 사용자 MPS 실행에서 성공했습니다. Branch1 AUC 88.02%, branch2 AUC 85.69%이며 raw-video reference·sampling 비교는 아직 미측정입니다. [실험 결과표](docs/EXPERIMENT_RESULTS.md), 자세한 상태는 [PROGRESS.md](PROGRESS.md), 연구 설계는 [연구 계획](VAD_Frame_Sampling_Research_Plan.md)을 참고하세요.
 
 ## 저장소 파일 구조
 
@@ -89,7 +89,7 @@ Pretrained VadCLIP을 고정하고 frame sampling 방법에 따른 이상 탐지
 | CLIP checkpoint | 완성된 PyTorch 모델 아카이브 `ViT-B-16.pt`. `.part`는 미완성 파일입니다. |
 | VadCLIP checkpoint | UCF용 PyTorch checkpoint `model_ucf.pth`. 현재 모델의 state dict를 strict loading합니다. XD 평가에는 XD용 가중치를 별도로 사용합니다. |
 | 영상별 score | 압축 NumPy `.npz`. 현재 evaluator가 `branch1_feature_scores`, `branch2_feature_scores`(각 `[T]`)와 `gt`(대응하는 `16*T` 길이)를 저장합니다. |
-| 전체 score | Full 성공 시 `frame_scores.npz`에 `branch1`, `branch2`를 저장합니다. 각각 전체 official-feature timeline 길이입니다. 현재 full 결과는 아직 없습니다. |
+| 전체 score | Full 성공 시 `frame_scores.npz`에 `branch1`, `branch2`를 저장합니다. 각각 전체 official-feature timeline 길이입니다. 사용자 full run `ucf_full_20261006_235442`에 파일 존재를 확인했습니다. |
 | 가상환경·캐시 | 설치 환경과 생성 파일입니다. 코드는 `requirements.txt`로 환경을 준비하며 캐시는 공유하지 않습니다. |
 
 작고 필요한 `VadCLIP/list/gt*.npy`와 CLIP tokenizer의 `.txt.gz`는 저장소에 포함합니다. Feature 폴더 전체와 영상·weights·score 배열은 제외하지만 모든 `.npy`/`.gz`를 일괄 제외하지는 않습니다.
@@ -102,6 +102,7 @@ Pretrained VadCLIP을 고정하고 frame sampling 방법에 따른 이상 탐지
 - `splits/*.txt`: 한 줄에 `test/` 기준 상대 영상 경로 하나. 공식 feature CSV 순서를 유지합니다.
 - Feature CSV: `path,label` 두 열. `outputs/setup/ucf_CLIP_rgbtest.local.csv`는 해당 컴퓨터에서 생성한 경로를 사용합니다.
 - 점검/실행 JSON: 성공 여부, issues, 입력 hash, 장치와 실행 설정, 영상별 검사·metric 등을 기록합니다. Smoke는 metric을 계산하지 않으며 이전 smoke를 최신 코드의 검증으로 해석하지 않습니다.
+- 실행 폴더명: `ucf_<mode>_<YYYYMMDD_HHMMSS>`입니다. 예: `ucf_full_20261006_234239`. 한국 시간 기준이며 이름이 겹치면 `_2`, `_3` 등을 붙입니다. 장치와 입력 종류는 `summary.json`에서 확인합니다.
 
 ### 자원 배치와 재생성
 
@@ -136,14 +137,27 @@ python3.10 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 ```
 
-현재 evaluator와 모델 파일은 이전 smoke 이후 버전 기록/변경 표시가 보완되어 hash가 다릅니다. 기존 입력은 보존하고 현재 코드의 smoke를 먼저 실행한 뒤 full 평가를 진행합니다.
+전체 평가는 바로 실행할 수 있습니다. Smoke는 소규모 추론을 별도로 확인하고 싶을 때 선택합니다. Full은 기존 smoke 보고서의 존재·통과 여부·hash와 무관하게 실행하며 입력 audit와 checkpoint 점검은 유지합니다.
 
 ```sh
-.venv/bin/python scripts/evaluate_ucf_official.py --mode smoke --device mps
 .venv/bin/python scripts/evaluate_ucf_official.py --mode full --device mps
 ```
 
-다른 장치를 쓰면 smoke/full 모두 같은 `--device cpu` 또는 `--device cuda`를 지정합니다. Smoke의 success=true/7사례 통과, full의 영상 290개·평가 frame 1,109,888·두 branch AUC/AP를 확인합니다. 출력 위치와 평가 규칙은 [UCF_OFFICIAL_BASELINE.md](docs/UCF_OFFICIAL_BASELINE.md)를 참고하세요. Cached-feature 시간은 raw-video 효율 측정이 아닙니다. 이번 공유 정리에서는 프로젝트 코드를 실행하지 않았습니다.
+선택적 소규모 점검:
+
+```sh
+.venv/bin/python scripts/evaluate_ucf_official.py --mode smoke --device mps
+```
+
+다른 장치를 쓰면 `--device cpu` 또는 `--device cuda`를 지정합니다. Smoke를 실행한 경우 success=true/7사례 통과, full에서는 영상 290개·평가 frame 1,109,888·두 branch AUC/AP를 확인합니다. 출력 위치와 평가 규칙은 [UCF_OFFICIAL_BASELINE.md](docs/UCF_OFFICIAL_BASELINE.md)를 참고하세요. Cached-feature 시간은 raw-video 효율 측정이 아닙니다. 이번 변경에서는 프로젝트 코드를 실행하지 않았습니다.
+
+Full 평가의 `metrics.branch1`/`branch2`에는 `roc_auc`, `ap`, `ano_auc`(0~1)를 저장합니다. Ano-AUC는 manifest의 이상 영상 140개 전체 프레임을 대상으로 합니다. 이미 성공한 run에는 모델을 다시 돌리지 않고 저장 score로 Ano-AUC를 추가할 수 있습니다.
+
+```sh
+.venv/bin/python scripts/update_ucf_metrics.py outputs/baseline/ucf_full_20261006_235442
+```
+
+원래 run의 `summary.json`에 Ano-AUC와 계산 출처를 추가하고 기존 AUC/AP·추론 기록은 유지합니다. 이 추가 계산은 아직 실행하지 않았습니다.
 
 ## 원본 코드
 
