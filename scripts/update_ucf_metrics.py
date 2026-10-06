@@ -1,4 +1,4 @@
-"""Add Ano-AUC to an existing full run using saved scores; never load a model."""
+"""Add Ano-AUC from saved scores; never load a model."""
 
 import argparse
 from datetime import datetime
@@ -47,10 +47,11 @@ def main():
     scores_path = run_dir / 'frame_scores.npz'
     scores_hash = sha256(scores_path)
     gt = np.load(gt_path, allow_pickle=False)
+    manifest = json.loads(manifest_path.read_text())
     with np.load(scores_path, allow_pickle=False) as scores:
+        frame1, frame2 = scores['branch1'], scores['branch2']
         computed = compute_ucf_metrics(
-            gt, scores['branch1'], scores['branch2'], report['videos'],
-            json.loads(manifest_path.read_text()))
+            gt, frame1, frame2, report['videos'], manifest)
     # Verify saved-score alignment before adding anything to the original report.
     metrics = report['metrics']
     for key in ('evaluation_frames', 'test_videos', 'includes_normal'):

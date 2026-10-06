@@ -8,15 +8,32 @@
 
 | Dataset | 입력 | Score branch | AUC (%) | AP (%) | Ano-AUC (%) | 평가 영상 수 | 평가 frame 수 |
 |---|---|---|---:|---:|---:|---:|---:|
-| UCF-Crime | Official CLIP features | Branch 1 / C-branch | 88.02 | 33.56 | 미계산 | 290 | 1,109,888 |
-| UCF-Crime | Official CLIP features | Branch 2 / A-branch | 85.69 | 26.50 | 미계산 | 290 | 1,109,888 |
+| UCF-Crime | Official CLIP features | Branch 1 / C-branch | 88.02 | 33.56 | 70.23 | 290 | 1,109,888 |
+| UCF-Crime | Official CLIP features | Branch 2 / A-branch | 85.69 | 26.50 | 65.52 | 290 | 1,109,888 |
 
-Ano-AUC는 이상 영상 140개의 전체 프레임(정상 구간 포함)을 모아 계산한다. 기존 저장 score로 추가하는 코드를 준비했으며 아직 실행하지 않아 수치는 기입하지 않았다. 실행 명령과 출력은 [기존 결과에 Ano-AUC 추가](UCF_OFFICIAL_BASELINE.md#기존-결과에-ano-auc-추가--모델-재실행-없음)를 참고한다.
+Ano-AUC는 이상 영상 140개의 전체 프레임(정상 구간 포함)을 모아 계산한다. 사용자가 기존 저장 score로 추가한 summary의 branch1=0.7023225741073721, branch2=0.6552197493487624를 읽어 %로 기록했다. Codex는 계산을 실행하지 않았다. 실행 명령과 출력은 [기존 결과에 Ano-AUC 추가](UCF_OFFICIAL_BASELINE.md#기존-결과에-ano-auc-추가--모델-재실행-없음)를 참고한다.
 
-- Run: `ucf_full_20261006_235442`, MPS, float32 model parameters, seed 234, success=true, normal 영상 포함.
-- 근거: [summary.json](../outputs/baseline/ucf_full_20261006_235442/summary.json). 실행 source hash, checkpoint hash, 연구 commit 및 dirty 상태는 해당 보고서에 기록되어 있다.
+새 사용자 full run `ucf_full_20261007_004524`의 fine-grained 결과를 확인했다. 평가 대상은 이상 영상 140개/13개 사건 클래스이며 공개 UCF test의 290개/14개 클래스 호출과 구분한다. 논문 표 대비 수치가 높지만 동일 모델의 성능 개선으로 해석하지 않는다. 원본 공개 evaluator·GT를 사용하는 추가 비교는 아직 미실행이다.
+
+| Dataset / 입력 | Score branch | mAP@0.1 (%) | mAP@0.2 (%) | mAP@0.3 (%) | mAP@0.4 (%) | mAP@0.5 (%) | AVG (%) |
+|---|---|---:|---:|---:|---:|---:|---:|
+| UCF-Crime / official features / anomaly-only 13 classes | Branch 2 / A-branch | 13.09 | 8.71 | 7.15 | 5.05 | 3.28 | 7.46 |
+| UCF-Crime / original-code reproduction | Branch 2 / A-branch | 미측정 | 미측정 | 미측정 | 미측정 | 미측정 | 미측정 |
+
+논문 [Table 4](https://ojs.aaai.org/index.php/AAAI/article/download/28423/28826#page=6)의 UCF 보고값은 11.72/7.83/6.40/4.53/2.93%, AVG 6.68%다. 현재 anomaly-only 결과와 직접 비교 가능한 조건인지 확인 중이다. 새 run의 AUC/AP/Ano-AUC는 이전 run과 같은 값이다. [최신 결과 JSON](../outputs/baseline/ucf_full_20261007_004524/summary.json)에 class score 경로·scope·source hash가 저장되어 있다.
+
+사용자 요청으로 full 평가의 기본 mAP를 원본 공개 코드 방식으로 수정했다. 다음 명령으로 모델부터 다시 평가하여 새 run을 만든다.
+
+```sh
+.venv/bin/python scripts/evaluate_ucf_official.py --mode full --device mps
+```
+
+새 summary의 `metrics.fine_grained`에 원본 `excludeNormal=False` 조건(290개/14개 클래스)의 결과를 저장한다. 원본 segment/label GT를 순서·구간·category와 대조한 뒤 그대로 사용하며, 'A' 등의 label도 remap하지 않는다. 기존 run의 anomaly-only 결과는 보존한다. 원본 방식은 사용자 실행 전까지 미측정이며 별도 저장-score mAP 갱신은 사용하지 않는다.
+
+- 최신 Run: `ucf_full_20261007_004524`, MPS, float32 model parameters, seed 234, success=true, normal 영상 포함. 이전 run과 AUC/AP/Ano-AUC는 같다.
+- 근거: [summary.json](../outputs/baseline/ucf_full_20261007_004524/summary.json). 실행 source hash, checkpoint hash, 연구 commit 및 dirty 상태는 해당 보고서에 기록되어 있다.
 - UCF 주 지표는 AUC다. Branch 1은 논문 보고값 88.02%와 소수점 둘째 자리에서 일치한다. 이는 현재 official-feature run의 관측이며 raw-video 재현 성공을 뜻하지 않는다.
-- 보고서의 `cached_feature_loop_seconds`는 24.088초다. 모델 초기 로딩, 최종 AUC/AP 계산·전체 score 저장을 포함하지 않는 feature 처리 loop 시간이며 영상 decoding·CLIP visual encoding도 제외한다. 아래 End-to-end 또는 Speedup 열에 넣지 않는다.
+- 최신 보고서의 `cached_feature_loop_seconds`는 24.368초다. 모델 초기 로딩, 최종 metric 계산·전체 score 저장을 포함하지 않는 feature 처리 loop 시간이며 영상 decoding·CLIP visual encoding도 제외한다. 아래 End-to-end 또는 Speedup 열에 넣지 않는다.
 - Score NPZ 파일은 경로·존재만 확인했으며 내용을 다시 로딩하거나 metric을 재계산하지 않았다.
 
 ## Raw-video sampling 비교표
@@ -46,7 +63,8 @@ Ano-AUC는 이상 영상 140개의 전체 프레임(정상 구간 포함)을 모
 
 ## 바로 다음 작업
 
-1. UCF raw-video reference의 후보 FPS/stride·전처리·feature aggregation과 annotation 시간축/경계·score 복원 규칙, 재현 허용 오차를 확정하고 코드를 준비한다.
-2. 사용자가 raw reference를 실행해 AUC와 전체 시간, 선택 index/timestamp 및 event coverage를 확인한다. Official-feature 결과와의 차이를 설명한다.
-3. 공통 규칙과 주 score branch를 고정하고 Uniform/Random 25%를 먼저 비교한다. 연구 계획의 50%/12.5% budget도 이후 동일 형식으로 기록한다.
-4. XD-Violence 자원과 데이터셋별 checkpoint·AP 평가를 검증한 뒤 확장한다. Adaptive/Ours는 계획 순서에 따라 개발하며 Ours는 별도 개발 데이터에서 설계·튜닝한다.
+1. 수정된 full evaluator를 실행해 원본 fine-grained mAP/AVG를 확인하고 논문과의 차이를 점검한다.
+2. UCF raw-video reference의 후보 FPS/stride·전처리·feature aggregation과 annotation 시간축/경계·score 복원 규칙, 재현 허용 오차를 확정하고 코드를 준비한다.
+3. 사용자가 raw reference를 실행해 AUC와 전체 시간, 선택 index/timestamp 및 event coverage를 확인한다. Official-feature 결과와의 차이를 설명한다.
+4. 공통 규칙과 주 score branch를 고정하고 Uniform/Random 25%를 먼저 비교한다. 연구 계획의 50%/12.5% budget도 이후 동일 형식으로 기록한다.
+5. XD-Violence 자원과 데이터셋별 checkpoint·AP 평가를 검증한 뒤 확장한다. Adaptive/Ours는 계획 순서에 따라 개발하며 Ours는 별도 개발 데이터에서 설계·튜닝한다.

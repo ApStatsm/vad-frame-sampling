@@ -4,6 +4,8 @@ Smoke is optional; full evaluation does not require a prior smoke report.
 Retains upstream process_split, declared window lengths, mask behavior, prompts,
 two score branches and 16-fold repetition. Smoke prefixes are execution checks,
 not benchmark results. Cached-feature timings are not raw-video efficiency.
+Full evaluates temporal mAP through the unmodified upstream UCF evaluator,
+using its bundled segment/class GT and excludeNormal=False (290 videos/14 classes).
 """
 
 import argparse
@@ -81,11 +83,17 @@ def infer_feature(np, torch, model, feature, window, prompts, device):
     with torch.no_grad():
         _, logits1, logits2 = model(visual, mask, prompts, lengths)
         score1 = torch.sigmoid(logits1.reshape(-1, logits1.shape[-1])[:token_count].squeeze(-1))
-        score2 = 1 - logits2.reshape(-1, logits2.shape[-1])[:token_count].softmax(dim=-1)[:, 0]
+        class_scores = logits2.reshape(-1, logits2.shape[-1])[:token_count].softmax(dim=-1)
+        score2 = 1 - class_scores[:, 0]
     synchronize(torch, device)
     elapsed = time.perf_counter() - started
     score1 = score1.detach().cpu().numpy()
     score2 = score2.detach().cpu().numpy()
+    class_scores = class_scores.detach().cpu().numpy()
+    if (class_scores.shape != (token_count, len(LABELS))
+            or not np.isfinite(class_scores).all()
+            or not np.allclose(class_scores.sum(axis=1), 1, rtol=0, atol=1e-5)):
+        raise ValueError('Invalid class probability shape or normalization')
     for score in (score1, score2):
         if score.shape != (token_count,) or not np.isfinite(score).all():
             raise ValueError('Invalid length or non-finite valid-token scores')
@@ -99,7 +107,7 @@ def infer_feature(np, torch, model, feature, window, prompts, device):
               'branch1_range': [float(score1.min()), float(score1.max())],
               'branch2_range': [float(score2.min()), float(score2.max())],
               'model_forward_seconds': elapsed, 'valid_scores_finite': True}
-    return score1, score2, record
+    return score1, score2, class_scores, record
 
 
 def prepare_cases(mode, audited_videos, window):
@@ -166,6 +174,7 @@ def main():
         import numpy as np
         import torch
         from ucf_metrics import compute_ucf_metrics
+        from ucf_finegrained import compute_official_fine_grained
 
         sys.path.insert(0, str(ROOT / 'VadCLIP/src'))
         from model import CLIPVAD
@@ -196,7 +205,22 @@ def main():
             'layers_source': sha256(ROOT / 'VadCLIP/src/utils/layers.py'),
             'tools_source': sha256(ROOT / 'VadCLIP/src/utils/tools.py'),
             'official_test_source': sha256(ROOT / 'VadCLIP/src/ucf_test.py'),
-            'metrics_source': sha256(ROOT / 'scripts/ucf_metrics.py')})
+            'metrics_source': sha256(ROOT / 'scripts/ucf_metrics.py'),
+            'fine_grained_source': sha256(ROOT / 'scripts/ucf_finegrained.py'),
+            'official_fine_grained_source': sha256(ROOT / 'VadCLIP/src/utils/ucf_detectionMAP.py')})
+        manifest_data = json.loads(manifest.read_text())
+        fine_grained_source = ROOT / 'VadCLIP/src/utils/ucf_detectionMAP.py'
+        if args.mode == 'full':
+            segments_path = ROOT / 'VadCLIP/list/gt_segment_ucf.npy'
+            labels_path = ROOT / 'VadCLIP/list/gt_label_ucf.npy'
+            report['input_sha256'].update({
+                'official_gt_segments': sha256(segments_path),
+                'official_gt_labels': sha256(labels_path)})
+            # Upstream ucf_test.py loads these bundled ragged object arrays.
+            gt_segments = np.load(segments_path, allow_pickle=True)
+            gt_labels = np.load(labels_path, allow_pickle=True)
+            if len(gt_segments) != 290 or len(gt_labels) != 290:
+                raise ValueError('Expected segment/class GT for 290 test videos')
         with local_csv.open(newline='') as handle:
             local_rows = list(csv.DictReader(handle))
         if len(local_rows) != len(audit['videos']) or len(local_rows) != 290:
@@ -240,6 +264,7 @@ def main():
                              'branch_combination': None, 'smoothing': None})
         gt = np.load(gt_path, mmap_mode='r', allow_pickle=False)
         branch1_frames, branch2_frames = [], []
+        video_class_scores = []
         cases = prepare_cases(args.mode, audit['videos'], defaults.visual_length)
         run_started = time.perf_counter()
         for case_index, (audited, prefix, case_name) in enumerate(cases):
@@ -250,7 +275,8 @@ def main():
             feature_sha = sha256(path)
             if prefix is not None:
                 feature = feature[:prefix]
-            score1, score2, details = infer_feature(np, torch, model, feature, defaults.visual_length, prompts, args.device)
+            score1, score2, class_scores, details = infer_feature(
+                np, torch, model, feature, defaults.visual_length, prompts, args.device)
             frame1, frame2 = np.repeat(score1, 16), np.repeat(score2, 16)
             offset = audited['gt_offset']
             gt_segment = np.asarray(gt[offset:offset + len(frame1)])
@@ -258,7 +284,9 @@ def main():
                 raise ValueError('Restored scores and GT segment lengths differ')
             score_file = output / 'scores' / f'{case_index:03d}_{Path(audited["video"]).stem}_{case_name}.npz'
             np.savez_compressed(score_file, branch1_feature_scores=score1,
-                                branch2_feature_scores=score2, gt=gt_segment)
+                                branch2_feature_scores=score2, gt=gt_segment,
+                                branch2_class_feature_scores=class_scores,
+                                class_labels=np.asarray(LABELS))
             report['videos'].append({'official_csv_index': audited['index'], 'video': audited['video'],
                                      'case': case_name, 'prefix_only': prefix is not None,
                                      'feature_sha256': feature_sha, 'gt_offset': offset,
@@ -266,6 +294,7 @@ def main():
             if args.mode == 'full':
                 branch1_frames.append(frame1)
                 branch2_frames.append(frame2)
+                video_class_scores.append(class_scores)
             print(f'{case_index + 1}/{len(cases)}: {audited["video"]} [{case_name}] OK', flush=True)
         report['cached_feature_loop_seconds'] = time.perf_counter() - run_started
         if args.mode == 'full':
@@ -273,8 +302,12 @@ def main():
             if len(frame1) != len(gt) or len(frame2) != len(gt):
                 raise ValueError('Full restored score length does not equal the full GT length')
             report['metrics'] = compute_ucf_metrics(
-                gt, frame1, frame2, report['videos'], json.loads(manifest.read_text()))
+                gt, frame1, frame2, report['videos'], manifest_data)
             np.savez_compressed(output / 'frame_scores.npz', branch1=frame1, branch2=frame2)
+            print('Calculating original UCF fine-grained mAP (290 videos, 14 classes)...', flush=True)
+            report['metrics']['fine_grained'] = compute_official_fine_grained(
+                video_class_scores, report['videos'], manifest_data, LABELS,
+                gt_segments, gt_labels, fine_grained_source)
             print(json.dumps(report['metrics'], indent=2))
         report['success'] = True
     except Exception as error:

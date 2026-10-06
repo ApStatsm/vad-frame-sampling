@@ -1,7 +1,7 @@
 # VAD Frame Sampling 연구 계획
 
 작성일: 2026-10-05  
-계획 수정: 2026-10-07 — 사용자 요청으로 UCF 보조 지표 Ano-AUC 추가; raw test 데이터 정리 우선순위 유지
+계획 수정: 2026-10-07 — 사용자 요청으로 UCF fine-grained 기본 평가를 원본 공개 코드의 290개/14개 클래스 방식으로 변경; Ano-AUC 유지
 대화 출처: 「베이스라인 VAD 모델 추천」  
 문서 상태: 현재까지 합의한 연구 방향과 이를 실행하기 위한 실험 계획. 실험 결과는 아직 포함하지 않는다.
 
@@ -211,6 +211,7 @@ K_v = min(N_v, max(1, ceil(r × N_v)))
 
 - UCF-Crime: frame-level ROC-AUC를 주 지표로 사용한다.
 - UCF-Crime 보조 지표: Ano-AUC도 기록한다. Manifest의 anomaly 영상 전체 프레임을 모아 ROC-AUC를 계산하며, 해당 영상 내부의 정상 프레임도 포함한다. Normal-only 영상은 제외한다. 영상별 AUC의 단순 평균이 아니다.
+- UCF-Crime fine-grained 보조 평가: full 모델 평가에서 A-branch의 14개 클래스 점수를 정상 영상 포함 290개 전체에 대해 복원하여 temporal mAP@IoU 0.1/0.2/0.3/0.4/0.5 및 AVG를 기록한다. 원본 segment/class GT와 수정하지 않은 공개 evaluator를 사용하며 원본 UCF test의 excludeNormal=False 호출을 따른다. 사용자 요청으로 별도 저장-score 비교 대신 full 기본 평가를 수정했다. 이전 140개/13개 클래스 결과는 다른 protocol의 과거 기록으로 구분하고, 측정 전 논문 성능 재현을 주장하지 않는다.
 - XD-Violence: frame-level AP를 주 지표로 사용한다.
 - Normal 영상까지 포함하여 공식 평가의 영상 순서, GT 정렬 및 집계 방식을 유지한다.
 - Sampling 결과도 원본 annotation timeline의 모든 평가 프레임에 score를 복원한다. 선택된 프레임만 평가하지 않는다.

@@ -88,7 +88,7 @@ Pretrained VadCLIP을 고정하고 frame sampling 방법에 따른 이상 탐지
 | Official CLIP features | NumPy `.npy`. 검증한 test 290개는 `[T, 512]`, floating point이며 286개 float16/4개 float32입니다. 파일명은 `<video_stem>__5.npy`, 선택 기준은 공식 CSV의 바로 위 폴더명+파일명입니다. `__0`와 `__5`를 임의로 바꾸지 않습니다. |
 | CLIP checkpoint | 완성된 PyTorch 모델 아카이브 `ViT-B-16.pt`. `.part`는 미완성 파일입니다. |
 | VadCLIP checkpoint | UCF용 PyTorch checkpoint `model_ucf.pth`. 현재 모델의 state dict를 strict loading합니다. XD 평가에는 XD용 가중치를 별도로 사용합니다. |
-| 영상별 score | 압축 NumPy `.npz`. 현재 evaluator가 `branch1_feature_scores`, `branch2_feature_scores`(각 `[T]`)와 `gt`(대응하는 `16*T` 길이)를 저장합니다. |
+| 영상별 score | 압축 NumPy `.npz`. `branch1_feature_scores`, `branch2_feature_scores`(각 `[T]`), `gt`(`[16*T]`)와 새 `branch2_class_feature_scores`(`[T,14]`), `class_labels`(문자열 14개)를 저장합니다. 기존 scalar-only run에는 새 key가 없습니다. |
 | 전체 score | Full 성공 시 `frame_scores.npz`에 `branch1`, `branch2`를 저장합니다. 각각 전체 official-feature timeline 길이입니다. 사용자 full run `ucf_full_20261006_235442`에 파일 존재를 확인했습니다. |
 | 가상환경·캐시 | 설치 환경과 생성 파일입니다. 코드는 `requirements.txt`로 환경을 준비하며 캐시는 공유하지 않습니다. |
 
@@ -154,10 +154,14 @@ python3.10 -m venv .venv
 Full 평가의 `metrics.branch1`/`branch2`에는 `roc_auc`, `ap`, `ano_auc`(0~1)를 저장합니다. Ano-AUC는 manifest의 이상 영상 140개 전체 프레임을 대상으로 합니다. 이미 성공한 run에는 모델을 다시 돌리지 않고 저장 score로 Ano-AUC를 추가할 수 있습니다.
 
 ```sh
-.venv/bin/python scripts/update_ucf_metrics.py outputs/baseline/ucf_full_20261006_235442
+.venv/bin/python scripts/update_ucf_metrics.py outputs/baseline/ucf_full_20261007_004524
 ```
 
-원래 run의 `summary.json`에 Ano-AUC와 계산 출처를 추가하고 기존 AUC/AP·추론 기록은 유지합니다. 이 추가 계산은 아직 실행하지 않았습니다.
+원래 run의 `summary.json`에 Ano-AUC와 계산 출처를 추가하고 기존 AUC/AP·추론 기록은 유지합니다. 기존 사용자 추가 계산 결과는 branch1 Ano-AUC 70.23%, branch2 65.52%로 확인했으며 Codex는 재계산하지 않았습니다.
+
+갱신된 full evaluator는 모델을 다시 평가하고 `metrics.fine_grained.map_by_iou`(IoU 0.1~0.5의 mAP)와 `mean_map`(AVG)를 함께 계산합니다. 원본 `ucf_test.py`처럼 정상 영상을 포함한 290개/14개 클래스의 A-branch 점수를 변경하지 않은 공개 evaluator에 `excludeNormal=False`로 전달합니다. 원본 segment/class GT를 사용하며 값은 0~1입니다. 별도 metric 갱신 명령 없이 위 full 명령을 실행하면 됩니다. [평가 범위](docs/UCF_OFFICIAL_BASELINE.md#fine-grained-map의-평가-범위)를 참고하세요.
+
+기존 `ucf_full_20261007_004524`의 AVG 7.46%는 이전 anomaly-only 140개/13개 클래스 방식의 기록입니다. 기존 결과 파일은 보존하고 새 run을 만듭니다. 새 원본 방식의 결과와 논문 수치 일치는 사용자 실행 후 확인하며, Codex는 모델/metric 계산을 실행하지 않았습니다. `update_ucf_metrics.py`는 기존 Ano-AUC 추가 기능만 제공합니다.
 
 ## 원본 코드
 

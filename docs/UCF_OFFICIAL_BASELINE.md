@@ -52,7 +52,7 @@ Smoke 실행 여부와 관계없이 바로 실행할 수 있다. 기존 입력 a
 .venv/bin/python scripts/evaluate_ucf_official.py --mode full --device mps
 ```
 
-Normal 150개를 포함한 공식 test 290개 전체의 frame-level ROC-AUC와 AP를 두 branch별로 기록한다. 추가로 manifest에서 is_anomaly=true인 140개 영상의 전체 프레임을 모아 Ano-AUC도 기록한다. 이상 영상 내부 정상 구간은 포함하며 normal-only 150개 영상은 제외한다. UCF의 주 지표는 전체 AUC이며 AP/Ano-AUC는 보조 출력이다. Detection mAP는 이번 실행 범위에 포함하지 않는다.
+Normal 150개를 포함한 공식 test 290개 전체의 frame-level ROC-AUC와 AP를 두 branch별로 기록한다. 추가로 manifest에서 is_anomaly=true인 140개 영상의 전체 프레임을 모아 Ano-AUC도 기록한다. 이상 영상 내부 정상 구간은 포함하며 normal-only 150개 영상은 제외한다. UCF의 주 지표는 전체 AUC이며 AP/Ano-AUC는 보조 출력이다. Full은 A-branch의 fine-grained temporal mAP도 아래 scope로 계산한다.
 
 재현 규칙:
 
@@ -75,9 +75,11 @@ MPS를 선택한 평가 결과는 device·precision과 함께 별도 run으로 �
 
 - 실행별 `outputs/baseline/ucf_<mode>_<YYYYMMDD_HHMMSS>/summary.json`. 예: `ucf_full_20261006_234239`. 날짜·시간은 Asia/Seoul 기준이며 같은 이름이 이미 있으면 `_2`, `_3` 등을 붙인다. 장치와 입력 종류는 summary에 기록한다.
 - 같은 run의 `scores/*.npz`: 영상/사례별 두 branch의 feature token score와 GT 구간. 원본 frame 위치는 official token당 16개 반복과 summary의 gt_offset으로 복원한다.
+- 새 NPZ에는 `branch2_class_feature_scores`(`[T,14]` softmax probability)와 `class_labels`(prompt 순서의 문자열 14개)도 저장한다. `allow_pickle=False`로 읽을 수 있다. 과거 scalar score 파일에서 클래스별 점수를 복원할 수는 없다.
 - Smoke의 최신 요약 복사본: `outputs/setup/ucf_smoke_check.json`.
 - Full 성공 시 `frame_scores.npz`와 summary의 `metrics`.
 - 각 branch의 metric key는 `roc_auc`, `ap`, `ano_auc`이며 값은 0~1이다. %로 표시하려면 100을 곱한다. `anomaly_videos`=140, `anomaly_evaluation_frames` 및 `ano_auc_scope`에 Ano-AUC 집계 범위를 기록한다.
+- `metrics.fine_grained.map_by_iou`는 `0.1`~`0.5`의 다섯 temporal mAP, `mean_map`은 다섯 값의 평균이다. 모두 0~1이며 % 표시는 100을 곱한다. Fine-grained 점수는 branch2에서만 계산한다.
 - 실패 시 짧은 오류 설명은 `summary.json`의 error에 기록하고 상세 traceback은 터미널에 출력한다. `error.txt`는 생성하지 않는다. 입력·GT·checkpoint는 수정하지 않는다.
 
 Smoke 완료 후 `success: true`와 7개 사례 OK를 확인한다. Full 성공은 전체 frame 수 1,109,888, test 영상 290개와 두 branch의 metric 저장으로 확인한다.
@@ -89,9 +91,34 @@ Smoke 완료 후 `success: true`와 7개 사례 OK를 확인한다. Full 성공�
 기존 full run의 `frame_scores.npz`, `summary.json`과 당시 hash에 일치하는 `VadCLIP/list/gt_ucf.npy`, `UCF-Crime/test/manifest.json`을 사용한다. Checkpoint·feature 파일·MPS는 필요하지 않으며 torch/모델을 import하지 않는다. 프로젝트 루트에서 사용자가 실행한다.
 
 ```sh
-.venv/bin/python scripts/update_ucf_metrics.py outputs/baseline/ucf_full_20261006_235442
+.venv/bin/python scripts/update_ucf_metrics.py outputs/baseline/ucf_full_20261007_004524
 ```
 
 현재 저장 score로 전체 AUC/AP를 다시 계산하여 원래 값과 절대 오차 1e-12 이내인지 확인하고, 영상별 순서·offset·길이와 anomaly 분류를 검증한 뒤 `metrics.branch1.ano_auc`, `metrics.branch2.ano_auc` 및 집계 범위를 원래 `summary.json`에 추가한다. 기존 AUC/AP, inference source hash·checkpoint hash·device·run_id 및 timing은 유지한다. `metrics_update`에 추가 계산의 시각·코드 및 입력 hash를 별도로 기록한다. Score/GT/manifest는 덮어쓰지 않는다.
 
-`anomaly_videos`=140, 두 `ano_auc`가 finite 0~1인지, 기존 AUC/AP가 보존됐는지 확인한다. 실패하면 터미널에 traceback을 출력하고 summary는 갱신하지 않는다. Codex는 이 명령이나 metric 계산을 실행하지 않았으며 실제 수치는 사용자 실행 후 확인한다.
+`anomaly_videos`=140, 두 `ano_auc`가 finite 0~1인지, 기존 AUC/AP가 보존됐는지 확인한다. 실패하면 터미널에 traceback을 출력하고 summary는 갱신하지 않는다. 기존 사용자 추가 계산의 summary에서 branch1 Ano-AUC 70.23%, branch2 65.52%를 확인했다. Codex는 이 명령이나 metric 계산을 실행하지 않았다. 같은 입력에서 Ano-AUC만 확인하려고 모델을 재실행할 필요는 없다.
+
+## Fine-grained mAP의 평가 범위
+
+Full 명령은 모델 inference부터 다시 수행하여 두 branch의 AUC/AP/Ano-AUC와 `metrics.fine_grained`를 새 run에 함께 저장한다. 별도 저장-score mAP 갱신 단계는 사용하지 않는다.
+
+```sh
+.venv/bin/python scripts/evaluate_ucf_official.py --mode full --device mps
+```
+
+- 평가 대상: 정상 영상을 포함한 공식 test 290개, Normal+13개 사건의 14개 클래스. 원본 `VadCLIP/src/ucf_test.py`의 `excludeNormal=False` 호출을 따른다.
+- 점수: 이번 inference의 A-branch softmax `[T,14]`를 token당 16 frame으로 복원한다. Class 순서·shape·finite/확률 범위·정규화와 영상 순서/full scope를 검증한다.
+- GT: 원본 `VadCLIP/list/gt_segment_ucf.npy`, `gt_label_ucf.npy`를 사용한다. 290개 순서·구간·category를 manifest 및 feature timeline과 대조한다. 원본 label 'A' 등의 표현을 remap하거나 endpoint를 이동·clipping하지 않는다. `unmapped_gt_labels_preserved`에 미대응 label을 남긴다.
+- 계산: 수정하지 않은 `VadCLIP/src/utils/ucf_detectionMAP.py`를 직접 호출한다. 구간 threshold, video/segment confidence, NMS, AP, 14개 클래스 평균과 예측 없는 클래스에서의 전체 mAP 조기 0 반환까지 원본 동작을 유지한다.
+- 출력: `protocol=original_ucf_test_excludeNormal_false`, `evaluation_videos=290`, `evaluation_classes` 14개, `map_by_iou`의 다섯 mAP와 `mean_map`. 원본 helper의 % 값은 100으로 나누어 0~1로 저장한다. Branch1에는 fine-grained mAP를 부여하지 않는다.
+- 출처: summary의 `input_sha256`에 `official_gt_segments`, `official_gt_labels`, `official_fine_grained_source`, `fine_grained_source` hash를 기록한다. 원본 GT/source는 변경하지 않는다.
+
+새 실행의 입력은 기존 config·official features·CLIP/UCF checkpoints·frame GT·manifest 및 위 segment/class GT다. 출력은 `outputs/baseline/ucf_full_<YYYYMMDD_HHMMSS>/summary.json`, `scores/*.npz`, `frame_scores.npz`다. `success=true`, `test_videos=290`, `evaluation_frames=1109888`, 두 branch의 AUC/AP/Ano-AUC와 fine-grained의 protocol·영상/class 범위·다섯 mAP/AVG를 확인한다. Smoke는 선택 사항이다. Cached-feature loop 시간은 최종 mAP 계산을 포함하지 않으며 raw end-to-end 효율이 아니다.
+
+## 이전 13개 클래스 결과와 구분
+
+사용자 run `ucf_full_20261007_004524`의 anomaly-only AVG=7.46%는 140개/13개 클래스 방식으로 계산된 기존 기록이다. AUC=88.02%/Ano-AUC=70.23%(branch1)는 확인했지만, 이 mAP를 논문의 AVG 6.68%와 직접 비교하여 모델 성능 개선으로 해석하지 않는다.
+
+사용자 요청으로 기본 fine-grained를 원본 공개 코드 방식으로 수정하고, 앞서 준비했던 `--fine-grained`/`--official-fine-grained` 저장-score 갱신 옵션과 별도 13개 클래스 구현을 제거했다. `update_ucf_metrics.py`의 Ano-AUC 추가 기능은 유지한다. 기존 summary/NPZ는 수정하지 않았고 새 모델 실행에서 새 run을 생성한다.
+
+원본 방식은 정적으로 검토했으며 모델·GT 배열 로딩·metric 계산은 미실행이다. 새 결과와 논문 일치는 사용자 full 실행 후 확인한다. Raw-video 좌표 검증은 별도 단계다.
