@@ -4,7 +4,8 @@ H.264 decoding is bit-exact, but OpenCV's FFmpeg backend converts YUV to BGR wit
 libswscale, whose fast (non-accurate_rnd) x86 MMX/SSSE3 path differs by about one
 grey level from the C/ARM path used on Apple silicon. Official UCF VadCLIP
 features were matched to fp16 backend noise only with this x86 emulation
-(outputs/setup/ucf_yuv_conversion_20261008_134025, ucf_affine_search_*_x86_float16).
+(diagnostics summarised in docs/UCF_RAW_REFERENCE.md and
+outputs/setup/ucf_recipe_reconstruction_20261008.json).
 """
 
 import numpy as np

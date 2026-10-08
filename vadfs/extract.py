@@ -16,9 +16,17 @@ import subprocess
 import sys
 import time
 
+import cv2
 import numpy as np
+from PIL import Image
+import torch
 
-from evaluate_ucf_official import synchronize
+from .color import yuv420p_to_rgb_x86
+from .paths import add_vadclip_src
+from .vadclip import synchronize
+
+add_vadclip_src()
+from crop import image_crop  # noqa: E402
 
 
 class ReferenceImageEncoder:
@@ -77,7 +85,7 @@ def validate_extraction(config):
         raise ValueError('match_official_rows only adds a single tail frame; use single_frame')
 
 
-def crop_image(rgb, crop_type, geometry, image_crop, cv2):
+def crop_image(rgb, crop_type, geometry):
     """RGB uint8 frame -> 224x224 RGB crop in the upstream 10-crop index layout."""
     if geometry == 'published_340x256':
         return image_crop(cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR), crop_type)
@@ -129,7 +137,7 @@ class FfmpegYuvReader:
             raise ValueError(f'ffmpeg decode failed (exit {code}): {stderr[:500]}')
 
 
-def extract_reference(path, encoder, preprocess, torch, cv2, device, config, output_dtype, expected_tokens=None):
+def extract_reference(path, encoder, preprocess, device, config, output_dtype, expected_tokens=None):
     """Decode to EOF, encode complete blocks, and keep bounded image-batch memory.
 
     Frame positions use a zero-based decode counter. Nominal timestamps are
@@ -141,10 +149,6 @@ def extract_reference(path, encoder, preprocess, torch, cv2, device, config, out
     (ceil(N/16) cohort); then the tail block's configured frame is encoded.
     expected_tokens is the audited official row count, never annotation labels.
     """
-    from PIL import Image
-    from crop import image_crop
-    from ucf_color import yuv420p_to_rgb_x86
-
     color = config_value(config, 'color_conversion', 'opencv_bgr')
     geometry = config_value(config, 'image_geometry', 'published_340x256')
     tail_policy = config_value(config, 'tail_policy', 'drop_incomplete')
@@ -169,7 +173,7 @@ def extract_reference(path, encoder, preprocess, torch, cv2, device, config, out
         for image in images:
             rgb = to_rgb(image)
             started = time.perf_counter()
-            cropped = crop_image(rgb, config['crop_type'], geometry, image_crop, cv2)
+            cropped = crop_image(rgb, config['crop_type'], geometry)
             batch.append(preprocess(Image.fromarray(cropped)))
             stage['preprocess'] += time.perf_counter() - started
             if len(batch) == config['encoder_batch_size']:
@@ -183,15 +187,15 @@ def extract_reference(path, encoder, preprocess, torch, cv2, device, config, out
         images = torch.stack(batch)
         batch.clear()
         stage['preprocess'] += time.perf_counter() - started
-        synchronize(torch, device)
+        synchronize(device)
         started = time.perf_counter()
         images = images.to(device=device, dtype=clip_dtype)
-        synchronize(torch, device)
+        synchronize(device)
         stage['clip_input_transfer'] += time.perf_counter() - started
         started = time.perf_counter()
         with torch.no_grad():
             features = encoder.encode_image(images)
-        synchronize(torch, device)
+        synchronize(device)
         stage['clip_forward'] += time.perf_counter() - started
         started = time.perf_counter()
         features = features.detach().float().cpu().numpy()

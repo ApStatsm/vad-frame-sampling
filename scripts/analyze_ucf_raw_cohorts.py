@@ -9,12 +9,15 @@ and also evaluates the timeline with that cohort excluded. Output:
 import argparse
 import json
 from pathlib import Path
+import sys
 
 import numpy as np
 from sklearn.metrics import average_precision_score, roc_auc_score
 
-from evaluate_ucf_official import ROOT, project_path
-from ucf_metrics import compute_ucf_metrics
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # project root: vadfs
+from vadfs import ucf  # noqa: E402
+from vadfs.metrics import compute_ucf_metrics  # noqa: E402
+from vadfs.paths import ROOT, project_path  # noqa: E402
 
 
 def frame_metrics(gt, score, anomaly_mask, keep):
@@ -32,9 +35,9 @@ def main():
     raw_dir, official_dir = project_path(args.raw_run), project_path(args.official_run)
     raw = json.loads((raw_dir / 'summary.json').read_text())
     official = json.loads((official_dir / 'summary.json').read_text())
-    audit = json.loads((ROOT / 'outputs/setup/ucf_baseline_input_check.json').read_text())
-    manifest = json.loads((ROOT / 'UCF-Crime/test/manifest.json').read_text())
-    gt = np.load(ROOT / 'VadCLIP/list/gt_ucf.npy', allow_pickle=False)
+    audit = json.loads(ucf.INPUT_AUDIT.read_text())
+    manifest = json.loads(ucf.MANIFEST.read_text())
+    gt = np.load(ucf.FRAME_GT, allow_pickle=False)
     if not raw.get('success') or raw.get('mode') != 'full' or len(raw['videos']) != 290:
         raise ValueError('Use a successful full raw run')
     with np.load(raw_dir / 'frame_scores.npz') as f:
