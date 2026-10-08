@@ -1,3 +1,5 @@
+> **Archive (2026-10-08 정리)**: 추출 방식 탐색 기록이다. 결론은 [UCF_RAW_REFERENCE.md](../UCF_RAW_REFERENCE.md)에 통합했다. 언급된 진단 스크립트는 `git show ucf-raw-reference-v1:scripts/<file>`로, 진단 run 폴더는 로컬 `.local-backups/pre-refactor-20261008/`에서 확인한다.
+
 # UCF 공식 feature 추출 방식 검증
 
 `scripts/verify_ucf_extraction.py`는 같은 영상 구간에서 얻은 CLIP feature를 공식 `.npy`와 비교한다. VadCLIP 탐지 모델, GT annotation, AUC/AP는 사용하지 않는다. 기존 raw reference 설정을 수정하거나 원본 입력을 덮어쓰지 않는다.

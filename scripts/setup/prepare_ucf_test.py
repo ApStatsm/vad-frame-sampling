@@ -98,7 +98,7 @@ def inspect_video(source, entry):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
+    parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[2])
     parser.add_argument('--dry-run', action='store_true')
     args = parser.parse_args()
     root = args.root.resolve()
@@ -200,8 +200,8 @@ analysis only, not sampler input. Header frame counts are not full decode counts
 Rebuild/revalidate from the project root:
 
 ```sh
-.venv/bin/python scripts/prepare_ucf_test.py --dry-run
-.venv/bin/python scripts/prepare_ucf_test.py
+.venv/bin/python scripts/setup/prepare_ucf_test.py --dry-run
+.venv/bin/python scripts/setup/prepare_ucf_test.py
 ```
 
 Verification report: `../../outputs/setup/ucf_test_preparation_report.json`.

@@ -44,7 +44,7 @@ configs/*.local.json
 
 # Generated outputs: track only consolidated setup reports and run summaries.
 # Per-run diagnostic folders (ranking/per_block CSV, arrays, source audits) stay
-# local; docs/EXTRACTION_DIAGNOSTIC_RUNS.md and the consolidated JSONs summarise them.
+# local; docs/UCF_RAW_REFERENCE.md and the consolidated JSONs summarise them.
 /outputs/**
 !/outputs/*/
 !/outputs/setup/*.json
@@ -54,9 +54,9 @@ configs/*.local.json
 !/outputs/baseline/*/
 !/outputs/baseline/*/summary.json
 !/outputs/baseline/*/cohort_sensitivity.json
-# Failed raw runs (path error before any video was processed)
-/outputs/baseline/ucf_raw_full_20261008_144218/
-/outputs/baseline/ucf_raw_full_20261008_144302/
 
 # Bundled GT .npy files and CLIP tokenizer .txt.gz remain tracked.
 PROGRESS.md
+
+# Local progress log moved out of PROGRESS.md (kept untracked like PROGRESS.md)
+docs/archive/progress_log_2026-10.md

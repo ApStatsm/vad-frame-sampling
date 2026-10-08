@@ -69,7 +69,7 @@ def checkpoint_record(path, expected_sha256=None):
 
 
 def main():
-    root = Path(__file__).resolve().parents[1]
+    root = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', type=Path, default=root / 'configs/ucf_resources.json')
     parser.add_argument('--write-local-list', action='store_true',

@@ -86,17 +86,9 @@ Smoke 완료 후 `success: true`와 7개 사례 OK를 확인한다. Full 성공�
 
 시간 출력은 official feature cache에서의 실행 기록이다. 영상 decoding·CLIP visual encoding을 포함하지 않으므로 raw-video 효율이나 sampling speedup 근거로 사용하지 않는다. 이 단계의 warm-up/반복 측정은 성능 benchmark 목적이 아니며 원본 입력의 inference 정상 동작과 AUC 재현을 확인한다.
 
-## 기존 결과에 Ano-AUC 추가 — 모델 재실행 없음
+## 기존 결과에 Ano-AUC 추가 (기록)
 
-기존 full run의 `frame_scores.npz`, `summary.json`과 당시 hash에 일치하는 `VadCLIP/list/gt_ucf.npy`, `UCF-Crime/test/manifest.json`을 사용한다. Checkpoint·feature 파일·MPS는 필요하지 않으며 torch/모델을 import하지 않는다. 프로젝트 루트에서 사용자가 실행한다.
-
-```sh
-.venv/bin/python scripts/update_ucf_metrics.py outputs/baseline/ucf_full_20261007_010204
-```
-
-현재 저장 score로 전체 AUC/AP를 다시 계산하여 원래 값과 절대 오차 1e-12 이내인지 확인하고, 영상별 순서·offset·길이와 anomaly 분류를 검증한 뒤 `metrics.branch1.ano_auc`, `metrics.branch2.ano_auc` 및 집계 범위를 원래 `summary.json`에 추가한다. 기존 AUC/AP, inference source hash·checkpoint hash·device·run_id 및 timing은 유지한다. `metrics_update`에 추가 계산의 시각·코드 및 입력 hash를 별도로 기록한다. Score/GT/manifest는 덮어쓰지 않는다.
-
-`anomaly_videos`=140, 두 `ano_auc`가 finite 0~1인지, 기존 AUC/AP가 보존됐는지 확인한다. 실패하면 터미널에 traceback을 출력하고 summary는 갱신하지 않는다. 기존 사용자 추가 계산의 summary에서 branch1 Ano-AUC 70.23%, branch2 65.52%를 확인했다. Codex는 이 명령이나 metric 계산을 실행하지 않았다. 같은 입력에서 Ano-AUC만 확인하려고 모델을 재실행할 필요는 없다.
+`ucf_full_20261007_010204`의 Ano-AUC(branch1 70.23%, branch2 65.52%)는 저장 score로 summary에 덧붙인 일회성 스크립트 `update_ucf_metrics.py`로 계산했다. 현재 full evaluator가 Ano-AUC를 직접 계산하므로 이 스크립트는 2026-10-08 정리에서 제거했다. 원본은 `git show ucf-raw-reference-v1:scripts/update_ucf_metrics.py`로 확인한다.
 
 ## Fine-grained mAP의 평가 범위
 
@@ -119,6 +111,6 @@ Full 명령은 모델 inference부터 다시 수행하여 두 branch의 AUC/AP/A
 
 사용자 run `ucf_full_20261007_004524`의 anomaly-only AVG=7.46%는 140개/13개 클래스 방식으로 계산된 기존 기록이다. AUC=88.02%/Ano-AUC=70.23%(branch1)는 확인했지만, 이 mAP를 논문의 AVG 6.68%와 직접 비교하여 모델 성능 개선으로 해석하지 않는다.
 
-사용자 요청으로 기본 fine-grained를 원본 공개 코드 방식으로 수정하고, 앞서 준비했던 `--fine-grained`/`--official-fine-grained` 저장-score 갱신 옵션과 별도 13개 클래스 구현을 제거했다. `update_ucf_metrics.py`의 Ano-AUC 추가 기능은 유지한다. 기존 summary/NPZ는 수정하지 않았고 새 모델 실행에서 새 run을 생성한다.
+사용자 요청으로 기본 fine-grained를 원본 공개 코드 방식으로 수정하고, 앞서 준비했던 `--fine-grained`/`--official-fine-grained` 저장-score 갱신 옵션과 별도 13개 클래스 구현을 제거했다. 기존 summary/NPZ는 수정하지 않았고 새 모델 실행에서 새 run을 생성한다.
 
 새 사용자 `ucf_full_20261007_010204`의 원본 방식 mAP 11.72/7.83/6.40/4.53/2.93%, AVG 6.68%를 확인했다. 논문 표와 소수점 둘째 자리까지 일치하며 기존 coarse metric도 같다. Codex는 기존 JSON만 읽었고 모델·GT 배열 로딩·metric 계산은 실행하지 않았다. 다음 raw-video 좌표/추출 검증과 CLIP 시간 측정은 [raw reference 안내](UCF_RAW_REFERENCE.md)를 따른다.

@@ -1,3 +1,5 @@
+> **Archive (2026-10-08 정리)**: 추출 방식 탐색 기록이다. 결론은 [UCF_RAW_REFERENCE.md](../UCF_RAW_REFERENCE.md)에 통합했다. 언급된 진단 스크립트는 `git show ucf-raw-reference-v1:scripts/<file>`로, 진단 run 폴더는 로컬 `.local-backups/pre-refactor-20261008/`에서 확인한다.
+
 # VAD Frame Sampling — 실행 로드맵
 
 작성일: 2026-10-06 (Asia/Seoul)

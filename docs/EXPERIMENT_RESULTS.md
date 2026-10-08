@@ -30,7 +30,7 @@ Ano-AUC는 이상 영상 140개의 전체 프레임(정상 구간 포함)을 모
 
 ## Raw-video reference (sampling 비교의 기준)
 
-2026-10-08 사용자 결정: UCF sampling 비교의 기준은 직접 추출한 raw-video reference다. 추출 방식과 근거는 [UCF_RAW_REFERENCE.md](UCF_RAW_REFERENCE.md)와 [EXTRACTION_DIAGNOSTIC_RUNS.md](EXTRACTION_DIAGNOSTIC_RUNS.md)에 있다. 사용자 실행 run은 `ucf_raw_full_20261008_150142`(MPS, float32, seed 234, 290개 성공)이다. 근거: [summary.json](../outputs/baseline/ucf_raw_full_20261008_150142/summary.json).
+2026-10-08 사용자 결정: UCF sampling 비교의 기준은 직접 추출한 raw-video reference다. 추출 방식과 근거는 [UCF_RAW_REFERENCE.md](UCF_RAW_REFERENCE.md)와 [EXTRACTION_DIAGNOSTIC_RUNS.md](archive/EXTRACTION_DIAGNOSTIC_RUNS.md)에 있다. 사용자 실행 run은 `ucf_raw_full_20261008_150142`(MPS, float32, seed 234, 290개 성공)이다. 근거: [summary.json](../outputs/baseline/ucf_raw_full_20261008_150142/summary.json).
 
 | Dataset | 입력 | Score branch | AUC (%) | AP (%) | Ano-AUC (%) | 공식 feature 대비 AUC (pp) |
 |---|---|---|---:|---:|---:|---:|

@@ -1,3 +1,5 @@
+> **Archive (2026-10-08 정리)**: 추출 방식 탐색 기록이다. 결론은 [UCF_RAW_REFERENCE.md](../UCF_RAW_REFERENCE.md)에 통합했다. 언급된 진단 스크립트는 `git show ucf-raw-reference-v1:scripts/<file>`로, 진단 run 폴더는 로컬 `.local-backups/pre-refactor-20261008/`에서 확인한다.
+
 # VadCLIP 원본 추출 검증 — 완료 조건 감사
 
 2026-10-08. 목표는 원본 raw video에서 프레임을 선택하고 feature를 만드는 실제 방식을 확인하는 것이다. 가장 가까운 후보나 자체 reference를 만드는 것으로 목표를 줄이지 않는다. **원본 recipe는 미확정이며 완료 조건을 통과하지 않았다.**
@@ -14,7 +16,7 @@
 | 고정된 원본 recipe로 공식 feature 수치 재현 | 비교32개 실행, 일반7개/예외4개 지정 구간. Best 일반 표본 약relL2 0.042, pass0%. 전체290개 vector 재현은 완료되지 않았다. | 미충족. Cosine≈0.999만으로 통과시키지 않는다. |
 | 실제 제작 extractor/확인 가능한 provenance | 공식 main/이력/댓글/논문/관련 저자 자료와 배포 ZIP 확인. ZIP19500개는 NPY만 존재. 추가로 fork38개의 default tree 및 변경 Python/README145개 확인. 원저자 제작 코드나 strict reproduction 근거를 확보하지 못했다. 사용자도 추가 자료가 없다고 답했다. | 직접 증거 누락. 조사 범위 밖 private/deleted/non-default 코드의 부재를 단정하지 않는다. |
 
-위 요구 조건은 [수치 실행 기록](EXTRACTION_DIAGNOSTIC_RUNS.md), [공개 자료 조사](VADCLIP_EXTRACTION_AUDIT.md), [통합 findings](../outputs/setup/ucf_extraction_findings_20261008.json), [새 fork source audit](../outputs/setup/ucf_public_extractor_source_audit_20261008.json)에 연결된다. UCF 자료의 부분 검증을 XD-Violence 원본 recipe 확인으로 확대하지 않는다.
+위 요구 조건은 [수치 실행 기록](EXTRACTION_DIAGNOSTIC_RUNS.md), [공개 자료 조사](VADCLIP_EXTRACTION_AUDIT.md), [통합 findings](../../outputs/setup/ucf_extraction_findings_20261008.json), [새 fork source audit](../../outputs/setup/ucf_public_extractor_source_audit_20261008.json)에 연결된다. UCF 자료의 부분 검증을 XD-Violence 원본 recipe 확인으로 확대하지 않는다.
 
 ## 추가 공개 코드 조사 결과
 

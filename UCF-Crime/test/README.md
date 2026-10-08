@@ -20,8 +20,8 @@ analysis only, not sampler input. Header frame counts are not full decode counts
 Rebuild/revalidate from the project root:
 
 ```sh
-.venv/bin/python scripts/prepare_ucf_test.py --dry-run
-.venv/bin/python scripts/prepare_ucf_test.py
+.venv/bin/python scripts/setup/prepare_ucf_test.py --dry-run
+.venv/bin/python scripts/setup/prepare_ucf_test.py
 ```
 
 Verification report: `../../outputs/setup/ucf_test_preparation_report.json`.

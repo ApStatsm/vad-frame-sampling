@@ -61,7 +61,7 @@ OneDrive 링크 두 개는 웹 도구에서 접근할 수 없어 다운로드 �
 **사용자 실행 결과: 아래 SourceUrl 단독 명령은 HTTP 403을 반환했다.** 현재 환경의 권장 후속 명령은 다음이다. 실제 성공은 아직 미검증이다.
 
 ```sh
-bash scripts/download_ucf_features.sh
+bash scripts/setup/download_ucf_features.sh
 ```
 
 이 스크립트는 원래 공식 공유 링크에 먼저 요청하여 서버가 설정하는 session cookie를 임시 파일로 받는다. 같은 cookie를 download.aspx 요청에 전달한다. 브라우저에서 원래 공유 링크가 UCFClipFeatures.zip 페이지를 열고 다운로드 버튼을 표시하는 것은 읽기 전용으로 확인했다. 파일 경로 요청의 403이 공유 접근 정보 누락 때문인지는 아직 가설이며, JavaScript 또는 별도의 다운로드 token이 필요하면 이 방식도 실패할 수 있다.
@@ -104,7 +104,7 @@ zipinfo -t features/official/ucf/UCFClipFeatures.zip
 프로젝트 루트에서 실행한다.
 
 ```sh
-.venv/bin/python scripts/check_ucf_resources.py --write-local-list
+.venv/bin/python scripts/setup/check_ucf_resources.py --write-local-list
 ```
 
 이 실행은 영상 디코딩·inference 없이 파일 경로, 원본 CSV/manifest 순서·label, 공식 parent 폴더를 유지한 feature 누락·중복·빈 파일, checkpoint hash, 패키지 metadata를 점검한다. CLIP hash 검증은 파일 전체를 읽는다. Feature/GT 배열과 모델은 로딩하지 않는다.
@@ -133,7 +133,7 @@ zipinfo -t features/official/ucf/UCFClipFeatures.zip
 자원 경로 점검은 통과했으므로 다시 실행할 필요 없다. 프로젝트 루트에서 다음 명령을 실행한다.
 
 ```sh
-.venv/bin/python scripts/check_ucf_baseline_inputs.py --check-model
+.venv/bin/python scripts/setup/check_ucf_baseline_inputs.py --check-model
 ```
 
 필요 입력은 현재 설정한 features와 두 checkpoint, 생성된 local CSV, test manifest, 기존 `gt_ucf.npy`다. 새 스크립트는 다음을 확인한다.

@@ -1,6 +1,6 @@
 # UCF-Crime raw-video reference
 
-작성일: 2026-10-07. 코드 작성·정적 검토 완료, 사용자 실제 실행은 미확인이다.
+작성일: 2026-10-07. 갱신: 2026-10-08 — 사용자 full run `ucf_raw_full_20261008_150142`(branch1 AUC 87.19%, 공식 대비 −0.83pp)를 UCF sampling 비교의 기준으로 확정했다. 추출 방식 탐색 문서는 이 파일로 통합하고 상세 기록은 [`archive/`](archive/)로 옮겼다.
 
 원본 영상 → 명시된 후보 프레임 → crop/CLIP image encoder → 고정 VadCLIP → 공식 평가 시간축의 점수/metric을 연결한다. CLIP forward와 전체 영상 처리 시간을 따로 측정한다. 이번 버전은 Full/Reference 100%만 제공한다. Uniform/Random은 reference 조건 검증 후 연결한다.
 
@@ -16,11 +16,11 @@
 
 ## 현재 추출 조건의 상태
 
-2026-10-08 진단으로 float16 cohort(test 286개)의 추출 방식을 **재구성했다.** 표본 block과 영상 2개 전체에서 공식 feature와 상대 L2 약 0.0015~0.0018로 일치하며, 이는 CPU/MPS 백엔드 간 차이와 같은 수준이다. 근거는 `outputs/setup/ucf_recipe_reconstruction_20261008.json`과 [실행 기록](EXTRACTION_DIAGNOSTIC_RUNS.md)에 있다. 원저자 코드로 확인한 것은 아니며, 290개 전체 feature 대조는 full 실행의 `feature_agreement_by_official_dtype`로 확인한다. 가장 긴 test 영상 4개(float32, ceil(N/16))는 같은 방식으로 일치하지 않는다(상대 L2 약 0.25~0.37). 시간축이 아닌 이미지 처리 차이로 보이며 미해결이다. 이 4개는 frame-level 평가 시간축의 24.7%(273,728/1,109,888프레임, 대부분 normal)를 차지하므로, raw full의 AUC/AP가 공식 결과와 다르면 우선 이 영상들의 영향을 의심한다. 결과의 `official_extraction_reproduced`는 계속 false로 둔다.
+2026-10-08 진단으로 float16 cohort(test 286개)의 추출 방식을 **재구성했다.** 표본 block과 영상 2개 전체에서 공식 feature와 상대 L2 약 0.0015~0.0018로 일치하며, 이는 CPU/MPS 백엔드 간 차이와 같은 수준이다. 근거는 `outputs/setup/ucf_recipe_reconstruction_20261008.json`과 [실행 기록](archive/EXTRACTION_DIAGNOSTIC_RUNS.md)에 있다. 원저자 코드로 확인한 것은 아니며, 290개 전체 feature 대조는 full 실행의 `feature_agreement_by_official_dtype`로 확인한다. 가장 긴 test 영상 4개(float32, ceil(N/16))는 같은 방식으로 일치하지 않는다(상대 L2 약 0.25~0.37). 시간축이 아닌 이미지 처리 차이로 보이며 미해결이다. 이 4개는 frame-level 평가 시간축의 24.7%(273,728/1,109,888프레임, 대부분 normal)를 차지하므로, raw full의 AUC/AP가 공식 결과와 다르면 우선 이 영상들의 영향을 의심한다. 결과의 `official_extraction_reproduced`는 계속 false로 둔다.
 
 | 설정 | 기본값 / 의미 |
 |---|---|
-| `extraction_status` | `reconstructed_sample_verified_float16_cohort`. 이전 provisional 설정은 `configs/ucf_raw_reference_provisional_offset8.json`에 보존 |
+| `extraction_status` | `reconstructed_sample_verified_float16_cohort`. 기각된 이전 provisional 설정(offset 8)은 `git show ucf-raw-reference-v1:configs/ucf_raw_reference_provisional_offset8.json` |
 | `block_frames` | 16. 원본 decode counter 기준 [0,16), [16,32), …의 완전한 구간 |
 | `temporal_mode` | `single_frame`. 각 구간에서 한 장을 encode하여 token 하나 생성. 16장 평균은 시간축 V자 오차 곡선과 장면 전환 사례로 배제 |
 | `frame_offset` | 0. Zero-based frame 0,16,32,… (각 구간의 첫 프레임) |
@@ -37,6 +37,23 @@
 | Warm-up | 합성 이미지 batch와 256-token feature를 각각 2회 처리; 측정에서 제외 |
 
 `mean_block`은 완전한 구간의 16장 모두를 encode한 뒤 float32 feature 평균을 token 하나로 만든다. 이 모드의 batch size는 16의 배수여야 한다. 두 모드는 encoder 입력 수·100% 후보 분모가 다르므로 동일 budget/동일 효율 조건으로 섞어 비교하지 않는다. Crop/temporal mode/offset/precision/정규화는 test AUC를 최대화하기 위해 선택하지 않는다. 원본 코드·추출 기록과 입력 feature 정렬을 근거로 확인하고 sampling 비교 전에 고정한다.
+
+## 재구성 근거와 기각한 가설 (요약)
+
+통합 근거는 `outputs/setup/ucf_recipe_reconstruction_20261008.json`이다. 진단 스크립트(`verify_ucf_extraction.py`, `scan_ucf_crop_geometry.py`, `search_ucf_*`, `compare_ucf_decoders.py`, `test_ucf_*`)는 2026-10-08 정리에서 작업 트리에서 제거했다. `git show ucf-raw-reference-v1:scripts/<file>`로 확인한다. 진단 run 폴더는 로컬 `.local-backups/pre-refactor-20261008/outputs/setup/`에 있다(git 미추적).
+
+| 가설 | 결과 (공식 feature 대비 상대 L2) | 판단 |
+|---|---|---|
+| 재구성 recipe(offset 0, x86 YUV→RGB, fx/fy, crop5) | 표본 0.0015~0.0018, full 290개 중 float16 286개 ≤ 0.005 | 채택 |
+| OpenCV(ARM/C) YUV→RGB | 약 0.042 | 기각(약 1 grey level 차이) |
+| 공개 crop.py 340×256 고정 resize | 약 0.12 | 기각 |
+| 16장 평균(`mean_block`) | 시간축 V자 오차, 장면 전환 사례 불일치 | 기각 |
+| floor((N−1)/16) 꼬리 규칙 | N%16==0 영상 20개 불일치 | 기각 |
+| ffmpeg JPEG 프레임 저장 | 0.21~0.29 | 기각 |
+| full/bilinear chroma, accurate_rnd | 0.18 / 0.074 | 기각 |
+| float32 cohort 4개: JPEG·기하·시간 평균·blur·사진 보정·crop 순서 | 약 0.30 유지 또는 악화 | 미해결(다른 사본/파이프라인 추정) |
+
+상세 실행 기록: [EXTRACTION_DIAGNOSTIC_RUNS.md](archive/EXTRACTION_DIAGNOSTIC_RUNS.md), [UCF_EXTRACTION_VERIFICATION.md](archive/UCF_EXTRACTION_VERIFICATION.md), [VADCLIP_EXTRACTION_AUDIT.md](archive/VADCLIP_EXTRACTION_AUDIT.md), [EXTRACTION_COMPLETION_AUDIT.md](archive/EXTRACTION_COMPLETION_AUDIT.md).
 
 ## 필요한 기존 입력
 
@@ -113,5 +130,5 @@ Decode counter는 zero-based다. Timestamp=index/fps는 CFR 가정이다. `openc
 
 Decode EOF의 실제 frame 수가 header와 다르면 실패한다. `tail_policy`를 적용한 뒤에도 raw token 수가 audited official T와 다르면 추출 feature/선택 정보를 진단 파일로 저장하고 실패한다. 길이를 맞추기 위한 clipping/resampling은 하지 않는다. 같은 T가 확인되면 token당 16 frame으로 복원하여 **공식 평가 시간축 전체**를 평가한다. 공식 시간축 밖 마지막 raw tail은 별도로 기록한다.
 
-Full 실행 전에 metric 재현 허용 오차를 정해 둔다(제안: branch1 AUC 공식 대비 |Δ| ≤ 0.5pp). Full 결과의 `feature_agreement_by_official_dtype`와 `official_comparison`으로 raw reference를 확정한 뒤 CLIP 전 단계에 Uniform/Random을 추가한다. Full 결과를 보기 전에는 raw 값을 최종 sampling 표의 확정 baseline으로 채우지 않는다.
+사전 제안 허용 오차(branch1 AUC |Δ| ≤ 0.5pp)는 −0.83pp로 넘었고, 사용자가 float32 4개 미재현을 제한으로 기록한 뒤 raw reference를 기준으로 확정했다(2026-10-08). Uniform/Random은 이 reference의 CLIP 전 단계에 추가한다.
 

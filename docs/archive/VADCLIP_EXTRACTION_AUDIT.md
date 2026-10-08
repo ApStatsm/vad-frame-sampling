@@ -1,3 +1,5 @@
+> **Archive (2026-10-08 정리)**: 추출 방식 탐색 기록이다. 결론은 [UCF_RAW_REFERENCE.md](../UCF_RAW_REFERENCE.md)에 통합했다. 언급된 진단 스크립트는 `git show ucf-raw-reference-v1:scripts/<file>`로, 진단 run 폴더는 로컬 `.local-backups/pre-refactor-20261008/`에서 확인한다.
+
 # VadCLIP 원본 feature 추출 방식 조사
 
 조사일: 2026-10-08 (Asia/Seoul)
@@ -78,7 +80,7 @@ GitHub API 원본 조회 JSON은 /private/tmp/vadclip_recipe_audit_20261008/에 
 
 사용자가 “원본에서 어떻게 프레임 추출해서 피쳐 추출했는지 검증해줘. 이거 실행하는 동안에만 코드 알아서 실행해.”라고 허용하여 이 범위에서 실제 decoding/CLIP 추출/비교를 수행했다. 과거 절의 미실행 기록은 해당 조사 당시 상태다.
 
-[실행별 증거](EXTRACTION_DIAGNOSTIC_RUNS.md)와 [통합 findings](../outputs/setup/ucf_extraction_findings_20261008.json)에 조건과 결과를 저장했다. 같은 구간에서 공개 crop의 상대 L2 약0.139가 aspect-preserving fx/fy linear resize에서 약0.042로 줄었다. 단일 offset0은 16장 평균보다 가까웠고 추가 test 영상 4개에서도 같은 고정 조건을 지지했다. 하지만 cosine 0.99912만으로 재현이라고 하지 않으며 선언한 수치 tolerance 통과는 0%다. 어떤 고정 후보도 수치 일치를 얻지 못했다.
+[실행별 증거](EXTRACTION_DIAGNOSTIC_RUNS.md)와 [통합 findings](../../outputs/setup/ucf_extraction_findings_20261008.json)에 조건과 결과를 저장했다. 같은 구간에서 공개 crop의 상대 L2 약0.139가 aspect-preserving fx/fy linear resize에서 약0.042로 줄었다. 단일 offset0은 16장 평균보다 가까웠고 추가 test 영상 4개에서도 같은 고정 조건을 지지했다. 하지만 cosine 0.99912만으로 재현이라고 하지 않으며 선언한 수치 tolerance 통과는 0%다. 어떤 고정 후보도 수치 일치를 얻지 못했다.
 
 전체 290개 영상의 EOF 프레임 수와 official T를 대조했다. 모두 실제 decoded/header frame 수가 일치했고 286개 float16은 floor(N/16), 4개 float32는 ceil(N/16)이었다. float32 4개는 Shooting032, Normal924/935/940이며 같은 pipeline으로 생성됐는지 확인되지 않았다. 벡터 encoding 대조는 일반 7개/예외 4개의 지정 구간에 한정된다.
 

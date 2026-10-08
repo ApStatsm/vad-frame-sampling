@@ -123,9 +123,9 @@ Pretrained VadCLIP을 고정하고 frame sampling 방법에 따른 이상 탐지
 세 경로는 프로젝트 루트 기준입니다. 실제 보관 위치가 다르면 설정을 맞춥니다. Raw test 구조를 새로 만들 때는 위 영상 ZIP 5개와 `extracted/` 영상, 원본 annotation을 준비한 뒤 사용자가 실행합니다. 영상 metadata 확인에는 `ffprobe`가 필요합니다.
 
 ```sh
-.venv/bin/python scripts/prepare_ucf_test.py
-.venv/bin/python scripts/check_ucf_resources.py --write-local-list
-.venv/bin/python scripts/check_ucf_baseline_inputs.py --check-model
+.venv/bin/python scripts/setup/prepare_ucf_test.py
+.venv/bin/python scripts/setup/check_ucf_resources.py --write-local-list
+.venv/bin/python scripts/setup/check_ucf_baseline_inputs.py --check-model
 ```
 
 이미 같은 입력에서 준비·점검을 통과한 기존 로컬 작업자는 GitHub 공유만을 이유로 이 단계를 반복할 필요가 없습니다. 다른 컴퓨터에서는 manifest·symlink·local CSV·audit를 자신의 입력 기준으로 생성합니다.
@@ -153,17 +153,11 @@ python3.10 -m venv .venv
 
 다른 장치를 쓰면 `--device cpu` 또는 `--device cuda`를 지정합니다. Smoke를 실행한 경우 success=true/7사례 통과, full에서는 영상 290개·평가 frame 1,109,888·두 branch AUC/AP를 확인합니다. 출력 위치와 평가 규칙은 [UCF_OFFICIAL_BASELINE.md](docs/UCF_OFFICIAL_BASELINE.md)를 참고하세요. Cached-feature 시간은 raw-video 효율 측정이 아닙니다. 이번 변경에서는 프로젝트 코드를 실행하지 않았습니다.
 
-Full 평가의 `metrics.branch1`/`branch2`에는 `roc_auc`, `ap`, `ano_auc`(0~1)를 저장합니다. Ano-AUC는 manifest의 이상 영상 140개 전체 프레임을 대상으로 합니다. 이미 성공한 run에는 모델을 다시 돌리지 않고 저장 score로 Ano-AUC를 추가할 수 있습니다.
-
-```sh
-.venv/bin/python scripts/update_ucf_metrics.py outputs/baseline/ucf_full_20261007_010204
-```
-
-원래 run의 `summary.json`에 Ano-AUC와 계산 출처를 추가하고 기존 AUC/AP·추론 기록은 유지합니다. 기존 사용자 추가 계산 결과는 branch1 Ano-AUC 70.23%, branch2 65.52%로 확인했으며 Codex는 재계산하지 않았습니다.
+Full 평가의 `metrics.branch1`/`branch2`에는 `roc_auc`, `ap`, `ano_auc`(0~1)를 저장합니다. Ano-AUC는 manifest의 이상 영상 140개 전체 프레임을 대상으로 합니다. `ucf_full_20261007_010204`의 branch1 Ano-AUC 70.23%, branch2 65.52%는 당시 저장 score에 Ano-AUC를 덧붙인 일회성 스크립트(`update_ucf_metrics.py`, tag `ucf-raw-reference-v1`에 보존)로 계산했습니다. 현재 full evaluator는 Ano-AUC를 직접 계산합니다.
 
 갱신된 full evaluator는 모델을 다시 평가하고 `metrics.fine_grained.map_by_iou`(IoU 0.1~0.5의 mAP)와 `mean_map`(AVG)를 함께 계산합니다. 원본 `ucf_test.py`처럼 정상 영상을 포함한 290개/14개 클래스의 A-branch 점수를 변경하지 않은 공개 evaluator에 `excludeNormal=False`로 전달합니다. 원본 segment/class GT를 사용하며 값은 0~1입니다. 별도 metric 갱신 명령 없이 위 full 명령을 실행하면 됩니다. [평가 범위](docs/UCF_OFFICIAL_BASELINE.md#fine-grained-map의-평가-범위)를 참고하세요.
 
-사용자 `ucf_full_20261007_010204`에서 원본 방식 mAP 11.72/7.83/6.40/4.53/2.93%, AVG 6.68%를 확인했습니다. 이전 140개/13개 클래스 AVG 7.46%는 다른 protocol의 과거 기록입니다. Codex는 저장 JSON만 읽었고 모델/metric 계산을 실행하지 않았습니다. `update_ucf_metrics.py`는 기존 Ano-AUC 추가 기능만 제공합니다.
+사용자 `ucf_full_20261007_010204`에서 원본 방식 mAP 11.72/7.83/6.40/4.53/2.93%, AVG 6.68%를 확인했습니다. 이전 140개/13개 클래스 AVG 7.46%는 다른 protocol의 과거 기록입니다.
 
 ## Raw-video reference와 CLIP 시간 측정
 
@@ -175,9 +169,9 @@ Full 평가의 `metrics.branch1`/`branch2`에는 `roc_auc`, `ap`, `ano_auc`(0~1)
 
 검증은 선택 사항입니다. `--mode smoke`는 짧은 anomaly·짧은 normal·긴 영상 사례를 확인하고, `--video Abuse028_x264.mp4`로 특정 영상만 지정할 수 있습니다. Full은 smoke 없이 직접 실행 가능합니다.
 
-기본 추출은 완전한 16-frame 구간에서 offset 8 한 장, crop 5, CLIP float32, batch 32입니다. 이는 **공식 추출 recipe로 확인되지 않은 provisional 조건**이며 공개 feature 유사도·기존 score 차이·full metric 차이를 함께 기록합니다. 100%는 이 후보를 모두 사용한다는 뜻입니다. `--temporal-mode mean_block`은 구간의 16장 전체를 encode/평균하는 별도 가설이며 효율 조건을 섞어 비교하지 않습니다.
+기본 추출은 2026-10-08 재구성한 recipe입니다: 완전한 16-frame 구간의 첫 프레임(offset 0) 한 장, x86 swscale YUV→RGB 재현, fx/fy resize, crop 5, CLIP float32, batch 32. 사용자 full run `ucf_raw_full_20261008_150142`(branch1 AUC 87.19%)를 sampling 비교의 기준으로 확정했습니다. 공식 float16 feature 286개는 상대 L2 ≤ 0.005로 재현되고, 가장 긴 float32 영상 4개는 미재현입니다. 100%는 이 후보를 모두 사용한다는 뜻입니다. `--temporal-mode mean_block`은 구간의 16장 전체를 encode/평균하는 별도 가설이며 효율 조건을 섞어 비교하지 않습니다.
 
-출력은 `outputs/baseline/ucf_raw_<mode>_<timestamp>/summary.json`, `features/*.npz`, `scores/*.npz` 및 full `frame_scores.npz`입니다. 시간·선택 frame index/timestamp·feature/score 대조와 Event coverage를 기록합니다. 전체 290개 full에서 두 branch AUC/AP/Ano-AUC와 원본 fine-grained mAP/AVG를 계산합니다. 프로젝트 코드·테스트·decoding·encoder/inference는 아직 실행하지 않았고, raw 재현/시간 값은 사용자 실행 후 확인해야 합니다. Uniform/Random은 reference 검증 후 추가합니다.
+출력은 `outputs/baseline/ucf_raw_<mode>_<timestamp>/summary.json`, `features/*.npz`, `scores/*.npz` 및 full `frame_scores.npz`입니다. 시간·선택 frame index/timestamp·feature/score 대조와 Event coverage를 기록합니다. 전체 290개 full에서 두 branch AUC/AP/Ano-AUC와 원본 fine-grained mAP/AVG를 계산합니다. Uniform/Random은 이 reference 위에 추가합니다.
 
 ## 원본 코드
 

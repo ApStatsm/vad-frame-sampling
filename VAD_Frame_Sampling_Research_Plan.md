@@ -146,7 +146,7 @@ Reference frame extraction / preprocessing
 
 **2026-10-08 결정 (사용자 확정): UCF-Crime sampling 비교의 기준은 직접 추출한 raw-video reference다.**
 
-- 추출 방식(재구성): 완전한 16프레임 구간마다 zero-based frame 16k 한 장을 x86 libswscale 방식으로 YUV→RGB 변환한다. 이어서 `cv2.resize(fx=fy=256/240)` → `[16:240, 58:282]` crop → 좌우 반전(crop 5) → CLIP ViT-B/16로 처리한다. 공식 row 수가 ceil(N/16)인 영상 4개에서만 꼬리 프레임 1장을 추가한다. 상세 근거는 `docs/EXTRACTION_DIAGNOSTIC_RUNS.md`와 `docs/UCF_RAW_REFERENCE.md`에 있다.
+- 추출 방식(재구성): 완전한 16프레임 구간마다 zero-based frame 16k 한 장을 x86 libswscale 방식으로 YUV→RGB 변환한다. 이어서 `cv2.resize(fx=fy=256/240)` → `[16:240, 58:282]` crop → 좌우 반전(crop 5) → CLIP ViT-B/16로 처리한다. 공식 row 수가 ceil(N/16)인 영상 4개에서만 꼬리 프레임 1장을 추가한다. 상세 근거는 `docs/archive/EXTRACTION_DIAGNOSTIC_RUNS.md`와 `docs/UCF_RAW_REFERENCE.md`에 있다.
 - 검증: test 290개 중 공식 float16 feature 286개가 모두 상대 L2 ≤ 0.005(중앙값 0.0019)로 일치한다. 가장 긴 영상 4개(공식 float32, frame-level 시간축의 24.7%)는 상대 L2 0.29~0.35로 재현하지 못했다.
 - 기준 성능(run `ucf_raw_full_20261008_150142`): branch1 AUC 87.19%(공식 feature 88.02% 대비 −0.83pp). 사전 제안 허용 오차 0.5pp를 넘지만, 차이는 위 4개 영상에서 나오는 것으로 판단한다(286개의 token 점수 차이 최대 0.008). 저장 점수 기반 민감도 분석(`scripts/analyze_ucf_raw_cohorts.py`)으로 확인한다.
 - 이유: 효율 실험은 CLIP encoding 이전에 선택해야 하므로 공식 feature를 기준으로 쓸 수 없다. 모든 sampler가 같은 raw 파이프라인을 쓰므로 4개 영상의 불일치는 sampler 간 비교의 공정성에 영향을 주지 않는다.
