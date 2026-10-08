@@ -2,17 +2,29 @@
 
 Pretrained VadCLIP을 고정하고 frame sampling 방법에 따른 이상 탐지 성능과 계산 비용을 비교하는 프로젝트입니다. UCF-Crime을 먼저 검증한 뒤 XD-Violence로 확장합니다.
 
-현재 UCF test 290개(anomaly 140, normal 150)의 official-feature full 평가가 사용자 MPS 실행에서 성공했습니다. Branch1 AUC 88.02%/Ano-AUC 70.23%, branch2 AUC 85.69%, 원본 fine-grained AVG 6.68%입니다. Raw-video reference 코드를 준비했으며 raw 성능·시간과 sampling 비교는 아직 미측정입니다. [실험 결과표](docs/EXPERIMENT_RESULTS.md), 자세한 상태는 [PROGRESS.md](PROGRESS.md), 연구 설계는 [연구 계획](VAD_Frame_Sampling_Research_Plan.md)을 참고하세요.
+현재 UCF test 290개(anomaly 140, normal 150)의 official-feature full 평가가 사용자 MPS 실행에서 성공했습니다. Branch1 AUC 88.02%/Ano-AUC 70.23%, branch2 AUC 85.69%, 원본 fine-grained AVG 6.68%입니다. 직접 추출한 raw-video reference(branch1 AUC 87.19%, run `ucf_raw_full_20261008_150142`)를 sampling 비교의 기준으로 확정했습니다. 공식 대비 −0.83pp는 공식 feature를 재현하지 못한 가장 긴 float32 영상 4개 때문입니다. 공용 코드는 `vadfs/` 패키지로 정리했고, 리팩토링 후 재실행 결과가 기존 두 기준 run과 bit 단위로 같음을 확인했습니다. Sampling 비교는 아직 미측정입니다. [실험 결과표](docs/EXPERIMENT_RESULTS.md), 자세한 상태는 [PROGRESS.md](PROGRESS.md), 연구 설계는 [연구 계획](VAD_Frame_Sampling_Research_Plan.md)을 참고하세요.
 
 ## 저장소 파일 구조
 
 ```text
 ├── VadCLIP/                            # 모델 소스, 공식 목록·GT, 원본 LICENSE
-├── scripts/                            # 데이터 준비·입력 점검·평가 코드
+├── vadfs/                              # 공용 연구 코드 (scripts에서 import)
+│   ├── paths.py                        # 프로젝트 루트·경로 해석·SHA-256
+│   ├── runs.py                         # run 폴더 생성·provenance·summary 저장
+│   ├── ucf.py                          # UCF label·고정 입력 경로
+│   ├── vadclip.py                      # VadCLIP 로딩·upstream 동일 inference·score 복원
+│   ├── color.py                        # x86 libswscale YUV→RGB 재현
+│   ├── extract.py                      # raw 영상 decode·후보 선택·crop·CLIP encode
+│   └── metrics.py                      # AUC/AP/Ano-AUC·원본 fine-grained mAP·run 비교
+├── scripts/
+│   ├── evaluate_ucf_official.py        # official feature 평가 (smoke/full)
+│   ├── evaluate_ucf_raw.py             # raw-video reference 추출·평가·시간 측정
+│   ├── analyze_ucf_raw_cohorts.py      # 저장 점수 기반 float32 cohort 민감도 분석
+│   └── setup/                          # 데이터 준비·자원/입력 점검 (완료된 일회성 단계)
 ├── configs/
 │   ├── ucf_resources.json              # feature·checkpoint 경로 설정
-│   └── ucf_raw_reference.json          # provisional raw 추출·batch·precision 설정
-├── docs/                               # 자원 준비·baseline 실행 안내
+│   └── ucf_raw_reference.json          # 확정된 raw 추출 recipe·batch·precision 설정
+├── docs/                               # 자원 준비·baseline·raw reference 안내, archive/
 ├── UCF-Crime/
 │   ├── Temporal_Anomaly_Annotation_for_Testing_Videos.txt
 │   └── test/

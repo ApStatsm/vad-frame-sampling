@@ -13,6 +13,6 @@ This directory contains the upstream tracked files and the following local modif
 
 The modified source files carry prominent local change notices. These notices change file hashes without changing model calculations. Run the current-version smoke before full evaluation; the old smoke does not validate the new hashes.
 
-Research scripts under `../scripts/` are separate additions. Their smoke/full evaluator mirrors the upstream scoring/window behavior and records both the research commit and the fixed upstream commit from `UPSTREAM.json`. No retraining or upstream inference-policy change is part of the GitHub preparation.
+Research code under `../vadfs/` and `../scripts/` is a separate addition. Its evaluators mirror the upstream scoring/window behavior and record both the research commit and the fixed upstream commit from `UPSTREAM.json`. No retraining or upstream inference-policy change is part of the GitHub preparation.
 
 The previous nested `.git` history and the pre-integration modification patch are backed up under the ignored project-local `.local-backups/vadclip-before-integration/`. That backup is machine-local and is not a dependency for a fresh clone.

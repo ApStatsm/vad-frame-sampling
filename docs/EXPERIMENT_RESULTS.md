@@ -11,7 +11,7 @@
 | UCF-Crime | Official CLIP features | Branch 1 / C-branch | 88.02 | 33.56 | 70.23 | 290 | 1,109,888 |
 | UCF-Crime | Official CLIP features | Branch 2 / A-branch | 85.69 | 26.50 | 65.52 | 290 | 1,109,888 |
 
-Ano-AUC는 이상 영상 140개의 전체 프레임(정상 구간 포함)을 모아 계산한다. 사용자가 기존 저장 score로 추가한 summary의 branch1=0.7023225741073721, branch2=0.6552197493487624를 읽어 %로 기록했다. Codex는 계산을 실행하지 않았다. 실행 명령과 출력은 [기존 결과에 Ano-AUC 추가](UCF_OFFICIAL_BASELINE.md#기존-결과에-ano-auc-추가--모델-재실행-없음)를 참고한다.
+Ano-AUC는 이상 영상 140개의 전체 프레임(정상 구간 포함)을 모아 계산한다. 사용자가 기존 저장 score로 추가한 summary의 branch1=0.7023225741073721, branch2=0.6552197493487624를 읽어 %로 기록했다. 계산 경위는 [기존 결과에 Ano-AUC 추가](UCF_OFFICIAL_BASELINE.md#기존-결과에-ano-auc-추가-기록)를 참고한다.
 
 사용자 새 full run `ucf_full_20261007_010204`에서 원본 290개/14개 클래스 fine-grained 재현을 확인했다. 기존 두 branch AUC/AP/Ano-AUC도 같은 값이다.
 
@@ -40,7 +40,8 @@ Ano-AUC는 이상 영상 140개의 전체 프레임(정상 구간 포함)을 모
 Fine-grained(branch 2): mAP@0.1~0.5 = 11.79 / 7.97 / 6.57 / 4.71 / 3.12, AVG 6.83%(공식 대비 +0.15pp).
 
 - Feature 일치: 공식 float16 286개 모두 상대 L2 ≤ 0.005(중앙값 0.0019, 최대 0.0047), token 점수 차이 최대 0.008. 가장 긴 4개(공식 float32: Shooting032, Normal924/935/940)는 0.29~0.35로 재현하지 못했다. 이 4개는 frame-level 시간축의 24.7%다.
-- AUC 차이의 원인은 4개 영상으로 판단하며, 저장 점수 기반 민감도 분석(`scripts/analyze_ucf_raw_cohorts.py`)으로 확인할 예정이다.
+- AUC 차이의 원인은 4개 영상으로 **확인했다**(2026-10-08, `scripts/analyze_ucf_raw_cohorts.py`, 저장 점수만 사용, 결과 `outputs/baseline/ucf_raw_full_20261008_150142/cohort_sensitivity.json`). Raw 점수에서 float32 4개 구간만 공식 점수로 바꾸면 공식 대비 branch1 AUC +0.002pp, AP +0.013pp, Ano-AUC +0.004pp(branch2 +0.003/+0.008/+0.008)로 사실상 같다. 반대로 공식 점수에 raw 4개 구간을 넣으면 −0.836pp가 된다. 4개를 뺀 시간축에서도 raw와 공식의 차이는 +0.002pp다.
+- 리팩토링 검증(2026-10-08): `vadfs` 패키지 코드로 재실행한 `ucf_raw_full_20261008_164022`(raw)와 `ucf_full_20261008_163913`(official)이 각각 150142, 010204와 290개 전부 feature·score·metric bit 동일. 수치 기준은 바뀌지 않는다.
 - 시간(1회): E2E 1465.8초, CLIP forward 1221.1초, x86 색 변환 재현 95.7초(numpy 에뮬레이션, 실제 x86 비용 아님), decode 69.9초, 전처리 43.5초, VAD 24.7초. Encoder 입력 69,368장. Warm-up 2회 제외, OS cache 미통제.
 
 ## Raw-video sampling 비교표
@@ -70,7 +71,7 @@ Fine-grained(branch 2): mAP@0.1~0.5 = 11.79 / 7.97 / 6.57 / 4.71 / 3.12, AVG 6.8
 
 ## 바로 다음 작업
 
-1. (완료) UCF raw reference full 실행과 기준 고정(`ucf_raw_full_20261008_150142`). 민감도 분석으로 AUC 차이의 원인을 기록한다.
+1. (완료) UCF raw reference full 실행과 기준 고정(`ucf_raw_full_20261008_150142`). 민감도 분석으로 AUC 차이가 float32 4개 영상 때문임을 확인했다.
 2. Annotation 좌표 규칙은 공식 GT 시간축을 그대로 사용하므로 별도 변경하지 않는다.
 3. 공통 규칙과 주 score branch(branch1)를 고정한 뒤 Uniform/Random 25%를 먼저 비교한다. 연구 계획의 50%/12.5% budget도 이후 같은 형식으로 기록한다.
 4. XD-Violence 자원과 데이터셋별 checkpoint·AP 평가를 검증한 뒤 확장한다. Adaptive/Ours는 계획 순서에 따라 개발하며 Ours는 별도 개발 데이터에서 설계·튜닝한다.

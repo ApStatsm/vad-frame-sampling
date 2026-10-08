@@ -1,0 +1,150 @@
+{
+  "raw_run": "/Users/apstat/Desktop/01_4\u1112\u1161\u11a8\u1102\u1167\u11ab2\u1112\u1161\u11a8\u1100\u1175/03_\u110b\u1175\u11ab\u1100\u1169\u11bc\u110c\u1175\u1102\u1173\u11bc\u1111\u1173\u1105\u1169\u110c\u1166\u11a8\u1110\u1173/03_Project/outputs/baseline/ucf_raw_full_20261008_150142",
+  "official_run": "/Users/apstat/Desktop/01_4\u1112\u1161\u11a8\u1102\u1167\u11ab2\u1112\u1161\u11a8\u1100\u1175/03_\u110b\u1175\u11ab\u1100\u1169\u11bc\u110c\u1175\u1102\u1173\u11bc\u1111\u1173\u1105\u1169\u110c\u1166\u11a8\u1110\u1173/03_Project/outputs/baseline/ucf_full_20261007_010204",
+  "cohort_dtype": "float32",
+  "cohort_videos": [
+    "Shooting032_x264.mp4",
+    "Normal_Videos_924_x264.mp4",
+    "Normal_Videos_935_x264.mp4",
+    "Normal_Videos_940_x264.mp4"
+  ],
+  "cohort_frames": 273728,
+  "total_frames": 1109888,
+  "metrics": {
+    "raw": {
+      "branch1": {
+        "roc_auc": 0.8718534651697848,
+        "ap": 0.3180487373193901,
+        "ano_auc": 0.6914169602194322
+      },
+      "branch2": {
+        "roc_auc": 0.8489589503793918,
+        "ap": 0.2521733026026258,
+        "ano_auc": 0.644846812513908
+      }
+    },
+    "official": {
+      "branch1": {
+        "roc_auc": 0.8801992590339176,
+        "ap": 0.3355725533786813,
+        "ano_auc": 0.7023225741073721
+      },
+      "branch2": {
+        "roc_auc": 0.8569383413981362,
+        "ap": 0.26500622289261344,
+        "ano_auc": 0.6552197493487624
+      }
+    },
+    "raw_with_official_cohort_scores": {
+      "branch1": {
+        "roc_auc": 0.8802147575319074,
+        "ap": 0.3357073633038656,
+        "ano_auc": 0.7023643932749504
+      },
+      "branch2": {
+        "roc_auc": 0.8569645668595782,
+        "ap": 0.26508447710664307,
+        "ano_auc": 0.6553019729889725
+      }
+    },
+    "official_with_raw_cohort_scores": {
+      "branch1": {
+        "roc_auc": 0.8718367920446923,
+        "ap": 0.3179171705756966,
+        "ano_auc": 0.6913760173425347
+      },
+      "branch2": {
+        "roc_auc": 0.8489322554377997,
+        "ap": 0.252101744677348,
+        "ano_auc": 0.6447630971919731
+      }
+    },
+    "raw_excluding_cohort": {
+      "branch1": {
+        "roc_auc": 0.8452798336328134,
+        "ap": 0.3412325049052585,
+        "ano_auc": 0.69598153944697
+      },
+      "branch2": {
+        "roc_auc": 0.8184349412518089,
+        "ap": 0.27067021220699516,
+        "ano_auc": 0.647316894766792
+      }
+    },
+    "official_excluding_cohort": {
+      "branch1": {
+        "roc_auc": 0.8452623112491577,
+        "ap": 0.3410999142552418,
+        "ano_auc": 0.6959405135592249
+      },
+      "branch2": {
+        "roc_auc": 0.8184002215619411,
+        "ap": 0.2705920228384808,
+        "ano_auc": 0.6472308377196372
+      }
+    }
+  },
+  "differences_pp_vs_official": {
+    "raw": {
+      "branch1": {
+        "roc_auc": -0.8345793864132811,
+        "ap": -1.7523816059291208,
+        "ano_auc": -1.090561388793987
+      },
+      "branch2": {
+        "roc_auc": -0.7979391018744342,
+        "ap": -1.2832920289987615,
+        "ano_auc": -1.0372936834854407
+      }
+    },
+    "raw_with_official_cohort_scores": {
+      "branch1": {
+        "roc_auc": 0.0015498497989763216,
+        "ap": 0.013480992518427604,
+        "ano_auc": 0.004181916757828308
+      },
+      "branch2": {
+        "roc_auc": 0.0026225461442042075,
+        "ap": 0.007825421402962718,
+        "ano_auc": 0.008222364021015505
+      }
+    },
+    "official_with_raw_cohort_scores": {
+      "branch1": {
+        "roc_auc": -0.836246698922527,
+        "ap": -1.7655382802984732,
+        "ano_auc": -1.0946556764837356
+      },
+      "branch2": {
+        "roc_auc": -0.8006085960336473,
+        "ap": -1.2904478215265414,
+        "ano_auc": -1.045665215678926
+      }
+    },
+    "raw_excluding_cohort": {
+      "branch1": {
+        "roc_auc": -3.4919425401104154,
+        "ap": 0.5659951526577223,
+        "ano_auc": -0.6341034660402034
+      },
+      "branch2": {
+        "roc_auc": -3.850340014632725,
+        "ap": 0.5663989314381723,
+        "ano_auc": -0.7902854581970375
+      }
+    },
+    "raw_excluding_cohort_vs_official_excluding_cohort": {
+      "branch1": {
+        "roc_auc": 0.001752238365571035,
+        "ap": 0.013259065001675063,
+        "ano_auc": 0.00410258877451275
+      },
+      "branch2": {
+        "roc_auc": 0.0034719689867790393,
+        "ap": 0.007818936851439195,
+        "ano_auc": 0.008605704715480833
+      }
+    }
+  },
+  "note": "Saved scores only; excluding-cohort metrics are diagnostic, not the benchmark protocol"
+}
