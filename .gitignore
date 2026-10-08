@@ -42,13 +42,21 @@ configs/*.local.json
 *.part
 *.npz
 
-# Share original small audit reports and summaries, not generated binary outputs
+# Generated outputs: track only consolidated setup reports and run summaries.
+# Per-run diagnostic folders (ranking/per_block CSV, arrays, source audits) stay
+# local; docs/EXTRACTION_DIAGNOSTIC_RUNS.md and the consolidated JSONs summarise them.
 /outputs/**
-!/outputs/**/
-!/outputs/**/*.json
-!/outputs/**/*.csv
-!/outputs/**/*.txt
-!/outputs/**/*.log
+!/outputs/*/
+!/outputs/setup/*.json
+!/outputs/setup/*.csv
+!/outputs/setup/*.txt
+!/outputs/setup/*.log
+!/outputs/baseline/*/
+!/outputs/baseline/*/summary.json
+!/outputs/baseline/*/cohort_sensitivity.json
+# Failed raw runs (path error before any video was processed)
+/outputs/baseline/ucf_raw_full_20261008_144218/
+/outputs/baseline/ucf_raw_full_20261008_144302/
 
 # Bundled GT .npy files and CLIP tokenizer .txt.gz remain tracked.
 PROGRESS.md

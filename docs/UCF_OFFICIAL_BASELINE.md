@@ -1,6 +1,6 @@
 # UCF-Crime official-feature baseline 실행 안내
 
-2026-10-07. Codex는 코드 작성·정적 검토 및 기존 결과 읽기만 수행했다. 사용자 MPS full run `ucf_full_20261006_235442`가 성공했으며 branch1 AUC 88.02%, branch2 AUC 85.69%다. [실험 결과표](EXPERIMENT_RESULTS.md)에 official-feature 재현과 미측정 raw sampling 표를 구분했다. 아래 명령은 실행 안내이며 동일 조건의 성공 run을 반복할 필요는 없다.
+2026-10-07. Codex는 코드 작성·정적 검토 및 기존 결과 읽기만 수행했다. 사용자 MPS full run `ucf_full_20261007_010204`가 성공했으며 branch1 AUC 88.02%/Ano-AUC 70.23%, branch2 AUC 85.69%, 원본 fine-grained AVG 6.68%다. [실험 결과표](EXPERIMENT_RESULTS.md)에 official-feature 재현과 미측정 raw sampling 표를 구분했다. 아래 명령은 실행 안내이며 동일 조건의 성공 run을 반복할 필요는 없다.
 
 **실행 선택:** 사용자 지시에 따라 smoke는 선택적 소규모 점검이며 `--mode full --device mps`를 바로 실행할 수 있다. Full에서는 과거 smoke 보고서를 읽거나 현재 코드 hash와 비교하지 않는다. 자원·입력 audit와 checkpoint 점검, 실행별 source hash 기록은 유지한다. 기존 작은 JSON/CSV/텍스트 보고서는 `outputs/`의 원래 위치에서 공유하고 score 배열은 업로드에서 제외한다. 구조·형식은 루트 README에 정리했다.
 
@@ -91,7 +91,7 @@ Smoke 완료 후 `success: true`와 7개 사례 OK를 확인한다. Full 성공�
 기존 full run의 `frame_scores.npz`, `summary.json`과 당시 hash에 일치하는 `VadCLIP/list/gt_ucf.npy`, `UCF-Crime/test/manifest.json`을 사용한다. Checkpoint·feature 파일·MPS는 필요하지 않으며 torch/모델을 import하지 않는다. 프로젝트 루트에서 사용자가 실행한다.
 
 ```sh
-.venv/bin/python scripts/update_ucf_metrics.py outputs/baseline/ucf_full_20261007_004524
+.venv/bin/python scripts/update_ucf_metrics.py outputs/baseline/ucf_full_20261007_010204
 ```
 
 현재 저장 score로 전체 AUC/AP를 다시 계산하여 원래 값과 절대 오차 1e-12 이내인지 확인하고, 영상별 순서·offset·길이와 anomaly 분류를 검증한 뒤 `metrics.branch1.ano_auc`, `metrics.branch2.ano_auc` 및 집계 범위를 원래 `summary.json`에 추가한다. 기존 AUC/AP, inference source hash·checkpoint hash·device·run_id 및 timing은 유지한다. `metrics_update`에 추가 계산의 시각·코드 및 입력 hash를 별도로 기록한다. Score/GT/manifest는 덮어쓰지 않는다.
@@ -121,4 +121,4 @@ Full 명령은 모델 inference부터 다시 수행하여 두 branch의 AUC/AP/A
 
 사용자 요청으로 기본 fine-grained를 원본 공개 코드 방식으로 수정하고, 앞서 준비했던 `--fine-grained`/`--official-fine-grained` 저장-score 갱신 옵션과 별도 13개 클래스 구현을 제거했다. `update_ucf_metrics.py`의 Ano-AUC 추가 기능은 유지한다. 기존 summary/NPZ는 수정하지 않았고 새 모델 실행에서 새 run을 생성한다.
 
-원본 방식은 정적으로 검토했으며 모델·GT 배열 로딩·metric 계산은 미실행이다. 새 결과와 논문 일치는 사용자 full 실행 후 확인한다. Raw-video 좌표 검증은 별도 단계다.
+새 사용자 `ucf_full_20261007_010204`의 원본 방식 mAP 11.72/7.83/6.40/4.53/2.93%, AVG 6.68%를 확인했다. 논문 표와 소수점 둘째 자리까지 일치하며 기존 coarse metric도 같다. Codex는 기존 JSON만 읽었고 모델·GT 배열 로딩·metric 계산은 실행하지 않았다. 다음 raw-video 좌표/추출 검증과 CLIP 시간 측정은 [raw reference 안내](UCF_RAW_REFERENCE.md)를 따른다.

@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "test_video_count": 290,
+  "crop0_counterparts": 290,
+  "previous_report_video_entries_hash_verified": 86,
+  "duplicate_normal_example": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/features/official/ucf/UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_015_x264__5.npy",
+  "official_test_list_sha256": "d621f4ccfb3e26274d215ad53b83fd1f596bb7e9f85cde69e01399db3da97c7f",
+  "mapping_rule": "Retain upstream official CSV relative folder; rebase configured root; ignore stale absolute prefix"
+}

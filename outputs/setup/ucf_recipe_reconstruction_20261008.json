@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-08",
+  "historical_recipe_confirmed": false,
+  "status": "float16 cohort (286 test / 1853 archive videos) reconstructed on sampled blocks and 2 full videos at fp backend-noise level; float32 long-video cohort unmatched",
+  "reconstructed_recipe": {
+    "temporal": "one frame per complete 16-frame block, zero-based frame 16k (offset 0); no averaging",
+    "rows": "float16: floor(N/16) (tail dropped); float32: ceil(N/16)",
+    "decode": "H.264 bit-exact yuv420p; YUV->RGB as libswscale x86 MMX/SSSE3 fast path (pmulhw fixed point, nearest chroma, BT.601 limited) -- what OpenCV CAP_FFMPEG gives on x86",
+    "geometry": "cv2.resize(rgb, None, fx=256/240, fy=256/240, INTER_LINEAR) -> 341x256, crop [16:240, 58:282], horizontal flip for __5",
+    "encoder": "OpenAI CLIP ViT-B/16 visual, standard CLIP normalization; fp16 slightly closer than fp32 (consistent with clip.load on CUDA)"
+  },
+  "evidence": {
+    "temporal_v_curve": "per-block relL2 minimal at d=0 with sharp rise at d=+-1 in high-motion blocks; Burglary005 b8 shot cut between 16k and 16k+1 matches pre-cut side (excludes forward 16-frame mean). Source: per_block.csv of ucf_extraction_verify_20261008_112516/114026",
+    "tail_rule": "all 20 float16 test videos with N%16==0 have T=N/16 (excludes floor((N-1)/16)); 266 others floor(N/16). Source: ucf_all_full_decode_20261008.json",
+    "dtype_split_by_length": {
+      "archive_videos": 1950,
+      "float16_videos": 1853,
+      "float16_T_max": 1246,
+      "float32_videos": 97,
+      "float32_T_min": 1274,
+      "overlap": 0,
+      "note": "every archive video with T<=1246 is float16 and every one with T>=1274 is float32; the 4 float32 test videos are exactly the 4 longest test videos. Suggests a separate run for long videos (e.g. memory limits); cause not confirmed."
+    },
+    "ffmpeg_image_dump": "rejected: ffmpeg JPEG (default,q1,q2,q5,q10) relL2 0.21-0.29; PNG identical to OpenCV. outputs/setup/ucf_ffmpeg_frames_20261008_*",
+    "yuv_conversion": "local swscale default == cpuflags0 C path (relL2 0.0417); accurate_rnd 0.074; full chroma 0.18; exact float BT.601 nearest 0.036/0.032; x86 SIMD emulation 0.0159 (float renderer). outputs/setup/ucf_yuv_conversion_20261008_134025",
+    "x86_plus_cv2_resize": {
+      "fit_blocks_rel_l2_float16": 0.00148,
+      "fit_blocks_rel_l2_float32": 0.00159,
+      "samples": "7 videos x blocks 1/8/32",
+      "source": "outputs/setup/ucf_affine_search_20261008_134157_x86_float16/summary.json (sanity.opencv_resize_fxfy_fit_rel_l2)"
+    },
+    "rows_including_tail": "Abuse028 rows 1,8,32,64,86,87: d=0 relL2 0.0012-0.0016 (float16 encoder)",
+    "full_video_extractor_check": {
+      "script": "outputs/setup/ucf_extraction_audit_sources_20261008/check_reconstructed_extractor.py",
+      "device": "mps float32",
+      "Abuse028_x264.mp4": {
+        "rows": 88,
+        "rel_l2": 0.00168,
+        "cos_min": 0.999996,
+        "row_rel_l2_max": 0.00294
+      },
+      "Normal_Videos_003_x264.mp4": {
+        "rows": 176,
+        "rel_l2": 0.00182,
+        "cos_min": 0.999994,
+        "row_rel_l2_max": 0.00358
+      },
+      "Normal_Videos_940_x264.mp4": {
+        "rows": 2252,
+        "tail_frames_encoded": 1,
+        "rel_l2": 0.29817,
+        "cos_min": 0.860931
+      }
+    },
+    "float32_cohort": "Shooting032/Normal940 with the reconstructed pipeline: relL2 0.24-0.37, flat over d=-2..+2 -> different image processing, not a temporal shift. Unresolved.",
+    "ten_crop_layout": "Abuse028 rows 1/8/32/64: all 10 official crops (__0..__9) match the 341x256 fx/fy 10-crop layout (center [16:240,58:282], corners, mirrored 5..9) at relL2 0.001-0.002 (script float32_crop_struct.py)"
+  },
+  "not_done": [
+    "full 290-video feature comparison (runs inside evaluate_ucf_raw full)",
+    "CUDA/x86 native confirmation",
+    "float32 cohort recipe"
+  ],
+  "float32_cohort_followup": {
+    "rejected": {
+      "jpeg_roundtrip": "OpenCV/Pillow q50-95, ffmpeg mjpeg default/q2/q5: 0.36-0.48 (worse than 0.31 baseline); outputs/setup/ucf_float32_cohort_20261008_144502",
+      "geometry": "fxfy vs published 340x256 both ~0.31; short side 224-288 all 0.25-0.47",
+      "temporal_pooling": "mean of 16 (forward, centred, 32, 80 frames), unit-mean, pixel-mean image: 0.14-0.41, none consistently better than single frame",
+      "blur_downscale": "Gaussian sigma 0.5-2 and down/up-scaling: worse (0.31-0.64)",
+      "photometric": "brightness/contrast/gamma/saturation/range/BT.709/RB swap/gray: feature-change directions have cos<=0.32 with residual; least-squares step reduces relL2 by <=0.02",
+      "crop_permutation": "official __k best matches our crop k; no permutation"
+    },
+    "observations": {
+      "official_crop_similarity": "Shooting032 official cos(center,corners)=0.987 vs ours <=0.96 at any scale",
+      "residual_structure": "within-video residual pairwise cos 0.30-0.48 (adding the video mean residual: 0.30->0.23-0.26) but mean residuals across videos cos 0.04-0.11 -> video-specific, not a global pipeline transform",
+      "alignment": "Shooting032 row 1354 straddles a shot cut between frames 21662/21663 and matches the post-cut side (d>=-1): no large temporal drift"
+    },
+    "working_hypothesis": "the 4 longest videos were processed from a different source copy/encode or pipeline that cannot be reproduced from the local files (their row counts also equal floor(N'/16) for N' slightly above our N: 21696/108000/108000/36032 timeline frames). Unverified.",
+    "evaluation_impact": {
+      "timeline_frames_float32": 273728,
+      "timeline_frames_total": 1109888,
+      "share": 0.247,
+      "gt_positive_frames_float32": 210,
+      "gt_positive_total": 84160,
+      "note": "mostly normal frames; frame-level AUC/AP of a raw reference can differ from the official-feature run mainly through these 4 videos"
+    }
+  }
+}

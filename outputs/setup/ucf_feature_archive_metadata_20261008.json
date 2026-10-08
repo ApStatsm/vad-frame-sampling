@@ -1,0 +1,5563 @@
+{
+  "success": true,
+  "historical_recipe_confirmed": false,
+  "archive": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/features/official/ucf/UCFClipFeatures.shared.zip",
+  "archive_file_bytes": 12996298147,
+  "archive_members": 19517,
+  "npy_members": 19500,
+  "non_npy_files": [],
+  "archive_comment": "",
+  "all_npy_dtype_date_counts": [
+    {
+      "dtype": "float16",
+      "date": "2023-01-11",
+      "files": 2220
+    },
+    {
+      "dtype": "float16",
+      "date": "2023-01-12",
+      "files": 5440
+    },
+    {
+      "dtype": "float16",
+      "date": "2023-01-13",
+      "files": 10870
+    },
+    {
+      "dtype": "float32",
+      "date": "2023-02-26",
+      "files": 20
+    },
+    {
+      "dtype": "float32",
+      "date": "2023-02-28",
+      "files": 160
+    },
+    {
+      "dtype": "float32",
+      "date": "2023-03-01",
+      "files": 790
+    }
+  ],
+  "test_files": [
+    {
+      "video": "Abuse028_x264.mp4",
+      "member": "UCFClipFeatures/Abuse/Abuse028_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        21,
+        35,
+        50
+      ],
+      "archive_crc32": 3626371817,
+      "local_crc32": 3626371817,
+      "local_bytes": 90240,
+      "archive_bytes": 90240,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "172f97755187d98650c0c037c5c73873b730c04ae84afd74f3b781cbad174eca"
+    },
+    {
+      "video": "Abuse030_x264.mp4",
+      "member": "UCFClipFeatures/Abuse/Abuse030_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        21,
+        13,
+        10
+      ],
+      "archive_crc32": 525584925,
+      "local_crc32": 525584925,
+      "local_bytes": 98432,
+      "archive_bytes": 98432,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "25887d1b3ec8a0cb326abacd468ce28e55bbde75db2283fe12fe8769101dae94"
+    },
+    {
+      "video": "Arrest001_x264.mp4",
+      "member": "UCFClipFeatures/Arrest/Arrest001_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        21,
+        47,
+        14
+      ],
+      "archive_crc32": 2863810527,
+      "local_crc32": 2863810527,
+      "local_bytes": 151680,
+      "archive_bytes": 151680,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "d635d52aed8aa69091c15d2b2ca6f0fcafdf80717c965901376ad1d1dca174f3"
+    },
+    {
+      "video": "Arrest007_x264.mp4",
+      "member": "UCFClipFeatures/Arrest/Arrest007_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        12,
+        22
+      ],
+      "archive_crc32": 3319888240,
+      "local_crc32": 3319888240,
+      "local_bytes": 200832,
+      "archive_bytes": 200832,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "a654a6de871ea839406bcef1a7e3bbc2bf3f8fbad7c67e04e5520645ea7ae4ce"
+    },
+    {
+      "video": "Arrest024_x264.mp4",
+      "member": "UCFClipFeatures/Arrest/Arrest024_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        4,
+        46
+      ],
+      "archive_crc32": 2972043180,
+      "local_crc32": 2972043180,
+      "local_bytes": 231552,
+      "archive_bytes": 231552,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "b1ad2e5a32baea9d3492714e60bb9144e4cd429628231c60067b69926f3091f6"
+    },
+    {
+      "video": "Arrest030_x264.mp4",
+      "member": "UCFClipFeatures/Arrest/Arrest030_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        23,
+        56
+      ],
+      "archive_crc32": 1272476206,
+      "local_crc32": 1272476206,
+      "local_bytes": 553088,
+      "archive_bytes": 553088,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "9a0ac4b31e9e003131400361fb75f6717bbdce10998a11f829608911c0ca776e"
+    },
+    {
+      "video": "Arrest039_x264.mp4",
+      "member": "UCFClipFeatures/Arrest/Arrest039_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        17,
+        36
+      ],
+      "archive_crc32": 1243788387,
+      "local_crc32": 1243788387,
+      "local_bytes": 1012864,
+      "archive_bytes": 1012864,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "0fd6841eb116deb2182623929fb5457952bf1c930731269851b9b34fd07e086b"
+    },
+    {
+      "video": "Arson007_x264.mp4",
+      "member": "UCFClipFeatures/Arson/Arson007_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        40,
+        38
+      ],
+      "archive_crc32": 2960930338,
+      "local_crc32": 2960930338,
+      "local_bytes": 399488,
+      "archive_bytes": 399488,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "f0161f1581de6e1ecf2cad8ce35f6e15dc030333a62f4d0c24c13e1097193068"
+    },
+    {
+      "video": "Arson009_x264.mp4",
+      "member": "UCFClipFeatures/Arson/Arson009_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        34,
+        0
+      ],
+      "archive_crc32": 146097510,
+      "local_crc32": 146097510,
+      "local_bytes": 47232,
+      "archive_bytes": 47232,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "b48c1febc940522b843ef8080388654ca30933d3431eb9a9f3bdfc7a95b9c9e1"
+    },
+    {
+      "video": "Arson010_x264.mp4",
+      "member": "UCFClipFeatures/Arson/Arson010_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        48,
+        50
+      ],
+      "archive_crc32": 1559327048,
+      "local_crc32": 1559327048,
+      "local_bytes": 201856,
+      "archive_bytes": 201856,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "48ae158b03e3b7a0ba2e4da6d3fb00b01c1d1c0751c740a572db2b7bdda8bfdc"
+    },
+    {
+      "video": "Arson011_x264.mp4",
+      "member": "UCFClipFeatures/Arson/Arson011_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        35,
+        36
+      ],
+      "archive_crc32": 1227920400,
+      "local_crc32": 1227920400,
+      "local_bytes": 81024,
+      "archive_bytes": 81024,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "1b4c3770302b802af16d13d69a8e4171efc1199451c03a66baad55d08984cc4d"
+    },
+    {
+      "video": "Arson016_x264.mp4",
+      "member": "UCFClipFeatures/Arson/Arson016_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        38,
+        48
+      ],
+      "archive_crc32": 116570439,
+      "local_crc32": 116570439,
+      "local_bytes": 114816,
+      "archive_bytes": 114816,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "47f8b2ba382d80bfd2ad372c0bcff5b88da66e2e06194cfd9157971ca2a7f682"
+    },
+    {
+      "video": "Arson018_x264.mp4",
+      "member": "UCFClipFeatures/Arson/Arson018_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        44,
+        24
+      ],
+      "archive_crc32": 588693959,
+      "local_crc32": 588693959,
+      "local_bytes": 53376,
+      "archive_bytes": 53376,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "bf6f217db4648847e087d8c169923f0c7c1add3d15f83da4142c8369c14dc302"
+    },
+    {
+      "video": "Arson022_x264.mp4",
+      "member": "UCFClipFeatures/Arson/Arson022_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        38,
+        38
+      ],
+      "archive_crc32": 4288293156,
+      "local_crc32": 4288293156,
+      "local_bytes": 553088,
+      "archive_bytes": 553088,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "419f7e6ec080bd259efb755209821cfb739bbab0b963378568b612cd7274643c"
+    },
+    {
+      "video": "Arson035_x264.mp4",
+      "member": "UCFClipFeatures/Arson/Arson035_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        46,
+        24
+      ],
+      "archive_crc32": 656978544,
+      "local_crc32": 656978544,
+      "local_bytes": 91264,
+      "archive_bytes": 91264,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "40c6ece5c0605a1ac54abb8cccb29c19012cf36eb644c0285a6c38589dd5f4d8"
+    },
+    {
+      "video": "Arson041_x264.mp4",
+      "member": "UCFClipFeatures/Arson/Arson041_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        22,
+        33,
+        40
+      ],
+      "archive_crc32": 457286256,
+      "local_crc32": 457286256,
+      "local_bytes": 239744,
+      "archive_bytes": 239744,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "60275ea281319e38d7a52e26e4569b7347a7e6c755ab453ce817550cb8243f9a"
+    },
+    {
+      "video": "Assault006_x264.mp4",
+      "member": "UCFClipFeatures/Assault/Assault006_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        23,
+        7,
+        56
+      ],
+      "archive_crc32": 491556533,
+      "local_crc32": 491556533,
+      "local_bytes": 518272,
+      "archive_bytes": 518272,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "d94d284e24c17dc89f1dc2d3133cd9b352c9a8618f2d2b2fc15407a4bf92bdae"
+    },
+    {
+      "video": "Assault010_x264.mp4",
+      "member": "UCFClipFeatures/Assault/Assault010_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        23,
+        19,
+        2
+      ],
+      "archive_crc32": 235808881,
+      "local_crc32": 235808881,
+      "local_bytes": 1035392,
+      "archive_bytes": 1035392,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "dabc29fc7ef5afcd9540be759cb4b4c592c7c657e31fe6fe090bf74e66f35864"
+    },
+    {
+      "video": "Assault011_x264.mp4",
+      "member": "UCFClipFeatures/Assault/Assault011_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        23,
+        5,
+        34
+      ],
+      "archive_crc32": 1405185037,
+      "local_crc32": 1405185037,
+      "local_bytes": 146560,
+      "archive_bytes": 146560,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "bacbf013d7d11c301ea2a7c5a4963ef0590ed181b62819a2bbd91840d8f4caf8"
+    },
+    {
+      "video": "Burglary005_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary005_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        0,
+        11,
+        56
+      ],
+      "archive_crc32": 1242301223,
+      "local_crc32": 1242301223,
+      "local_bytes": 494720,
+      "archive_bytes": 494720,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "abeffd45a0b5d9357e542dc16725f97f92985b4b159c274b1f6c1e3f31c3f580"
+    },
+    {
+      "video": "Burglary017_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary017_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        0,
+        49,
+        18
+      ],
+      "archive_crc32": 1175040523,
+      "local_crc32": 1175040523,
+      "local_bytes": 135296,
+      "archive_bytes": 135296,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "6ee54f58d8bc044a883434aa5c2f7956daf97ac5a8df62075b97e409d2b8f92a"
+    },
+    {
+      "video": "Burglary018_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary018_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        0,
+        21,
+        42
+      ],
+      "archive_crc32": 1180687218,
+      "local_crc32": 1180687218,
+      "local_bytes": 71808,
+      "archive_bytes": 71808,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "5f0f5d8b1105f676968447812d66b73ddb7d4a3db15d958cb71302386367beff"
+    },
+    {
+      "video": "Burglary021_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary021_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        0,
+        16,
+        22
+      ],
+      "archive_crc32": 4000986000,
+      "local_crc32": 4000986000,
+      "local_bytes": 98432,
+      "archive_bytes": 98432,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "0c491de38b3a084206a134970291e5381ce9f93de050ea633af8a96b277f7a32"
+    },
+    {
+      "video": "Burglary024_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary024_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        0,
+        30,
+        56
+      ],
+      "archive_crc32": 3164743061,
+      "local_crc32": 3164743061,
+      "local_bytes": 230528,
+      "archive_bytes": 230528,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "c1aba2c9f36257bb430fc9fd46672c077073adb0d49523c7125d3b44fda1ddc7"
+    },
+    {
+      "video": "Burglary032_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary032_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        0,
+        26,
+        52
+      ],
+      "archive_crc32": 2661579159,
+      "local_crc32": 2661579159,
+      "local_bytes": 1010816,
+      "archive_bytes": 1010816,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "b377ade9cbb0fc5257b654c10bb86f8990dfd189a748bdfacbd780bbdea9d41a"
+    },
+    {
+      "video": "Burglary033_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary033_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        23,
+        52,
+        38
+      ],
+      "archive_crc32": 2784546052,
+      "local_crc32": 2784546052,
+      "local_bytes": 80000,
+      "archive_bytes": 80000,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "0578eb735b94841f865dc28e95b94e8b1a69e078b8d8026960015852ac7dee3d"
+    },
+    {
+      "video": "Burglary035_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary035_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        0,
+        32,
+        22
+      ],
+      "archive_crc32": 775595590,
+      "local_crc32": 775595590,
+      "local_bytes": 259200,
+      "archive_bytes": 259200,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "5de6e69e932961b1299443213b1dd39d2b7feb29591479b658c5d228b10fc1e3"
+    },
+    {
+      "video": "Burglary037_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary037_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        0,
+        28,
+        18
+      ],
+      "archive_crc32": 3030626218,
+      "local_crc32": 3030626218,
+      "local_bytes": 123008,
+      "archive_bytes": 123008,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7faa8c6dcdfef565b399ce5ef9876e05d8fb71a14c2c48c9dfefa84f6dc5f0aa"
+    },
+    {
+      "video": "Burglary061_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary061_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        23,
+        58,
+        48
+      ],
+      "archive_crc32": 384582136,
+      "local_crc32": 384582136,
+      "local_bytes": 574592,
+      "archive_bytes": 574592,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "f6a39f299e9d01fc88a4ae818e52fab2d433327b90d7553c4557fd0fc6037f27"
+    },
+    {
+      "video": "Burglary076_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary076_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        0,
+        45,
+        0
+      ],
+      "archive_crc32": 597968144,
+      "local_crc32": 597968144,
+      "local_bytes": 826496,
+      "archive_bytes": 826496,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "63ac26b4c2aef35348800084ae147218d38fb9654e5ae3568ea00fa9d7560b65"
+    },
+    {
+      "video": "Burglary079_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary079_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        0,
+        36,
+        54
+      ],
+      "archive_crc32": 3204922370,
+      "local_crc32": 3204922370,
+      "local_bytes": 950400,
+      "archive_bytes": 950400,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "49ae33f9d6a9465269915fc2e2dc49637cc255e5bcd29636948b02a16c1fd5b8"
+    },
+    {
+      "video": "Burglary092_x264.mp4",
+      "member": "UCFClipFeatures/Burglary/Burglary092_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        11,
+        23,
+        54,
+        24
+      ],
+      "archive_crc32": 2481311392,
+      "local_crc32": 2481311392,
+      "local_bytes": 40064,
+      "archive_bytes": 40064,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "325c2ff5b92bd9e7200087d7cd316dcb16f0370e8a2882feed86473f8fb5cdf4"
+    },
+    {
+      "video": "Explosion002_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion002_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        3,
+        22
+      ],
+      "archive_crc32": 3225006331,
+      "local_crc32": 3225006331,
+      "local_bytes": 256128,
+      "archive_bytes": 256128,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "f5dcb8dfca89553290046730038b2e2072643b88852c0d9fa8e376e91d5a7cdd"
+    },
+    {
+      "video": "Explosion004_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion004_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        54,
+        34
+      ],
+      "archive_crc32": 451181825,
+      "local_crc32": 451181825,
+      "local_bytes": 120960,
+      "archive_bytes": 120960,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "e10f194bef065408809590384baa98d7eec634c4b53c934aba5b39515fcc6be7"
+    },
+    {
+      "video": "Explosion007_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion007_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        1,
+        28
+      ],
+      "archive_crc32": 2613688125,
+      "local_crc32": 2613688125,
+      "local_bytes": 1042560,
+      "archive_bytes": 1042560,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "2be0e933f4066a526522cf9cf2c9375b665755eb3c14d16edcb7f65b77c1bb0c"
+    },
+    {
+      "video": "Explosion008_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion008_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        52,
+        16
+      ],
+      "archive_crc32": 2040163522,
+      "local_crc32": 2040163522,
+      "local_bytes": 111744,
+      "archive_bytes": 111744,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "c67501f09ee7dc7dbb631054bd3729afb300a24a4d493218fef6ca6bde2a3d2b"
+    },
+    {
+      "video": "Explosion010_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion010_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        52,
+        42
+      ],
+      "archive_crc32": 2055385380,
+      "local_crc32": 2055385380,
+      "local_bytes": 159872,
+      "archive_bytes": 159872,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "712cff1b4de4232f9df17978d6d81cfbfa1b1a7c3149f9a1e7e497c9c8b0b1cb"
+    },
+    {
+      "video": "Explosion011_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion011_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        51,
+        46
+      ],
+      "archive_crc32": 4020888425,
+      "local_crc32": 4020888425,
+      "local_bytes": 100480,
+      "archive_bytes": 100480,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "9936332be78fd74abd45556fccf7784dc96d384ac0e7b32bfccce45461e01760"
+    },
+    {
+      "video": "Explosion013_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion013_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        52,
+        4
+      ],
+      "archive_crc32": 348153546,
+      "local_crc32": 348153546,
+      "local_bytes": 212096,
+      "archive_bytes": 212096,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "15c43ceea3d91081d27588f57cd19b586e89a6325dbc3360380ae1e3a9024fc4"
+    },
+    {
+      "video": "Explosion016_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion016_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        53,
+        38
+      ],
+      "archive_crc32": 2824735289,
+      "local_crc32": 2824735289,
+      "local_bytes": 61568,
+      "archive_bytes": 61568,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "df5fc2c0d1523439841ca563dddae769db07fb4f5528420482d2fed44c86c849"
+    },
+    {
+      "video": "Explosion017_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion017_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        4,
+        28
+      ],
+      "archive_crc32": 1682402815,
+      "local_crc32": 1682402815,
+      "local_bytes": 104576,
+      "archive_bytes": 104576,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "c5b947c484203c6dacdfa6f3ca2cbdf74c430fd4f8bd4e992aa22684cb296f1e"
+    },
+    {
+      "video": "Explosion020_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion020_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        53,
+        34
+      ],
+      "archive_crc32": 2558956941,
+      "local_crc32": 2558956941,
+      "local_bytes": 82048,
+      "archive_bytes": 82048,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "3abadb3209a467d2177b3ac2a764d00dcb85a754d8da48400c0017d88141a14e"
+    },
+    {
+      "video": "Explosion021_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion021_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        53,
+        14
+      ],
+      "archive_crc32": 3951250472,
+      "local_crc32": 3951250472,
+      "local_bytes": 49280,
+      "archive_bytes": 49280,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "6dd7c525b7786228ef9b027e9a94878ca23d061e0525500078d662488f49fde0"
+    },
+    {
+      "video": "Explosion022_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion022_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        2,
+        56
+      ],
+      "archive_crc32": 3978139693,
+      "local_crc32": 3978139693,
+      "local_bytes": 229504,
+      "archive_bytes": 229504,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "bc5503ce675a1508d61d19c11c5cd96bb7b759dd0c801010c1c403a76837463d"
+    },
+    {
+      "video": "Explosion025_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion025_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        51,
+        38
+      ],
+      "archive_crc32": 1206985398,
+      "local_crc32": 1206985398,
+      "local_bytes": 31872,
+      "archive_bytes": 31872,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "718ef52caffe63b90d73ae3eabe524d424ea3832b5f6e1c214362ddc16a004ab"
+    },
+    {
+      "video": "Explosion027_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion027_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        3,
+        38
+      ],
+      "archive_crc32": 3439153999,
+      "local_crc32": 3439153999,
+      "local_bytes": 49280,
+      "archive_bytes": 49280,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "2b953fc22b969f3c5946c1512f230d08bfa50d5488c465ea7118a9ac00def1e3"
+    },
+    {
+      "video": "Explosion028_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion028_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        53,
+        4
+      ],
+      "archive_crc32": 3279430321,
+      "local_crc32": 3279430321,
+      "local_bytes": 108672,
+      "archive_bytes": 108672,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "a6a3d8bb329613bfe6c328b0f160e16b747d84f564acd9cb1809433b5022f383"
+    },
+    {
+      "video": "Explosion029_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion029_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        53,
+        28
+      ],
+      "archive_crc32": 731066242,
+      "local_crc32": 731066242,
+      "local_bytes": 153728,
+      "archive_bytes": 153728,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "97c0604d8df992f85052e0f9b4161e313ebc11d49ca216c667a6b0e2a2e313b0"
+    },
+    {
+      "video": "Explosion033_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion033_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        2,
+        8
+      ],
+      "archive_crc32": 1093483108,
+      "local_crc32": 1093483108,
+      "local_bytes": 201856,
+      "archive_bytes": 201856,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "8d9b4c3c9832bf879915493cf985674492bff58676322c7fbb02e033f4eb4bed"
+    },
+    {
+      "video": "Explosion035_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion035_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        52,
+        56
+      ],
+      "archive_crc32": 1540084807,
+      "local_crc32": 1540084807,
+      "local_bytes": 183424,
+      "archive_bytes": 183424,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "3964d2588bf12cad546bafb5c994b59e590673b5eb5f7c76d3014233a1413008"
+    },
+    {
+      "video": "Explosion036_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion036_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        5,
+        12
+      ],
+      "archive_crc32": 3563077450,
+      "local_crc32": 3563077450,
+      "local_bytes": 340096,
+      "archive_bytes": 340096,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "4b08dbbb4386ce49571bffe84dd1bbdaa71a26e9a48f31c8b5595906d498a944"
+    },
+    {
+      "video": "Explosion039_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion039_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        3,
+        36
+      ],
+      "archive_crc32": 600063373,
+      "local_crc32": 600063373,
+      "local_bytes": 63616,
+      "archive_bytes": 63616,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "63cb729ba6baf83ffacd33e4c6ee78c0938ade548b913491f80ac383df6c9b90"
+    },
+    {
+      "video": "Explosion043_x264.mp4",
+      "member": "UCFClipFeatures/Explosion/Explosion043_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        20,
+        55,
+        58
+      ],
+      "archive_crc32": 1391000079,
+      "local_crc32": 1391000079,
+      "local_bytes": 488576,
+      "archive_bytes": 488576,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "46866d761fe02e8d981e48a7e0ee78088db01e16fe6099c9658923b72bf1b4fd"
+    },
+    {
+      "video": "Fighting003_x264.mp4",
+      "member": "UCFClipFeatures/Fighting/Fighting003_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        7,
+        10
+      ],
+      "archive_crc32": 2052799510,
+      "local_crc32": 2052799510,
+      "local_bytes": 197760,
+      "archive_bytes": 197760,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "228654159c5e3408d383e716055df8bbb549b4e5a8a7a09f92ffb10440ac0ccf"
+    },
+    {
+      "video": "Fighting018_x264.mp4",
+      "member": "UCFClipFeatures/Fighting/Fighting018_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        13,
+        30
+      ],
+      "archive_crc32": 1070770361,
+      "local_crc32": 1070770361,
+      "local_bytes": 88192,
+      "archive_bytes": 88192,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "5f602d80e7b0c340827a4a855246d8eb55320cc984eefcdf9c8182df3c8a5f01"
+    },
+    {
+      "video": "Fighting033_x264.mp4",
+      "member": "UCFClipFeatures/Fighting/Fighting033_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        20,
+        28
+      ],
+      "archive_crc32": 979661629,
+      "local_crc32": 979661629,
+      "local_bytes": 70784,
+      "archive_bytes": 70784,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "c80286f6c12717241eb69b1284f3188eedc227410389e51d00b8ff3b19e86b0c"
+    },
+    {
+      "video": "Fighting042_x264.mp4",
+      "member": "UCFClipFeatures/Fighting/Fighting042_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        31,
+        28
+      ],
+      "archive_crc32": 2122613074,
+      "local_crc32": 2122613074,
+      "local_bytes": 142464,
+      "archive_bytes": 142464,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "8660a26cacd9f587eb0e289886020aeb298693e771360026c6f59b5db4b6154e"
+    },
+    {
+      "video": "Fighting047_x264.mp4",
+      "member": "UCFClipFeatures/Fighting/Fighting047_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        21,
+        35,
+        50
+      ],
+      "archive_crc32": 2107416929,
+      "local_crc32": 2107416929,
+      "local_bytes": 284800,
+      "archive_bytes": 284800,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "ef8266662e1a31a1c849410ac439a96cd886250c06e854070d7bfe40c8bebdcc"
+    },
+    {
+      "video": "RoadAccidents001_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents001_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        15,
+        24
+      ],
+      "archive_crc32": 3770945615,
+      "local_crc32": 3770945615,
+      "local_bytes": 87168,
+      "archive_bytes": 87168,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "1061007f880ebee0f14ea663553a7580d52b76d111123087ffc735857efd65ed"
+    },
+    {
+      "video": "RoadAccidents002_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents002_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        10,
+        40
+      ],
+      "archive_crc32": 1529306541,
+      "local_crc32": 1529306541,
+      "local_bytes": 21632,
+      "archive_bytes": 21632,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "c07ea9c092ae16813aba1292a142c970d4d9be8706acd95c816fab02f7ee25d1"
+    },
+    {
+      "video": "RoadAccidents004_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents004_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        31,
+        20
+      ],
+      "archive_crc32": 252934104,
+      "local_crc32": 252934104,
+      "local_bytes": 24704,
+      "archive_bytes": 24704,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "1219464210ae0c4232ae3dca4153a15c4db3050dbf8077e48362f6379145460e"
+    },
+    {
+      "video": "RoadAccidents009_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents009_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        15,
+        30
+      ],
+      "archive_crc32": 2395023124,
+      "local_crc32": 2395023124,
+      "local_bytes": 58496,
+      "archive_bytes": 58496,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "9e6c8f7795667784d06b9b1be05412cc1077404b48a8238552b843c13ea5ba0e"
+    },
+    {
+      "video": "RoadAccidents010_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents010_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        41,
+        16
+      ],
+      "archive_crc32": 1678731598,
+      "local_crc32": 1678731598,
+      "local_bytes": 33920,
+      "archive_bytes": 33920,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "f2fcb002d7e31ba566f43f69adecd2f02bc454e9940514abc3070f3e5667ed67"
+    },
+    {
+      "video": "RoadAccidents011_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents011_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        13,
+        54
+      ],
+      "archive_crc32": 4129052719,
+      "local_crc32": 4129052719,
+      "local_bytes": 137344,
+      "archive_bytes": 137344,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "447abefe468e7da8615bf87623a3bf29fadcadb4aceb4cfbede97b5b5589949a"
+    },
+    {
+      "video": "RoadAccidents012_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents012_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        40,
+        2
+      ],
+      "archive_crc32": 2644672667,
+      "local_crc32": 2644672667,
+      "local_bytes": 29824,
+      "archive_bytes": 29824,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "9b404c3d2c8c226209a89e30db714cc7edde2d5b1dc628bf5b7088165a1d2de7"
+    },
+    {
+      "video": "RoadAccidents016_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents016_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        40,
+        44
+      ],
+      "archive_crc32": 1785035901,
+      "local_crc32": 1785035901,
+      "local_bytes": 140416,
+      "archive_bytes": 140416,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "c514729521ec91f42db2aa55a3a3f406f24f579e8ec11ba6e9eab36ca47ef9de"
+    },
+    {
+      "video": "RoadAccidents017_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents017_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        33,
+        32
+      ],
+      "archive_crc32": 2264217590,
+      "local_crc32": 2264217590,
+      "local_bytes": 15488,
+      "archive_bytes": 15488,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "31cfdf6d0b44f20bc95e7d6737b60de893b9b26af09653582a33ae4870bc34aa"
+    },
+    {
+      "video": "RoadAccidents019_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents019_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        31,
+        16
+      ],
+      "archive_crc32": 2381974266,
+      "local_crc32": 2381974266,
+      "local_bytes": 84096,
+      "archive_bytes": 84096,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "cd134db538134eb54105c7851f14c2a63b50c1fc31230a5bf563ac1d81ef2c82"
+    },
+    {
+      "video": "RoadAccidents020_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents020_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        33,
+        40
+      ],
+      "archive_crc32": 2596451728,
+      "local_crc32": 2596451728,
+      "local_bytes": 112768,
+      "archive_bytes": 112768,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "bda48a45876d2bd8f0fd557878241e99622f2cc8df2263e5315dc2bd9567fc12"
+    },
+    {
+      "video": "RoadAccidents021_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents021_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        14,
+        16
+      ],
+      "archive_crc32": 3527911019,
+      "local_crc32": 3527911019,
+      "local_bytes": 9344,
+      "archive_bytes": 9344,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "070e21954de97340ccf00ffc8e4df615a8aa6a8252ca346389b54758871e3373"
+    },
+    {
+      "video": "RoadAccidents022_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents022_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        36,
+        34
+      ],
+      "archive_crc32": 421672996,
+      "local_crc32": 421672996,
+      "local_bytes": 45184,
+      "archive_bytes": 45184,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "5fa02d4260f1d7dfed0e1e507d51f6ee4885790720cca7f0764f6ee0c316ce3d"
+    },
+    {
+      "video": "RoadAccidents121_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents121_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        19,
+        0
+      ],
+      "archive_crc32": 190288184,
+      "local_crc32": 190288184,
+      "local_bytes": 116864,
+      "archive_bytes": 116864,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "0d10f29651b35f6be6fb13d15be337474733beefa961d3d5fa186f3abb7da1ea"
+    },
+    {
+      "video": "RoadAccidents122_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents122_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        33,
+        4
+      ],
+      "archive_crc32": 1251593918,
+      "local_crc32": 1251593918,
+      "local_bytes": 41088,
+      "archive_bytes": 41088,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "49c1ef5a25c5fbb4417775c7db154736b63b8438506558476aa7390b9ad170c6"
+    },
+    {
+      "video": "RoadAccidents123_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents123_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        37,
+        14
+      ],
+      "archive_crc32": 2503341846,
+      "local_crc32": 2503341846,
+      "local_bytes": 63616,
+      "archive_bytes": 63616,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "303f6f6124ef8692c73951cd44338111b7625c7558f1f499879a5ebce1c8bb4f"
+    },
+    {
+      "video": "RoadAccidents124_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents124_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        19,
+        20
+      ],
+      "archive_crc32": 3514783958,
+      "local_crc32": 3514783958,
+      "local_bytes": 95360,
+      "archive_bytes": 95360,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "91bb229b60736d84ee56dac8a91b082b5dd74e1891d725cf5e205bb2c4756a80"
+    },
+    {
+      "video": "RoadAccidents125_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents125_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        16,
+        20
+      ],
+      "archive_crc32": 156575169,
+      "local_crc32": 156575169,
+      "local_bytes": 112768,
+      "archive_bytes": 112768,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "fcc467ece06c4aa40aa5a7b51e03f02f3e2d9b50aa00ad30c8147c32b64790f3"
+    },
+    {
+      "video": "RoadAccidents127_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents127_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        31,
+        42
+      ],
+      "archive_crc32": 3025533753,
+      "local_crc32": 3025533753,
+      "local_bytes": 164992,
+      "archive_bytes": 164992,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "62624efd2db61cebd001eb77e0fcd846ca4f6b053e15083f8e272fab157fa02d"
+    },
+    {
+      "video": "RoadAccidents128_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents128_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        19,
+        26
+      ],
+      "archive_crc32": 1632693490,
+      "local_crc32": 1632693490,
+      "local_bytes": 35968,
+      "archive_bytes": 35968,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "81ebc89d7a502f9f318fcc9df1608f5247690dd4cc3efe27fc83ed52a542231f"
+    },
+    {
+      "video": "RoadAccidents131_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents131_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        40,
+        24
+      ],
+      "archive_crc32": 3516810663,
+      "local_crc32": 3516810663,
+      "local_bytes": 97408,
+      "archive_bytes": 97408,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "46e410303cfa230ecd7a32831c8baab7052c9f730d8f3fcfbaa0caaec6b0c7ae"
+    },
+    {
+      "video": "RoadAccidents132_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents132_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        22,
+        44
+      ],
+      "archive_crc32": 1692003271,
+      "local_crc32": 1692003271,
+      "local_bytes": 118912,
+      "archive_bytes": 118912,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "a55334c9aa0284e69570a4edd9fb6091c327c92a4d0f3f162952ac73ecdb8b9f"
+    },
+    {
+      "video": "RoadAccidents133_x264.mp4",
+      "member": "UCFClipFeatures/RoadAccidents/RoadAccidents133_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        22,
+        15,
+        18
+      ],
+      "archive_crc32": 3030342404,
+      "local_crc32": 3030342404,
+      "local_bytes": 43136,
+      "archive_bytes": 43136,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "05a4fb0ee598b0399c467038057f058c32ba95df9e6084717523afee87fc8cfd"
+    },
+    {
+      "video": "Robbery048_x264.mp4",
+      "member": "UCFClipFeatures/Robbery/Robbery048_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        14,
+        34
+      ],
+      "archive_crc32": 756261347,
+      "local_crc32": 756261347,
+      "local_bytes": 90240,
+      "archive_bytes": 90240,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7e7711a4e9f7ce9f544c8341652728a51c37bb1506420ef1f829972dd2620beb"
+    },
+    {
+      "video": "Robbery050_x264.mp4",
+      "member": "UCFClipFeatures/Robbery/Robbery050_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        28,
+        30
+      ],
+      "archive_crc32": 2336812393,
+      "local_crc32": 2336812393,
+      "local_bytes": 108672,
+      "archive_bytes": 108672,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "535786eba6494416a4535889979e9597dfa960d72ca21a24de04743b4aa3792b"
+    },
+    {
+      "video": "Robbery102_x264.mp4",
+      "member": "UCFClipFeatures/Robbery/Robbery102_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        28,
+        22
+      ],
+      "archive_crc32": 1205223650,
+      "local_crc32": 1205223650,
+      "local_bytes": 116864,
+      "archive_bytes": 116864,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "354f3561cba1bc5c41954cab7837b810a1a2bcdb25a7682944ad48c46ecf1819"
+    },
+    {
+      "video": "Robbery106_x264.mp4",
+      "member": "UCFClipFeatures/Robbery/Robbery106_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        23,
+        12
+      ],
+      "archive_crc32": 3637161531,
+      "local_crc32": 3637161531,
+      "local_bytes": 75904,
+      "archive_bytes": 75904,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7d2f46a8e8538dc4967e6f1a6d00fad8a0fd98c5c15b0e26333cd9ebaadbb494"
+    },
+    {
+      "video": "Robbery137_x264.mp4",
+      "member": "UCFClipFeatures/Robbery/Robbery137_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        42,
+        46
+      ],
+      "archive_crc32": 1224426206,
+      "local_crc32": 1224426206,
+      "local_bytes": 140416,
+      "archive_bytes": 140416,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "ca850f955bf588b8413b952d5a685208d4ee9de9528d342e3b73dd8395bfdebe"
+    },
+    {
+      "video": "Shooting002_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting002_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        58,
+        26
+      ],
+      "archive_crc32": 2639495838,
+      "local_crc32": 2639495838,
+      "local_bytes": 76928,
+      "archive_bytes": 76928,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "ce0d043092e3a01aee38f1b38d2d369d797b7ecf99d7760254243e3296d4092c"
+    },
+    {
+      "video": "Shooting004_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting004_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        59,
+        6
+      ],
+      "archive_crc32": 3767747066,
+      "local_crc32": 3767747066,
+      "local_bytes": 114816,
+      "archive_bytes": 114816,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "fbcc9eae66372a1f419e708a362c59dd0da5ff32784c3c781c08f1b1ae557a98"
+    },
+    {
+      "video": "Shooting007_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting007_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        3,
+        58
+      ],
+      "archive_crc32": 3023839270,
+      "local_crc32": 3023839270,
+      "local_bytes": 91264,
+      "archive_bytes": 91264,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "6af1c7e03ecc080b91cc7f632bb8543927ab08c452e87ccdafbf6a0872282d14"
+    },
+    {
+      "video": "Shooting008_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting008_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        56,
+        34
+      ],
+      "archive_crc32": 3386879148,
+      "local_crc32": 3386879148,
+      "local_bytes": 103552,
+      "archive_bytes": 103552,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "3f88efe4ac470ddba6bd8ff8a0a39a1ee45b0d8b152fdf0776fd4fe9bd7d9d4f"
+    },
+    {
+      "video": "Shooting010_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting010_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        57,
+        58
+      ],
+      "archive_crc32": 999324419,
+      "local_crc32": 999324419,
+      "local_bytes": 169088,
+      "archive_bytes": 169088,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "05a4d8985c0f8b09f24bea2a823fcec06dd8fc2fb3560d55ab78bc9a5b1a77e8"
+    },
+    {
+      "video": "Shooting011_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting011_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        1,
+        26
+      ],
+      "archive_crc32": 2800899700,
+      "local_crc32": 2800899700,
+      "local_bytes": 256128,
+      "archive_bytes": 256128,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "92914ea0bedbd0d233857554ea2470170d72f72b9e43159ee16aeaee25b158a6"
+    },
+    {
+      "video": "Shooting013_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting013_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        8,
+        4
+      ],
+      "archive_crc32": 2743876236,
+      "local_crc32": 2743876236,
+      "local_bytes": 68736,
+      "archive_bytes": 68736,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "9ac0453389960a30593c798f45de5243d4c6f11ab364f486e2ff779e5ffc0d94"
+    },
+    {
+      "video": "Shooting015_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting015_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        0,
+        58
+      ],
+      "archive_crc32": 1128616313,
+      "local_crc32": 1128616313,
+      "local_bytes": 109696,
+      "archive_bytes": 109696,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "0c075bfd1636b1fc161d9d7a10affb13ebedf42dadd90378fb02fc2dcf75f7b9"
+    },
+    {
+      "video": "Shooting018_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting018_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        58,
+        38
+      ],
+      "archive_crc32": 3863506773,
+      "local_crc32": 3863506773,
+      "local_bytes": 114816,
+      "archive_bytes": 114816,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "cc5685b7cdaff7d1740a0f0f489d9011b3438fb74afa0aec0869e2bc74f7c716"
+    },
+    {
+      "video": "Shooting019_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting019_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        56,
+        50
+      ],
+      "archive_crc32": 1668703073,
+      "local_crc32": 1668703073,
+      "local_bytes": 176256,
+      "archive_bytes": 176256,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "98042c0e09e3e9e87fab4c6d5a4e35c765f70d659934abe308901ad812d13ed7"
+    },
+    {
+      "video": "Shooting021_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting021_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        58,
+        12
+      ],
+      "archive_crc32": 1532035184,
+      "local_crc32": 1532035184,
+      "local_bytes": 81024,
+      "archive_bytes": 81024,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "458b50f9f96e0e04ee021360aa38ee7786806b3a5a78396253cbf7113c3c22dd"
+    },
+    {
+      "video": "Shooting022_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting022_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        8,
+        36
+      ],
+      "archive_crc32": 1041443181,
+      "local_crc32": 1041443181,
+      "local_bytes": 290944,
+      "archive_bytes": 290944,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "01cf964ab30f4f7f852a5efd1f10da74a4d9ba250be7897ecdae26c204a7667a"
+    },
+    {
+      "video": "Shooting024_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting024_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        8,
+        52
+      ],
+      "archive_crc32": 192503845,
+      "local_crc32": 192503845,
+      "local_bytes": 128128,
+      "archive_bytes": 128128,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "13eb604a62858b55ad4bf043e61388f4871774039b8a5c6011d217a31f538564"
+    },
+    {
+      "video": "Shooting026_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting026_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        57,
+        38
+      ],
+      "archive_crc32": 2454299355,
+      "local_crc32": 2454299355,
+      "local_bytes": 89216,
+      "archive_bytes": 89216,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "33ff174a2a3f092e3aad20be06c89b4a7284215bb6dff1ee7fac6221842b7060"
+    },
+    {
+      "video": "Shooting028_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting028_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        58,
+        8
+      ],
+      "archive_crc32": 1397395222,
+      "local_crc32": 1397395222,
+      "local_bytes": 120960,
+      "archive_bytes": 120960,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "e86fb70ff6fde1b2c7407f4774404fa5f12735b904b98c02cf88182814a2b95f"
+    },
+    {
+      "video": "Shooting032_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting032_x264__5.npy",
+      "dtype": "float32",
+      "zip_timestamp": [
+        2023,
+        2,
+        28,
+        22,
+        7,
+        40
+      ],
+      "archive_crc32": 3487285146,
+      "local_crc32": 3487285146,
+      "local_bytes": 2777216,
+      "archive_bytes": 2777216,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7ecdef094e38afea77da296305e1715709f9bd1b8fe1ba5f5a0e7b0da270f666"
+    },
+    {
+      "video": "Shooting033_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting033_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        8,
+        0
+      ],
+      "archive_crc32": 3720978858,
+      "local_crc32": 3720978858,
+      "local_bytes": 231552,
+      "archive_bytes": 231552,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "9c62de81758c6b11818b616831d8e16027f017ebe7a3b2d03a146b6be4fcb392"
+    },
+    {
+      "video": "Shooting034_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting034_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        56,
+        30
+      ],
+      "archive_crc32": 420254408,
+      "local_crc32": 420254408,
+      "local_bytes": 90240,
+      "archive_bytes": 90240,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "46dea3405eb592dba68806f4b0bd635f7d2d70941a697b1d7bad9803ff761ac1"
+    },
+    {
+      "video": "Shooting037_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting037_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        56,
+        10
+      ],
+      "archive_crc32": 3953595379,
+      "local_crc32": 3953595379,
+      "local_bytes": 19584,
+      "archive_bytes": 19584,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "fc91ad5d6eccc524f6eb6862a0f2893b726ecf353b92def47d45f88303aefd1a"
+    },
+    {
+      "video": "Shooting043_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting043_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        2,
+        32
+      ],
+      "archive_crc32": 3770895518,
+      "local_crc32": 3770895518,
+      "local_bytes": 119936,
+      "archive_bytes": 119936,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "4d970e3f48d09790b514be0378db3aa88ce7958b6e5092b7e8c9a45a5227fcbf"
+    },
+    {
+      "video": "Shooting046_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting046_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        57,
+        30
+      ],
+      "archive_crc32": 1969180808,
+      "local_crc32": 1969180808,
+      "local_bytes": 325760,
+      "archive_bytes": 325760,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7303db67247d94e8e069680da2520f443cc565f9a08a463019f36f4c6d7e7558"
+    },
+    {
+      "video": "Shooting047_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting047_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        10,
+        32
+      ],
+      "archive_crc32": 3459513238,
+      "local_crc32": 3459513238,
+      "local_bytes": 529536,
+      "archive_bytes": 529536,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "425258215089832c62939bf001a484618b384f4118454779904040cb2ec5f117"
+    },
+    {
+      "video": "Shooting048_x264.mp4",
+      "member": "UCFClipFeatures/Shooting/Shooting048_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        12,
+        23,
+        59,
+        0
+      ],
+      "archive_crc32": 1568443676,
+      "local_crc32": 1568443676,
+      "local_bytes": 175232,
+      "archive_bytes": 175232,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "8e5ebd805636d216aafbf25c4edf57b0b68a70a44ee27fc06272c04947fb9625"
+    },
+    {
+      "video": "Shoplifting001_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting001_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        48,
+        52
+      ],
+      "archive_crc32": 2331705890,
+      "local_crc32": 2331705890,
+      "local_bytes": 277632,
+      "archive_bytes": 277632,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "4c6efb55d4aca58d71ab8b9c333ee95bda887937be3a1f4752fc87b12e8c39fb"
+    },
+    {
+      "video": "Shoplifting004_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting004_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        57,
+        8
+      ],
+      "archive_crc32": 1017773935,
+      "local_crc32": 1017773935,
+      "local_bytes": 427136,
+      "archive_bytes": 427136,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "eed8c516da6d6f605a341af5acadd41ee2de6bc8e2403b2b59a05d5c7f128a20"
+    },
+    {
+      "video": "Shoplifting005_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting005_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        42,
+        32
+      ],
+      "archive_crc32": 3012762757,
+      "local_crc32": 3012762757,
+      "local_bytes": 125056,
+      "archive_bytes": 125056,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "d7f94c98a32ce2b0a71ed504b9eecc2a26501fea5c531da6a5e8452b254271aa"
+    },
+    {
+      "video": "Shoplifting007_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting007_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        48,
+        6
+      ],
+      "archive_crc32": 2443650961,
+      "local_crc32": 2443650961,
+      "local_bytes": 327808,
+      "archive_bytes": 327808,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "66a9cfc34c85c5cef3bd2dfb5105f909782ae4ab51b7f17edf11f6890dd82363"
+    },
+    {
+      "video": "Shoplifting010_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting010_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        41,
+        6
+      ],
+      "archive_crc32": 294244732,
+      "local_crc32": 294244732,
+      "local_bytes": 175232,
+      "archive_bytes": 175232,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "79889bf3cc60ccd7dce8f16bcb1d992fadb79f8c3ab3230f601cdef0e9c60707"
+    },
+    {
+      "video": "Shoplifting015_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting015_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        47,
+        8
+      ],
+      "archive_crc32": 4031189474,
+      "local_crc32": 4031189474,
+      "local_bytes": 144512,
+      "archive_bytes": 144512,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "1eec89a17dc83fc8e29c8a9f637defd69ee590e5225af9d102603a68031827fa"
+    },
+    {
+      "video": "Shoplifting016_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting016_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        49,
+        2
+      ],
+      "archive_crc32": 4149075983,
+      "local_crc32": 4149075983,
+      "local_bytes": 94336,
+      "archive_bytes": 94336,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7e00147cc9e74414fbec4ff02f090f238908a7b6a266758047285f596f313b51"
+    },
+    {
+      "video": "Shoplifting017_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting017_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        58,
+        42
+      ],
+      "archive_crc32": 3409934813,
+      "local_crc32": 3409934813,
+      "local_bytes": 28800,
+      "archive_bytes": 28800,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "5a4300d4b6db54c9206372ec0f9720a951df668889d3e33a38532be52a1cb965"
+    },
+    {
+      "video": "Shoplifting020_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting020_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        42,
+        20
+      ],
+      "archive_crc32": 3575616005,
+      "local_crc32": 3575616005,
+      "local_bytes": 368768,
+      "archive_bytes": 368768,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "d3256c8b5605f0883e8b203bfeb2bfe4682f427b84fe30986117a8a751520347"
+    },
+    {
+      "video": "Shoplifting021_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting021_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        41,
+        28
+      ],
+      "archive_crc32": 1585356750,
+      "local_crc32": 1585356750,
+      "local_bytes": 226432,
+      "archive_bytes": 226432,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "68d64503bbdda0d7c7d1bb4ef003d1cfee0ab7f510ea628f84b264569d770104"
+    },
+    {
+      "video": "Shoplifting022_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting022_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        49,
+        14
+      ],
+      "archive_crc32": 3506561682,
+      "local_crc32": 3506561682,
+      "local_bytes": 139392,
+      "archive_bytes": 139392,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "0bacc6db6468db0f8aa03c47218df5f3e95e5c2b7d945781876679a3dc4c6321"
+    },
+    {
+      "video": "Shoplifting027_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting027_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        59,
+        40
+      ],
+      "archive_crc32": 4170437391,
+      "local_crc32": 4170437391,
+      "local_bytes": 119936,
+      "archive_bytes": 119936,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "2f3bf90ba72b32b136324e208d1a589eb1bb7607a9782a9c31d00abaa2653ecd"
+    },
+    {
+      "video": "Shoplifting028_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting028_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        1,
+        1,
+        42
+      ],
+      "archive_crc32": 2455907269,
+      "local_crc32": 2455907269,
+      "local_bytes": 86144,
+      "archive_bytes": 86144,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "75e383ee0d124dc10257f356f454dee18f328a884be9ac801efef261dcccd42f"
+    },
+    {
+      "video": "Shoplifting029_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting029_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        43,
+        18
+      ],
+      "archive_crc32": 2513518644,
+      "local_crc32": 2513518644,
+      "local_bytes": 139392,
+      "archive_bytes": 139392,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "5590fcf187a5d89730abb624674fd53b58c230149836a61b4210e0ca3f989ac2"
+    },
+    {
+      "video": "Shoplifting031_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting031_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        1,
+        1,
+        44
+      ],
+      "archive_crc32": 1052562674,
+      "local_crc32": 1052562674,
+      "local_bytes": 27776,
+      "archive_bytes": 27776,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "202194504f3bec5c972eebde49f52051231c89de5b38d56de3c08202c26905f8"
+    },
+    {
+      "video": "Shoplifting033_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting033_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        42,
+        26
+      ],
+      "archive_crc32": 1514202252,
+      "local_crc32": 1514202252,
+      "local_bytes": 57472,
+      "archive_bytes": 57472,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "4f9b427c3d093f1b3d4390584e03f26140ff5305c39336aa8b2e2ceaf480909b"
+    },
+    {
+      "video": "Shoplifting034_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting034_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        55,
+        58
+      ],
+      "archive_crc32": 2635076973,
+      "local_crc32": 2635076973,
+      "local_bytes": 764032,
+      "archive_bytes": 764032,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "33be81547f872e3e4b23aad764259f5bf53e943bc6ceba34ecb13cba323a669e"
+    },
+    {
+      "video": "Shoplifting037_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting037_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        43,
+        24
+      ],
+      "archive_crc32": 2374285363,
+      "local_crc32": 2374285363,
+      "local_bytes": 88192,
+      "archive_bytes": 88192,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "23aa04f1336b365909d33510afbeba1e35a79c1447f0f40c768d8c8181656246"
+    },
+    {
+      "video": "Shoplifting039_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting039_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        46,
+        58
+      ],
+      "archive_crc32": 1079210218,
+      "local_crc32": 1079210218,
+      "local_bytes": 179328,
+      "archive_bytes": 179328,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "e26d46501c85356e0020ef580f46364b19dd967359740e6f34079af12c4084a3"
+    },
+    {
+      "video": "Shoplifting044_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting044_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        37,
+        6
+      ],
+      "archive_crc32": 1772466714,
+      "local_crc32": 1772466714,
+      "local_bytes": 930944,
+      "archive_bytes": 930944,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "8970b12c92d7da2c5ad6551bb6530db48137646fdf9e372b327c2635eb4cbe13"
+    },
+    {
+      "video": "Shoplifting049_x264.mp4",
+      "member": "UCFClipFeatures/Shoplifting/Shoplifting049_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        0,
+        44,
+        48
+      ],
+      "archive_crc32": 109486060,
+      "local_crc32": 109486060,
+      "local_bytes": 137344,
+      "archive_bytes": 137344,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7894ac285e2fdc728f37e9cd1ab3df8ae514ab24b47e74fe77ed13bef6b66eeb"
+    },
+    {
+      "video": "Stealing019_x264.mp4",
+      "member": "UCFClipFeatures/Stealing/Stealing019_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        8,
+        53,
+        20
+      ],
+      "archive_crc32": 1095039723,
+      "local_crc32": 1095039723,
+      "local_bytes": 313472,
+      "archive_bytes": 313472,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "322e6be846729e9b41f4d1c5d08714ebe40a6f7b12c6377c47affb65fba4f61d"
+    },
+    {
+      "video": "Stealing036_x264.mp4",
+      "member": "UCFClipFeatures/Stealing/Stealing036_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        9,
+        57,
+        6
+      ],
+      "archive_crc32": 761937702,
+      "local_crc32": 761937702,
+      "local_bytes": 159872,
+      "archive_bytes": 159872,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "f2d53730ae48cac286e4073bac4a928a66416a669fa482e5a1e2296927ec6757"
+    },
+    {
+      "video": "Stealing058_x264.mp4",
+      "member": "UCFClipFeatures/Stealing/Stealing058_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        9,
+        19,
+        16
+      ],
+      "archive_crc32": 1790673594,
+      "local_crc32": 1790673594,
+      "local_bytes": 318592,
+      "archive_bytes": 318592,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "f4bd754fbf3b34cb86dc4c1dc70853a6846b961f0321845a703783cfade61357"
+    },
+    {
+      "video": "Stealing062_x264.mp4",
+      "member": "UCFClipFeatures/Stealing/Stealing062_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        8,
+        42,
+        8
+      ],
+      "archive_crc32": 1868753654,
+      "local_crc32": 1868753654,
+      "local_bytes": 99456,
+      "archive_bytes": 99456,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "e88a22e224c5a2233af04f19ae0cc730bc8e9f96a65d7fcc1e87d50c5408e904"
+    },
+    {
+      "video": "Stealing079_x264.mp4",
+      "member": "UCFClipFeatures/Stealing/Stealing079_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        9,
+        5,
+        58
+      ],
+      "archive_crc32": 2817476156,
+      "local_crc32": 2817476156,
+      "local_bytes": 373888,
+      "archive_bytes": 373888,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "8bdd2f9ef54ab963a66d1afc6bb5d99265441f18bfddf6ddf137aa5979c0a9c3"
+    },
+    {
+      "video": "Vandalism007_x264.mp4",
+      "member": "UCFClipFeatures/Vandalism/Vandalism007_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        18,
+        56,
+        14
+      ],
+      "archive_crc32": 36879041,
+      "local_crc32": 36879041,
+      "local_bytes": 72832,
+      "archive_bytes": 72832,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "ff82583032e818d883c918ec47295cdec6b09248b0b863e2962dc3125bdee09a"
+    },
+    {
+      "video": "Vandalism015_x264.mp4",
+      "member": "UCFClipFeatures/Vandalism/Vandalism015_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        18,
+        47,
+        14
+      ],
+      "archive_crc32": 1546007042,
+      "local_crc32": 1546007042,
+      "local_bytes": 190592,
+      "archive_bytes": 190592,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "0058d94cb99780f882c18614e6bbb20ce9825fe4474da1146f79becdb04ddf06"
+    },
+    {
+      "video": "Vandalism017_x264.mp4",
+      "member": "UCFClipFeatures/Vandalism/Vandalism017_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        18,
+        55,
+        44
+      ],
+      "archive_crc32": 3410927407,
+      "local_crc32": 3410927407,
+      "local_bytes": 64640,
+      "archive_bytes": 64640,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "dee3e035e9b9fcf96cec8749dfd5cabeba97ae982df80694ac5ca8b182cd8e3c"
+    },
+    {
+      "video": "Vandalism028_x264.mp4",
+      "member": "UCFClipFeatures/Vandalism/Vandalism028_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        18,
+        54,
+        12
+      ],
+      "archive_crc32": 1252751925,
+      "local_crc32": 1252751925,
+      "local_bytes": 286848,
+      "archive_bytes": 286848,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "69afb3832dcc9310274dafb67bc9cd86bdd694fed39e870517adde05dbbcf074"
+    },
+    {
+      "video": "Vandalism036_x264.mp4",
+      "member": "UCFClipFeatures/Vandalism/Vandalism036_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        19,
+        0,
+        58
+      ],
+      "archive_crc32": 2610971654,
+      "local_crc32": 2610971654,
+      "local_bytes": 92288,
+      "archive_bytes": 92288,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "5389a283bc16507ae7aa3792b5e97871615a78dcc375dd13b2c088ddb0d77df3"
+    },
+    {
+      "video": "Normal_Videos_003_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_003_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        13,
+        38
+      ],
+      "archive_crc32": 2737069565,
+      "local_crc32": 2737069565,
+      "local_bytes": 180352,
+      "archive_bytes": 180352,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "1cd69bce17e2eb40246762cf62c3b79a9e523352e4572d6c3f1a054fe752d999"
+    },
+    {
+      "video": "Normal_Videos_006_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_006_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        34,
+        48
+      ],
+      "archive_crc32": 3767302103,
+      "local_crc32": 3767302103,
+      "local_bytes": 28800,
+      "archive_bytes": 28800,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "c9ae65dd1b5774976ccccfcde9c6125a3b5c0d83d65a43689ca61930d800056f"
+    },
+    {
+      "video": "Normal_Videos_010_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_010_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        16,
+        50
+      ],
+      "archive_crc32": 3753321543,
+      "local_crc32": 3753321543,
+      "local_bytes": 66688,
+      "archive_bytes": 66688,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "d805408fe7d65978e138884f2ea9870742e9992a5d34515f74c832d674a2f45b"
+    },
+    {
+      "video": "Normal_Videos_014_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_014_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        15,
+        16
+      ],
+      "archive_crc32": 2531541904,
+      "local_crc32": 2531541904,
+      "local_bytes": 95360,
+      "archive_bytes": 95360,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "2c6fb30c4085b9dcefd4cbc39a1c996bea55853c0f4f404b9e8a5b1fe815802c"
+    },
+    {
+      "video": "Normal_Videos_015_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_015_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        13,
+        10
+      ],
+      "archive_crc32": 1726984046,
+      "local_crc32": 1726984046,
+      "local_bytes": 30848,
+      "archive_bytes": 30848,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "da6d37ed51e7242d102de752e02b1cb191b54cf5a8872fb4f007508fb5464603"
+    },
+    {
+      "video": "Normal_Videos_018_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_018_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        16,
+        30
+      ],
+      "archive_crc32": 1218656824,
+      "local_crc32": 1218656824,
+      "local_bytes": 74880,
+      "archive_bytes": 74880,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "5c60b327fe3b55341327b4712613f00345ecd8bbe684af53044bbd32adc34f43"
+    },
+    {
+      "video": "Normal_Videos_019_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_019_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        20,
+        28
+      ],
+      "archive_crc32": 1713200931,
+      "local_crc32": 1713200931,
+      "local_bytes": 181376,
+      "archive_bytes": 181376,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "18823206a3f0d1e62947265b7e1ab2f0891eb73609aaf46b57b268a2e6951dad"
+    },
+    {
+      "video": "Normal_Videos_024_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_024_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        14,
+        0
+      ],
+      "archive_crc32": 2011864339,
+      "local_crc32": 2011864339,
+      "local_bytes": 68736,
+      "archive_bytes": 68736,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "d1e0f8124e64813dfb459e9147e62bffe727c2164402632a29a33d38a313e450"
+    },
+    {
+      "video": "Normal_Videos_025_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_025_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        53,
+        56
+      ],
+      "archive_crc32": 810606654,
+      "local_crc32": 810606654,
+      "local_bytes": 38016,
+      "archive_bytes": 38016,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7ddccd7b48be23b7ee6bf581bc6ce21662d2886dd87be4a593000116b4a327d7"
+    },
+    {
+      "video": "Normal_Videos_027_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_027_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        14,
+        38
+      ],
+      "archive_crc32": 2593565090,
+      "local_crc32": 2593565090,
+      "local_bytes": 314496,
+      "archive_bytes": 314496,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "4c196caa67fbeb99b863c3a9c9ddf85c2a5362723efe4d6ff811b2ca5b956957"
+    },
+    {
+      "video": "Normal_Videos_033_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_033_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        10,
+        42
+      ],
+      "archive_crc32": 632052291,
+      "local_crc32": 632052291,
+      "local_bytes": 107648,
+      "archive_bytes": 107648,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "c57e6ab52fb19a89619f8879baa3d2ff61b49b7402282080fc585fae8ac50a55"
+    },
+    {
+      "video": "Normal_Videos_034_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_034_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        21,
+        36
+      ],
+      "archive_crc32": 2633896800,
+      "local_crc32": 2633896800,
+      "local_bytes": 84096,
+      "archive_bytes": 84096,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "89897f803e1b832e17a734b628d5c53a7c616855a8a784cf30edfd3074d91407"
+    },
+    {
+      "video": "Normal_Videos_041_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_041_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        1,
+        10
+      ],
+      "archive_crc32": 1820236437,
+      "local_crc32": 1820236437,
+      "local_bytes": 81024,
+      "archive_bytes": 81024,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "13aef8f2f5aa5b89eabd05e808ea2b379da45193b1bb63136b59fa35474e42b0"
+    },
+    {
+      "video": "Normal_Videos_042_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_042_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        55,
+        2
+      ],
+      "archive_crc32": 1530430630,
+      "local_crc32": 1530430630,
+      "local_bytes": 201856,
+      "archive_bytes": 201856,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "33ccf1951b9098f6564db8b85eb33ec3a4bf18ec367e9122debed2edcb627878"
+    },
+    {
+      "video": "Normal_Videos_048_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_048_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        52,
+        58
+      ],
+      "archive_crc32": 1984330498,
+      "local_crc32": 1984330498,
+      "local_bytes": 105600,
+      "archive_bytes": 105600,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "85051fb1fbb55570cabae07a7fe3f7375b3c6f8360aa548707416734b5a4483d"
+    },
+    {
+      "video": "Normal_Videos_050_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_050_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        34,
+        28
+      ],
+      "archive_crc32": 296893388,
+      "local_crc32": 296893388,
+      "local_bytes": 268416,
+      "archive_bytes": 268416,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "aff054d7ed418fb44b929e9d8fc9b38b45e905008aaf0ec9ee7b23cdb7269052"
+    },
+    {
+      "video": "Normal_Videos_051_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_051_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        15,
+        26
+      ],
+      "archive_crc32": 1826426518,
+      "local_crc32": 1826426518,
+      "local_bytes": 150656,
+      "archive_bytes": 150656,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "a79229047d68ead4a12863cb0f54c9b5fe3c4248e410ab0ccb0feec2bd5d287d"
+    },
+    {
+      "video": "Normal_Videos_056_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_056_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        17,
+        12
+      ],
+      "archive_crc32": 4191277167,
+      "local_crc32": 4191277167,
+      "local_bytes": 100480,
+      "archive_bytes": 100480,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "40a34fb91f8e77cb099d8c526d2c7bc64453a5da22d907b83a3a6fcaf89db614"
+    },
+    {
+      "video": "Normal_Videos_059_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_059_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        34,
+        16
+      ],
+      "archive_crc32": 833258034,
+      "local_crc32": 833258034,
+      "local_bytes": 116864,
+      "archive_bytes": 116864,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "1f4f2f6b2ba3a3ab9a2ab91ef415ca8ba108ab7f84bc075e8d5a3b90dbc938ca"
+    },
+    {
+      "video": "Normal_Videos_063_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_063_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        55,
+        34
+      ],
+      "archive_crc32": 1975049164,
+      "local_crc32": 1975049164,
+      "local_bytes": 22656,
+      "archive_bytes": 22656,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "d094622a941797eb2866193b607245e41ae8a51e555bcef97671e07fd1c11592"
+    },
+    {
+      "video": "Normal_Videos_067_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_067_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        34,
+        46
+      ],
+      "archive_crc32": 713065329,
+      "local_crc32": 713065329,
+      "local_bytes": 67712,
+      "archive_bytes": 67712,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "ca8228bc59e6741876c3559bbeb05d192bb79def3d26196b6e3e5c9250e83879"
+    },
+    {
+      "video": "Normal_Videos_070_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_070_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        13,
+        6
+      ],
+      "archive_crc32": 724901274,
+      "local_crc32": 724901274,
+      "local_bytes": 63616,
+      "archive_bytes": 63616,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "21f5fdee041afacec86e6804cec24eb0e94e011d1b6c4da5c4ac21446ba39660"
+    },
+    {
+      "video": "Normal_Videos_100_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_100_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        51,
+        28
+      ],
+      "archive_crc32": 2315416440,
+      "local_crc32": 2315416440,
+      "local_bytes": 40064,
+      "archive_bytes": 40064,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "dd67ef85f5d4fc41f5d6fa8870017ebaf483bdbcfbb65e13fb80ba171134d109"
+    },
+    {
+      "video": "Normal_Videos_129_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_129_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        1,
+        12
+      ],
+      "archive_crc32": 4079842060,
+      "local_crc32": 4079842060,
+      "local_bytes": 29824,
+      "archive_bytes": 29824,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "dd8fe25e6aa6a912bc3f705747754ac778c5cbea90ae0f1d89647cd0305e55a9"
+    },
+    {
+      "video": "Normal_Videos_150_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_150_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        10,
+        46
+      ],
+      "archive_crc32": 3846477449,
+      "local_crc32": 3846477449,
+      "local_bytes": 55424,
+      "archive_bytes": 55424,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "ed7f5d36ed983ada9e7961e2a0154d50800e983977e286903c30c6a4863d4100"
+    },
+    {
+      "video": "Normal_Videos_168_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_168_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        33,
+        58
+      ],
+      "archive_crc32": 2784426013,
+      "local_crc32": 2784426013,
+      "local_bytes": 110720,
+      "archive_bytes": 110720,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "17c3ffbc87a160f26a6b147cc062265ed5891c833454849e11bea2064e53f421"
+    },
+    {
+      "video": "Normal_Videos_175_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_175_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        7,
+        24
+      ],
+      "archive_crc32": 1924745992,
+      "local_crc32": 1924745992,
+      "local_bytes": 565376,
+      "archive_bytes": 565376,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "25e5946b50d44201aaad5d6608098200de4ec7684a8929af85813943e9d0a8a2"
+    },
+    {
+      "video": "Normal_Videos_182_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_182_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        21,
+        28
+      ],
+      "archive_crc32": 3684475604,
+      "local_crc32": 3684475604,
+      "local_bytes": 261248,
+      "archive_bytes": 261248,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "9705759fdf1696c3ed3e5ead595ccaf00e8649585a88dc4ced2937cb639d73af"
+    },
+    {
+      "video": "Normal_Videos_189_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_189_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        13,
+        8
+      ],
+      "archive_crc32": 3952789253,
+      "local_crc32": 3952789253,
+      "local_bytes": 47232,
+      "archive_bytes": 47232,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "42265e4367faa835f38d1f196b4dfc5c56f6c9d3cab052ee91dbf66b9af0e3bd"
+    },
+    {
+      "video": "Normal_Videos_196_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_196_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        40,
+        58
+      ],
+      "archive_crc32": 1473172496,
+      "local_crc32": 1473172496,
+      "local_bytes": 128128,
+      "archive_bytes": 128128,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "5d9fda2f65715edda69e35586409cd06a48c5397bf6eda5d480069b34ae0625a"
+    },
+    {
+      "video": "Normal_Videos_203_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_203_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        16,
+        24
+      ],
+      "archive_crc32": 3238524759,
+      "local_crc32": 3238524759,
+      "local_bytes": 163968,
+      "archive_bytes": 163968,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "99d2fe48ed8453591e2b7a0fd35af2fecf261cfc03d0bd67284386ece05bdc3e"
+    },
+    {
+      "video": "Normal_Videos_210_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_210_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        24,
+        10
+      ],
+      "archive_crc32": 3559048113,
+      "local_crc32": 3559048113,
+      "local_bytes": 346240,
+      "archive_bytes": 346240,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "e359c932ea24f88fad6d216989ef7d034bcfba884c95153a9235bd433203d0cf"
+    },
+    {
+      "video": "Normal_Videos_217_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_217_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        5,
+        32
+      ],
+      "archive_crc32": 3212541692,
+      "local_crc32": 3212541692,
+      "local_bytes": 115840,
+      "archive_bytes": 115840,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "91ea07945adf56cd549e4b539d366841fd6c06888cd809b478579368cfebb75a"
+    },
+    {
+      "video": "Normal_Videos_224_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_224_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        20,
+        6
+      ],
+      "archive_crc32": 2964549406,
+      "local_crc32": 2964549406,
+      "local_bytes": 444544,
+      "archive_bytes": 444544,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7941d1d2eb6a6055df88bf16b8dff4c93192bfc861f621ba56d0484e414cc19b"
+    },
+    {
+      "video": "Normal_Videos_246_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_246_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        54,
+        42
+      ],
+      "archive_crc32": 1154336797,
+      "local_crc32": 1154336797,
+      "local_bytes": 319616,
+      "archive_bytes": 319616,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "13a12cf0498a91b0e013fa95ae7ffa6d043496196cd92634975e3b8419c87790"
+    },
+    {
+      "video": "Normal_Videos_247_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_247_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        23,
+        22
+      ],
+      "archive_crc32": 407899223,
+      "local_crc32": 407899223,
+      "local_bytes": 525440,
+      "archive_bytes": 525440,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "60978de75a767b3f9572d65f7d1b63870d13b12f52a078c19448b9d3fd381763"
+    },
+    {
+      "video": "Normal_Videos_248_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_248_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        24,
+        16
+      ],
+      "archive_crc32": 379840080,
+      "local_crc32": 379840080,
+      "local_bytes": 72832,
+      "archive_bytes": 72832,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "6a73e6c6a0f8f7df9dd6571b82c1138a778c20d81148719c77b0c65ba213a3ed"
+    },
+    {
+      "video": "Normal_Videos_251_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_251_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        34,
+        50
+      ],
+      "archive_crc32": 593294258,
+      "local_crc32": 593294258,
+      "local_bytes": 25728,
+      "archive_bytes": 25728,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "a007ea53f954eb897324f988a1ead7bb6f792de4390848daf7ae381f7cf06ff1"
+    },
+    {
+      "video": "Normal_Videos_289_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_289_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        15,
+        32
+      ],
+      "archive_crc32": 433670950,
+      "local_crc32": 433670950,
+      "local_bytes": 54400,
+      "archive_bytes": 54400,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "8568d3725cb1311791fcfe64ada6dcfa8c873b1473b8aeeb6b1c50310824ae39"
+    },
+    {
+      "video": "Normal_Videos_310_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_310_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        34,
+        8
+      ],
+      "archive_crc32": 2898081363,
+      "local_crc32": 2898081363,
+      "local_bytes": 160896,
+      "archive_bytes": 160896,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "1c802c0aa3ab25f7b2fb5cc7e22ea92d47c29b1e7716d6db771fe53aee42a7d1"
+    },
+    {
+      "video": "Normal_Videos_312_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_312_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        4,
+        28
+      ],
+      "archive_crc32": 2342745211,
+      "local_crc32": 2342745211,
+      "local_bytes": 80000,
+      "archive_bytes": 80000,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "c80c340c9276b6df2dddacb914c5dfd4fe440b0ee7bc4d946953d68b958627bc"
+    },
+    {
+      "video": "Normal_Videos_317_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_317_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        8,
+        20
+      ],
+      "archive_crc32": 484129006,
+      "local_crc32": 484129006,
+      "local_bytes": 59520,
+      "archive_bytes": 59520,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "95489da7b268f4e32e61bd1c9968060d42461221220ffa34425cc7e27cdc88b6"
+    },
+    {
+      "video": "Normal_Videos_345_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_345_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        18,
+        28
+      ],
+      "archive_crc32": 2854686261,
+      "local_crc32": 2854686261,
+      "local_bytes": 13440,
+      "archive_bytes": 13440,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "83b672d72d2cfc85794ed00c192a1925e9c4b18bd4cefb6ad7faf666b144b8bc"
+    },
+    {
+      "video": "Normal_Videos_352_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_352_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        35,
+        0
+      ],
+      "archive_crc32": 1747764265,
+      "local_crc32": 1747764265,
+      "local_bytes": 345216,
+      "archive_bytes": 345216,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "23037697a3b6f9463e3bc3c6fdf69ee535883366a8cc1a26fdac9ff19bc54576"
+    },
+    {
+      "video": "Normal_Videos_360_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_360_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        16,
+        38
+      ],
+      "archive_crc32": 390371138,
+      "local_crc32": 390371138,
+      "local_bytes": 62592,
+      "archive_bytes": 62592,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "53233c10aeb19fe51813d88cd1a0d0ca2aa134895093ab5669bd690ad412f56d"
+    },
+    {
+      "video": "Normal_Videos_365_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_365_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        2,
+        18
+      ],
+      "archive_crc32": 247674053,
+      "local_crc32": 247674053,
+      "local_bytes": 424064,
+      "archive_bytes": 424064,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7b935ceb6ddc8aa975ab96c183e0401cbbdf5be9fd9729f97d56270ca3e39d61"
+    },
+    {
+      "video": "Normal_Videos_401_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_401_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        24,
+        32
+      ],
+      "archive_crc32": 109754702,
+      "local_crc32": 109754702,
+      "local_bytes": 103552,
+      "archive_bytes": 103552,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7fdb1b8ed7559bd087bb9a56e59d31a8dd7c931004941e1cb2587017cd2db460"
+    },
+    {
+      "video": "Normal_Videos_417_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_417_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        14,
+        44
+      ],
+      "archive_crc32": 3615178382,
+      "local_crc32": 3615178382,
+      "local_bytes": 68736,
+      "archive_bytes": 68736,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "91ab57f533a30bab08943657cf517af2234dba650fd69675a14ceef1ebaf0935"
+    },
+    {
+      "video": "Normal_Videos_439_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_439_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        8,
+        16
+      ],
+      "archive_crc32": 1396807985,
+      "local_crc32": 1396807985,
+      "local_bytes": 270464,
+      "archive_bytes": 270464,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "cba82ee3a36d22538371d4b1698fa9438dc0f59fd4253802c9fc961cc7eb0c01"
+    },
+    {
+      "video": "Normal_Videos_452_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_452_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        0,
+        52
+      ],
+      "archive_crc32": 3237610776,
+      "local_crc32": 3237610776,
+      "local_bytes": 27776,
+      "archive_bytes": 27776,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "daaab856f95bb0709e8b0450c09689136033000781281b26f069b20631ccc663"
+    },
+    {
+      "video": "Normal_Videos_453_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_453_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        40,
+        46
+      ],
+      "archive_crc32": 4122858698,
+      "local_crc32": 4122858698,
+      "local_bytes": 340096,
+      "archive_bytes": 340096,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "6b618ccc50631f5c16802565dce675d61678f5a2de10f08f07557158728cbe16"
+    },
+    {
+      "video": "Normal_Videos_478_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_478_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        17,
+        46
+      ],
+      "archive_crc32": 665458136,
+      "local_crc32": 665458136,
+      "local_bytes": 287872,
+      "archive_bytes": 287872,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "3b5a1e8ef8e1c59fe77ed99653f69cf1e3adb8346d3fcbfe8680d13b0ede4352"
+    },
+    {
+      "video": "Normal_Videos_576_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_576_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        37,
+        50
+      ],
+      "archive_crc32": 1509162253,
+      "local_crc32": 1509162253,
+      "local_bytes": 721024,
+      "archive_bytes": 721024,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "75b1f43a0e234c4e8b32c909c8b05790a0a37c1703bb2b12a2d48a4defca8f95"
+    },
+    {
+      "video": "Normal_Videos_597_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_597_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        12,
+        54
+      ],
+      "archive_crc32": 1514749921,
+      "local_crc32": 1514749921,
+      "local_bytes": 142464,
+      "archive_bytes": 142464,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "3b53810a9be0c73654284483718a1e99c0b5c3717aec693f3729e30aa78ccde9"
+    },
+    {
+      "video": "Normal_Videos_603_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_603_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        33,
+        52
+      ],
+      "archive_crc32": 2175860025,
+      "local_crc32": 2175860025,
+      "local_bytes": 209024,
+      "archive_bytes": 209024,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7d13cb59de4c49fb81878f93e3dd34bf09fad050161c9fd4bc14123047f910d2"
+    },
+    {
+      "video": "Normal_Videos_606_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_606_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        16,
+        34
+      ],
+      "archive_crc32": 426929071,
+      "local_crc32": 426929071,
+      "local_bytes": 78976,
+      "archive_bytes": 78976,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "0067e9ae095d86becb201a85a8290a549b9d07e14652e2a46ddeb14139883180"
+    },
+    {
+      "video": "Normal_Videos_621_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_621_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        5,
+        16
+      ],
+      "archive_crc32": 2445278057,
+      "local_crc32": 2445278057,
+      "local_bytes": 307328,
+      "archive_bytes": 307328,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "93c5698112af92e97f4f6b8292f55e94ae399009008df5bbf089061c8cd4b35f"
+    },
+    {
+      "video": "Normal_Videos_634_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_634_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        0,
+        48
+      ],
+      "archive_crc32": 3409920496,
+      "local_crc32": 3409920496,
+      "local_bytes": 861312,
+      "archive_bytes": 861312,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "a7015724285de4f555a3522c2fd3a762dff04334b609a43eab3e9f7032ae2d86"
+    },
+    {
+      "video": "Normal_Videos_641_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_641_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        55,
+        32
+      ],
+      "archive_crc32": 3801007406,
+      "local_crc32": 3801007406,
+      "local_bytes": 230528,
+      "archive_bytes": 230528,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "24f6440de7d337b5f9af383801e2439ea7fad75b56eb8ec3ddf5c28c9415f3f5"
+    },
+    {
+      "video": "Normal_Videos_656_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_656_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        1,
+        6
+      ],
+      "archive_crc32": 2911218709,
+      "local_crc32": 2911218709,
+      "local_bytes": 115840,
+      "archive_bytes": 115840,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "715d78d5bd17940ed45021bbf45b51e377beab431142e1ca88feade915f85a95"
+    },
+    {
+      "video": "Normal_Videos_686_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_686_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        18,
+        18
+      ],
+      "archive_crc32": 2601897651,
+      "local_crc32": 2601897651,
+      "local_bytes": 153728,
+      "archive_bytes": 153728,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "45042d5e90f0b4ba38dad8e8d78d25a83e975ec5fb908f2a20d71e9c18d73d0c"
+    },
+    {
+      "video": "Normal_Videos_696_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_696_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        51,
+        52
+      ],
+      "archive_crc32": 1552107713,
+      "local_crc32": 1552107713,
+      "local_bytes": 231552,
+      "archive_bytes": 231552,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "16615e2ee5d53a65725330b8735911c8ce60346b22fbf8d40b539376a7196181"
+    },
+    {
+      "video": "Normal_Videos_702_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_702_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        53,
+        42
+      ],
+      "archive_crc32": 2321299085,
+      "local_crc32": 2321299085,
+      "local_bytes": 160896,
+      "archive_bytes": 160896,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "c8dccff7398525b4c7c664af6d96b07d402fe824ca79e765feac1833dbfccbdd"
+    },
+    {
+      "video": "Normal_Videos_704_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_704_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        54,
+        2
+      ],
+      "archive_crc32": 2879784298,
+      "local_crc32": 2879784298,
+      "local_bytes": 107648,
+      "archive_bytes": 107648,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "5616e21a03a787568898804a77e55917d97dd74a791840658eb4253c156c56bf"
+    },
+    {
+      "video": "Normal_Videos_710_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_710_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        41,
+        6
+      ],
+      "archive_crc32": 1560092237,
+      "local_crc32": 1560092237,
+      "local_bytes": 114816,
+      "archive_bytes": 114816,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "13a994f40efc52980f982604609288ea824f3906a3b454802affacd9528c068d"
+    },
+    {
+      "video": "Normal_Videos_717_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_717_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        52,
+        50
+      ],
+      "archive_crc32": 767456246,
+      "local_crc32": 767456246,
+      "local_bytes": 80000,
+      "archive_bytes": 80000,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "a0ba2d8c0ffe63c246f9300febbb5e4bdd8e4373cbbea4d28927bdc73ff0a8b5"
+    },
+    {
+      "video": "Normal_Videos_722_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_722_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        39,
+        36
+      ],
+      "archive_crc32": 1925871949,
+      "local_crc32": 1925871949,
+      "local_bytes": 558208,
+      "archive_bytes": 558208,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "465ad3e792be54bbd76877c3b2d4c11d0325c21eb9fadae71d5e5f3a63d5f322"
+    },
+    {
+      "video": "Normal_Videos_725_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_725_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        53,
+        48
+      ],
+      "archive_crc32": 3661588376,
+      "local_crc32": 3661588376,
+      "local_bytes": 58496,
+      "archive_bytes": 58496,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "efe2c946e0a11118f1aa08fd9075b87e135090c86f96d7ec35df529b5f72a48b"
+    },
+    {
+      "video": "Normal_Videos_745_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_745_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        21,
+        30
+      ],
+      "archive_crc32": 1392388976,
+      "local_crc32": 1392388976,
+      "local_bytes": 19584,
+      "archive_bytes": 19584,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "30298179601b2c98764df04a2f87ce463420a5490138a371ab65b3d2fe3cf424"
+    },
+    {
+      "video": "Normal_Videos_758_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_758_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        2,
+        58
+      ],
+      "archive_crc32": 1321280512,
+      "local_crc32": 1321280512,
+      "local_bytes": 101504,
+      "archive_bytes": 101504,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "41beebad0a7c6eb6dd55093f8f55252e9e842585919ddd721b519d7dbb4f55ab"
+    },
+    {
+      "video": "Normal_Videos_778_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_778_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        53,
+        54
+      ],
+      "archive_crc32": 2158891493,
+      "local_crc32": 2158891493,
+      "local_bytes": 80000,
+      "archive_bytes": 80000,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "626b625d09ffeb733dde405aca0c04b342076a18d5bd95f87668329c2b9cc042"
+    },
+    {
+      "video": "Normal_Videos_780_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_780_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        17,
+        4
+      ],
+      "archive_crc32": 174762428,
+      "local_crc32": 174762428,
+      "local_bytes": 129152,
+      "archive_bytes": 129152,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "f423d53c5563180a6cddc80f79a3abacddacb9c22e0ed550f501513a5f18dfbb"
+    },
+    {
+      "video": "Normal_Videos_781_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_781_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        40,
+        4
+      ],
+      "archive_crc32": 3468356714,
+      "local_crc32": 3468356714,
+      "local_bytes": 254080,
+      "archive_bytes": 254080,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "e0e5b4d274ca631f142ac7e6cf8793589344c92ccbede0af8788a56c6eb3dc80"
+    },
+    {
+      "video": "Normal_Videos_782_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_782_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        41,
+        54
+      ],
+      "archive_crc32": 3032574106,
+      "local_crc32": 3032574106,
+      "local_bytes": 354432,
+      "archive_bytes": 354432,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "6882b47d46e383f8b873b60d5c33cbf94c1f7b0a1b9cb9c4a4b1faf62f179e50"
+    },
+    {
+      "video": "Normal_Videos_783_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_783_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        26,
+        38
+      ],
+      "archive_crc32": 1808698780,
+      "local_crc32": 1808698780,
+      "local_bytes": 613504,
+      "archive_bytes": 613504,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "d175b9f54930e7a84eedae0c0a3bc3869580efeb1817e112c07a1aeb48bad9db"
+    },
+    {
+      "video": "Normal_Videos_798_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_798_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        52,
+        44
+      ],
+      "archive_crc32": 4140216580,
+      "local_crc32": 4140216580,
+      "local_bytes": 384128,
+      "archive_bytes": 384128,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "f91065a91d76be419fbe4fa61f8e3bd6e58e4094481673a217de326c3f920c1c"
+    },
+    {
+      "video": "Normal_Videos_801_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_801_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        18,
+        8
+      ],
+      "archive_crc32": 991215916,
+      "local_crc32": 991215916,
+      "local_bytes": 175232,
+      "archive_bytes": 175232,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "281a1567e474bffdcbae89e4e4ffab64f63bf7d903e6874a13a758b4f9b7c718"
+    },
+    {
+      "video": "Normal_Videos_828_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_828_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        15,
+        8
+      ],
+      "archive_crc32": 2819868891,
+      "local_crc32": 2819868891,
+      "local_bytes": 59520,
+      "archive_bytes": 59520,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "1ffdbf614f0db33d309f232e8f421b0104d416ad6e9c4d49e930f1463c61665f"
+    },
+    {
+      "video": "Normal_Videos_831_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_831_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        13,
+        10
+      ],
+      "archive_crc32": 535584353,
+      "local_crc32": 535584353,
+      "local_bytes": 28800,
+      "archive_bytes": 28800,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "0a6d56b5ec61a6f7854f58279526fea6fc6fa8ae78123aa61995bb419c66deeb"
+    },
+    {
+      "video": "Normal_Videos_866_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_866_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        2,
+        48
+      ],
+      "archive_crc32": 2892473101,
+      "local_crc32": 2892473101,
+      "local_bytes": 75904,
+      "archive_bytes": 75904,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "6b006ce5cd15cae55da7857e8d8652263b351f80263a7eb15f4d8be03202aead"
+    },
+    {
+      "video": "Normal_Videos_867_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_867_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        53,
+        50
+      ],
+      "archive_crc32": 3648314127,
+      "local_crc32": 3648314127,
+      "local_bytes": 40064,
+      "archive_bytes": 40064,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "9ef74f943dd626d0ac2054b73b31350a67c6d167d59a35a7cf4031565ca97bf8"
+    },
+    {
+      "video": "Normal_Videos_868_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_868_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        21,
+        48
+      ],
+      "archive_crc32": 2613522587,
+      "local_crc32": 2613522587,
+      "local_bytes": 153728,
+      "archive_bytes": 153728,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "3c1c5389694c7537a691f49f74bab7c1eb7fbed2fcf6943a860a305e01743414"
+    },
+    {
+      "video": "Normal_Videos_869_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_869_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        24,
+        26
+      ],
+      "archive_crc32": 2328934813,
+      "local_crc32": 2328934813,
+      "local_bytes": 153728,
+      "archive_bytes": 153728,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "e0f8bb0372a603c598754c0097218b62717153cc6cb83a451b9adf8e89dc5a5a"
+    },
+    {
+      "video": "Normal_Videos_870_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_870_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        14,
+        40
+      ],
+      "archive_crc32": 2954331926,
+      "local_crc32": 2954331926,
+      "local_bytes": 38016,
+      "archive_bytes": 38016,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "498e61f29fd9795d2ea46819ba3b50c3db6885b3301827a44904996a5ca4f02b"
+    },
+    {
+      "video": "Normal_Videos_871_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_871_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        21,
+        0
+      ],
+      "archive_crc32": 2336909828,
+      "local_crc32": 2336909828,
+      "local_bytes": 278656,
+      "archive_bytes": 278656,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "61c42d0f226b878c619ca0850f1b21e617b8db36b0cc47ebe6094244811a4d23"
+    },
+    {
+      "video": "Normal_Videos_872_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_872_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        26,
+        42
+      ],
+      "archive_crc32": 840510680,
+      "local_crc32": 840510680,
+      "local_bytes": 33920,
+      "archive_bytes": 33920,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "aa1e39dc6db9a95f110f40d27dc35112bae24017b4e1f8e64bbe9449c6f62547"
+    },
+    {
+      "video": "Normal_Videos_873_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_873_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        20,
+        14
+      ],
+      "archive_crc32": 993358664,
+      "local_crc32": 993358664,
+      "local_bytes": 114816,
+      "archive_bytes": 114816,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "75b12873594872e2994cb77b0c5f0aea20175023574327f1587dfd6d16d87622"
+    },
+    {
+      "video": "Normal_Videos_874_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_874_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        18,
+        56
+      ],
+      "archive_crc32": 1172760292,
+      "local_crc32": 1172760292,
+      "local_bytes": 270464,
+      "archive_bytes": 270464,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "2ccf3f56ad129f679f8060191d7e6e6dacc52111dcf40e6879d0f29525d18d29"
+    },
+    {
+      "video": "Normal_Videos_875_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_875_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        42,
+        8
+      ],
+      "archive_crc32": 2933253392,
+      "local_crc32": 2933253392,
+      "local_bytes": 163968,
+      "archive_bytes": 163968,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "68e3196056932646f3770dac805767db318533bc6aa1130cb7fc2cc3a045c28e"
+    },
+    {
+      "video": "Normal_Videos_876_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_876_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        14,
+        2
+      ],
+      "archive_crc32": 2785633007,
+      "local_crc32": 2785633007,
+      "local_bytes": 21632,
+      "archive_bytes": 21632,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "97a950830903cfaed918ad7a511a6dbd5ee7ed97dcbb746c8c75aa091b36a287"
+    },
+    {
+      "video": "Normal_Videos_877_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_877_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        10,
+        34
+      ],
+      "archive_crc32": 3454309720,
+      "local_crc32": 3454309720,
+      "local_bytes": 641152,
+      "archive_bytes": 641152,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "09be69f60c2481426a2cec09675fa10f428393ff0bea61e4218c7002fdcbfd34"
+    },
+    {
+      "video": "Normal_Videos_878_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_878_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        13,
+        40
+      ],
+      "archive_crc32": 2323604533,
+      "local_crc32": 2323604533,
+      "local_bytes": 16512,
+      "archive_bytes": 16512,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "c5b1587c547c476b4a080bdbc4e04f84b9a84eaf9e57f4632961bc3402831404"
+    },
+    {
+      "video": "Normal_Videos_879_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_879_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        17,
+        52
+      ],
+      "archive_crc32": 4197547448,
+      "local_crc32": 4197547448,
+      "local_bytes": 72832,
+      "archive_bytes": 72832,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "839027015e8946b19dc62aa3493708618962676b5a98add378559ff63f3e9789"
+    },
+    {
+      "video": "Normal_Videos_880_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_880_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        33,
+        26
+      ],
+      "archive_crc32": 4167347789,
+      "local_crc32": 4167347789,
+      "local_bytes": 1155200,
+      "archive_bytes": 1155200,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "92dacfe731ddeef3961921d9f95d4544cc1ab38f71210007c22f12acd85ffc84"
+    },
+    {
+      "video": "Normal_Videos_881_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_881_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        21,
+        36
+      ],
+      "archive_crc32": 208862745,
+      "local_crc32": 208862745,
+      "local_bytes": 14464,
+      "archive_bytes": 14464,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "6ca18e8b8d0abc8f37906193014c15d264c551bbc42e98727a821b2f0cd80ad7"
+    },
+    {
+      "video": "Normal_Videos_882_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_882_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        16,
+        48
+      ],
+      "archive_crc32": 199405551,
+      "local_crc32": 199405551,
+      "local_bytes": 105600,
+      "archive_bytes": 105600,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "f24b2249458908ed7fbbbdd23114795946e4cbd12258ac26daf3b19952083fce"
+    },
+    {
+      "video": "Normal_Videos_883_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_883_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        42,
+        18
+      ],
+      "archive_crc32": 3931649047,
+      "local_crc32": 3931649047,
+      "local_bytes": 20608,
+      "archive_bytes": 20608,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "2f76b0cf5804cd1e8f60a87053fb70c9c40b3d35fed86b441711ad9fdcc704ec"
+    },
+    {
+      "video": "Normal_Videos_884_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_884_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        12,
+        40
+      ],
+      "archive_crc32": 160903179,
+      "local_crc32": 160903179,
+      "local_bytes": 577664,
+      "archive_bytes": 577664,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "0340b976de3852af6eba59beff40b1905afda7dce19faf6c7056e7ee20cff655"
+    },
+    {
+      "video": "Normal_Videos_885_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_885_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        15,
+        10
+      ],
+      "archive_crc32": 3648150507,
+      "local_crc32": 3648150507,
+      "local_bytes": 29824,
+      "archive_bytes": 29824,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "3fdfc7ad777d7d8a12f7f5522a5b73c8e3b610403b3e79f84dc6cbc40043122c"
+    },
+    {
+      "video": "Normal_Videos_886_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_886_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        13,
+        24
+      ],
+      "archive_crc32": 2452493017,
+      "local_crc32": 2452493017,
+      "local_bytes": 175232,
+      "archive_bytes": 175232,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "678c2c73ad6d5b9f55653e832437f22b0d4dd15bdf164eb8e4035f1a730166e8"
+    },
+    {
+      "video": "Normal_Videos_887_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_887_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        56,
+        54
+      ],
+      "archive_crc32": 916382814,
+      "local_crc32": 916382814,
+      "local_bytes": 487552,
+      "archive_bytes": 487552,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7984b8067d3c03efb04bd705ec8dc1797d6766bcb9ee73ae42c778c5a557f270"
+    },
+    {
+      "video": "Normal_Videos_888_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_888_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        20,
+        30
+      ],
+      "archive_crc32": 836897198,
+      "local_crc32": 836897198,
+      "local_bytes": 35968,
+      "archive_bytes": 35968,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "4b6185585a4fb8201d173ec551b5778b446934749ca86b82cdfdf7b2f544b208"
+    },
+    {
+      "video": "Normal_Videos_889_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_889_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        34,
+        48
+      ],
+      "archive_crc32": 4051507067,
+      "local_crc32": 4051507067,
+      "local_bytes": 19584,
+      "archive_bytes": 19584,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "b613cd2f54be16671856dfc550bd9b8e12b180c68d7f4ced4a8e05ffb94a5257"
+    },
+    {
+      "video": "Normal_Videos_890_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_890_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        53,
+        28
+      ],
+      "archive_crc32": 3689681852,
+      "local_crc32": 3689681852,
+      "local_bytes": 228480,
+      "archive_bytes": 228480,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "ddda9114963aa7f0e96cb9d4a432004021c6b7c587ad0ce0e8c44f8d48687846"
+    },
+    {
+      "video": "Normal_Videos_891_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_891_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        13,
+        48
+      ],
+      "archive_crc32": 1964857289,
+      "local_crc32": 1964857289,
+      "local_bytes": 114816,
+      "archive_bytes": 114816,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "1632e55412b7f8edb4bce8048b87acfcecc34f64379fab8c35b2bb183f7110de"
+    },
+    {
+      "video": "Normal_Videos_892_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_892_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        55,
+        10
+      ],
+      "archive_crc32": 2914244418,
+      "local_crc32": 2914244418,
+      "local_bytes": 112768,
+      "archive_bytes": 112768,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "d9da259edd723402238a3d575b805a33f4c5327ce22dbc7b3d0c7da2d944b837"
+    },
+    {
+      "video": "Normal_Videos_893_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_893_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        43,
+        18
+      ],
+      "archive_crc32": 1554043974,
+      "local_crc32": 1554043974,
+      "local_bytes": 407680,
+      "archive_bytes": 407680,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "25b7a3ec342713c1dadc80b5de99efc1f98ca5526746465218933a626f0c3496"
+    },
+    {
+      "video": "Normal_Videos_894_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_894_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        4,
+        42
+      ],
+      "archive_crc32": 741132737,
+      "local_crc32": 741132737,
+      "local_bytes": 163968,
+      "archive_bytes": 163968,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "c9504627734b05d049898e42fed30710e3d7be5f7d45f58bdb5658de69d3d63a"
+    },
+    {
+      "video": "Normal_Videos_895_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_895_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        7,
+        42
+      ],
+      "archive_crc32": 821427402,
+      "local_crc32": 821427402,
+      "local_bytes": 193664,
+      "archive_bytes": 193664,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "e98e13cfd9f62fcb643861f6614d8b6d563ef24e0633d5cabf2236aca19aa05f"
+    },
+    {
+      "video": "Normal_Videos_896_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_896_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        34,
+        42
+      ],
+      "archive_crc32": 159793864,
+      "local_crc32": 159793864,
+      "local_bytes": 146560,
+      "archive_bytes": 146560,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "70485451b819fc43b40979e2f2a81cb026907777871caa4ab2c20559c4a7b596"
+    },
+    {
+      "video": "Normal_Videos_897_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_897_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        5,
+        22
+      ],
+      "archive_crc32": 1223155702,
+      "local_crc32": 1223155702,
+      "local_bytes": 55424,
+      "archive_bytes": 55424,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "fbc7a7a0f191094a485a44fc004ec83a65feb40314e9cb5461cedb7e61e5831f"
+    },
+    {
+      "video": "Normal_Videos_898_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_898_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        33,
+        54
+      ],
+      "archive_crc32": 912910531,
+      "local_crc32": 912910531,
+      "local_bytes": 63616,
+      "archive_bytes": 63616,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "e495bb40906ab1dc306e230151f79b21d947a555a33095a70d49ae597a3c915e"
+    },
+    {
+      "video": "Normal_Videos_899_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_899_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        2,
+        36
+      ],
+      "archive_crc32": 368989090,
+      "local_crc32": 368989090,
+      "local_bytes": 88192,
+      "archive_bytes": 88192,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "06b99e4f93d429d48f6365a96dde67d98145ac2bb70bbf21182f589244e003c4"
+    },
+    {
+      "video": "Normal_Videos_900_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_900_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        0,
+        58
+      ],
+      "archive_crc32": 1575417671,
+      "local_crc32": 1575417671,
+      "local_bytes": 92288,
+      "archive_bytes": 92288,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7f0d9bef9f5d3558c7f8f627bd96cf9ebe4c125f651044e368a7a3caf8ca6716"
+    },
+    {
+      "video": "Normal_Videos_901_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_901_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        1,
+        16
+      ],
+      "archive_crc32": 888874863,
+      "local_crc32": 888874863,
+      "local_bytes": 74880,
+      "archive_bytes": 74880,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "1c0b254c8b306edbd277800321722d0be7fe7642b9c947ebfff421312f3a20b4"
+    },
+    {
+      "video": "Normal_Videos_902_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_902_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        26,
+        48
+      ],
+      "archive_crc32": 1642029636,
+      "local_crc32": 1642029636,
+      "local_bytes": 88192,
+      "archive_bytes": 88192,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "2428ab040f7ef3fb05843db77305b9cffd10fd764a99cc989ab4d18d5c5a6d1b"
+    },
+    {
+      "video": "Normal_Videos_903_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_903_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        5,
+        36
+      ],
+      "archive_crc32": 2924820686,
+      "local_crc32": 2924820686,
+      "local_bytes": 50304,
+      "archive_bytes": 50304,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "38d9f726bb195bd0d2db8223a3f32eec668e6d32fb036469fabaeafe5b510d33"
+    },
+    {
+      "video": "Normal_Videos_904_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_904_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        42,
+        18
+      ],
+      "archive_crc32": 1166938854,
+      "local_crc32": 1166938854,
+      "local_bytes": 57472,
+      "archive_bytes": 57472,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "bb1940b3546a3b78aad3205467f7c8fadcd4a526427ac6efc98333464733bffa"
+    },
+    {
+      "video": "Normal_Videos_905_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_905_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        2,
+        52
+      ],
+      "archive_crc32": 1763718913,
+      "local_crc32": 1763718913,
+      "local_bytes": 75904,
+      "archive_bytes": 75904,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "3a00f8b2c7708e5ddd00b5c6c2babe483258d5e3ba6223c598c246bdd1d5a4de"
+    },
+    {
+      "video": "Normal_Videos_906_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_906_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        5,
+        24
+      ],
+      "archive_crc32": 3648827991,
+      "local_crc32": 3648827991,
+      "local_bytes": 43136,
+      "archive_bytes": 43136,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "eca6ed2a0223465038df597c980e51c8842bc490d5c2205ffc69cb5d08090d37"
+    },
+    {
+      "video": "Normal_Videos_907_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_907_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        5,
+        20
+      ],
+      "archive_crc32": 1289842742,
+      "local_crc32": 1289842742,
+      "local_bytes": 38016,
+      "archive_bytes": 38016,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "782311ec41f03a10b88150a4a29039f78eb81e130e177a4eeb9090380feffbfd"
+    },
+    {
+      "video": "Normal_Videos_908_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_908_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        53,
+        44
+      ],
+      "archive_crc32": 2751183873,
+      "local_crc32": 2751183873,
+      "local_bytes": 56448,
+      "archive_bytes": 56448,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "89017d15044da75bc5f0350dbc0b9162fcb928f4dfeff384659dea99fec2340b"
+    },
+    {
+      "video": "Normal_Videos_909_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_909_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        17,
+        48
+      ],
+      "archive_crc32": 3406094524,
+      "local_crc32": 3406094524,
+      "local_bytes": 55424,
+      "archive_bytes": 55424,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "3e910bc83f55475ee87b9d8adf927c4a6d928340d205d726f7d2962f2442c799"
+    },
+    {
+      "video": "Normal_Videos_910_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_910_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        10,
+        48
+      ],
+      "archive_crc32": 536991792,
+      "local_crc32": 536991792,
+      "local_bytes": 35968,
+      "archive_bytes": 35968,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "0a30ca33eb04713e90ed5b44b972ebc86843e74f6415d70d24c0a2c878fb488f"
+    },
+    {
+      "video": "Normal_Videos_911_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_911_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        43,
+        22
+      ],
+      "archive_crc32": 1614831943,
+      "local_crc32": 1614831943,
+      "local_bytes": 49280,
+      "archive_bytes": 49280,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7169320c2a0d734d3e831d96ef3c1ca574bba6f78c47f538e58d68a473d449b8"
+    },
+    {
+      "video": "Normal_Videos_912_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_912_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        2,
+        30
+      ],
+      "archive_crc32": 107478031,
+      "local_crc32": 107478031,
+      "local_bytes": 47232,
+      "archive_bytes": 47232,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "da0fc56bde7835316d27acc13fab1eb9ad763e3be37a70ae5b9d2545b2265899"
+    },
+    {
+      "video": "Normal_Videos_913_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_913_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        14,
+        46
+      ],
+      "archive_crc32": 812550842,
+      "local_crc32": 812550842,
+      "local_bytes": 39040,
+      "archive_bytes": 39040,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "4d038306e402b687a503a753de558adc6aee85de5fa6ca3fc7192953f623f0ed"
+    },
+    {
+      "video": "Normal_Videos_914_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_914_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        7,
+        46
+      ],
+      "archive_crc32": 1802232596,
+      "local_crc32": 1802232596,
+      "local_bytes": 56448,
+      "archive_bytes": 56448,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "f986a00ad28e123ccaef0cffaf648148ba9c8dfd928ddfad5fa329afda84d3e3"
+    },
+    {
+      "video": "Normal_Videos_915_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_915_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        16,
+        54
+      ],
+      "archive_crc32": 3330688578,
+      "local_crc32": 3330688578,
+      "local_bytes": 78976,
+      "archive_bytes": 78976,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "6d63f488594d12c4059d4394d3cb2e935372025508a9b0085118512dab31486c"
+    },
+    {
+      "video": "Normal_Videos_923_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_923_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        49,
+        58
+      ],
+      "archive_crc32": 1693075569,
+      "local_crc32": 1693075569,
+      "local_bytes": 1166464,
+      "archive_bytes": 1166464,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "3c2f9d0422fc561f17c48cc52efdc3437838f2468001b73f3e8c4d672fb1491c"
+    },
+    {
+      "video": "Normal_Videos_924_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_924_x264__5.npy",
+      "dtype": "float32",
+      "zip_timestamp": [
+        2023,
+        2,
+        28,
+        20,
+        58,
+        50
+      ],
+      "archive_crc32": 3136045549,
+      "local_crc32": 3136045549,
+      "local_bytes": 13824128,
+      "archive_bytes": 13824128,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "6ad1aa3ca833b42ff21a8e931670b47f9daa7429f28dce00af0ad792454f7d37"
+    },
+    {
+      "video": "Normal_Videos_925_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_925_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        4,
+        20
+      ],
+      "archive_crc32": 3900643883,
+      "local_crc32": 3900643883,
+      "local_bytes": 493696,
+      "archive_bytes": 493696,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "b26fe2fe211dd8c0d62a97ca9cf0e6e4b3d792fabaa7a5eb010b8512a3f24e2a"
+    },
+    {
+      "video": "Normal_Videos_926_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_926_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        13,
+        56
+      ],
+      "archive_crc32": 2792114130,
+      "local_crc32": 2792114130,
+      "local_bytes": 114816,
+      "archive_bytes": 114816,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "56d2deda53bda47fbc9843dfc87f8c4ede870b96551e64398a29ea8558cf2bdd"
+    },
+    {
+      "video": "Normal_Videos_927_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_927_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        2,
+        44
+      ],
+      "archive_crc32": 1506415668,
+      "local_crc32": 1506415668,
+      "local_bytes": 104576,
+      "archive_bytes": 104576,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "e377a970c778584ccdeb9098387910a2b7cb16da6e2fc0e7f8ea0a1e5f3e64dc"
+    },
+    {
+      "video": "Normal_Videos_928_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_928_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        50,
+        6
+      ],
+      "archive_crc32": 1622188145,
+      "local_crc32": 1622188145,
+      "local_bytes": 58496,
+      "archive_bytes": 58496,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "98cdc1c21f22b0f88e405107a3edc1510034d707dc6cab06206549d7f15803da"
+    },
+    {
+      "video": "Normal_Videos_929_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_929_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        42,
+        14
+      ],
+      "archive_crc32": 4050526113,
+      "local_crc32": 4050526113,
+      "local_bytes": 58496,
+      "archive_bytes": 58496,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "3268c23883a6f7bd444d69da016e6428c01faaf07f03ffc847c7c1a574216944"
+    },
+    {
+      "video": "Normal_Videos_930_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_930_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        15,
+        4
+      ],
+      "archive_crc32": 2780557668,
+      "local_crc32": 2780557668,
+      "local_bytes": 203904,
+      "archive_bytes": 203904,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "aa8dd0c723ca997c831febf25e0a7690393a23af919eb3c18fc783ceb286683e"
+    },
+    {
+      "video": "Normal_Videos_931_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_931_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        18,
+        26
+      ],
+      "archive_crc32": 1948363299,
+      "local_crc32": 1948363299,
+      "local_bytes": 112768,
+      "archive_bytes": 112768,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7a47f63af65ba8d7adc07557e25c9cbcd92dcddb0534e0bd6d6145876c9d9e91"
+    },
+    {
+      "video": "Normal_Videos_932_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_932_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        2,
+        28
+      ],
+      "archive_crc32": 398428765,
+      "local_crc32": 398428765,
+      "local_bytes": 113792,
+      "archive_bytes": 113792,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "165c0d5f0560ee6906f37f99840decf90929133a5bd61586503097c501e5a856"
+    },
+    {
+      "video": "Normal_Videos_933_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_933_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        13,
+        2
+      ],
+      "archive_crc32": 864052186,
+      "local_crc32": 864052186,
+      "local_bytes": 112768,
+      "archive_bytes": 112768,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "1a236dd4a8c89711ee3294f82e6048399dbc7557eb3636a0cd8eb72e5197e708"
+    },
+    {
+      "video": "Normal_Videos_934_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_934_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        53,
+        4
+      ],
+      "archive_crc32": 1352237521,
+      "local_crc32": 1352237521,
+      "local_bytes": 112768,
+      "archive_bytes": 112768,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "7b80bc5b7bf9021555173928f6af0b607299ef10759ce021caad9d8d378591b0"
+    },
+    {
+      "video": "Normal_Videos_935_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_935_x264__5.npy",
+      "dtype": "float32",
+      "zip_timestamp": [
+        2023,
+        2,
+        28,
+        21,
+        18,
+        24
+      ],
+      "archive_crc32": 2021714595,
+      "local_crc32": 2021714595,
+      "local_bytes": 13824128,
+      "archive_bytes": 13824128,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "a4fca27a6f7971dcc413a7e9472421d9a94cb5d3cc9f45c52757d22face49519"
+    },
+    {
+      "video": "Normal_Videos_936_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_936_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        42,
+        12
+      ],
+      "archive_crc32": 2103753107,
+      "local_crc32": 2103753107,
+      "local_bytes": 72832,
+      "archive_bytes": 72832,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "be039bb3d99a3d03d628f8e034fb4757126a079cdd20f32cb96415d26ec5806c"
+    },
+    {
+      "video": "Normal_Videos_937_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_937_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        15,
+        30
+      ],
+      "archive_crc32": 2103753107,
+      "local_crc32": 2103753107,
+      "local_bytes": 72832,
+      "archive_bytes": 72832,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "be039bb3d99a3d03d628f8e034fb4757126a079cdd20f32cb96415d26ec5806c"
+    },
+    {
+      "video": "Normal_Videos_938_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_938_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        16,
+        10
+      ],
+      "archive_crc32": 4250695319,
+      "local_crc32": 4250695319,
+      "local_bytes": 308352,
+      "archive_bytes": 308352,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "504ac2a9268cdc7ab8dc5c03cf7a7745605886aaef000016551f1822eb36154c"
+    },
+    {
+      "video": "Normal_Videos_939_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_939_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        50,
+        8
+      ],
+      "archive_crc32": 2659190556,
+      "local_crc32": 2659190556,
+      "local_bytes": 51328,
+      "archive_bytes": 51328,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "71b71c49bcaa66de29acaa32c6a39c043cc5a71dcbf1d5a2dfb4e984c0ca04a5"
+    },
+    {
+      "video": "Normal_Videos_940_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_940_x264__5.npy",
+      "dtype": "float32",
+      "zip_timestamp": [
+        2023,
+        2,
+        28,
+        21,
+        30,
+        18
+      ],
+      "archive_crc32": 1309917973,
+      "local_crc32": 1309917973,
+      "local_bytes": 4612224,
+      "archive_bytes": 4612224,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "081b626a9623890c8b2a13585764a5545b7498276dccc106766c4b53fd0ddd85"
+    },
+    {
+      "video": "Normal_Videos_941_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_941_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        26,
+        56
+      ],
+      "archive_crc32": 2347489568,
+      "local_crc32": 2347489568,
+      "local_bytes": 129152,
+      "archive_bytes": 129152,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "32224e9bd132ce16862b7d3e82cb694d6c9bc4f4cf03f12f243ea4fe90d5536f"
+    },
+    {
+      "video": "Normal_Videos_943_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_943_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        11,
+        8,
+        24
+      ],
+      "archive_crc32": 3436026602,
+      "local_crc32": 3436026602,
+      "local_bytes": 64640,
+      "archive_bytes": 64640,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "61c7421e6b40966e2d00f78f4ef50e870ab25b9c4ef4c9240c11c832b63fe485"
+    },
+    {
+      "video": "Normal_Videos_944_x264.mp4",
+      "member": "UCFClipFeatures/Testing_Normal_Videos_Anomaly/Normal_Videos_944_x264__5.npy",
+      "dtype": "float16",
+      "zip_timestamp": [
+        2023,
+        1,
+        13,
+        10,
+        51,
+        24
+      ],
+      "archive_crc32": 4001422138,
+      "local_crc32": 4001422138,
+      "local_bytes": 458880,
+      "archive_bytes": 458880,
+      "local_matches_archive_crc_and_size": true,
+      "local_sha256": "b41f6f7a73d41fc4745a4e590b33580d736b741c57f7cb98dac8138ef08605e2"
+    }
+  ],
+  "archive_metadata_sha256": "255dd25d8c736ce6dc9c05c93d298b9c61c9f1e8b2aed42d7cc9b52fd66da08e",
+  "fingerprint_scope": "Canonical names, ZIP timestamps, NPY dtype/shape, CRC and sizes; NOT entire archive SHA",
+  "source_sha256": "aeb2594f735a76473a394f3bbe9c8da69790bf6f09b8ca8b5599c3101ac2ee85",
+  "elapsed_seconds": 3.5664883329882286,
+  "limitations": [
+    "ZIP modification timestamps can be changed and have no timezone",
+    "different archive timestamps alone do not establish extraction time or processing recipe",
+    "CRC and size comparison checks local test copies against archive, not original video provenance"
+  ]
+}

@@ -1,0 +1,1966 @@
+{
+  "historical_recipe_confirmed": false,
+  "status": "unresolved",
+  "scope": "Raw extraction numeric diagnostic only; no VAD/sampler metrics",
+  "settings_unchanged": [
+    "configs/ucf_raw_reference.json",
+    "original inputs",
+    "GT",
+    "model weights",
+    "official baseline outputs"
+  ],
+  "full_decode_validation": {
+    "source": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/outputs/setup/ucf_all_full_decode_20261008.json",
+    "videos": 290,
+    "all_decoded_counts_match_headers": true,
+    "cohorts": {
+      "float16": {
+        "videos": 286,
+        "all_floor_match": true,
+        "all_ceil_match": false
+      },
+      "float32": {
+        "videos": 4,
+        "all_floor_match": false,
+        "all_ceil_match": true
+      }
+    }
+  },
+  "raw_reference_assumption": "offset8 remains provisional; closest diagnostic offset0 not adopted",
+  "input_sha256": {
+    "manifest": "1a41c94b4f49c39fea47d26ea0b553736565bf44194950d9721e1480a3512d46",
+    "config": "f1e80f6b1b7d0bcb374e7a5b3ba8ee0e6a24ca70c7c2c22169a2d39243cea4c8",
+    "official_test_list": "d621f4ccfb3e26274d215ad53b83fd1f596bb7e9f85cde69e01399db3da97c7f"
+  },
+  "numerical_runs": [
+    {
+      "name": "ucf_extraction_verify_20261008_104914",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float32",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          0,
+          1,
+          2,
+          3,
+          8,
+          16,
+          32
+        ],
+        "row_shifts": [
+          0
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "compared_blocks": 21,
+        "compared_videos": 3,
+        "cosine_mean": 0.9906086441032794,
+        "cosine_min": 0.9788754070561783,
+        "mean_absolute_error": 0.046332306090969395,
+        "rmse": 0.06208942398274866,
+        "max_absolute_error": 0.4836841821670532,
+        "relative_l2_error": 0.1375169909033687,
+        "candidate_norm_mean": 10.213101345639208,
+        "official_norm_mean": 10.208703177254078,
+        "exact_element_fraction": 0.0,
+        "close_element_fraction": 0.006045386904761905,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "9084c63d4486b9b97c4870c9c6f5d7e7fefa37f758bd014463150f31c949b1a9"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_105323",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          0,
+          1,
+          2,
+          3,
+          8,
+          16,
+          32
+        ],
+        "row_shifts": [
+          0
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "compared_blocks": 21,
+        "compared_videos": 3,
+        "cosine_mean": 0.9906085311236902,
+        "cosine_min": 0.9788602760128252,
+        "mean_absolute_error": 0.04632717359899765,
+        "rmse": 0.062084494106405076,
+        "max_absolute_error": 0.4833984375,
+        "relative_l2_error": 0.13750607210727095,
+        "candidate_norm_mean": 10.212886172446966,
+        "official_norm_mean": 10.208703177254078,
+        "exact_element_fraction": 0.0013020833333333333,
+        "close_element_fraction": 0.005115327380952381,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "d3a0a207af56b2a5c07fb67c0aee3092b7e4d27b78e3f1886d04d542fce14848"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_105907",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          0,
+          1,
+          2,
+          3,
+          8,
+          16,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "compared_blocks": 18,
+        "compared_videos": 3,
+        "cosine_mean": 0.9905651286295151,
+        "cosine_min": 0.9788602760128252,
+        "mean_absolute_error": 0.04623765469942656,
+        "rmse": 0.061907882207304595,
+        "max_absolute_error": 0.4833984375,
+        "relative_l2_error": 0.13826846753419275,
+        "candidate_norm_mean": 10.139614041320863,
+        "official_norm_mean": 10.128821321401924,
+        "exact_element_fraction": 0.0014105902777777778,
+        "close_element_fraction": 0.005208333333333333,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "9b80c4560d54b3b051c6d602c40717cd64dc10775d7e7f95f052ee96dc21ba48"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_110848",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "published",
+          "bgr_as_rgb",
+          "opencv_cubic",
+          "opencv_area",
+          "pil_bicubic",
+          "shortside_opencv_linear",
+          "shortside_bicubic",
+          "clip_direct",
+          "jpeg_q95",
+          "crop_x_minus1",
+          "crop_x_plus1",
+          "crop_y_minus1",
+          "crop_y_plus1"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_linear",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.997655342609257,
+        "cosine_min": 0.9962629789577085,
+        "mean_absolute_error": 0.023427396792814963,
+        "rmse": 0.03073371760871773,
+        "max_absolute_error": 0.19677734375,
+        "relative_l2_error": 0.06888878965036366,
+        "candidate_norm_mean": 10.108285670487255,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.002387152777777778,
+        "close_element_fraction": 0.010633680555555556,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "5427cc4b493a945d2b400ab7235a0c97b24b7fa2dcab0bc8ffa9585aa1dca5df"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_111259",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "published",
+          "shortside_opencv_linear",
+          "shortside_bilinear",
+          "pil_bilinear",
+          "shortside_opencv_linear_exact"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_linear",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.997655342609257,
+        "cosine_min": 0.9962629789577085,
+        "mean_absolute_error": 0.023427396792814963,
+        "rmse": 0.03073371760871773,
+        "max_absolute_error": 0.19677734375,
+        "relative_l2_error": 0.06888878965036366,
+        "candidate_norm_mean": 10.108285670487255,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.002387152777777778,
+        "close_element_fraction": 0.010633680555555556,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "e0a238b7a36e1cb4192bc0d8b5e84f248aafd41e8d03c9ca834d5ce7dfcd169a"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_111631",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "image_normalization": "imagenet",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "published",
+          "shortside_opencv_linear",
+          "shortside_bilinear"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_linear",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9897615526907302,
+        "cosine_min": 0.9816265600770163,
+        "mean_absolute_error": 0.04797619059940593,
+        "rmse": 0.06447448828479098,
+        "max_absolute_error": 0.412109375,
+        "relative_l2_error": 0.14451780672332118,
+        "candidate_norm_mean": 10.106828320033351,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.001953125,
+        "close_element_fraction": 0.005208333333333333,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "f40a6b7b63f8ea85e4afb4d275cb863b0f069d267beda34901d49349c026420d"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_111905",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "image_normalization": "clip",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "shortside_opencv_linear",
+          "shortside_tensor_bilinear",
+          "shortside_tensor_bicubic",
+          "shortside_cv2_float"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_linear",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.997655342609257,
+        "cosine_min": 0.9962629789577085,
+        "mean_absolute_error": 0.023427396792814963,
+        "rmse": 0.03073371760871773,
+        "max_absolute_error": 0.19677734375,
+        "relative_l2_error": 0.06888878965036366,
+        "candidate_norm_mean": 10.108285670487255,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.002387152777777778,
+        "close_element_fraction": 0.010633680555555556,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "fc9d26b99412631344e1489fa58165457082d6c8e66434661cc653332f3739e4"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_112516",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "image_normalization": "clip",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "shortside_opencv_linear",
+          "shortside_opencv_scale"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9991211538633125,
+        "cosine_min": 0.9989448323695662,
+        "mean_absolute_error": 0.014316624638417529,
+        "rmse": 0.01873662670707353,
+        "max_absolute_error": 0.11529541015625,
+        "relative_l2_error": 0.04199763765691822,
+        "candidate_norm_mean": 10.106396665290273,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.004340277777777778,
+        "close_element_fraction": 0.016710069444444444,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "27fc574bb9128285f9afcca3862b12ea227f9ada9072a45a716d735fd92153e3"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_112840",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "image_normalization": "clip",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "published",
+          "shortside_opencv_linear",
+          "shortside_opencv_scale"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9991211538633125,
+        "cosine_min": 0.9989448323695662,
+        "mean_absolute_error": 0.014316624638417529,
+        "rmse": 0.01873662670707353,
+        "max_absolute_error": 0.11529541015625,
+        "relative_l2_error": 0.04199763765691822,
+        "candidate_norm_mean": 10.106396665290273,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.004340277777777778,
+        "close_element_fraction": 0.016710069444444444,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "f8873beb89bed58e2312abf5931f207d0c18e2374e440b2b23976fcef981f6f3"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_113127",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "image_normalization": "clip",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "shortside_opencv_scale",
+          "shortside_opencv_scale_preflip"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9991211538633125,
+        "cosine_min": 0.9989448323695662,
+        "mean_absolute_error": 0.014316624638417529,
+        "rmse": 0.01873662670707353,
+        "max_absolute_error": 0.11529541015625,
+        "relative_l2_error": 0.04199763765691822,
+        "candidate_norm_mean": 10.106396665290273,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.004340277777777778,
+        "close_element_fraction": 0.016710069444444444,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "6907a3cb3160cceab3272bdccbc149297dc8f794433ae5a4dde318012f9d4009"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_113300",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "image_normalization": "clip",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "shortside_opencv_scale",
+          "shortside_opencv_scale_floor",
+          "shortside_opencv_scale_round",
+          "shortside_opencv_scale_ceil",
+          "shortside_opencv_scale_unit_floor"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9991211538633125,
+        "cosine_min": 0.9989448323695662,
+        "mean_absolute_error": 0.014316624638417529,
+        "rmse": 0.01873662670707353,
+        "max_absolute_error": 0.11529541015625,
+        "relative_l2_error": 0.04199763765691822,
+        "candidate_norm_mean": 10.106396665290273,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.004340277777777778,
+        "close_element_fraction": 0.016710069444444444,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "01ecabec4e0af1d23faec28b27bccd39986b483f5ff0d799f1ecc45daa92d053"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_113911",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "image_normalization": "clip",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "shortside_opencv_scale",
+          "shortside_opencv_scale_area",
+          "shortside_opencv_scale_cubic",
+          "shortside_opencv_scale_exact",
+          "shortside_opencv_scale_lanczos"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9991211538633125,
+        "cosine_min": 0.9989448323695662,
+        "mean_absolute_error": 0.014316624638417529,
+        "rmse": 0.01873662670707353,
+        "max_absolute_error": 0.11529541015625,
+        "relative_l2_error": 0.04199763765691822,
+        "candidate_norm_mean": 10.106396665290273,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.004340277777777778,
+        "close_element_fraction": 0.016710069444444444,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "ccad913a504d59792dab7e2955e758ae3cd217dd63ad8ae395642ff3f09f6f0d"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_114026",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "image_normalization": "clip",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": [
+          "Arson007_x264.mp4",
+          "Burglary005_x264.mp4",
+          "RoadAccidents001_x264.mp4",
+          "Normal_Videos_006_x264.mp4"
+        ],
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "shortside_opencv_scale",
+          "shortside_opencv_linear"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 11,
+        "compared_videos": 4,
+        "cosine_mean": 0.9991022226046145,
+        "cosine_min": 0.9985128138026117,
+        "mean_absolute_error": 0.013725356018932705,
+        "rmse": 0.01813713340773893,
+        "max_absolute_error": 0.14672088623046875,
+        "relative_l2_error": 0.042197830282864765,
+        "candidate_norm_mean": 9.700546485043315,
+        "official_norm_mean": 9.719820708762887,
+        "exact_element_fraction": 0.0033735795454545455,
+        "close_element_fraction": 0.015980113636363636,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "54594f38e36ecd331ec31873b8495796d428a71405f2a1cd7f55d60c4a2b8594"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_114634",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float32",
+        "image_normalization": "clip",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": [
+          "Shooting032_x264.mp4",
+          "Normal_Videos_924_x264.mp4"
+        ],
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "published",
+          "clip_direct",
+          "shortside_opencv_scale"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_04",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "published",
+        "compared_blocks": 6,
+        "compared_videos": 2,
+        "cosine_mean": 0.9498741396034555,
+        "cosine_min": 0.9325425798276707,
+        "mean_absolute_error": 0.10487111959584183,
+        "rmse": 0.13862517151729448,
+        "max_absolute_error": 0.8476349115371704,
+        "relative_l2_error": 0.3198321080300188,
+        "candidate_norm_mean": 9.853653750196349,
+        "official_norm_mean": 9.803767350803133,
+        "exact_element_fraction": 0.0,
+        "close_element_fraction": 0.0009765625,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "784c971d427f1118a2a34c57ac4a83b8b6c273ae54827547c8cb171c4681d0a2"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_114848",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "activation": "gelu",
+        "image_normalization": "clip",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "published",
+          "shortside_opencv_scale"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_15",
+        "feature_form": "raw",
+        "row_shift": 1,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9643161170229608,
+        "cosine_min": 0.9571559544317267,
+        "mean_absolute_error": 0.08938410002479537,
+        "rmse": 0.12096494396354422,
+        "max_absolute_error": 1.0244140625,
+        "relative_l2_error": 0.27104786351656324,
+        "candidate_norm_mean": 10.296756553258042,
+        "official_norm_mean": 10.095740610933241,
+        "exact_element_fraction": 0.00021701388888888888,
+        "close_element_fraction": 0.0026041666666666665,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "f07f39b4c0edf70f3353043d783d7c21f4d0bd99982e1426f9253679fe8ea0ba"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_115146",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float32",
+        "activation": "gelu",
+        "image_normalization": "clip",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": [
+          "Shooting032_x264.mp4",
+          "Normal_Videos_924_x264.mp4"
+        ],
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "published",
+          "clip_direct",
+          "shortside_opencv_scale"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 6,
+        "compared_videos": 2,
+        "cosine_mean": 0.9337237510129349,
+        "cosine_min": 0.9165055658225293,
+        "mean_absolute_error": 0.12065627155515972,
+        "rmse": 0.16224487086053696,
+        "max_absolute_error": 1.1341004371643066,
+        "relative_l2_error": 0.3743268159485013,
+        "candidate_norm_mean": 10.177070110379688,
+        "official_norm_mean": 9.803767350803133,
+        "exact_element_fraction": 0.0,
+        "close_element_fraction": 0.0016276041666666667,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "38d53407a5e33c1a2ce727ca1eaa9195c31e694dad82a57e21b467bc6c42b105"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_115428",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float32",
+        "activation": "quick_gelu",
+        "image_normalization": "clip",
+        "image_channel_order": "bgr",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": [
+          "Shooting032_x264.mp4",
+          "Normal_Videos_924_x264.mp4"
+        ],
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "published",
+          "clip_direct",
+          "shortside_opencv_scale"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": -1,
+        "preprocess_variant": "published",
+        "compared_blocks": 6,
+        "compared_videos": 2,
+        "cosine_mean": 0.9334854152119632,
+        "cosine_min": 0.9083896986789398,
+        "mean_absolute_error": 0.12279716929731421,
+        "rmse": 0.15902746023866285,
+        "max_absolute_error": 0.8410637378692627,
+        "relative_l2_error": 0.364421386614901,
+        "candidate_norm_mean": 9.83915553569687,
+        "official_norm_mean": 9.870083443508458,
+        "exact_element_fraction": 0.0,
+        "close_element_fraction": 0.0029296875,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "43cae53dd45ac3592ce57721688694da89c2bcf6efcfa7978c20dc291f253be7"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_120016",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float32",
+        "activation": "quick_gelu",
+        "image_normalization": "symmetric",
+        "image_channel_order": "rgb",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": [
+          "Shooting032_x264.mp4",
+          "Normal_Videos_924_x264.mp4"
+        ],
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "published",
+          "clip_direct",
+          "shortside_opencv_scale"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "mean16",
+        "feature_form": "raw",
+        "row_shift": -1,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 6,
+        "compared_videos": 2,
+        "cosine_mean": 0.9316428725778959,
+        "cosine_min": 0.9186967957736084,
+        "mean_absolute_error": 0.12578014931956952,
+        "rmse": 0.16366481525060225,
+        "max_absolute_error": 0.7772839963436127,
+        "relative_l2_error": 0.3750481761086167,
+        "candidate_norm_mean": 10.101706406808553,
+        "official_norm_mean": 9.870083443508458,
+        "exact_element_fraction": 0.0,
+        "close_element_fraction": 0.001953125,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "8d310c6cb460f352987f9b12faac396e7573e24f56441a7e3db38e45b17f8399"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_121333",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "activation": "quick_gelu",
+        "attention_backend": "legacy",
+        "image_normalization": "clip",
+        "image_channel_order": "rgb",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "published",
+          "shortside_opencv_scale"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9991200406714545,
+        "cosine_min": 0.99894884576556,
+        "mean_absolute_error": 0.014322215768819055,
+        "rmse": 0.01874926278198144,
+        "max_absolute_error": 0.1146240234375,
+        "relative_l2_error": 0.04202596107413118,
+        "candidate_norm_mean": 10.106514398176174,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.00390625,
+        "close_element_fraction": 0.018012152777777776,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "60575048f532df1c7ae70ce71c34406603fb3acefdfe04e21e2a164f5bd1b69c"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_121854",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "activation": "quick_gelu",
+        "attention_backend": "default",
+        "image_normalization": "clip",
+        "image_channel_order": "rgb",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "shortside_opencv_scale",
+          "scale_jpeg_raw95",
+          "scale_jpeg_raw100",
+          "scale_jpeg_resized95",
+          "scale_jpeg_resized100"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9991211538633125,
+        "cosine_min": 0.9989448323695662,
+        "mean_absolute_error": 0.014316624638417529,
+        "rmse": 0.01873662670707353,
+        "max_absolute_error": 0.11529541015625,
+        "relative_l2_error": 0.04199763765691822,
+        "candidate_norm_mean": 10.106396665290273,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.004340277777777778,
+        "close_element_fraction": 0.016710069444444444,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "ff6ab35da23d108017ae2fdf0bac80a3534763e2ad71c3b3c77ae9ab688566a8"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_122844",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float32",
+        "activation": "quick_gelu",
+        "attention_backend": "default",
+        "image_normalization": "clip",
+        "image_channel_order": "rgb",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": [
+          "Normal_Videos_935_x264.mp4",
+          "Normal_Videos_940_x264.mp4"
+        ],
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "published",
+          "shortside_opencv_scale",
+          "clip_direct"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_03",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 6,
+        "compared_videos": 2,
+        "cosine_mean": 0.9675009200557184,
+        "cosine_min": 0.9587140623472493,
+        "mean_absolute_error": 0.08818627502999436,
+        "rmse": 0.11358031485827211,
+        "max_absolute_error": 0.5408059358596802,
+        "relative_l2_error": 0.25567573150959194,
+        "candidate_norm_mean": 10.036178233397477,
+        "official_norm_mean": 10.047419479997439,
+        "exact_element_fraction": 0.0,
+        "close_element_fraction": 0.0022786458333333335,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "900c641ffd213118e7f42f07f88450ed49dea1b32a9f5c286be81311e40af158"
+    },
+    {
+      "name": "ucf_geometry_scan_20261008_111156",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "frame_offset": 0,
+        "widths": [
+          340,
+          341,
+          342,
+          343
+        ],
+        "height": 256,
+        "crop_xs": [
+          57,
+          58,
+          59,
+          60
+        ],
+        "crop_ys": [
+          15,
+          16,
+          17
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "linear_w341_h256_x58_y16",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.997655342609257,
+        "cosine_min": 0.9962629789577085,
+        "mean_absolute_error": 0.023427396792814963,
+        "rmse": 0.03073371760871773,
+        "max_absolute_error": 0.19677734375,
+        "relative_l2_error": 0.06888878965036366,
+        "candidate_norm_mean": 10.108285670487255,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.002387152777777778,
+        "close_element_fraction": 0.010633680555555556,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "9e5acb7c999418d501dd90f5e5d3015554827c33c0ec2d0a1dfe1fe25a0b61b4"
+    },
+    {
+      "name": "ucf_geometry_scan_20261008_111454",
+      "success": true,
+      "settings": {
+        "device": "cpu",
+        "precision": "float32",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "frame_offset": 0,
+        "widths": [
+          341
+        ],
+        "height": 256,
+        "crop_xs": [
+          58
+        ],
+        "crop_ys": [
+          16
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "linear_w341_h256_x58_y16",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9976521299269159,
+        "cosine_min": 0.996243180520855,
+        "mean_absolute_error": 0.023447813021136337,
+        "rmse": 0.03075058262376495,
+        "max_absolute_error": 0.19754678010940552,
+        "relative_l2_error": 0.06892659212153976,
+        "candidate_norm_mean": 10.107788095864025,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.0,
+        "close_element_fraction": 0.011284722222222222,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "b32f83f588c23707ba0a0741836915c9aabd7aca6e9a8188b4a2999b9c84ed65"
+    },
+    {
+      "name": "ucf_geometry_scan_20261008_112129",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "resize_backend": "av_bilinear",
+        "no_flip": false,
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "frame_offset": 0,
+        "widths": [
+          341
+        ],
+        "height": 256,
+        "crop_xs": [
+          58
+        ],
+        "crop_ys": [
+          16
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "av_bilinear_w341_h256_x58_y16",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9842674212114174,
+        "cosine_min": 0.9774641156666136,
+        "mean_absolute_error": 0.05985313274949375,
+        "rmse": 0.0797487404385911,
+        "max_absolute_error": 0.62060546875,
+        "relative_l2_error": 0.1787546262674457,
+        "candidate_norm_mean": 10.160374778822888,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.0010850694444444445,
+        "close_element_fraction": 0.004340277777777778,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "a088add76d587a519a412d5ecfd5c7517a3a699b9421010ff8e7027ea0093400"
+    },
+    {
+      "name": "ucf_geometry_scan_20261008_112208",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "resize_backend": "opencv",
+        "no_flip": true,
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "frame_offset": 0,
+        "widths": [
+          341
+        ],
+        "height": 256,
+        "crop_xs": [
+          58
+        ],
+        "crop_ys": [
+          16
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "opencv_w341_h256_x58_y16_no_flip",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9816002449431505,
+        "cosine_min": 0.9687980758166611,
+        "mean_absolute_error": 0.06411159038543701,
+        "rmse": 0.08543371708434422,
+        "max_absolute_error": 0.4931640625,
+        "relative_l2_error": 0.1914973463412915,
+        "candidate_norm_mean": 10.017626226557228,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.00021701388888888888,
+        "close_element_fraction": 0.004340277777777778,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "e0a7f967518ea85c6dde22ee063e2ea088debf2e33765581b3ea1020ec16e7ff"
+    },
+    {
+      "name": "ucf_geometry_scan_20261008_113521",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "resize_backend": "opencv",
+        "no_flip": false,
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "frame_offset": 0,
+        "widths": [
+          320
+        ],
+        "height": 240,
+        "crop_xs": [
+          48
+        ],
+        "crop_ys": [
+          8
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "opencv_w320_h240_x48_y8",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9349044588844571,
+        "cosine_min": 0.8629257735442437,
+        "mean_absolute_error": 0.12105065498811503,
+        "rmse": 0.1613648820649102,
+        "max_absolute_error": 1.45556640625,
+        "relative_l2_error": 0.3616949813572888,
+        "candidate_norm_mean": 10.16969238141575,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.00021701388888888888,
+        "close_element_fraction": 0.001953125,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "7b858d8b2d19ad2ce571bbc796de51b9c0a88ae072d817d8d24c3f7131875fde"
+    },
+    {
+      "name": "ucf_geometry_scan_20261008_113703",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "resize_backend": "av_rgb_opencv",
+        "resize_scale": true,
+        "source_colorspace": "bt709",
+        "no_flip": false,
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "frame_offset": 0,
+        "widths": [
+          341
+        ],
+        "height": 256,
+        "crop_xs": [
+          58
+        ],
+        "crop_ys": [
+          16
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "av_rgb_opencv_w341_h256_x58_y16",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9977822384527227,
+        "cosine_min": 0.9969985738137129,
+        "mean_absolute_error": 0.022742449344756704,
+        "rmse": 0.029888731487753863,
+        "max_absolute_error": 0.1767578125,
+        "relative_l2_error": 0.06699477631017324,
+        "candidate_norm_mean": 10.135649865446629,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.0028211805555555555,
+        "close_element_fraction": 0.008897569444444444,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "bf27cd7c42d248fd4242f22ffc10ef4fbb1b87151996fc0501272002ac83fa63"
+    },
+    {
+      "name": "ucf_geometry_scan_20261008_113734",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float16",
+        "resize_backend": "opencv",
+        "resize_scale": true,
+        "source_colorspace": null,
+        "no_flip": false,
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": null,
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "frame_offset": 0,
+        "widths": [
+          340
+        ],
+        "height": 255,
+        "crop_xs": [
+          57,
+          58,
+          59
+        ],
+        "crop_ys": [
+          15,
+          16
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "opencv_w340_h255_x57_y16",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9892426459550635,
+        "cosine_min": 0.9776965330156369,
+        "mean_absolute_error": 0.04888549061595566,
+        "rmse": 0.06609952631260967,
+        "max_absolute_error": 0.4375,
+        "relative_l2_error": 0.14816028513408425,
+        "candidate_norm_mean": 10.07528195794946,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.0013020833333333333,
+        "close_element_fraction": 0.004991319444444444,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "3ee0feba16a99fdf286cd18d760fa27b750ed07044f0cd4a4e387791caad4520"
+    },
+    {
+      "name": "ucf_geometry_scan_20261008_114407",
+      "success": true,
+      "settings": {
+        "device": "cpu",
+        "precision": "float32",
+        "resize_backend": "opencv",
+        "resize_scale": true,
+        "source_colorspace": null,
+        "no_flip": false,
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": [
+          "Shooting032_x264.mp4",
+          "Normal_Videos_924_x264.mp4"
+        ],
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "frame_offset": 0,
+        "widths": [
+          341
+        ],
+        "height": 256,
+        "crop_xs": [
+          58
+        ],
+        "crop_ys": [
+          16
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "opencv_w341_h256_x58_y16",
+        "compared_blocks": 6,
+        "compared_videos": 2,
+        "cosine_mean": 0.9476759045023094,
+        "cosine_min": 0.9295653507400642,
+        "mean_absolute_error": 0.10628695869010112,
+        "rmse": 0.14194970731038747,
+        "max_absolute_error": 1.0159392356872559,
+        "relative_l2_error": 0.3275023837763939,
+        "candidate_norm_mean": 9.896967031821587,
+        "official_norm_mean": 9.803767350803133,
+        "exact_element_fraction": 0.0,
+        "close_element_fraction": 0.0026041666666666665,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "16e4749e4ce2ede1a6fb347d0889d5bc077bf1da056132efe7bfbf10ffaadc57"
+    },
+    {
+      "name": "ucf_geometry_scan_20261008_115055",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float32",
+        "resize_backend": "opencv",
+        "resize_scale": true,
+        "source_colorspace": null,
+        "no_flip": false,
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": [
+          "Shooting032_x264.mp4",
+          "Normal_Videos_924_x264.mp4"
+        ],
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "frame_offset": 0,
+        "widths": [
+          341
+        ],
+        "height": 256,
+        "crop_xs": [
+          0,
+          58,
+          117
+        ],
+        "crop_ys": [
+          0,
+          16,
+          32
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "opencv_w341_h256_x58_y16",
+        "compared_blocks": 6,
+        "compared_videos": 2,
+        "cosine_mean": 0.9476760067469109,
+        "cosine_min": 0.9295651740510822,
+        "mean_absolute_error": 0.10628685976553243,
+        "rmse": 0.14194956989622004,
+        "max_absolute_error": 1.0159389972686768,
+        "relative_l2_error": 0.32750206673828053,
+        "candidate_norm_mean": 9.896967266393782,
+        "official_norm_mean": 9.803767350803133,
+        "exact_element_fraction": 0.0,
+        "close_element_fraction": 0.0026041666666666665,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "fda12d5868cac7949a4a1bcf87cae441fcba21463527878a6ca01873c315542d"
+    },
+    {
+      "name": "ucf_geometry_scan_20261008_122109",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float32",
+        "resize_backend": "opencv",
+        "resize_scale": true,
+        "source_colorspace": null,
+        "no_flip": true,
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": [
+          "Shooting032_x264.mp4",
+          "Normal_Videos_924_x264.mp4",
+          "Normal_Videos_935_x264.mp4",
+          "Normal_Videos_940_x264.mp4"
+        ],
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "frame_offset": 0,
+        "widths": [
+          341
+        ],
+        "height": 256,
+        "crop_xs": [
+          0,
+          58,
+          117
+        ],
+        "crop_ys": [
+          0,
+          16,
+          32
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "opencv_w341_h256_x58_y16_no_flip",
+        "compared_blocks": 12,
+        "compared_videos": 4,
+        "cosine_mean": 0.9411577275486911,
+        "cosine_min": 0.9159333310451712,
+        "mean_absolute_error": 0.11362884390902532,
+        "rmse": 0.14873599324534872,
+        "max_absolute_error": 0.8620586395263672,
+        "relative_l2_error": 0.338909279427617,
+        "candidate_norm_mean": 9.740536617515124,
+        "official_norm_mean": 9.925593415400286,
+        "exact_element_fraction": 0.0,
+        "close_element_fraction": 0.0029296875,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "summary_sha256": "8e71f598984dffbc71a24a20f0f6d049273080842827d2adfa344c1219292e66"
+    },
+    {
+      "name": "ucf_extraction_verify_20261008_124443",
+      "success": true,
+      "settings": {
+        "device": "mps",
+        "precision": "float32",
+        "activation": "quick_gelu",
+        "attention_backend": "default",
+        "image_normalization": "imagenet",
+        "image_channel_order": "rgb",
+        "config": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/configs/ucf_resources.json",
+        "video": [
+          "Shooting032_x264.mp4",
+          "Normal_Videos_924_x264.mp4",
+          "Normal_Videos_935_x264.mp4",
+          "Normal_Videos_940_x264.mp4"
+        ],
+        "blocks": [
+          1,
+          8,
+          32
+        ],
+        "row_shifts": [
+          -1,
+          0,
+          1
+        ],
+        "crop_type": 5,
+        "batch_size": 32,
+        "preprocess_variants": [
+          "published",
+          "shortside_opencv_scale",
+          "clip_direct"
+        ],
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "best": {
+        "rank": 1,
+        "candidate": "mean16",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "published",
+        "compared_blocks": 12,
+        "compared_videos": 4,
+        "cosine_mean": 0.9541071816265032,
+        "cosine_min": 0.9350091343992688,
+        "mean_absolute_error": 0.10161573650525213,
+        "rmse": 0.13273407495162676,
+        "max_absolute_error": 0.7728695869445801,
+        "relative_l2_error": 0.30244736809026485,
+        "candidate_norm_mean": 9.861942390582929,
+        "official_norm_mean": 9.925593415400286,
+        "exact_element_fraction": 0.0,
+        "close_element_fraction": 0.001953125,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "source": "summary.json",
+      "summary_sha256": "e34694f6ed62b3b564fa3ecf23e8447be708d045aca71119ad26318fa6bee822"
+    }
+  ],
+  "ucf_extraction_verify_20261008_112516": {
+    "source": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/outputs/setup/ucf_extraction_verify_20261008_112516/summary.json",
+    "comparison": {
+      "single_offset_00": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9991211538633125,
+        "cosine_min": 0.9989448323695662,
+        "mean_absolute_error": 0.014316624638417529,
+        "rmse": 0.01873662670707353,
+        "max_absolute_error": 0.11529541015625,
+        "relative_l2_error": 0.04199763765691822,
+        "candidate_norm_mean": 10.106396665290273,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.004340277777777778,
+        "close_element_fraction": 0.016710069444444444,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "mean16": {
+        "rank": 36,
+        "candidate": "mean16",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 9,
+        "compared_videos": 3,
+        "cosine_mean": 0.9923166905387047,
+        "cosine_min": 0.9756744782605571,
+        "mean_absolute_error": 0.03839226276128708,
+        "rmse": 0.055619501241850486,
+        "max_absolute_error": 0.515411376953125,
+        "relative_l2_error": 0.12466959481729416,
+        "candidate_norm_mean": 10.084089862061386,
+        "official_norm_mean": 10.092716651184697,
+        "exact_element_fraction": 0.0,
+        "close_element_fraction": 0.005859375,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      }
+    }
+  },
+  "ucf_extraction_verify_20261008_114026": {
+    "source": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/outputs/setup/ucf_extraction_verify_20261008_114026/summary.json",
+    "comparison": {
+      "single_offset_00": {
+        "rank": 1,
+        "candidate": "single_offset_00",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 11,
+        "compared_videos": 4,
+        "cosine_mean": 0.9991022226046145,
+        "cosine_min": 0.9985128138026117,
+        "mean_absolute_error": 0.013725356018932705,
+        "rmse": 0.01813713340773893,
+        "max_absolute_error": 0.14672088623046875,
+        "relative_l2_error": 0.042197830282864765,
+        "candidate_norm_mean": 9.700546485043315,
+        "official_norm_mean": 9.719820708762887,
+        "exact_element_fraction": 0.0033735795454545455,
+        "close_element_fraction": 0.015980113636363636,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      },
+      "mean16": {
+        "rank": 19,
+        "candidate": "mean16",
+        "feature_form": "raw",
+        "row_shift": 0,
+        "preprocess_variant": "shortside_opencv_scale",
+        "compared_blocks": 11,
+        "compared_videos": 4,
+        "cosine_mean": 0.9963407290495351,
+        "cosine_min": 0.9831864988057416,
+        "mean_absolute_error": 0.02519817631268366,
+        "rmse": 0.0368202693181686,
+        "max_absolute_error": 0.550537109375,
+        "relative_l2_error": 0.08566598925685183,
+        "candidate_norm_mean": 9.668525540062465,
+        "official_norm_mean": 9.719820708762887,
+        "exact_element_fraction": 0.0001775568181818182,
+        "close_element_fraction": 0.010298295454545454,
+        "tolerance_pass_fraction": 0.0,
+        "all_blocks_within_tolerance": false
+      }
+    }
+  },
+  "jit_encoder_comparison": {
+    "source": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/outputs/setup/ucf_jit_encoder_compare_20261008_124929_925900/summary.json",
+    "images": 18,
+    "all_within_tolerance": true,
+    "maximum_relative_l2": 3.7273468662030247e-06,
+    "maximum_absolute_error": 1.0728836059570312e-05,
+    "scope": "Same cached RGB frames, two fixed preprocessing variants, CPU float32; not historical CUDA agreement"
+  },
+  "archive_metadata_audit": {
+    "source": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/outputs/setup/ucf_feature_archive_metadata_20261008.json",
+    "all_test_files_crc_and_size_match": true,
+    "npy_members": 19500,
+    "non_npy_files": [],
+    "dtype_date_counts": [
+      {
+        "dtype": "float16",
+        "date": "2023-01-11",
+        "files": 2220
+      },
+      {
+        "dtype": "float16",
+        "date": "2023-01-12",
+        "files": 5440
+      },
+      {
+        "dtype": "float16",
+        "date": "2023-01-13",
+        "files": 10870
+      },
+      {
+        "dtype": "float32",
+        "date": "2023-02-26",
+        "files": 20
+      },
+      {
+        "dtype": "float32",
+        "date": "2023-02-28",
+        "files": 160
+      },
+      {
+        "dtype": "float32",
+        "date": "2023-03-01",
+        "files": 790
+      }
+    ],
+    "interpretation": "Mixed stored dtypes and different ZIP modification date cohorts; actual extraction times/recipes remain unverified"
+  },
+  "public_fork_audit": {
+    "source": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/outputs/setup/ucf_public_extractor_source_audit_20261008.json",
+    "sha256": "45e926a7fc1abb7bbc4c05b4b0f32981188067324a2bf79dafd91531d224ac87",
+    "default_branch_trees": 38,
+    "changed_python_and_readme_files": 145,
+    "external_code_executed": false,
+    "conclusion": "Community raw extractors found; no author-certified original extractor or strict numerical reproduction evidence obtained"
+  },
+  "original_materials_availability": {
+    "user_confirmed_extra_materials": false,
+    "user_reply": "없어.",
+    "remaining_blocker": "Exact historical video/frame generation, extraction pipeline and runtime unavailable; numerical residual remains unexplained."
+  },
+  "completion_audit": {
+    "source": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/docs/EXTRACTION_COMPLETION_AUDIT.md",
+    "achieved": false,
+    "blocking_condition_consecutive_goal_turns": 3,
+    "qualifying_turns": [
+      "numeric extraction and 290 EOF audit: original full extractor/runtime missing",
+      "JIT/ZIP cohort audit: original frame generation/preprocessing history missing",
+      "38 fork/145 changed-source audit and user no-materials confirmation: same original production evidence missing"
+    ],
+    "status_transition_requested": "blocked",
+    "rationale": "Current reasonable independent verification paths exhausted without original production evidence or numerical agreement; further progress requires new source/input/runtime evidence or authorized contact supplying it. No passing threshold was relaxed."
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "video": "Shooting032_x264.mp4",
+    "crop0_equals_crop5": false,
+    "firstrow_cosine": 0.9673822633520934,
+    "norm_difference": 2.439102087665862
+  },
+  {
+    "video": "Normal_Videos_924_x264.mp4",
+    "crop0_equals_crop5": false,
+    "firstrow_cosine": 0.9746392809581675,
+    "norm_difference": 2.281982222749183
+  },
+  {
+    "video": "Normal_Videos_935_x264.mp4",
+    "crop0_equals_crop5": false,
+    "firstrow_cosine": 0.9557805612527335,
+    "norm_difference": 2.8741798700418633
+  },
+  {
+    "video": "Normal_Videos_940_x264.mp4",
+    "crop0_equals_crop5": false,
+    "firstrow_cosine": 0.9883836428081094,
+    "norm_difference": 1.5735758398372466
+  }
+]

@@ -138,7 +138,22 @@ Reference frame extraction / preprocessing
 
 공식 feature 추출 조건을 확인하여 CLIP 종류, FPS/stride, resize/crop, normalization, feature 차원 및 aggregation을 맞춘다. 대표 영상에서 frame 수·timestamp·feature 형태를 점검하고, 전체 test metric을 Stage 1과 비교한다.
 
+2026-10-07 공식 자료 추가 확인: 저자 Issue #1 답변은 16프레임마다 feature를 샘플링한다고 설명했고 Issue #2는 UCF __5가 좌우 반전된 중앙 crop임을 확인했다. 구간 내 frame offset/한 장 또는 16장 평균/tail까지 공개 원본 알고리즘으로 확정되지는 않았다. 16장 평균이라는 일반 사용자 댓글은 저자 확인과 구분한다. 원본 학습의 긴 feature sequence→256개 균등 구간 평균은 raw feature 생성과 별개다. 상세 출처는 docs/UCF_RAW_REFERENCE.md에 기록한다.
+
+2026-10-07 구현 시작 조건: raw reference는 16-frame 완전 구간별 offset 8 한 장/crop 5의 provisional 추출 설정으로 공개 feature를 대조한다. 16장 전체 feature 평균인 mean_block도 명시적 별도 가설로 지원한다. 둘 중 어떤 조건이 공식 recipe인지는 아직 확인하지 않았고, test AUC가 높은 설정을 선택하지 않는다. 기본 batch 32, image encoder float32, feature 저장 dtype은 기존 영상별 dtype을 따른다. 조건·시간축·허용 오차를 검증/고정한 뒤 sampling 비교로 진행한다. 100% 후보 분모와 실제 encoder 입력 수를 mode별로 구분한다.
+
 허용할 재현 오차는 sampling 결과를 보기 전에 정한다. 차이가 설명되지 않는 상태에서는 sampling 성능을 해석하지 않는다. 공식 feature 추출 조건을 완전히 복원하지 못하면 그 제한을 기록하고, 검증된 raw-video reference를 이후 sampling 비교의 기준으로 삼는다.
+
+**2026-10-08 결정 (사용자 확정): UCF-Crime sampling 비교의 기준은 직접 추출한 raw-video reference다.**
+
+- 추출 방식(재구성): 완전한 16프레임 구간마다 zero-based frame 16k 한 장을 x86 libswscale 방식으로 YUV→RGB 변환한다. 이어서 `cv2.resize(fx=fy=256/240)` → `[16:240, 58:282]` crop → 좌우 반전(crop 5) → CLIP ViT-B/16로 처리한다. 공식 row 수가 ceil(N/16)인 영상 4개에서만 꼬리 프레임 1장을 추가한다. 상세 근거는 `docs/EXTRACTION_DIAGNOSTIC_RUNS.md`와 `docs/UCF_RAW_REFERENCE.md`에 있다.
+- 검증: test 290개 중 공식 float16 feature 286개가 모두 상대 L2 ≤ 0.005(중앙값 0.0019)로 일치한다. 가장 긴 영상 4개(공식 float32, frame-level 시간축의 24.7%)는 상대 L2 0.29~0.35로 재현하지 못했다.
+- 기준 성능(run `ucf_raw_full_20261008_150142`): branch1 AUC 87.19%(공식 feature 88.02% 대비 −0.83pp). 사전 제안 허용 오차 0.5pp를 넘지만, 차이는 위 4개 영상에서 나오는 것으로 판단한다(286개의 token 점수 차이 최대 0.008). 저장 점수 기반 민감도 분석(`scripts/analyze_ucf_raw_cohorts.py`)으로 확인한다.
+- 이유: 효율 실험은 CLIP encoding 이전에 선택해야 하므로 공식 feature를 기준으로 쓸 수 없다. 모든 sampler가 같은 raw 파이프라인을 쓰므로 4개 영상의 불일치는 sampler 간 비교의 공정성에 영향을 주지 않는다.
+- 고정 조건: `configs/ucf_raw_reference.json`과 해당 run의 source hash로 설정을 고정한다. 결과를 보고 추출 설정을 바꾸지 않는다. 290개 전체를 평가에 포함한다(4개 영상 제외 금지).
+- 보고: official-feature 재현(88.02%)과 raw reference(87.19%)를 별도 행으로 기록하고, 그 차이를 4개 영상의 미재현으로 설명한다. Sampling의 Δ는 raw reference 기준이다.
+- 효율: 이 Mac에서는 x86 색 변환을 numpy로 흉내 내므로 그 비용(`color_conversion`)은 실제 x86 비용이 아니다. E2E 시간에서 이 단계를 분리해 보고한다.
+- XD-Violence는 같은 방식으로 가정하지 않고, 공식 feature와 대조해 확인한 뒤 고정한다.
 
 ## 6. Raw-video sampling pipeline
 
@@ -200,6 +215,8 @@ K_v = min(N_v, max(1, ceil(r × N_v)))
 | 12.5% | 약 N_v / 8 |
 
 `N_v`는 Stage 2에서 고정한 FPS/stride의 후보 프레임 수다. 모든 원본 프레임을 후보로 삼는 경우에만 100%가 원본 전체 프레임과 같다. Reference의 실제 추출 비율과 원본 frame 수를 함께 기록하여 분모를 명확히 한다.
+
+2026-10-07 용어 보완: 본 문서의 Full은 **Reference 후보 100%**를 뜻하며 VadCLIP이 원본 모든 프레임을 사용한다는 뜻이 아니다. VadCLIP에 전달되는 16-frame 단위 feature token 수와 그 token을 만드는 CLIP image encoder의 실제 입력 수를 구분한다. 2026-10-08 진단으로 UCF 원본 encoder는 구간당 한 장(frame 16k)을 처리한 것으로 재구성됐다(Stage 2의 2026-10-08 결정 참고). 따라서 UCF reference 후보 수 `N_v`는 영상별 reference token 수(대부분 floor(N/16))이고, reference 100%의 encoder 입력 수도 `N_v`다. 고정된 reference 후보에서 추가로 일부를 선택하는 실험과 원본 프레임에서 대표 위치 자체를 변경하는 실험은 선택 공간이 다르므로 구분해 설계한다.
 
 각 영상에서 sampler마다 동일한 `K_v`를 적용한다. 짧은 영상의 반올림과 빈 영상 처리도 동일하게 한다. 비교는 데이터셋별로 `4개 budget × 모든 sampling strategy`를 수행한다. 100%에서는 모든 후보가 선택되어 reference와 같은 탐지 결과가 나오는지 확인한다.
 

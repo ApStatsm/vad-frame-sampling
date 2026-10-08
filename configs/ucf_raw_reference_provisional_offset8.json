@@ -1,0 +1,15 @@
+{
+  "resources_config": "configs/ucf_resources.json",
+  "official_reference_run": "outputs/baseline/ucf_full_20261007_010204",
+  "extraction_status": "provisional_not_verified_against_official_recipe",
+  "block_frames": 16,
+  "temporal_mode": "single_frame",
+  "frame_offset": 8,
+  "crop_type": 5,
+  "encoder_batch_size": 32,
+  "encoder_precision": "float32",
+  "feature_storage_dtype": "official",
+  "feature_l2_normalize": false,
+  "warmup_batches": 2,
+  "seed": 234
+}

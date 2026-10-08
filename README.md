@@ -2,7 +2,7 @@
 
 Pretrained VadCLIP을 고정하고 frame sampling 방법에 따른 이상 탐지 성능과 계산 비용을 비교하는 프로젝트입니다. UCF-Crime을 먼저 검증한 뒤 XD-Violence로 확장합니다.
 
-현재 UCF test 290개(anomaly 140, normal 150)의 official-feature full 평가가 사용자 MPS 실행에서 성공했습니다. Branch1 AUC 88.02%, branch2 AUC 85.69%이며 raw-video reference·sampling 비교는 아직 미측정입니다. [실험 결과표](docs/EXPERIMENT_RESULTS.md), 자세한 상태는 [PROGRESS.md](PROGRESS.md), 연구 설계는 [연구 계획](VAD_Frame_Sampling_Research_Plan.md)을 참고하세요.
+현재 UCF test 290개(anomaly 140, normal 150)의 official-feature full 평가가 사용자 MPS 실행에서 성공했습니다. Branch1 AUC 88.02%/Ano-AUC 70.23%, branch2 AUC 85.69%, 원본 fine-grained AVG 6.68%입니다. Raw-video reference 코드를 준비했으며 raw 성능·시간과 sampling 비교는 아직 미측정입니다. [실험 결과표](docs/EXPERIMENT_RESULTS.md), 자세한 상태는 [PROGRESS.md](PROGRESS.md), 연구 설계는 [연구 계획](VAD_Frame_Sampling_Research_Plan.md)을 참고하세요.
 
 ## 저장소 파일 구조
 
@@ -10,7 +10,8 @@ Pretrained VadCLIP을 고정하고 frame sampling 방법에 따른 이상 탐지
 ├── VadCLIP/                            # 모델 소스, 공식 목록·GT, 원본 LICENSE
 ├── scripts/                            # 데이터 준비·입력 점검·평가 코드
 ├── configs/
-│   └── ucf_resources.json              # feature·checkpoint 경로 설정
+│   ├── ucf_resources.json              # feature·checkpoint 경로 설정
+│   └── ucf_raw_reference.json          # provisional raw 추출·batch·precision 설정
 ├── docs/                               # 자원 준비·baseline 실행 안내
 ├── UCF-Crime/
 │   ├── Temporal_Anomaly_Annotation_for_Testing_Videos.txt
@@ -75,6 +76,7 @@ Pretrained VadCLIP을 고정하고 frame sampling 방법에 따른 이상 탐지
 ├── outputs/
 │   └── baseline/
 │       └── <run_id>/
+│           ├── features/                # raw run의 feature·선택 index/timestamp NPZ
 │           ├── scores/
 │           │   └── *.npz                   # 영상·사례별 score 배열
 │           └── frame_scores.npz            # full 평가의 전체 timeline score
@@ -89,7 +91,7 @@ Pretrained VadCLIP을 고정하고 frame sampling 방법에 따른 이상 탐지
 | CLIP checkpoint | 완성된 PyTorch 모델 아카이브 `ViT-B-16.pt`. `.part`는 미완성 파일입니다. |
 | VadCLIP checkpoint | UCF용 PyTorch checkpoint `model_ucf.pth`. 현재 모델의 state dict를 strict loading합니다. XD 평가에는 XD용 가중치를 별도로 사용합니다. |
 | 영상별 score | 압축 NumPy `.npz`. `branch1_feature_scores`, `branch2_feature_scores`(각 `[T]`), `gt`(`[16*T]`)와 새 `branch2_class_feature_scores`(`[T,14]`), `class_labels`(문자열 14개)를 저장합니다. 기존 scalar-only run에는 새 key가 없습니다. |
-| 전체 score | Full 성공 시 `frame_scores.npz`에 `branch1`, `branch2`를 저장합니다. 각각 전체 official-feature timeline 길이입니다. 사용자 full run `ucf_full_20261006_235442`에 파일 존재를 확인했습니다. |
+| 전체 score | Full 성공 시 `frame_scores.npz`에 `branch1`, `branch2`를 저장합니다. 각각 전체 official-feature timeline 길이입니다. 사용자 최신 full run `ucf_full_20261007_010204`에 저장됩니다. |
 | 가상환경·캐시 | 설치 환경과 생성 파일입니다. 코드는 `requirements.txt`로 환경을 준비하며 캐시는 공유하지 않습니다. |
 
 작고 필요한 `VadCLIP/list/gt*.npy`와 CLIP tokenizer의 `.txt.gz`는 저장소에 포함합니다. Feature 폴더 전체와 영상·weights·score 배열은 제외하지만 모든 `.npy`/`.gz`를 일괄 제외하지는 않습니다.
@@ -154,14 +156,28 @@ python3.10 -m venv .venv
 Full 평가의 `metrics.branch1`/`branch2`에는 `roc_auc`, `ap`, `ano_auc`(0~1)를 저장합니다. Ano-AUC는 manifest의 이상 영상 140개 전체 프레임을 대상으로 합니다. 이미 성공한 run에는 모델을 다시 돌리지 않고 저장 score로 Ano-AUC를 추가할 수 있습니다.
 
 ```sh
-.venv/bin/python scripts/update_ucf_metrics.py outputs/baseline/ucf_full_20261007_004524
+.venv/bin/python scripts/update_ucf_metrics.py outputs/baseline/ucf_full_20261007_010204
 ```
 
 원래 run의 `summary.json`에 Ano-AUC와 계산 출처를 추가하고 기존 AUC/AP·추론 기록은 유지합니다. 기존 사용자 추가 계산 결과는 branch1 Ano-AUC 70.23%, branch2 65.52%로 확인했으며 Codex는 재계산하지 않았습니다.
 
 갱신된 full evaluator는 모델을 다시 평가하고 `metrics.fine_grained.map_by_iou`(IoU 0.1~0.5의 mAP)와 `mean_map`(AVG)를 함께 계산합니다. 원본 `ucf_test.py`처럼 정상 영상을 포함한 290개/14개 클래스의 A-branch 점수를 변경하지 않은 공개 evaluator에 `excludeNormal=False`로 전달합니다. 원본 segment/class GT를 사용하며 값은 0~1입니다. 별도 metric 갱신 명령 없이 위 full 명령을 실행하면 됩니다. [평가 범위](docs/UCF_OFFICIAL_BASELINE.md#fine-grained-map의-평가-범위)를 참고하세요.
 
-기존 `ucf_full_20261007_004524`의 AVG 7.46%는 이전 anomaly-only 140개/13개 클래스 방식의 기록입니다. 기존 결과 파일은 보존하고 새 run을 만듭니다. 새 원본 방식의 결과와 논문 수치 일치는 사용자 실행 후 확인하며, Codex는 모델/metric 계산을 실행하지 않았습니다. `update_ucf_metrics.py`는 기존 Ano-AUC 추가 기능만 제공합니다.
+사용자 `ucf_full_20261007_010204`에서 원본 방식 mAP 11.72/7.83/6.40/4.53/2.93%, AVG 6.68%를 확인했습니다. 이전 140개/13개 클래스 AVG 7.46%는 다른 protocol의 과거 기록입니다. Codex는 저장 JSON만 읽었고 모델/metric 계산을 실행하지 않았습니다. `update_ucf_metrics.py`는 기존 Ano-AUC 추가 기능만 제공합니다.
+
+## Raw-video reference와 CLIP 시간 측정
+
+[raw evaluator](scripts/evaluate_ucf_raw.py)와 [설정](configs/ucf_raw_reference.json)을 추가했습니다. 원본 영상에서 feature를 직접 만들고 기존 고정 VadCLIP/metric으로 평가하며, CLIP forward와 raw end-to-end 시간을 따로 저장합니다. 비교 입력은 현재 성공 official run의 summary/score NPZ입니다. [실행·출력·검증 안내](docs/UCF_RAW_REFERENCE.md)를 참고하세요.
+
+```sh
+.venv/bin/python scripts/evaluate_ucf_raw.py --mode full --device mps
+```
+
+검증은 선택 사항입니다. `--mode smoke`는 짧은 anomaly·짧은 normal·긴 영상 사례를 확인하고, `--video Abuse028_x264.mp4`로 특정 영상만 지정할 수 있습니다. Full은 smoke 없이 직접 실행 가능합니다.
+
+기본 추출은 완전한 16-frame 구간에서 offset 8 한 장, crop 5, CLIP float32, batch 32입니다. 이는 **공식 추출 recipe로 확인되지 않은 provisional 조건**이며 공개 feature 유사도·기존 score 차이·full metric 차이를 함께 기록합니다. 100%는 이 후보를 모두 사용한다는 뜻입니다. `--temporal-mode mean_block`은 구간의 16장 전체를 encode/평균하는 별도 가설이며 효율 조건을 섞어 비교하지 않습니다.
+
+출력은 `outputs/baseline/ucf_raw_<mode>_<timestamp>/summary.json`, `features/*.npz`, `scores/*.npz` 및 full `frame_scores.npz`입니다. 시간·선택 frame index/timestamp·feature/score 대조와 Event coverage를 기록합니다. 전체 290개 full에서 두 branch AUC/AP/Ano-AUC와 원본 fine-grained mAP/AVG를 계산합니다. 프로젝트 코드·테스트·decoding·encoder/inference는 아직 실행하지 않았고, raw 재현/시간 값은 사용자 실행 후 확인해야 합니다. Uniform/Random은 reference 검증 후 추가합니다.
 
 ## 원본 코드
 

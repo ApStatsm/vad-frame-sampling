@@ -1,0 +1,2202 @@
+{
+  "success": true,
+  "historical_recipe_confirmed": false,
+  "scope": "38 fork default-branch trees, all145 changed Python/README source files; three separately found community sources. No fork source executed.",
+  "forks": [
+    {
+      "repo": "thanhhvnqb/VadCLIP",
+      "branch": "main",
+      "sha": "18b452b404071ac01a47197a704f29427ffa9ebb",
+      "truncated": false,
+      "blob_count": 45,
+      "changed_blobs": 12,
+      "candidate_files": [],
+      "rate_remaining": "55"
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "branch": "main",
+      "sha": "67d5cb2e439e8ba04526b0e020ccb9a4102a1f97",
+      "truncated": false,
+      "blob_count": 91,
+      "changed_blobs": 49,
+      "candidate_files": [],
+      "rate_remaining": "53"
+    },
+    {
+      "repo": "GP0123/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "52"
+    },
+    {
+      "repo": "jensen2002/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "54"
+    },
+    {
+      "repo": "Dyx77777/VadCLIP-Fork",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "51"
+    },
+    {
+      "repo": "Migkhans/VadCLIP_Demo",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "49"
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "branch": "main",
+      "sha": "c6eaf82bb3defe4ca9406a209eeef9d1afd0e3a8",
+      "truncated": false,
+      "blob_count": 89,
+      "changed_blobs": 58,
+      "candidate_files": [
+        {
+          "path": "src/crop.py",
+          "sha": "681007edb5d8f6f5ec29df08ae74380e2ff35793",
+          "change": "modified"
+        },
+        {
+          "path": "tests/test_crop_video_features.py",
+          "sha": "75fd5b69208a1d1d21b65438a8ead24e14099512",
+          "change": "added"
+        }
+      ],
+      "rate_remaining": "50"
+    },
+    {
+      "repo": "AngrypandaT/VadCLIP_origin",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "48"
+    },
+    {
+      "repo": "ZGZ713912/VadCLIP",
+      "branch": "main",
+      "sha": "bc3a280509d207d92bbc25bea0d37748862df9d1",
+      "truncated": false,
+      "blob_count": 48,
+      "changed_blobs": 10,
+      "candidate_files": [],
+      "rate_remaining": "47"
+    },
+    {
+      "repo": "HAN-HEYU/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "46"
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "branch": "main",
+      "sha": "d85d1870c359ee07bf0736df25b6d9799ecc14b6",
+      "truncated": false,
+      "blob_count": 73,
+      "changed_blobs": 39,
+      "candidate_files": [],
+      "rate_remaining": "44"
+    },
+    {
+      "repo": "AnisBenAicha/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "45"
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "branch": "main",
+      "sha": "c6b09e0fc9b8734adadcf55aa7caae3d973f1565",
+      "truncated": false,
+      "blob_count": 57,
+      "changed_blobs": 16,
+      "candidate_files": [
+        {
+          "path": "src/extract_mobileclip_features.py",
+          "sha": "ef9f2e007d52d8d2fefe95ca2441c1534651f51b",
+          "change": "added"
+        }
+      ],
+      "rate_remaining": "42"
+    },
+    {
+      "repo": "zlatan-zzz/prevad1",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "43"
+    },
+    {
+      "repo": "starnbw/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "41"
+    },
+    {
+      "repo": "Erica-Yang/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "40"
+    },
+    {
+      "repo": "xgh1996/VadCLIP",
+      "branch": "main",
+      "sha": "1e7843cb6d3d497994a7de5eac21da0c7bc8ec9b",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 8,
+      "candidate_files": [],
+      "rate_remaining": "39"
+    },
+    {
+      "repo": "bardiya13/VadCLIP",
+      "branch": "main",
+      "sha": "db80ca4b94530d0666b99861cca8316cccafb8c9",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 1,
+      "candidate_files": [
+        {
+          "path": "src/crop.py",
+          "sha": "783a08ac030fd3dd0a233dcd3fb41ac302397d19",
+          "change": "modified"
+        }
+      ],
+      "rate_remaining": "38"
+    },
+    {
+      "repo": "Goncalo123/VadCLIP",
+      "branch": "main",
+      "sha": "8b43021f61cc52c48795ab514df4481e992cf2c3",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 6,
+      "candidate_files": [],
+      "rate_remaining": "36"
+    },
+    {
+      "repo": "song248/VadCLIP",
+      "branch": "main",
+      "sha": "db72745e3f53e32a2d1a0af71a99575106c7f960",
+      "truncated": false,
+      "blob_count": 44,
+      "changed_blobs": 2,
+      "candidate_files": [],
+      "rate_remaining": "37"
+    },
+    {
+      "repo": "ad4rush/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "34"
+    },
+    {
+      "repo": "aws-one/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "35"
+    },
+    {
+      "repo": "Cascade0507/VadCLIP-MSAD",
+      "branch": "main",
+      "sha": "a8d5ced32021ae39f8da045f8095192bd5e26ffb",
+      "truncated": false,
+      "blob_count": 79,
+      "changed_blobs": 41,
+      "candidate_files": [],
+      "rate_remaining": "32"
+    },
+    {
+      "repo": "mpeilun/VadCLIP",
+      "branch": "main",
+      "sha": "66d714daa9e0f22503d42545407d4689ffc04b90",
+      "truncated": false,
+      "blob_count": 45,
+      "changed_blobs": 6,
+      "candidate_files": [],
+      "rate_remaining": "33"
+    },
+    {
+      "repo": "Rlkolaman/VadCLIP",
+      "branch": "main",
+      "sha": "3f374f572489e5adbd0bc1864ee4ed5dcfc6fc5f",
+      "truncated": false,
+      "blob_count": 45,
+      "changed_blobs": 8,
+      "candidate_files": [],
+      "rate_remaining": "31"
+    },
+    {
+      "repo": "DrKolaman/VadCLIP",
+      "branch": "main",
+      "sha": "1f1d0480d56f0981ede1533d94e401936812b621",
+      "truncated": false,
+      "blob_count": 45,
+      "changed_blobs": 9,
+      "candidate_files": [
+        {
+          "path": "src/generate_ucf_features.py",
+          "sha": "914de21f893fc8dd9cb4862f32500c2c2453b22f",
+          "change": "added"
+        }
+      ],
+      "rate_remaining": "30"
+    },
+    {
+      "repo": "savasanchez/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "29"
+    },
+    {
+      "repo": "DL-phD/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "28"
+    },
+    {
+      "repo": "mcl19909949541/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "26"
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "branch": "main",
+      "sha": "a39ea7d520af841c7417aac216cf065fc202c995",
+      "truncated": false,
+      "blob_count": 58,
+      "changed_blobs": 31,
+      "candidate_files": [
+        {
+          "path": "src/crop.py",
+          "sha": "a3f0dab44777e858c11dc43d2fd06df106dfd2db",
+          "change": "modified"
+        }
+      ],
+      "rate_remaining": "27"
+    },
+    {
+      "repo": "laxiakai/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "25"
+    },
+    {
+      "repo": "Aangss/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "24"
+    },
+    {
+      "repo": "AiGeoCollaboration/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "23"
+    },
+    {
+      "repo": "slxiu/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "22"
+    },
+    {
+      "repo": "mymuli/VadCLIP",
+      "branch": "main",
+      "sha": "c41067f07d252efcda18008bea367886070c33b0",
+      "truncated": false,
+      "blob_count": 43,
+      "changed_blobs": 0,
+      "candidate_files": [],
+      "rate_remaining": "21"
+    },
+    {
+      "repo": "mala-lab/VadCLIP",
+      "branch": "main",
+      "sha": "1b2b809467801d8c89bc2bd94a379c6fcaced125",
+      "truncated": false,
+      "blob_count": 42,
+      "changed_blobs": 1,
+      "candidate_files": [],
+      "rate_remaining": "20"
+    },
+    {
+      "repo": "GuansongPang/VadCLIP",
+      "branch": "main",
+      "sha": "1b2b809467801d8c89bc2bd94a379c6fcaced125",
+      "truncated": false,
+      "blob_count": 42,
+      "changed_blobs": 1,
+      "candidate_files": [],
+      "rate_remaining": "19"
+    },
+    {
+      "repo": "Roc-Ng/VadCLIP",
+      "branch": "main",
+      "sha": "05434f5080761672208542f3fac0cde52fbc8029",
+      "truncated": false,
+      "blob_count": 42,
+      "changed_blobs": 1,
+      "candidate_files": [],
+      "rate_remaining": "18"
+    }
+  ],
+  "changed_sources": [
+    {
+      "repo": "thanhhvnqb/VadCLIP",
+      "path": "src/clip/clip.py",
+      "raw_url": "https://raw.githubusercontent.com/thanhhvnqb/VadCLIP/main/src/clip/clip.py",
+      "blob_sha": "a5e3e6c5082e3f40aa4fbda9396155e13ed34e9a",
+      "sha256": "520f5f00ad3fc3711eb538e84a3216c0d66dfd842cdc3169e444e6ff3420e8a6",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/thanhhvnqb__VadCLIP/src__clip__clip.py",
+      "decode_markers": [],
+      "encode_image_marker": true,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "thanhhvnqb/VadCLIP",
+      "path": "src/ucf_test.py",
+      "raw_url": "https://raw.githubusercontent.com/thanhhvnqb/VadCLIP/main/src/ucf_test.py",
+      "blob_sha": "5fee0cf93e412ff93b69699628628f37df200acb",
+      "sha256": "802dcead4cac4d3beaa9531483a3d8a0e674b15c9f881728d898591aa244ac5b",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/thanhhvnqb__VadCLIP/src__ucf_test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "thanhhvnqb/VadCLIP",
+      "path": "src/ucf_train.py",
+      "raw_url": "https://raw.githubusercontent.com/thanhhvnqb/VadCLIP/main/src/ucf_train.py",
+      "blob_sha": "9e56232e340b03a6c399af67d24d128a33231b23",
+      "sha256": "af62d5031dd572c45de21af150a96d6eabe53fe612ec81910b4cf2d2f79adec1",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/thanhhvnqb__VadCLIP/src__ucf_train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "thanhhvnqb/VadCLIP",
+      "path": "src/utils/dataset.py",
+      "raw_url": "https://raw.githubusercontent.com/thanhhvnqb/VadCLIP/main/src/utils/dataset.py",
+      "blob_sha": "6bb01c2a64d41cc1b5343e5e244d029c8514d664",
+      "sha256": "3dc5dea5b32c127be4951e401a7d68a63954ab07887021e8353b34488384f0be",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/thanhhvnqb__VadCLIP/src__utils__dataset.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "thanhhvnqb/VadCLIP",
+      "path": "src/xd_test.py",
+      "raw_url": "https://raw.githubusercontent.com/thanhhvnqb/VadCLIP/main/src/xd_test.py",
+      "blob_sha": "83f6e8033148eec2af39fd31ae0ff69691767991",
+      "sha256": "622eacd087602a8468d5a29bb06e08872b92bf8e05d6f0d8483a6f354bf3a45d",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/thanhhvnqb__VadCLIP/src__xd_test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "thanhhvnqb/VadCLIP",
+      "path": "src/xd_train.py",
+      "raw_url": "https://raw.githubusercontent.com/thanhhvnqb/VadCLIP/main/src/xd_train.py",
+      "blob_sha": "c08a3d4cb5683ec5f1f898c9ed0b1847bf589248",
+      "sha256": "1ee6f3768206f45d00bb2144b5d2e8f23e06d816545a3d0f5774eadd734f25a8",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/thanhhvnqb__VadCLIP/src__xd_train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/class_prototypes/README.md",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/class_prototypes/README.md",
+      "blob_sha": "d76ed0713a306c65b4ef7e5ca045c5654f855500",
+      "sha256": "d1f83dae9d88fa5dcf3f3aa55b801a778d0f4f49da3eb59b65a26c29eafdea5e",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__class_prototypes__README.md",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/class_prototypes/build_prototypes.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/class_prototypes/build_prototypes.py",
+      "blob_sha": "e35a6e720a18a13435a7a80d719fdb8de6d2de21",
+      "sha256": "b5b38264190bbe06e568854a6d9acb8594b6307440626cba3c5a45c55eb4487a",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__class_prototypes__build_prototypes.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/class_prototypes/export_results_docx.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/class_prototypes/export_results_docx.py",
+      "blob_sha": "d740915004868e5e95b3daf7f669b0716d879fff",
+      "sha256": "f9da18ecc9f5f0943e209998135a2186a586ea76ede9b5fff0d1d5b9b711b50a",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__class_prototypes__export_results_docx.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/class_prototypes/options.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/class_prototypes/options.py",
+      "blob_sha": "108d112e343134239e2ab1bfd35f18cc347cda09",
+      "sha256": "fc82e1079b3500ccc0433ea8c5819441ab9d1cd508671a3fe4c549b253bd112f",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__class_prototypes__options.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/class_prototypes/prototype_model.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/class_prototypes/prototype_model.py",
+      "blob_sha": "8268c48df7b294e6868cdbf5b913345b251e9a8e",
+      "sha256": "62721fb2d0cbb9a5be21614f1fc3402b73a89c36071b49ed21ba3e6d03a69581",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__class_prototypes__prototype_model.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/class_prototypes/prototype_utils.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/class_prototypes/prototype_utils.py",
+      "blob_sha": "60871dde2fbc91bb0d8d1673dd5ee2eef5c82279",
+      "sha256": "55e9101f4f2dc672e8e5cb219a0692b42a80f947e1403d130dbec106b9ddc997",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__class_prototypes__prototype_utils.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/class_prototypes/test_ucf.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/class_prototypes/test_ucf.py",
+      "blob_sha": "477b29053cafdd0d7df195efe63de11092fc0f4e",
+      "sha256": "6529b9624521adee54abc81a575331aed3f8f0296ecc9c64428a7d4e6b723063",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__class_prototypes__test_ucf.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/class_prototypes/tests/test_prototype_utils.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/class_prototypes/tests/test_prototype_utils.py",
+      "blob_sha": "5bf98db8f5946aacd8bf9f2bab292b8966aebe19",
+      "sha256": "0dda9e9557a17531ffaccac90aac87b4524e7af9bed7eb350ac62c921a021f2c",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__class_prototypes__tests__test_prototype_utils.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/class_prototypes/train_ucf.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/class_prototypes/train_ucf.py",
+      "blob_sha": "a3cb42bbe5bab9e2c95e250559adbc6dcd245295",
+      "sha256": "e01386f545c128869c72826ed6bad4956d18c95bb487d5ce3bd4006f1ecf069c",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__class_prototypes__train_ucf.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/class_prototypes/ucf_labels.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/class_prototypes/ucf_labels.py",
+      "blob_sha": "edad992104d5099861a59ff23a6b0b34390ababe",
+      "sha256": "50ba088b0610f952d54a907aaa663027909396ccfdf69eeea10805cc15011557",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__class_prototypes__ucf_labels.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/README.md",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/README.md",
+      "blob_sha": "458c2ee8c432062f2a5a3d43f9a3991d216102c3",
+      "sha256": "638af36dceeb158811d3f8bd9a02639d5ce835144d600516f3a57baf9945b00c",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__README.md",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/__init__.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/__init__.py",
+      "blob_sha": "430b78f64fa3af64d8eb5358c44e854791c342c4",
+      "sha256": "de03dcf963c3c744bd8eb4154c63dc7432929a7bf7b1d7302e2b59edcb84ce1b",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants____init__.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/adaptive_instance_selection.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/adaptive_instance_selection.py",
+      "blob_sha": "6f5d25b232b076450825256cdb48ee41dfe66719",
+      "sha256": "f2b1e0df4fe5b3d7fb391b0b9ca7ef31f2baedddea850852688c8bd278c73ef1",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__adaptive_instance_selection.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/dataset_variants.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/dataset_variants.py",
+      "blob_sha": "e45feab83a100b66fd3a57fe31afbd02facb2acd",
+      "sha256": "991aa01f11c9b84d64384619591311fd3c02bd45f0ca1df0ca25913ac924359e",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__dataset_variants.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/detection_map.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/detection_map.py",
+      "blob_sha": "ce15f3a0740c3474da68aa094ae053ca54648ddd",
+      "sha256": "ef9f1f44050d681649c64007e74956b5cb4df643a8d9aa23f36a951b2182ddc8",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__detection_map.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/dual_k_selection.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/dual_k_selection.py",
+      "blob_sha": "2c7116fd057cf581eed6939d93e69741c979a95e",
+      "sha256": "37a48319029d369e48d0abc4a70b5027628bac429c2842223f92667d52a6169c",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__dual_k_selection.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/inspect_topk_weights.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/inspect_topk_weights.py",
+      "blob_sha": "ba17170be801ef9f2da73da5c5cea63df3ea2bf8",
+      "sha256": "747303a0864c58511a122d15a2f4e58304f714be2f0ccb3a318314ee78c5a7c1",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__inspect_topk_weights.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/options.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/options.py",
+      "blob_sha": "05cad0014b37e879e251f91d58bf077f8c4619e6",
+      "sha256": "12f55b8c053dc4db7e142b8b4d011f6a6e4702225be006a94610b5501dfdf20a",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__options.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/ranking_loss.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/ranking_loss.py",
+      "blob_sha": "9a3e6f364a3672c80758bbe378990ab9e6101bf8",
+      "sha256": "22bfb1187b4727b067cfc3d2cff6b303126698196929f02553c985ed360ea116",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__ranking_loss.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/snippet_pca_loss.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/snippet_pca_loss.py",
+      "blob_sha": "60903710004ea07ebc5d21660491f0e90eef06e5",
+      "sha256": "47fd3db551184b22242d723b836cd122f30e6b015b353c0987f161c34df66ca4",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__snippet_pca_loss.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/temperature_schedule.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/temperature_schedule.py",
+      "blob_sha": "6d324298a1ab05d320952a6e638dca2b07bef616",
+      "sha256": "2a3d600bba8e9fd5dd992b34917db04232edc45cb05da66e4a9d843b1a7e1100",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__temperature_schedule.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/temporal_smoothness.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/temporal_smoothness.py",
+      "blob_sha": "830573f22cb9f7bc83bdb4ac58df062086028069",
+      "sha256": "7fb4c30d777c7a666c529cb713e5c3168de4f296dacc89ba44e4cc57b84fc9bb",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__temporal_smoothness.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/test_ucf.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/test_ucf.py",
+      "blob_sha": "9c046475a75fb12f72fcea66134697a79efb6fda",
+      "sha256": "51aa9adddb1fc4fef8f917b30982eb2dd518be40159a3fa8cd064982ef9bb413",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__test_ucf.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/tests/__init__.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/tests/__init__.py",
+      "blob_sha": "47451bd7a98bc6ad4cf7f92f5f1ae331068ff34a",
+      "sha256": "3032c12e168f5b3b96c0a748d3a7c1526b7fde3095e145f873846d0fbcdaa263",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__tests____init__.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/tests/test_adaptive_instance_selection.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/tests/test_adaptive_instance_selection.py",
+      "blob_sha": "5606d8b66b876abef5198fcb459820d63db470f2",
+      "sha256": "11d6a44672146cb12bc653dfa338b2efb0abb2542d6f19e5e6c4e6b226a33877",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__tests__test_adaptive_instance_selection.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/tests/test_dual_k_selection.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/tests/test_dual_k_selection.py",
+      "blob_sha": "ddd87777361471c891e487cc5ae009e1876ee2f0",
+      "sha256": "f0a5f68a6cac20240b12e55d73057b73ea003bc4adeb341faf4c778fdb47b7e2",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__tests__test_dual_k_selection.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/tests/test_ranking_loss.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/tests/test_ranking_loss.py",
+      "blob_sha": "4ce579399ed2a8b7c86e022f75785d2c59403cc5",
+      "sha256": "b00bed9884683a735f5c92fd06d1fb462b5473aecc78728b27aaf2e01422a690",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__tests__test_ranking_loss.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/tests/test_snippet_pca_loss.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/tests/test_snippet_pca_loss.py",
+      "blob_sha": "baa1730d3af2117b645886adc6b5a2a96fa7943b",
+      "sha256": "c5905a3f0435126d687811866951a7c36e096bc7f02c114e79f524eef6e202b6",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__tests__test_snippet_pca_loss.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/tests/test_temperature_schedule.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/tests/test_temperature_schedule.py",
+      "blob_sha": "2388b73766b6624c9d957a2a60605c927c446290",
+      "sha256": "2e8be8c374e6dcbb3dca37c98f306ce76698be3e8bee1661aa09d286f12f4ba5",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__tests__test_temperature_schedule.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/tests/test_temporal_smoothness.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/tests/test_temporal_smoothness.py",
+      "blob_sha": "ff6e1f4db4daf0484d2da4b8ecd5c6bf60ef938a",
+      "sha256": "4210b5e0a4460b9db35b6a37b133943398117f0d3cf2d5f24da5932b5c22485f",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__tests__test_temporal_smoothness.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/tests/test_topk_pooling.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/tests/test_topk_pooling.py",
+      "blob_sha": "e3cba0ad3ea72dc6e2a2687621e7187653ff61d2",
+      "sha256": "0e25bae63f7ad7f33763c439fecfc375150eecca5b690bddd5b02dd4a91d05ee",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__tests__test_topk_pooling.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/topk_pooling.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/topk_pooling.py",
+      "blob_sha": "33c9c5a58bdde883798d45ff9f83cf61dfe1985e",
+      "sha256": "6ea1aaa4df9e7eac20b696e6276a4893a9f0413133bb652e5be199fc92cf5e76",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__topk_pooling.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/train_ucf.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/train_ucf.py",
+      "blob_sha": "4cc8142b479e2519b860043862bf934ea309542c",
+      "sha256": "00ac7c2aa7073223e530fe03b6eb90f182f78cd91e79dc8be338e5b88f267732",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__train_ucf.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "experiments/topk_variants/training_log.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/experiments/topk_variants/training_log.py",
+      "blob_sha": "ad7b450ab550435695677077a30bfaaf30989bde",
+      "sha256": "a4cf095d3c3799e5a6cfd2fa66b88ea77d9dc4a66f392271e59d586f015a6114",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/experiments__topk_variants__training_log.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Belldenchoi/VadCLIP",
+      "path": "src/model.py",
+      "raw_url": "https://raw.githubusercontent.com/Belldenchoi/VadCLIP/main/src/model.py",
+      "blob_sha": "bbac6e9e770220672a03e98fc64b46d4c67515ae",
+      "sha256": "5ef2a4122d8fdc84bbd8d437b279d161e509e3c889e34a1c6d56e466dd22ecf6",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Belldenchoi__VadCLIP/src__model.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "experiment/README.md",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/experiment/README.md",
+      "blob_sha": "f423c314ec7b75e8395664ca12b3f6f215e12993",
+      "sha256": "7e50d08332413b133f394d5a02913445f962aa4489b531c5a9d362c427c0967e",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/experiment__README.md",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "experiment/scripts/ablation_models.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/experiment/scripts/ablation_models.py",
+      "blob_sha": "f65d9ff96901284bf66accff257a046be471e06f",
+      "sha256": "ee5593f172177c2f63dac0d89190ec8010e1ddea2db70d877a2fa8d99961701e",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/experiment__scripts__ablation_models.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "experiment/scripts/common.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/experiment/scripts/common.py",
+      "blob_sha": "554ada09def484c48a66aaaaf8720af365708e73",
+      "sha256": "0ca27957a92fc1b686050da880aa0e9ae021291c3d96aa145e974c930c8862b6",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/experiment__scripts__common.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "experiment/scripts/run_ablation.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/experiment/scripts/run_ablation.py",
+      "blob_sha": "873bf0be14a4506c8a8d24d12a6d0009315f909c",
+      "sha256": "bb188964b90cdae2572149395f87549bfef6f7386d607b30fe77b25c51d57274",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/experiment__scripts__run_ablation.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "experiment/scripts/run_branch_fusion.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/experiment/scripts/run_branch_fusion.py",
+      "blob_sha": "c74bdcd8190794426caa5a47771bffb3825491b2",
+      "sha256": "1e88dd70f307162de060f63faf78b87ff600995bb0909a389ce3b324ce008df0",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/experiment__scripts__run_branch_fusion.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "experiment/scripts/run_prompt_hyperparams.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/experiment/scripts/run_prompt_hyperparams.py",
+      "blob_sha": "831f32d2661709c61fa40910e5cfb6c693354c94",
+      "sha256": "01e38f7d4c8ec30392152c3cea0fdcd151d72d0fed94b15a7cbd32833cf0808b",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/experiment__scripts__run_prompt_hyperparams.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "experiment/scripts/run_visualize_cases.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/experiment/scripts/run_visualize_cases.py",
+      "blob_sha": "0695ff507ef1790febe42a08ffa9a2181910aae0",
+      "sha256": "666d67de64499a7559d6ebabc910d89637c7619086bd21df2f812d2fb071a5c8",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/experiment__scripts__run_visualize_cases.py",
+      "decode_markers": [
+        "VideoCapture",
+        "read_video"
+      ],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "experiment/scripts/run_xd_eval.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/experiment/scripts/run_xd_eval.py",
+      "blob_sha": "663d6a599f3ff30a653c82d14f7b589488c5e5b4",
+      "sha256": "436ac7be4d781d5fba3c6817ed6d894ea1004ace5e11d3207205605ecef0ce8d",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/experiment__scripts__run_xd_eval.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "src/clip/clip.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/src/clip/clip.py",
+      "blob_sha": "02f4c2791612bd48c80f015c22d1535e5ceac7f4",
+      "sha256": "1dae049a2754be17e15fa20e5c6e7d310dfbbfa5c35d874264eadd28c4277816",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/src__clip__clip.py",
+      "decode_markers": [],
+      "encode_image_marker": true,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "src/clip/model.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/src/clip/model.py",
+      "blob_sha": "7fcc276a1589fd1ba21aa5ac6cc2289591c61e1e",
+      "sha256": "79725dafb5c5977c3ff53872ba0a1c05af0e8bdfb295510db1ddcd8335db829d",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/src__clip__model.py",
+      "decode_markers": [],
+      "encode_image_marker": true,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "src/crop.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/src/crop.py",
+      "blob_sha": "681007edb5d8f6f5ec29df08ae74380e2ff35793",
+      "sha256": "5e2edde09b7c5150408d7a41a5436eef787b5327e8b8608f201d69d8f18f1a4e",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/sources/Wedsonlin__VadCLIP/src__crop.py",
+      "decode_markers": [
+        "VideoCapture",
+        "read_video"
+      ],
+      "encode_image_marker": true,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "src/model.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/src/model.py",
+      "blob_sha": "c06ad9d60eaa47c20d08509e634b10e089126b07",
+      "sha256": "84d6b79623ff52464dd06ee0ad7a6d093694d5bb71fc7e8b07beea84bf40cee1",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/src__model.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "src/ucf_test.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/src/ucf_test.py",
+      "blob_sha": "bed93ab68d6caec496944bdb34ef6a1a40295b80",
+      "sha256": "3aaa29b8267db559afdb550690508fd02eab44e25481562fe12353a1bfad8214",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/src__ucf_test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "src/utils/layers.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/src/utils/layers.py",
+      "blob_sha": "d080d761f12dca580e5a141fe34123f63069680d",
+      "sha256": "1b4d98ad8875fa9f6485966c046322f43506f73903f75fb8253c9dbada7b34fb",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/src__utils__layers.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "src/utils/logger.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/src/utils/logger.py",
+      "blob_sha": "d586c62a0fdd665c131ecb19e9f2a14c3a2092fa",
+      "sha256": "c2cd073480f29ce4e82a1292a6242a605e2676280dc21b04d0e9076409534bec",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/src__utils__logger.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "src/utils/tools.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/src/utils/tools.py",
+      "blob_sha": "e936d528085c2f2637087e2f1abe27fadb60eb77",
+      "sha256": "f392dd628ea55b54aa6f2572115e7c2fe4be9387521974934e04bbe5dcd90d91",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/src__utils__tools.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "src/utils/xd_detectionMAP.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/src/utils/xd_detectionMAP.py",
+      "blob_sha": "4c416dafec06d8c423671dead71f98a3b2929b38",
+      "sha256": "e3100e199727238142e2078887f01fb2f1a4935dc13e651f0f28f9d1ece7d292",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/src__utils__xd_detectionMAP.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "src/xd_test.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/src/xd_test.py",
+      "blob_sha": "dc55741db3ca252b14006a5e37099b4e9a034b37",
+      "sha256": "83d1004b632abd46032f838624538328fe6455e08ff17e01fe9b26884be01498",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/src__xd_test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "src/xd_train.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/src/xd_train.py",
+      "blob_sha": "03aba0b1ef7deab72eeb2ca9121245a28e2a163a",
+      "sha256": "0518331c324a5a36a2509bda87aba96c71befa7cfa49c74ca28e772b3255c7a9",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/src__xd_train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "test.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/test.py",
+      "blob_sha": "86b51a6e438811bd18301a4f6953ba5fb25070d6",
+      "sha256": "000f00d315103a853121e89e408e534fe12f9d52957a5f2ab95564cf3813ffdc",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Wedsonlin__VadCLIP/test.py",
+      "decode_markers": [
+        "read_video"
+      ],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "path": "tests/test_crop_video_features.py",
+      "raw_url": "https://raw.githubusercontent.com/Wedsonlin/VadCLIP/main/tests/test_crop_video_features.py",
+      "blob_sha": "75fd5b69208a1d1d21b65438a8ead24e14099512",
+      "sha256": "d0328e7938a2b0010574f6b7f9711b3b7800e47d440aeadef6c251e27aad37ab",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/sources/Wedsonlin__VadCLIP/tests__test_crop_video_features.py",
+      "decode_markers": [
+        "read_video"
+      ],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "ZGZ713912/VadCLIP",
+      "path": "README.md",
+      "raw_url": "https://raw.githubusercontent.com/ZGZ713912/VadCLIP/main/README.md",
+      "blob_sha": "2fe56ec484590eb7784ae7b718f54676c566e3cf",
+      "sha256": "e2ce40e459352478023578c35c9c32357cd0ea5425e8badac4bc76fa40d23668",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/ZGZ713912__VadCLIP/README.md",
+      "decode_markers": [],
+      "encode_image_marker": true,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "README.md",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/README.md",
+      "blob_sha": "b1345b58160e9324a0da0714821e614084ae1ffa",
+      "sha256": "60c6a72c24f1320277d571af05f37d213e5560177e5e45ab595a5205281f6342",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/README.md",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "baselines/__init__.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/baselines/__init__.py",
+      "blob_sha": "74dca69004d5e17eda170954ad03e51a23703807",
+      "sha256": "7e4dcf5aea988238b4c9d7ccc1e9886216e8193220e3b66b57553378a3ae136b",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/baselines____init__.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "baselines/common.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/baselines/common.py",
+      "blob_sha": "746888b6b864d38a6c0a5ab1503dd4e7c97d675b",
+      "sha256": "8efbf23cae8461be65cf1b8f306f21606cd9cd1302417ac920bcf4bab869ab01",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/baselines__common.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "baselines/deepmil/__init__.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/baselines/deepmil/__init__.py",
+      "blob_sha": "b5475b585786972b9ffaeb72de080fa951a26886",
+      "sha256": "93096fd82aedd3a1a59ca026c57e995d7252bc67a1ff45ce743536cdba4f2e67",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/baselines__deepmil____init__.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "baselines/deepmil/dataset.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/baselines/deepmil/dataset.py",
+      "blob_sha": "5e7fe398734d051806c8fc2c0c5997ff37f0f438",
+      "sha256": "eb285b72db01ee57d6641c4e3402341da32c3a6ef2ab1f9bb17d871dac8b98f2",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/baselines__deepmil__dataset.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "baselines/deepmil/model.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/baselines/deepmil/model.py",
+      "blob_sha": "0131c2c1ef3e1cedf5c1afc15d4dc010a2043363",
+      "sha256": "8863a60c7fb3c703b95ba7086d35e5792c2ef066ba07f2177f8c56a5db855e9a",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/baselines__deepmil__model.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "baselines/deepmil/test.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/baselines/deepmil/test.py",
+      "blob_sha": "10595e4437ef9230b79f9c18b16c0e120b031c63",
+      "sha256": "d186e6240f16200f385cb7e335d1cedb6df4f194d9f2b403e77b4b2ca095e23b",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/baselines__deepmil__test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "baselines/deepmil/train.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/baselines/deepmil/train.py",
+      "blob_sha": "ed29a2df9441d545b032a60bf7a06f2149bd414c",
+      "sha256": "59099ea793497dd394adaeea140f8bdb0deb94a2684b39740873f819ac899ca0",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/baselines__deepmil__train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "baselines/prepare_lists.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/baselines/prepare_lists.py",
+      "blob_sha": "863b8f04978325d666ce12cec4e7e134e58c063f",
+      "sha256": "a199ce4c265237f1a38add4e647f60df7538485e05a9f9004d301508495a7722",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/baselines__prepare_lists.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "baselines/shared_eval.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/baselines/shared_eval.py",
+      "blob_sha": "59259b5ba8530e9e55f6de7d5cbf5531cbd68af9",
+      "sha256": "1b89f171a4e84e196bbedc7dfb8065dd1a26b758de17735e38686b0761b1faae",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/baselines__shared_eval.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "baselines/svm/__init__.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/baselines/svm/__init__.py",
+      "blob_sha": "fc3ca623a86bd95b38e7d6734fbb7bfc6934061c",
+      "sha256": "91cb6668d6b9e7a366d618323c25e66960bf749e3fbacc4b8dfed2a468a4b278",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/baselines__svm____init__.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "baselines/svm/test.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/baselines/svm/test.py",
+      "blob_sha": "a0e70e2a468873cf954ba20a1f4d20fa787346a0",
+      "sha256": "ad8a42e66f577591e6ea48bd049184a3c4ec68e94adf791ae0e0808a2a058ecb",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/baselines__svm__test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "baselines/svm/train.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/baselines/svm/train.py",
+      "blob_sha": "790b6b63d3ce0bd827b30356fb8ce5173d4b620d",
+      "sha256": "a242e322732632a1e333fc2e36cd7f2da71409cc561052150727032dc9f90f49",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/baselines__svm__train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "src/clip/clip.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/src/clip/clip.py",
+      "blob_sha": "a2d78bec395a331b9b401a2ced9c0636db42bbef",
+      "sha256": "f86009e310df73850e8af2100982ec1e9b92bed286161d5b42052d27df6a8ce7",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/src__clip__clip.py",
+      "decode_markers": [],
+      "encode_image_marker": true,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "src/ucf_test.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/src/ucf_test.py",
+      "blob_sha": "aa39d86f264178329c01437ed3e7f315ed3876de",
+      "sha256": "aa830315db86b6ae31e7a7fce3b9780da399ec3c374c8a1327fa85578bf25c90",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/src__ucf_test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "src/ucf_train.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/src/ucf_train.py",
+      "blob_sha": "a8bea0a60abc27b11864ea23bc94e9ed9984127b",
+      "sha256": "a925c14f96bbdf083a502c32f4ebf70ff8243eeea01d7f8747b18b14b12c0427",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/src__ucf_train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "src/utils/layers.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/src/utils/layers.py",
+      "blob_sha": "319baf88dd6a846ceaf4b150cc917ddff88c2903",
+      "sha256": "7a92f921f5e8e769dc2863669668b995ac9d23979e947b5c068153670b1586fb",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/src__utils__layers.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "src/xd_test.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/src/xd_test.py",
+      "blob_sha": "b7615b2d347ce9cc61be3bc160b700e339f4d8c9",
+      "sha256": "f0dae7566167a4358d833da43d9861c4557180cb91f8b1c185a999f89e5cb7a2",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/src__xd_test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Shad0w-s/VadCLIPFork",
+      "path": "src/xd_train.py",
+      "raw_url": "https://raw.githubusercontent.com/Shad0w-s/VadCLIPFork/main/src/xd_train.py",
+      "blob_sha": "0966c8fd80721bbe688be4ee36ee33553ae4a2d8",
+      "sha256": "1888b84bb2ebe3ab947cd196ccdcab6eec8e24424b3670e62e134e666bdc0cd7",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Shad0w-s__VadCLIPFork/src__xd_train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "count_parameters.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/count_parameters.py",
+      "blob_sha": "48ea47ff0aea90a088a27b2e590984e90ee250b4",
+      "sha256": "42280295f69fe7274054a5210ab60f9b29eb5efad0ee20f5386dff748e42c257",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Jiisou__VadCLIP/count_parameters.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "list/make_gt_custom.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/list/make_gt_custom.py",
+      "blob_sha": "984d19ddc872e799d7b5e2916a3aacaafaec7a31",
+      "sha256": "defd753e384a5938b694db1a270788f6ede77283c4afac88f589df8ba77ea3f2",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Jiisou__VadCLIP/list__make_gt_custom.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "list/make_gt_mAP_custom.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/list/make_gt_mAP_custom.py",
+      "blob_sha": "684b5c67c2699b9c86701e6d6439e5f81c996939",
+      "sha256": "47f6eb7b718df7b0ca478ec14916366f581ee5e6358f666caab7f74dd9597c34",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Jiisou__VadCLIP/list__make_gt_mAP_custom.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "list/make_list_custom.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/list/make_list_custom.py",
+      "blob_sha": "980050dc8a25948cdabddebc81f48ca1b336ed77",
+      "sha256": "d9ff827a140650fb6050bf3ea02f4301ec8f79e83fe300e9d928d3ffe664b80f",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Jiisou__VadCLIP/list__make_list_custom.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "src/custom_option.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/src/custom_option.py",
+      "blob_sha": "aea94f83b64e1c6fc2d47eab09ab6f5a7b925c51",
+      "sha256": "f2d3ff55944e170e1cd38e3904f08af11f89505a28b44ec5eb57f614fd27af5f",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Jiisou__VadCLIP/src__custom_option.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "src/custom_test.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/src/custom_test.py",
+      "blob_sha": "4b764044e6fec2a453177c0d8f2b2629adea38e9",
+      "sha256": "752a625d4b919de5062c910d1d9853e5b65c0b2e2c832cf82dfb2c6287355abc",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Jiisou__VadCLIP/src__custom_test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "src/custom_train.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/src/custom_train.py",
+      "blob_sha": "f213f4a8682419ca6cdf36299993b650ee79393b",
+      "sha256": "bff20bee87a6e199e7fa897983d6b3eb38357fe584b9b8e14f5d4da32680d499",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Jiisou__VadCLIP/src__custom_train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "src/extract_mobileclip_features.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/src/extract_mobileclip_features.py",
+      "blob_sha": "ef9f2e007d52d8d2fefe95ca2441c1534651f51b",
+      "sha256": "e8b006828bee7ed0ded3a75214905a8d4d41d9c656543b35c9e513ae9bcc9cb1",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/sources/Jiisou__VadCLIP/src__extract_mobileclip_features.py",
+      "decode_markers": [
+        "VideoCapture"
+      ],
+      "encode_image_marker": true,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "src/mobileclip_wrapper.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/src/mobileclip_wrapper.py",
+      "blob_sha": "98dc0379df2741d13ffbf1899ae9c6d427831653",
+      "sha256": "98f2c3b3e033120ea8ea0b9157f1886867ca7f3c4920783ae2a82111a2942e7a",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Jiisou__VadCLIP/src__mobileclip_wrapper.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "src/model_mobileclip.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/src/model_mobileclip.py",
+      "blob_sha": "1cf68db3111b771fb692999404f2842ed2a3d80b",
+      "sha256": "5b2672e2447a72178f17925255df427ab7dde66aeb0ecac280d49a49c74e2e43",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Jiisou__VadCLIP/src__model_mobileclip.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "src/ucf_window_eval.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/src/ucf_window_eval.py",
+      "blob_sha": "08dda57c4b614da7950742993b7cbff0b48fb5dd",
+      "sha256": "03f852b16812735a729c50467f7101ad86181df6bfdbb26796aa6efa64ba4ab5",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Jiisou__VadCLIP/src__ucf_window_eval.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "src/utils/custom_detectionMAP.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/src/utils/custom_detectionMAP.py",
+      "blob_sha": "7d19cf48e9897bac478a4b0461dcb92a2f3edf76",
+      "sha256": "04a4ff1e89179eb69f6e7794051b929c0d6a97799c0d5ba6b7c7b9c1bd11f895",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Jiisou__VadCLIP/src__utils__custom_detectionMAP.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "path": "src/utils/tools.py",
+      "raw_url": "https://raw.githubusercontent.com/Jiisou/VadCLIP/main/src/utils/tools.py",
+      "blob_sha": "4ce01b81ecafcfbea66fdb31a3affc34d1312ae4",
+      "sha256": "20d0d0c63bf83a5057b6c71ca3e017708eea68860eed10f2a781d980be440bf3",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Jiisou__VadCLIP/src__utils__tools.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "xgh1996/VadCLIP",
+      "path": "src/model.py",
+      "raw_url": "https://raw.githubusercontent.com/xgh1996/VadCLIP/main/src/model.py",
+      "blob_sha": "f1b28b49316b70a79478fb40810c1c205693b457",
+      "sha256": "6502a4208d77d6332c162a4e07d971c0d01463ace71c1a50997ca032d75ac8fc",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/xgh1996__VadCLIP/src__model.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "xgh1996/VadCLIP",
+      "path": "src/ucf_option.py",
+      "raw_url": "https://raw.githubusercontent.com/xgh1996/VadCLIP/main/src/ucf_option.py",
+      "blob_sha": "00e130e52dcb8b027a31adbddf6ae2d20023cbcc",
+      "sha256": "61e510d9055e34f43431655333fbc41fdeebfca293ef926b7b2756a54fe98397",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/xgh1996__VadCLIP/src__ucf_option.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "xgh1996/VadCLIP",
+      "path": "src/ucf_test.py",
+      "raw_url": "https://raw.githubusercontent.com/xgh1996/VadCLIP/main/src/ucf_test.py",
+      "blob_sha": "0381b0df11826ba76cf2de55b112c3fb4a161683",
+      "sha256": "2b75dfaa41a8cc8eea6b391932dbfe1c8b512739613fee64a615469efcfdcc14",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/xgh1996__VadCLIP/src__ucf_test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "xgh1996/VadCLIP",
+      "path": "src/ucf_train.py",
+      "raw_url": "https://raw.githubusercontent.com/xgh1996/VadCLIP/main/src/ucf_train.py",
+      "blob_sha": "bff8af84d6d8e672f4013eb4c26b1f1428c456af",
+      "sha256": "52e086e4ebdfdb08b941776c31fd28986084d59bec4e1a081a3e524785a9a4e7",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/xgh1996__VadCLIP/src__ucf_train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "xgh1996/VadCLIP",
+      "path": "src/utils/dataset.py",
+      "raw_url": "https://raw.githubusercontent.com/xgh1996/VadCLIP/main/src/utils/dataset.py",
+      "blob_sha": "f29d277d0e452899ec5c9a19ec1e1807a3df5792",
+      "sha256": "dbcaed3789f57fab942bff1c92133bc6fe51c198d3cc487961ddde1f55c60f05",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/xgh1996__VadCLIP/src__utils__dataset.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "xgh1996/VadCLIP",
+      "path": "src/utils/tools.py",
+      "raw_url": "https://raw.githubusercontent.com/xgh1996/VadCLIP/main/src/utils/tools.py",
+      "blob_sha": "2ccb8b30fd1cef2542b35d0c970557595d42b836",
+      "sha256": "9498991263b11750a6335ccdb836fe19e1f3e6d1795bbbc4f38a39faf6d3ad9c",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/xgh1996__VadCLIP/src__utils__tools.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "bardiya13/VadCLIP",
+      "path": "src/crop.py",
+      "raw_url": "https://raw.githubusercontent.com/bardiya13/VadCLIP/main/src/crop.py",
+      "blob_sha": "783a08ac030fd3dd0a233dcd3fb41ac302397d19",
+      "sha256": "67460ed2f6053c0a77c3640b929b6d23de0d28e5423f4bf401df893f948c1091",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/sources/bardiya13__VadCLIP/src__crop.py",
+      "decode_markers": [],
+      "encode_image_marker": true,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Goncalo123/VadCLIP",
+      "path": "src/model.py",
+      "raw_url": "https://raw.githubusercontent.com/Goncalo123/VadCLIP/main/src/model.py",
+      "blob_sha": "8a208fa5c157aaefca4bc80fe9418d3c20bc50cb",
+      "sha256": "1dd7f91e822cc8476d15a245a7c6cf6b9d62f4a2a13e2aa63103b3cfb9d8cd3f",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Goncalo123__VadCLIP/src__model.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Goncalo123/VadCLIP",
+      "path": "src/ucf_option.py",
+      "raw_url": "https://raw.githubusercontent.com/Goncalo123/VadCLIP/main/src/ucf_option.py",
+      "blob_sha": "e6809b2b20f9651f25fd8545605d92c5cdc11142",
+      "sha256": "8204ae430b999c4b10ad5a91d899a720b7d0302a098e76e19cc26fa5477ce7c0",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Goncalo123__VadCLIP/src__ucf_option.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Goncalo123/VadCLIP",
+      "path": "src/ucf_test.py",
+      "raw_url": "https://raw.githubusercontent.com/Goncalo123/VadCLIP/main/src/ucf_test.py",
+      "blob_sha": "04941770b17a749c6627075b2fbdcf5b26931dd4",
+      "sha256": "e100d2152bf775d8053b215be4b445ae689b4db51a093b97fbabbfaaadaf2461",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Goncalo123__VadCLIP/src__ucf_test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Goncalo123/VadCLIP",
+      "path": "src/ucf_train.py",
+      "raw_url": "https://raw.githubusercontent.com/Goncalo123/VadCLIP/main/src/ucf_train.py",
+      "blob_sha": "a814f768e12f4f1cca57b21f8f2f8cb8e8636dbf",
+      "sha256": "cc2fd6bfc3db18ae948c08a02dd59d02de88095f409f6b815e755e31963bbb79",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Goncalo123__VadCLIP/src__ucf_train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "song248/VadCLIP",
+      "path": "path_change.py",
+      "raw_url": "https://raw.githubusercontent.com/song248/VadCLIP/main/path_change.py",
+      "blob_sha": "be5db53f78d00e226455a954fbe70b5c72e10555",
+      "sha256": "7b9b38dcef18c19bb92ac6ee3a7d8931a2a753f1b2938c5469e9abb48ff464f6",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/song248__VadCLIP/path_change.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "song248/VadCLIP",
+      "path": "src/ucf_option.py",
+      "raw_url": "https://raw.githubusercontent.com/song248/VadCLIP/main/src/ucf_option.py",
+      "blob_sha": "ea46e870a5bf1232453638dec818737491c581bd",
+      "sha256": "1be189e35f7f7712c09d6681bea019a50f795dab257b88dc510edc1949cc6693",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/song248__VadCLIP/src__ucf_option.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Cascade0507/VadCLIP-MSAD",
+      "path": "list/make_gt_mAP_msad.py",
+      "raw_url": "https://raw.githubusercontent.com/Cascade0507/VadCLIP-MSAD/main/list/make_gt_mAP_msad.py",
+      "blob_sha": "25c6b2c0a7f8d34bc2df7328034dc0aa8ea57326",
+      "sha256": "2c30e8a6218951af422aad43c83d005c498b1377e8f7ac1c46ed573d0e367075",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Cascade0507__VadCLIP-MSAD/list__make_gt_mAP_msad.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Cascade0507/VadCLIP-MSAD",
+      "path": "list/make_gt_mAP_ucf.py",
+      "raw_url": "https://raw.githubusercontent.com/Cascade0507/VadCLIP-MSAD/main/list/make_gt_mAP_ucf.py",
+      "blob_sha": "56962ee9c53c1665d4d05d5828b619cfdb00fb5e",
+      "sha256": "3a91edf4d1662dca653728ec3ffad98f4f1643065dc86a085e861ce0020349ad",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Cascade0507__VadCLIP-MSAD/list__make_gt_mAP_ucf.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Cascade0507/VadCLIP-MSAD",
+      "path": "list/make_gt_msad.py",
+      "raw_url": "https://raw.githubusercontent.com/Cascade0507/VadCLIP-MSAD/main/list/make_gt_msad.py",
+      "blob_sha": "0e430107d605945a7f7b857e4895d14ae18b49b2",
+      "sha256": "96ece5c28130600cdafc84eace1d90051acad9e6d0ed2912f06fc3c160c1befb",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Cascade0507__VadCLIP-MSAD/list__make_gt_msad.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Cascade0507/VadCLIP-MSAD",
+      "path": "list/make_gt_ucf.py",
+      "raw_url": "https://raw.githubusercontent.com/Cascade0507/VadCLIP-MSAD/main/list/make_gt_ucf.py",
+      "blob_sha": "630dc8ac7193c61deed793142a651a5ed2f43dd5",
+      "sha256": "04a1106cf3dad34274ef9d273dfaf14f2330e60438b95ef91127a3d9511be695",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Cascade0507__VadCLIP-MSAD/list__make_gt_ucf.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Cascade0507/VadCLIP-MSAD",
+      "path": "list/make_gt_xd.py",
+      "raw_url": "https://raw.githubusercontent.com/Cascade0507/VadCLIP-MSAD/main/list/make_gt_xd.py",
+      "blob_sha": "103643502e992dd7b8c91b3e3daece563bfae18f",
+      "sha256": "bdb6f02c84cc91c20655500e60ee6b4358c700b92a6805505db342e3b3778c9e",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Cascade0507__VadCLIP-MSAD/list__make_gt_xd.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Cascade0507/VadCLIP-MSAD",
+      "path": "src/model.py",
+      "raw_url": "https://raw.githubusercontent.com/Cascade0507/VadCLIP-MSAD/main/src/model.py",
+      "blob_sha": "33d6092b0dfd831c1c38df0d42cbac5838d6645b",
+      "sha256": "229cf67f8b54c30bf3a22513c3bcdc0982094e6959974e9016fb29598704973d",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Cascade0507__VadCLIP-MSAD/src__model.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Cascade0507/VadCLIP-MSAD",
+      "path": "src/msad_option.py",
+      "raw_url": "https://raw.githubusercontent.com/Cascade0507/VadCLIP-MSAD/main/src/msad_option.py",
+      "blob_sha": "b6bf005a771685abeba38867dfc06c8dc0ee9a28",
+      "sha256": "c2ffe1642398ebb63174b45e0a1247fbdf05f5f67b983ea5a4c33174b6af1c3b",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Cascade0507__VadCLIP-MSAD/src__msad_option.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Cascade0507/VadCLIP-MSAD",
+      "path": "src/msad_test.py",
+      "raw_url": "https://raw.githubusercontent.com/Cascade0507/VadCLIP-MSAD/main/src/msad_test.py",
+      "blob_sha": "9ea60840de356d9cff5289f238bfbb5c674add8e",
+      "sha256": "ddebf502b1fdd8ca7b41b0d8f165a56ab8ee40fcd31553f73cfce77e7bfb888d",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Cascade0507__VadCLIP-MSAD/src__msad_test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Cascade0507/VadCLIP-MSAD",
+      "path": "src/msad_train.py",
+      "raw_url": "https://raw.githubusercontent.com/Cascade0507/VadCLIP-MSAD/main/src/msad_train.py",
+      "blob_sha": "1d1888f2aad1d13d82ec896dec5ff59f4e3dd72a",
+      "sha256": "93e3d64c1625c81f3f0039fe4bb5954213c40d1fba8bdd138ed7afff255cc914",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Cascade0507__VadCLIP-MSAD/src__msad_train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Cascade0507/VadCLIP-MSAD",
+      "path": "src/utils/dataset.py",
+      "raw_url": "https://raw.githubusercontent.com/Cascade0507/VadCLIP-MSAD/main/src/utils/dataset.py",
+      "blob_sha": "60b5bbb6175a9ae7e7d4de8bfaae5a674ebf7535",
+      "sha256": "aa3aa3e3f6cd502bb2df9334cb98535ad7920be0c900b3f58f68464b69fef450",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Cascade0507__VadCLIP-MSAD/src__utils__dataset.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Cascade0507/VadCLIP-MSAD",
+      "path": "src/utils/msad_detectionMAP.py",
+      "raw_url": "https://raw.githubusercontent.com/Cascade0507/VadCLIP-MSAD/main/src/utils/msad_detectionMAP.py",
+      "blob_sha": "312bdef83fae57db7165c8675de365eb66593401",
+      "sha256": "8e9375b7c1af5264f3b86045ab564e8f3341d5cb293d0f154b3337e10fa5b22f",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Cascade0507__VadCLIP-MSAD/src__utils__msad_detectionMAP.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Rlkolaman/VadCLIP",
+      "path": "src/ucf_option.py",
+      "raw_url": "https://raw.githubusercontent.com/Rlkolaman/VadCLIP/main/src/ucf_option.py",
+      "blob_sha": "1489518c2e548bbce6281bb684b0720aa3f02d16",
+      "sha256": "d548671656cdcb279d4f6d4977d8b836158e0abb63bb37087b3a4836d11cac48",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Rlkolaman__VadCLIP/src__ucf_option.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Rlkolaman/VadCLIP",
+      "path": "src/xd_option.py",
+      "raw_url": "https://raw.githubusercontent.com/Rlkolaman/VadCLIP/main/src/xd_option.py",
+      "blob_sha": "a6179ee53e837c7ae55252273b131b6844c5fc44",
+      "sha256": "73c6206aa72a5fd4267ed025e7380b698f751495af5526e5807d4af52c94952b",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Rlkolaman__VadCLIP/src__xd_option.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "DrKolaman/VadCLIP",
+      "path": "src/generate_ucf_features.py",
+      "raw_url": "https://raw.githubusercontent.com/DrKolaman/VadCLIP/main/src/generate_ucf_features.py",
+      "blob_sha": "914de21f893fc8dd9cb4862f32500c2c2453b22f",
+      "sha256": "51d5a759692cd61ea65808472f06981260885f11c09f2a9ca2a74dfe804d9922",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/sources/DrKolaman__VadCLIP/src__generate_ucf_features.py",
+      "decode_markers": [
+        "VideoCapture"
+      ],
+      "encode_image_marker": true,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "DrKolaman/VadCLIP",
+      "path": "src/model.py",
+      "raw_url": "https://raw.githubusercontent.com/DrKolaman/VadCLIP/main/src/model.py",
+      "blob_sha": "aa01f935438f6f621f95f4d1675e64e4f07796c4",
+      "sha256": "5f98b5cae09c19a46ceb4b38ef4217bc922c0011bb39980b1a78f76eca9aec35",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/DrKolaman__VadCLIP/src__model.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "DrKolaman/VadCLIP",
+      "path": "src/ucf_option.py",
+      "raw_url": "https://raw.githubusercontent.com/DrKolaman/VadCLIP/main/src/ucf_option.py",
+      "blob_sha": "1489518c2e548bbce6281bb684b0720aa3f02d16",
+      "sha256": "d548671656cdcb279d4f6d4977d8b836158e0abb63bb37087b3a4836d11cac48",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/DrKolaman__VadCLIP/src__ucf_option.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "DrKolaman/VadCLIP",
+      "path": "src/utils/dataset.py",
+      "raw_url": "https://raw.githubusercontent.com/DrKolaman/VadCLIP/main/src/utils/dataset.py",
+      "blob_sha": "e6e7c117902d3a3bf6eec564ac3f203a0b24b1e5",
+      "sha256": "dd84968f434e71206b52ec2dac532bf94bd86ab2dbbcb5e1af6189a309db97b0",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/DrKolaman__VadCLIP/src__utils__dataset.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "DrKolaman/VadCLIP",
+      "path": "src/utils/layers.py",
+      "raw_url": "https://raw.githubusercontent.com/DrKolaman/VadCLIP/main/src/utils/layers.py",
+      "blob_sha": "b93976ed20a369a467e01ac6361fef7b60f689f8",
+      "sha256": "8afe95d69b5d971a5209f29b9baf342859b4b6f04f5bd69b71c9395e2b581b81",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/DrKolaman__VadCLIP/src__utils__layers.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "DrKolaman/VadCLIP",
+      "path": "src/xd_option.py",
+      "raw_url": "https://raw.githubusercontent.com/DrKolaman/VadCLIP/main/src/xd_option.py",
+      "blob_sha": "a6179ee53e837c7ae55252273b131b6844c5fc44",
+      "sha256": "73c6206aa72a5fd4267ed025e7380b698f751495af5526e5807d4af52c94952b",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/DrKolaman__VadCLIP/src__xd_option.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/check_para.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/check_para.py",
+      "blob_sha": "6d15c968232aa8240b8659643bfc4e684d8f2c14",
+      "sha256": "a7f70d369e9fd0e24672361511f467ee809e641e7cf813d6b01d0f7a87b8738a",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__check_para.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/crop.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/crop.py",
+      "blob_sha": "a3f0dab44777e858c11dc43d2fd06df106dfd2db",
+      "sha256": "fe250e4bb0cdd75f16c261077a671f738175e3ebb9dde298c397369fb00ef520",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/sources/naive-yu__VadCLIP/src__crop.py",
+      "decode_markers": [],
+      "encode_image_marker": true,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/model.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/model.py",
+      "blob_sha": "18cf4a8439d4717ffdaeda2b50805518b101151c",
+      "sha256": "3173ba183a723374e97b2cd36461bf424b152f3a2a8cc937d9045321dadba566",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__model.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/ucf_option.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/ucf_option.py",
+      "blob_sha": "5d107155690685a888491e27dae1af7b337e0c76",
+      "sha256": "a7a0ae99e5278ae53a4749c8a45c709bacef203ef3afe203f0b9f33eb08ee15b",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__ucf_option.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/ucf_test.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/ucf_test.py",
+      "blob_sha": "2976173dfe4288d3f6fa7e3de3f7b41a10bed99f",
+      "sha256": "d126e6a55b8fed854206b10337a1bbdf6edda7e270f9acd815bfe11641a85ab7",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__ucf_test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/ucf_train.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/ucf_train.py",
+      "blob_sha": "2429c14ac9797da305f1ddcdcffa40c19db065bb",
+      "sha256": "7f323bf280be98aa4657cf74cad0e5366eb90ef4d6b414fbb9b1f1b89cb85314",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__ucf_train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/utils/dataset.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/utils/dataset.py",
+      "blob_sha": "28872e185a8f3c2c751bfdd53cf4a7d7e683a983",
+      "sha256": "97324d3a3c45519c9566c14211c3c408f0731aff74135f27ae6dbdbd5c349f6c",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__utils__dataset.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/utils/layers.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/utils/layers.py",
+      "blob_sha": "9d8bf02f2aada3a5c90508c9ed98f837517a38f4",
+      "sha256": "d41a9235e02e7b3eac3aa2211c0abea9fff2d77d1f3de8d705c47b90654eb565",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__utils__layers.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/utils/lr_warmup.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/utils/lr_warmup.py",
+      "blob_sha": "cfc022207f0f6afd7f9f20c88c00794eb1229285",
+      "sha256": "a43b3f8eddbe6d73e0675e91e5e1482d1748398194383ba36bc4e74f16df9eef",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__utils__lr_warmup.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/utils/tools.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/utils/tools.py",
+      "blob_sha": "296c53fb5bfe0ac06b94ac7d07da8212310d20de",
+      "sha256": "11eaaf0d1916655435b41d2ad4ff9d2b5a07262d9fb26ad2232ac6b066768c49",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__utils__tools.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/utils/ucf_detectionMAP.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/utils/ucf_detectionMAP.py",
+      "blob_sha": "1f1835ab85c109ae984b6b544493eb4e5133b4f3",
+      "sha256": "2550013ee9c55f2fde5f7d6fe7a9b90743a9ed5665713d0ff4cc64b749ecb8eb",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__utils__ucf_detectionMAP.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/utils/xd_detectionMAP.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/utils/xd_detectionMAP.py",
+      "blob_sha": "f96e6741f7c79898b520f51691a1a3730c864252",
+      "sha256": "1055631eb4c3f7a0dc45e05c3b0f8de6c83145f2c3d862b564d13aab57e36e71",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__utils__xd_detectionMAP.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/xd_option.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/xd_option.py",
+      "blob_sha": "fa4e25ffca9e9f0e46247239e59264efb9d63b97",
+      "sha256": "bd379d59bf24bb0bd97b6b215bff563120b94a263fb25fa697abef1c73d67b1b",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__xd_option.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/xd_test.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/xd_test.py",
+      "blob_sha": "1fbe14adf2bb6f5a18f2a9953632db71df09ef5c",
+      "sha256": "3efa322ade68a95a0908ea0670a5f407bfd469d48faa246d25abb3fb0a61413f",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__xd_test.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "naive-yu/VadCLIP",
+      "path": "src/xd_train.py",
+      "raw_url": "https://raw.githubusercontent.com/naive-yu/VadCLIP/main/src/xd_train.py",
+      "blob_sha": "5ec7da43b088a4a07b330a110e78db21a13c1525",
+      "sha256": "5d57691716e58789139b9a2910b3f71e3d0e9c8e0028a2c79ca58c98219da4f0",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/naive-yu__VadCLIP/src__xd_train.py",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "mala-lab/VadCLIP",
+      "path": "README.md",
+      "raw_url": "https://raw.githubusercontent.com/mala-lab/VadCLIP/main/README.md",
+      "blob_sha": "4adcf3b0531cf7c8bf0d2e9c4818d9bfb0d71f0a",
+      "sha256": "ce252aedda907a4954950c6b8798d0417b6a7391ea618bcdc018155c23502e94",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/mala-lab__VadCLIP/README.md",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "GuansongPang/VadCLIP",
+      "path": "README.md",
+      "raw_url": "https://raw.githubusercontent.com/GuansongPang/VadCLIP/main/README.md",
+      "blob_sha": "4adcf3b0531cf7c8bf0d2e9c4818d9bfb0d71f0a",
+      "sha256": "ce252aedda907a4954950c6b8798d0417b6a7391ea618bcdc018155c23502e94",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/GuansongPang__VadCLIP/README.md",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    },
+    {
+      "repo": "Roc-Ng/VadCLIP",
+      "path": "README.md",
+      "raw_url": "https://raw.githubusercontent.com/Roc-Ng/VadCLIP/main/README.md",
+      "blob_sha": "a590b990852235a9f2b542d858b38eed8051bd89",
+      "sha256": "6ee73abb2fa563098bc919a18a04137ecfa0484d1fff929e47dde7eb8b38a6b4",
+      "local_path": "/private/tmp/vadclip_fork_audit_20261008/changed_sources/Roc-Ng__VadCLIP/README.md",
+      "decode_markers": [],
+      "encode_image_marker": false,
+      "recipe_claim_markers": []
+    }
+  ],
+  "community_downloads": [
+    {
+      "file": "wsad_FEATURE_EXTRACTORS.md",
+      "url": "https://raw.githubusercontent.com/jinmang2/wsad/dev/docs/FEATURE_EXTRACTORS.md",
+      "bytes": 5033,
+      "sha256": "d2fbba338b79cb32520af6ade8c42ceabadd7961f1e76f40cacad8be4320f598"
+    },
+    {
+      "file": "wsad_clip.py",
+      "url": "https://raw.githubusercontent.com/jinmang2/wsad/dev/src/features/clip.py",
+      "bytes": 3563,
+      "sha256": "ca9c8db310a6d07d80aff81bf2ef7f62cc4d4bee138c7f8801339d435bc47acc"
+    },
+    {
+      "file": "tta_extract_enhanced_features_simple.py",
+      "url": "https://raw.githubusercontent.com/yufengHenry/VadCLIP-TTA/main/extract_enhanced_features_simple.py",
+      "bytes": 8249,
+      "sha256": "0b736f46633076edb0cf95d576a68b07d8ec9cf964fcf5b25ba687f5c7259ed2"
+    }
+  ],
+  "classified_raw_extractors": [
+    {
+      "repo": "Wedsonlin/VadCLIP",
+      "source": "src/crop.py",
+      "method": "ViT-B/16, one sampled image; 1-based grabbed counter; stride16/shift8 means zero-based frame7+16k; fixed340x256 center crop and optional flip; half storage",
+      "provenance": "community addition, not author-certified historical extractor",
+      "snapshot_thresholds": {
+        "mean_cosine_gt": 0.78,
+        "mean_absolute_error_lt": 0.22
+      },
+      "snapshot_provenance": "not established as original released features; custom __crop__flip filenames"
+    },
+    {
+      "repo": "DrKolaman/VadCLIP",
+      "source": "src/generate_ucf_features.py",
+      "method": "ViT-B/32, each raw video frame, CLIP-only preprocessing",
+      "provenance": "changed model and temporal unit; not official ViT-B/16 stride16 recipe"
+    },
+    {
+      "repo": "Jiisou/VadCLIP",
+      "source": "src/extract_mobileclip_features.py",
+      "method": "MobileCLIP, all segment frames encoded then mean and final L2; ceil tail",
+      "provenance": "alternative backbone and normalized feature scale"
+    }
+  ],
+  "cached_sampling_crop_hypothesis": {
+    "source": "/Users/apstat/Desktop/01_4학년2학기/03_인공지능프로젝트/03_Project/outputs/setup/ucf_extraction_verify_20261008_104914/summary.json",
+    "source_sha256": "9084c63d4486b9b97c4870c9c6f5d7e7fefa37f758bd014463150f31c949b1a9",
+    "purpose": "Check the same frame/crop/storage hypothesis using existing UCF cache, not run the fork or its XD fixture",
+    "encoder_source_blobs_equal_to_upstream": {
+      "src/clip/clip.py": false,
+      "src/clip/model.py": false
+    },
+    "equivalent_rgb_crop_pixel_checks": [
+      {
+        "video_stem": "Abuse028_x264",
+        "frame_index": 16,
+        "same_pixels": true
+      },
+      {
+        "video_stem": "Abuse028_x264",
+        "frame_index": 128,
+        "same_pixels": true
+      },
+      {
+        "video_stem": "Abuse028_x264",
+        "frame_index": 512,
+        "same_pixels": true
+      },
+      {
+        "video_stem": "Arrest001_x264",
+        "frame_index": 16,
+        "same_pixels": true
+      },
+      {
+        "video_stem": "Arrest001_x264",
+        "frame_index": 128,
+        "same_pixels": true
+      },
+      {
+        "video_stem": "Arrest001_x264",
+        "frame_index": 512,
+        "same_pixels": true
+      },
+      {
+        "video_stem": "Normal_Videos_003_x264",
+        "frame_index": 16,
+        "same_pixels": true
+      },
+      {
+        "video_stem": "Normal_Videos_003_x264",
+        "frame_index": 128,
+        "same_pixels": true
+      },
+      {
+        "video_stem": "Normal_Videos_003_x264",
+        "frame_index": 512,
+        "same_pixels": true
+      }
+    ],
+    "aggregate_existing_metrics": {
+      "rank": 20,
+      "candidate": "single_offset_07",
+      "feature_form": "raw_cast_official",
+      "row_shift": 0,
+      "compared_blocks": 21,
+      "compared_videos": 3,
+      "cosine_mean": 0.9714854731404207,
+      "cosine_min": 0.7240723706518878,
+      "mean_absolute_error": 0.06764815647398964,
+      "rmse": 0.11203350158582091,
+      "max_absolute_error": 2.5625,
+      "relative_l2_error": 0.24813420757020593,
+      "candidate_norm_mean": 10.133015115928238,
+      "official_norm_mean": 10.208703177254078,
+      "exact_element_fraction": 0.0005580357142857143,
+      "close_element_fraction": 0.0038132440476190475,
+      "tolerance_pass_fraction": 0.0,
+      "all_blocks_within_tolerance": false
+    },
+    "per_video_existing_metrics": [
+      {
+        "video": "Abuse028_x264.mp4",
+        "cosine_mean": 0.9433637027810218,
+        "mean_absolute_error": 0.09325148926914803,
+        "relative_l2_error": 0.3496091211739585,
+        "strict_tolerance_pass_fraction": 0.0,
+        "would_satisfy_fork_value_thresholds": true
+      },
+      {
+        "video": "Normal_Videos_003_x264.mp4",
+        "cosine_mean": 0.9779349188388233,
+        "mean_absolute_error": 0.07099582850267845,
+        "relative_l2_error": 0.2098487472020175,
+        "strict_tolerance_pass_fraction": 0.0,
+        "would_satisfy_fork_value_thresholds": true
+      },
+      {
+        "video": "Arrest001_x264.mp4",
+        "cosine_mean": 0.9931577978014168,
+        "mean_absolute_error": 0.03869715165014246,
+        "relative_l2_error": 0.11780282872345334,
+        "strict_tolerance_pass_fraction": 0.0,
+        "would_satisfy_fork_value_thresholds": true
+      }
+    ],
+    "conclusion": "Selected default sample/crop hypothesis does not match official UCF vectors; loose snapshot thresholds can accept these known mismatches",
+    "static_visual_code_ast_equivalence_after_docstring_removal": {
+      "LayerNorm": true,
+      "QuickGELU": true,
+      "ResidualAttentionBlock": true,
+      "Transformer": true,
+      "VisionTransformer": true,
+      "CLIP.__init__": true,
+      "CLIP.dtype": true,
+      "CLIP.encode_image": true,
+      "build_model": true,
+      "_transform": true
+    },
+    "encoder_source_difference_explanation": "Blob hashes differ due to comments/docstrings and text branch/import changes; selected visual classes, image methods, build_model and transform ASTs agree. Cached hardware is MPS float32; the fork itself was not run."
+  },
+  "remaining_blocker": "Historical raw frame generation/video provenance, exact preprocessing/extraction code and runtime are unavailable; no numerical match. User explicitly confirmed no extra author materials.",
+  "tree_identifier_note": "Git trees API sha identifies the returned tree; raw source content was verified against each Git blob SHA, not assumed from branch name.",
+  "limits": [
+    "Non-default fork branches not scanned",
+    "Source marker scans are followed by reading every decoder-bearing candidate, but do not prove no code exists anywhere online",
+    "Community code shapes or loose snapshot tests do not verify original extraction history",
+    "No original input was modified and no model or sampler benchmark was run in this source audit"
+  ]
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "video": "Shooting032_x264.mp4",
+    "shape": [
+      1356,
+      512
+    ],
+    "raw_header_frames": 21681,
+    "float16_exact_fraction_excluding_last": 0.0004353090405904059,
+    "last_row_norm": 12.456772804260254,
+    "previous_row_norm": 12.465265274047852,
+    "last_row_equals_previous": false,
+    "last_row_all_zero": false,
+    "last_two_equal_elements": 0.0
+  },
+  {
+    "video": "Normal_Videos_924_x264.mp4",
+    "shape": [
+      6750,
+      512
+    ],
+    "raw_header_frames": 107997,
+    "float16_exact_fraction_excluding_last": 0.0005197529263594607,
+    "last_row_norm": 10.106289863586426,
+    "previous_row_norm": 10.082484245300293,
+    "last_row_equals_previous": false,
+    "last_row_all_zero": false,
+    "last_two_equal_elements": 0.0
+  },
+  {
+    "video": "Normal_Videos_935_x264.mp4",
+    "shape": [
+      6750,
+      512
+    ],
+    "raw_header_frames": 107994,
+    "float16_exact_fraction_excluding_last": 0.0005093347162542599,
+    "last_row_norm": 9.815204620361328,
+    "previous_row_norm": 9.829140663146973,
+    "last_row_equals_previous": false,
+    "last_row_all_zero": false,
+    "last_two_equal_elements": 0.0
+  },
+  {
+    "video": "Normal_Videos_940_x264.mp4",
+    "shape": [
+      2252,
+      512
+    ],
+    "raw_header_frames": 36017,
+    "float16_exact_fraction_excluding_last": 0.0005466320524211461,
+    "last_row_norm": 10.317153930664062,
+    "previous_row_norm": 10.254096984863281,
+    "last_row_equals_previous": false,
+    "last_row_all_zero": false,
+    "last_two_equal_elements": 0.0
+  }
+]

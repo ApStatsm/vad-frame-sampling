@@ -1,0 +1,18 @@
+{
+  "resources_config": "configs/ucf_resources.json",
+  "official_reference_run": "outputs/baseline/ucf_full_20261007_010204",
+  "extraction_status": "reconstructed_sample_verified_float16_cohort",
+  "block_frames": 16,
+  "temporal_mode": "single_frame",
+  "frame_offset": 0,
+  "crop_type": 5,
+  "color_conversion": "x86_swscale_emulation",
+  "image_geometry": "shortside_fxfy",
+  "tail_policy": "match_official_rows",
+  "encoder_batch_size": 32,
+  "encoder_precision": "float32",
+  "feature_storage_dtype": "official",
+  "feature_l2_normalize": false,
+  "warmup_batches": 2,
+  "seed": 234
+}
