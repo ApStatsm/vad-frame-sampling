@@ -61,7 +61,7 @@
 - `data/UCF-Crime/test/manifest.json`과 290개 raw 영상 symlink. 연결 대상인 extracted 폴더도 보존한다.
 - 기존 CLIP/UCF pretrained checkpoints와 official features. 원본을 쓰거나 재생성하지 않는다.
 - `VadCLIP/list/gt_ucf.npy`, full mAP용 `gt_segment_ucf.npy`·`gt_label_ucf.npy`.
-- 기존 성공 official run의 `summary.json`과 `scores/*.npz`. 기본 비교 대상은 `ucf_full_20261008_163913`이다(리팩토링 코드로 재실행, `ucf_full_20261007_010204`와 bit 동일). 평가기는 model/metric source hash가 현재 코드와 같은 official run만 받는다. NPZ는 Git에서 제외되므로 다른 컴퓨터에서는 official full을 실행한 뒤 `--official-run`으로 새 run을 지정한다.
+- 기존 성공 official run의 `summary.json`과 `scores/*.npz`. 기본 비교 대상은 `ucf_full_20261105_222638`이다(`data/` 이동 후 재실행, `ucf_full_20261008_163913`·`ucf_full_20261007_010204`와 bit 동일). 평가기는 model/metric source hash가 현재 코드와 같은 official run만 받는다. NPZ는 Git에서 제외되므로 다른 컴퓨터에서는 official full을 실행한 뒤 `--official-run`으로 새 run을 지정한다.
 
 Raw 설정/명령은 effective 값과 함께 기록한다. Config/manifest/frame GT/checkpoint·원본 평가 코드가 기존 audit/run과 맞는지 검사하고, 각 원본 영상의 크기와 SHA-256도 대조한다. Baseline의 source hash가 달라졌다면 변경 이유를 확인하고 해당 코드로 official 재현을 먼저 갱신한다.
 

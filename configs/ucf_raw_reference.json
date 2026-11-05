@@ -1,6 +1,6 @@
 {
   "resources_config": "configs/ucf_resources.json",
-  "official_reference_run": "outputs/baseline/ucf_full_20261008_163913",
+  "official_reference_run": "outputs/baseline/ucf_full_20261105_222638",
   "extraction_status": "reconstructed_sample_verified_float16_cohort",
   "block_frames": 16,
   "temporal_mode": "single_frame",

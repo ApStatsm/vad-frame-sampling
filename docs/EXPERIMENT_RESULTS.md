@@ -42,6 +42,7 @@ Fine-grained(branch 2): mAP@0.1~0.5 = 11.79 / 7.97 / 6.57 / 4.71 / 3.12, AVG 6.8
 - Feature 일치: 공식 float16 286개 모두 상대 L2 ≤ 0.005(중앙값 0.0019, 최대 0.0047), token 점수 차이 최대 0.008. 가장 긴 4개(공식 float32: Shooting032, Normal924/935/940)는 0.29~0.35로 재현하지 못했다. 이 4개는 frame-level 시간축의 24.7%다.
 - AUC 차이의 원인은 4개 영상으로 **확인했다**(2026-10-08, `scripts/analyze_ucf_raw_cohorts.py`, 저장 점수만 사용, 결과 `outputs/baseline/ucf_raw_full_20261008_150142/cohort_sensitivity.json`). Raw 점수에서 float32 4개 구간만 공식 점수로 바꾸면 공식 대비 branch1 AUC +0.002pp, AP +0.013pp, Ano-AUC +0.004pp(branch2 +0.003/+0.008/+0.008)로 사실상 같다. 반대로 공식 점수에 raw 4개 구간을 넣으면 −0.836pp가 된다. 4개를 뺀 시간축에서도 raw와 공식의 차이는 +0.002pp다.
 - 리팩토링 검증(2026-10-08): `vadfs` 패키지 코드로 재실행한 `ucf_raw_full_20261008_164022`(raw)와 `ucf_full_20261008_163913`(official)이 각각 150142, 010204와 290개 전부 feature·score·metric bit 동일. 수치 기준은 바뀌지 않는다.
+- 입력 경로 이동 검증(2026-11-05): 대용량 입력을 `data/`로 옮기고 입력 점검을 다시 만든 뒤 실행한 `ucf_full_20261105_222638`(official, MPS)이 `163913`과 metric 동일, 점수 NPZ 291개 byte 동일. Raw 비교 기준 run을 이 run으로 바꿨다.
 - 시간(1회): E2E 1465.8초, CLIP forward 1221.1초, x86 색 변환 재현 95.7초(numpy 에뮬레이션, 실제 x86 비용 아님), decode 69.9초, 전처리 43.5초, VAD 24.7초. Encoder 입력 69,368장. Warm-up 2회 제외, OS cache 미통제.
 
 ## Raw-video sampling 비교표

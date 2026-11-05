@@ -94,7 +94,7 @@ Sampler는 `extract.extract_reference`의 후보 선택 단계(현재 `count % 1
 ### 기준 run과 재현성
 
 - 각 run의 `summary.json`에는 입력·checkpoint·소스 SHA-256(`input_sha256`), `vadfs` 전체 파일 hash(`package_sha256`), research commit, upstream VadCLIP commit이 기록됩니다.
-- Raw 평가기는 모델·metric 소스 hash가 현재 코드와 같은 official run만 비교 대상으로 받습니다. 그래서 현재 설정의 `official_reference_run`은 리팩토링 코드로 다시 실행한 `ucf_full_20261008_163913`입니다(`010204`와 bit 동일).
+- Raw 평가기는 모델·metric 소스 hash가 현재 코드와 같은 official run만 비교 대상으로 받습니다. 그래서 현재 설정의 `official_reference_run`은 `data/` 이동 후 입력 점검을 다시 만들고 실행한 `ucf_full_20261105_222638`입니다(`163913`·`010204`와 score·metric bit 동일).
 - Raw reference를 확정할 때의 코드는 git tag `ucf-raw-reference-v1`에 보존했습니다. 정리하면서 제거한 추출 진단 스크립트도 `git show ucf-raw-reference-v1:scripts/<file>`로 볼 수 있습니다.
 
 ## 출력 형식
