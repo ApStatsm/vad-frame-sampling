@@ -9,7 +9,7 @@ UCF-Crime test 290개(anomaly 140, normal 150), 평가 frame 1,109,888개 기준
 | 입력 | Run | Branch1 AUC | AP | Ano-AUC | Fine-grained AVG | 상태 |
 |---|---|---:|---:|---:|---:|---|
 | Official CLIP features | `ucf_full_20261007_010204` | 88.02% | 33.56% | 70.23% | 6.68% | 공식 재현 (논문 값과 일치) |
-| Raw video, 직접 추출 | `ucf_raw_full_20261008_150142` | 87.19% | 31.81% | 69.14% | 6.83% | **Sampling 비교의 기준(reference)** |
+| Raw video, 직접 추출 | `ucf_raw_full_20261008_150142` | 87.19% | 31.80% | 69.14% | 6.83% | **Sampling 비교의 기준(reference)** |
 | Uniform / Random / Adaptive / Ours | — | — | — | — | — | 미측정 |
 
 - Raw reference는 공식 feature 대비 AUC −0.83pp입니다. 저장 점수로 민감도 분석을 한 결과, 이 차이는 전부 공식 feature를 재현하지 못한 가장 긴 float32 영상 4개 때문입니다(4개만 공식 점수로 바꾸면 +0.002pp). 나머지 float16 286개는 상대 L2 ≤ 0.005로 재현됩니다.

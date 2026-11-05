@@ -34,7 +34,7 @@ Ano-AUC는 이상 영상 140개의 전체 프레임(정상 구간 포함)을 모
 
 | Dataset | 입력 | Score branch | AUC (%) | AP (%) | Ano-AUC (%) | 공식 feature 대비 AUC (pp) |
 |---|---|---|---:|---:|---:|---:|
-| UCF-Crime | Raw video, 재구성 추출 | Branch 1 / C-branch | 87.19 | 31.81 | 69.14 | −0.83 |
+| UCF-Crime | Raw video, 재구성 추출 | Branch 1 / C-branch | 87.19 | 31.80 | 69.14 | −0.83 |
 | UCF-Crime | Raw video, 재구성 추출 | Branch 2 / A-branch | 84.90 | 25.22 | 64.48 | −0.80 |
 
 Fine-grained(branch 2): mAP@0.1~0.5 = 11.79 / 7.97 / 6.57 / 4.71 / 3.12, AVG 6.83%(공식 대비 +0.15pp).
