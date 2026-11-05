@@ -79,7 +79,7 @@ def main():
     config = json.loads(config_path.read_text())
     features_root = resolve_resource(config.get('features_root'), root)
     original_csv = root / 'VadCLIP/list/ucf_CLIP_rgbtest.csv'
-    manifest_path = root / 'UCF-Crime/test/manifest.json'
+    manifest_path = root / 'data/UCF-Crime/test/manifest.json'
     with original_csv.open(newline='') as handle:
         rows = list(csv.DictReader(handle))
     manifest = json.loads(manifest_path.read_text())['videos']
@@ -100,7 +100,7 @@ def main():
         issues.append('Official CSV order/labels do not match the test manifest')
 
     missing_videos = [video['video_path'] for video in manifest
-                      if not (root / 'UCF-Crime/test' / video['video_path']).is_file()]
+                      if not (root / 'data/UCF-Crime/test' / video['video_path']).is_file()]
     if missing_videos:
         issues.append('Some test video links are missing or broken')
 

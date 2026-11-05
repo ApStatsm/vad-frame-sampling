@@ -7,7 +7,7 @@ LABELS = ('Normal', 'Abuse', 'Arrest', 'Arson', 'Assault', 'Burglary',
           'Explosion', 'Fighting', 'RoadAccidents', 'Robbery', 'Shooting',
           'Shoplifting', 'Stealing', 'Vandalism')
 
-TEST_ROOT = ROOT / 'UCF-Crime/test'
+TEST_ROOT = ROOT / 'data/UCF-Crime/test'
 MANIFEST = TEST_ROOT / 'manifest.json'
 INPUT_AUDIT = ROOT / 'outputs/setup/ucf_baseline_input_check.json'
 RESOURCE_AUDIT = ROOT / 'outputs/setup/ucf_resource_check.json'

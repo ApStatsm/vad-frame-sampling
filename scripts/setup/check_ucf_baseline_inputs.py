@@ -44,7 +44,7 @@ def check_arrays(report, local_csv, config):
 
     report['numpy_version'] = np.__version__
     report['input_sha256']['local_csv'] = sha256(local_csv)
-    manifest_path = ROOT / 'UCF-Crime/test/manifest.json'
+    manifest_path = ROOT / 'data/UCF-Crime/test/manifest.json'
     report['input_sha256']['manifest'] = sha256(manifest_path)
     videos = json.loads(manifest_path.read_text())['videos']
     with local_csv.open(newline='') as handle:

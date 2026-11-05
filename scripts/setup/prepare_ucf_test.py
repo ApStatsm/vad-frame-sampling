@@ -17,7 +17,7 @@ from zoneinfo import ZoneInfo
 
 
 def read_inputs(root):
-    annotation = root / 'UCF-Crime/Temporal_Anomaly_Annotation_for_Testing_Videos.txt'
+    annotation = root / 'data/UCF-Crime/Temporal_Anomaly_Annotation_for_Testing_Videos.txt'
     annotations = {}
     for line in annotation.read_text().splitlines():
         if not line.strip():
@@ -49,14 +49,14 @@ def read_inputs(root):
     for name, row in zip(names, feature_rows):
         assert annotations[name]['category'] == row['label'], name
     sources = {}
-    for source in (root / 'UCF-Crime/extracted').rglob('*.mp4'):
+    for source in (root / 'data/UCF-Crime/extracted').rglob('*.mp4'):
         if source.name in annotations:
             assert source.name not in sources, f'Duplicate extracted source: {source.name}'
             sources[source.name] = source
     assert set(sources) == set(names), f'Missing sources: {set(names) - set(sources)}'
     archive_entries = {}
-    archives = [root / f'UCF-Crime/Anomaly-Videos-Part-{i}.zip' for i in range(1, 5)]
-    archives.append(root / 'UCF-Crime/Testing_Normal_Videos.zip')
+    archives = [root / f'data/UCF-Crime/Anomaly-Videos-Part-{i}.zip' for i in range(1, 5)]
+    archives.append(root / 'data/UCF-Crime/Testing_Normal_Videos.zip')
     for archive in archives:
         with ZipFile(archive) as handle:
             for entry in handle.infolist():
@@ -103,7 +103,7 @@ def main():
     args = parser.parse_args()
     root = args.root.resolve()
     annotation, split, feature_csv, annotations, feature_rows, names, sources, entries = read_inputs(root)
-    destination = root / 'UCF-Crime/test'
+    destination = root / 'data/UCF-Crime/test'
     planned = []
     for name in names:
         category = annotations[name]['category']
@@ -117,7 +117,7 @@ def main():
     summary = {'videos': len(names), 'normal': sum(a['category'] == 'Normal' for a in annotations.values()),
                'anomaly': sum(a['category'] != 'Normal' for a in annotations.values()),
                'selected_bytes': sum(entries[n][1].file_size for n in names),
-               'destination': str(destination), 'storage': 'relative symlinks to existing extracted videos'}
+               'destination': str(destination.relative_to(root)), 'storage': 'relative symlinks to existing extracted videos'}
     print(json.dumps(summary, ensure_ascii=False), flush=True)
     if args.dry_run:
         return
@@ -155,7 +155,7 @@ def main():
         (split_dir / f'{group}.txt').write_text(''.join(r['video_path'] + '\n' for r in selected))
     doc = {'generated_at': datetime.now(ZoneInfo('Asia/Seoul')).isoformat(),
            'order': 'VadCLIP/list/ucf_CLIP_rgbtest.csv',
-           'paths': 'video_path relative to UCF-Crime/test; source_path and source_archive relative to project root',
+           'paths': 'video_path relative to data/UCF-Crime/test; source_path and source_archive relative to project root',
            'annotation_convention': 'Raw published frame indices preserved; base and inclusive/exclusive convention not established here.',
            'summary': summary, 'videos': records}
     (destination / 'manifest.json').write_text(json.dumps(doc, ensure_ascii=False, indent=2) + '\n')
@@ -204,7 +204,7 @@ Rebuild/revalidate from the project root:
 .venv/bin/python scripts/setup/prepare_ucf_test.py
 ```
 
-Verification report: `../../outputs/setup/ucf_test_preparation_report.json`.
+Verification report: `../../../outputs/setup/ucf_test_preparation_report.json`.
 Original archives, extracted videos and upstream VadCLIP lists are preserved.
 ''')
     print(f'Completed: {len(records)} videos; {len(warnings)} annotation warnings; {report_path}', flush=True)

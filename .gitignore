@@ -26,11 +26,11 @@ dist/
 configs/*.local.json
 
 # Large inputs; small annotations, manifests and split lists remain shareable
-/features/
-/checkpoints/
-/UCF-Crime/extracted/
-/UCF-Crime/test/Anomaly/
-/UCF-Crime/test/Normal/
+/data/features/
+/data/checkpoints/
+/data/UCF-Crime/extracted/
+/data/UCF-Crime/test/Anomaly/
+/data/UCF-Crime/test/Normal/
 *.mp4
 *.avi
 *.mkv

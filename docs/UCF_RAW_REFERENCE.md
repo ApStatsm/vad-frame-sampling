@@ -58,7 +58,7 @@
 ## 필요한 기존 입력
 
 - `configs/ucf_resources.json`, 통과한 `outputs/setup/ucf_baseline_input_check.json`·`ucf_resource_check.json` 및 local feature CSV.
-- `UCF-Crime/test/manifest.json`과 290개 raw 영상 symlink. 연결 대상인 extracted 폴더도 보존한다.
+- `data/UCF-Crime/test/manifest.json`과 290개 raw 영상 symlink. 연결 대상인 extracted 폴더도 보존한다.
 - 기존 CLIP/UCF pretrained checkpoints와 official features. 원본을 쓰거나 재생성하지 않는다.
 - `VadCLIP/list/gt_ucf.npy`, full mAP용 `gt_segment_ucf.npy`·`gt_label_ucf.npy`.
 - 기존 성공 official run의 `summary.json`과 `scores/*.npz`. 기본 비교 대상은 `ucf_full_20261008_163913`이다(리팩토링 코드로 재실행, `ucf_full_20261007_010204`와 bit 동일). 평가기는 model/metric source hash가 현재 코드와 같은 official run만 받는다. NPZ는 Git에서 제외되므로 다른 컴퓨터에서는 official full을 실행한 뒤 `--official-run`으로 새 run을 지정한다.

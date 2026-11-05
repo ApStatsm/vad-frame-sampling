@@ -63,12 +63,13 @@ UCF-Crime test 290개(anomaly 140, normal 150), 평가 frame 1,109,888개 기준
 │   ├── UCF_RESOURCE_SETUP.md           # 자원 다운로드·배치
 │   └── archive/                        # 추출 방식 탐색 기록 등 지난 문서
 ├── VadCLIP/                            # upstream 모델 소스, 공식 목록·GT, LICENSE
-├── UCF-Crime/
-│   ├── Temporal_Anomaly_Annotation_for_Testing_Videos.txt   # 원본 annotation
-│   └── test/
-│       ├── manifest.json, manifest.csv # 영상별 경로·metadata·annotation
-│       ├── splits/{test,anomaly,normal}.txt
-│       └── annotations/                # 원본 annotation 복사본
+├── data/                               # 데이터·feature·checkpoint (저장소에는 작은 metadata만)
+│   └── UCF-Crime/
+│       ├── Temporal_Anomaly_Annotation_for_Testing_Videos.txt   # 원본 annotation
+│       └── test/
+│           ├── manifest.json, manifest.csv # 영상별 경로·metadata·annotation
+│           ├── splits/{test,anomaly,normal}.txt
+│           └── annotations/            # 원본 annotation 복사본
 ├── outputs/
 │   ├── setup/                          # 입력 점검 보고서, local feature CSV, 추출 재구성 근거
 │   └── baseline/<run_id>/summary.json  # 실행별 보고서
@@ -122,16 +123,17 @@ Git에는 `summary.json`과 `cohort_sensitivity.json`만 올라가고 NPZ 배열
 새 clone에는 들어 있지 않으므로 직접 확보해야 합니다. 다운로드 링크와 절차는 [UCF_RESOURCE_SETUP.md](docs/UCF_RESOURCE_SETUP.md)에 있습니다.
 
 ```text
-├── UCF-Crime/
-│   ├── Anomaly-Videos-Part-{1,2,3,4}.zip, Testing_Normal_Videos.zip   # 원본 영상 ZIP
-│   ├── extracted/                          # 압축 해제한 원본 영상 1,100개
-│   └── test/{Anomaly/<category>,Normal}/*.mp4   # extracted로 연결되는 상대 symlink 290개
-├── features/official/ucf/
-│   ├── UCFClipFeatures.shared.zip          # 다운로드한 feature ZIP
-│   └── UCFClipFeatures/<배포 폴더>/<video_stem>__<crop>.npy
-├── checkpoints/
-│   ├── clip/ViT-B-16.pt                    # CLIP encoder
-│   └── vadclip/model_ucf.pth               # UCF용 VadCLIP
+├── data/
+│   ├── UCF-Crime/
+│   │   ├── Anomaly-Videos-Part-{1,2,3,4}.zip, Testing_Normal_Videos.zip   # 원본 영상 ZIP
+│   │   ├── extracted/                      # 압축 해제한 원본 영상 1,100개
+│   │   └── test/{Anomaly/<category>,Normal}/*.mp4   # extracted로 연결되는 상대 symlink 290개
+│   ├── features/official/ucf/
+│   │   ├── UCFClipFeatures.shared.zip      # 다운로드한 feature ZIP
+│   │   └── UCFClipFeatures/<배포 폴더>/<video_stem>__<crop>.npy
+│   └── checkpoints/
+│       ├── clip/ViT-B-16.pt                # CLIP encoder
+│       └── vadclip/model_ucf.pth           # UCF용 VadCLIP
 ├── outputs/baseline/<run_id>/{features,scores,frame_scores.npz}
 ├── .venv/
 └── .local-backups/                         # 이전 Git 이력·정리 전 진단 출력 백업
@@ -151,13 +153,13 @@ Git에는 `summary.json`과 `cohort_sensitivity.json`만 올라가고 NPZ 배열
 
 ```json
 {
-  "features_root": "features/official/ucf/UCFClipFeatures",
-  "ucf_checkpoint": "checkpoints/vadclip/model_ucf.pth",
-  "clip_checkpoint": "checkpoints/clip/ViT-B-16.pt"
+  "features_root": "data/features/official/ucf/UCFClipFeatures",
+  "ucf_checkpoint": "data/checkpoints/vadclip/model_ucf.pth",
+  "clip_checkpoint": "data/checkpoints/clip/ViT-B-16.pt"
 }
 ```
 
-준비·점검은 이 컴퓨터에서 이미 통과했습니다. 다른 컴퓨터에서는 자신의 입력 기준으로 manifest·symlink·local CSV·audit를 다시 만듭니다. 이 단계에는 영상 ZIP 5개, `extracted/` 영상, 원본 annotation, `ffprobe`가 필요합니다.
+준비·점검은 이 컴퓨터에서 이미 통과했습니다. 2026-11-05에 대용량 입력을 `data/` 아래로 옮겼으므로, 이 컴퓨터에서도 아래 두 점검과 official full을 한 번 다시 실행해야 평가기의 hash 대조를 통과합니다. 다른 컴퓨터에서는 자신의 입력 기준으로 manifest·symlink·local CSV·audit를 다시 만듭니다. 이 단계에는 영상 ZIP 5개, `extracted/` 영상, 원본 annotation, `ffprobe`가 필요합니다.
 
 ```sh
 .venv/bin/python scripts/setup/prepare_ucf_test.py

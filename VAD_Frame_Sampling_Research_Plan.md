@@ -93,7 +93,7 @@ XD-Violence의 다운로드 구성과 파일명은 별도로 확인한다. 공�
 Baseline 실행 준비 전에 raw test 데이터를 먼저 정리한다. 공식 test 목록을 선택 기준으로 삼고 annotation의 category로 anomaly/normal을 구분한다. Annotation 파일 전체를 anomaly 목록으로 간주하지 않는다.
 
 ```text
-UCF-Crime/test/
+data/UCF-Crime/test/
 ├── Anomaly/<category>/*.mp4
 ├── Normal/*.mp4
 ├── annotations/

@@ -24,5 +24,5 @@ Rebuild/revalidate from the project root:
 .venv/bin/python scripts/setup/prepare_ucf_test.py
 ```
 
-Verification report: `../../outputs/setup/ucf_test_preparation_report.json`.
+Verification report: `../../../outputs/setup/ucf_test_preparation_report.json`.
 Original archives, extracted videos and upstream VadCLIP lists are preserved.

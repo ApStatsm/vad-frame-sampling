@@ -8,9 +8,9 @@
 
 | 입력 | 용도 | 현재 확인 |
 |---|---|---|
-| 공식 UCF-Crime CLIP feature 배열 | Baseline 입력. 공식 CSV의 290개 test 파일 필요 | `features/official/ucf/UCFClipFeatures/` 존재. 19,500개 .npy 경로 확인 |
-| UCF-Crime pretrained VadCLIP checkpoint | UCF용 학습 완료 모델 | `checkpoints/vadclip/model_ucf.pth` CPU strict loading 성공 |
-| 완성된 CLIP ViT-B/16 가중치 | 모델 생성·CLIP 추출 | `checkpoints/clip/ViT-B-16.pt` 기대 hash 일치, CPU 모델 생성/로딩 성공 |
+| 공식 UCF-Crime CLIP feature 배열 | Baseline 입력. 공식 CSV의 290개 test 파일 필요 | `data/features/official/ucf/UCFClipFeatures/` 존재. 19,500개 .npy 경로 확인 |
+| UCF-Crime pretrained VadCLIP checkpoint | UCF용 학습 완료 모델 | `data/checkpoints/vadclip/model_ucf.pth` CPU strict loading 성공 |
+| 완성된 CLIP ViT-B/16 가중치 | 모델 생성·CLIP 추출 | `data/checkpoints/clip/ViT-B-16.pt` 기대 hash 일치, CPU 모델 생성/로딩 성공 |
 
 이미 다운로드한 자원이 있으면 실제 경로를 재사용한다. 없다면 [VadCLIP 공식 README의 Setup 표](https://github.com/nwpu-zxr/VadCLIP#setup)에서 UCF-Crime 행의 CLIP(feature)와 Model(VadCLIP checkpoint)을 받는다. 이 CLIP 열은 feature 배포이며 CLIP encoder 가중치와 다르다. 현재 README에 OneDrive·Baidu 링크가 등록된 것은 확인했지만 다운로드 성공·배포 내용·test-only 분리 제공 여부는 아직 확인하지 않았다. Baidu feature 코드는 `7yzp`, model 코드는 `kq5u`다.
 
@@ -32,9 +32,9 @@ OneDrive 링크 두 개는 웹 도구에서 접근할 수 없어 다운로드 �
 
 ```json
 {
-  "features_root": "features/official/ucf/UCFClipFeatures",
-  "ucf_checkpoint": "checkpoints/vadclip/model_ucf.pth",
-  "clip_checkpoint": "checkpoints/clip/ViT-B-16.pt"
+  "features_root": "data/features/official/ucf/UCFClipFeatures",
+  "ucf_checkpoint": "data/checkpoints/vadclip/model_ucf.pth",
+  "clip_checkpoint": "data/checkpoints/clip/ViT-B-16.pt"
 }
 ```
 
@@ -67,7 +67,7 @@ bash scripts/setup/download_ucf_features.sh
 이 스크립트는 원래 공식 공유 링크에 먼저 요청하여 서버가 설정하는 session cookie를 임시 파일로 받는다. 같은 cookie를 download.aspx 요청에 전달한다. 브라우저에서 원래 공유 링크가 UCFClipFeatures.zip 페이지를 열고 다운로드 버튼을 표시하는 것은 읽기 전용으로 확인했다. 파일 경로 요청의 403이 공유 접근 정보 누락 때문인지는 아직 가설이며, JavaScript 또는 별도의 다운로드 token이 필요하면 이 방식도 실패할 수 있다.
 
 - 입력: 스크립트에 기록한 공식 feature 공유 링크와 파일 경로. 사용자 계정 cookie를 브라우저에서 추출하지 않는다.
-- 출력: `features/official/ucf/UCFClipFeatures.shared.zip`. 다운로드 중에는 별도 `.shared.zip.part` 파일을 사용하여 이전 실패 파일과 분리한다.
+- 출력: `data/features/official/ucf/UCFClipFeatures.shared.zip`. 다운로드 중에는 별도 `.shared.zip.part` 파일을 사용하여 이전 실패 파일과 분리한다.
 - 임시 cookie는 실행 종료 시 삭제한다. 쿠키·응답 header를 로그에 출력하지 않는다.
 - HTTP 성공 뒤 ZIP 유형과 central directory를 확인한 경우에만 완료 이름으로 옮긴다. 전체 CRC·압축 해제·feature 매핑은 수행하지 않는다.
 - 다시 403이면 브라우저의 다운로드 버튼으로 시작된 실제 다운로드 링크 또는 요청이 필요하다. 사용자 브라우저에서 다운로드 링크를 복사하여 로컬 wget에 사용하며, 링크만으로 접근되지 않으면 해당 요청의 cookie/인증 여부를 확인해야 한다. 인증 정보를 채팅에 전달할 필요는 없다.
@@ -82,17 +82,17 @@ Codex는 이 스크립트를 정적으로 검토했으며 실행하거나 다운
 
 ```sh
 wget -c --server-response --timeout=60 --tries=5 \
-  -O features/official/ucf/UCFClipFeatures.zip \
+  -O data/features/official/ucf/UCFClipFeatures.zip \
   'https://stuxidianeducn-my.sharepoint.com/personal/pengwu_stu_xidian_edu_cn/_layouts/15/download.aspx?SourceUrl=https%3A%2F%2Fstuxidianeducn-my.sharepoint.com%2Fpersonal%2Fpengwu_stu_xidian_edu_cn%2FDocuments%2FVadCLIP-AAAI2024%2Ffeatures%2FUCF-Crime%2FUCFClipFeatures.zip'
 ```
 
 `-c`는 서버가 지원하면 중단된 다운로드를 이어받는다. `-O`는 저장 파일을 지정한다. 이 명령은 다운로드만 수행하며 feature 압축 해제·모델 평가를 실행하지 않는다.
 
-저장 위치: 프로젝트의 `features/official/ucf/UCFClipFeatures.zip`. 다운로드가 끝나면 파일 유형과 ZIP central directory를 확인한다.
+저장 위치: 프로젝트의 `data/features/official/ucf/UCFClipFeatures.zip`. 다운로드가 끝나면 파일 유형과 ZIP central directory를 확인한다.
 
 ```sh
-file features/official/ucf/UCFClipFeatures.zip
-zipinfo -t features/official/ucf/UCFClipFeatures.zip
+file data/features/official/ucf/UCFClipFeatures.zip
+zipinfo -t data/features/official/ucf/UCFClipFeatures.zip
 ```
 
 `file`에서 ZIP으로 식별되고 `zipinfo`가 archive 정보를 정상 출력하는지 확인한다. 이는 전체 member의 CRC/내용 검증은 아니다. HTML 문서가 저장되거나 HTTP 401/403이 나오면 해당 주소가 wget의 비로그인 세션에서 파일을 제공하지 못한 상태다. 결과를 전달받아 공유 링크·브라우저 다운로드 요청에 맞춰 후속 명령을 준비한다. 실패한 HTML 파일에는 `-c`로 재개하지 않는다.

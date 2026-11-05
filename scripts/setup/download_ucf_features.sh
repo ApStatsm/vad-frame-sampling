@@ -4,7 +4,7 @@ set -euo pipefail
 umask 077
 
 ucf_project_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)"
-ucf_feature_dir="$ucf_project_root/features/official/ucf"
+ucf_feature_dir="$ucf_project_root/data/features/official/ucf"
 ucf_setup_dir="$ucf_project_root/outputs/setup"
 ucf_partial="$ucf_feature_dir/UCFClipFeatures.shared.zip.part"
 ucf_complete="$ucf_feature_dir/UCFClipFeatures.shared.zip"
