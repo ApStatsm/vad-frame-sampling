@@ -1,6 +1,8 @@
+> **Archive (2026-11-05 정리)**: 2026-10-07 official-feature baseline 실행 당시의 안내와 기록이다. 현재 실행 방법은 [SETUP.md](../SETUP.md)와 루트 README, 결과는 [EXPERIMENT_RESULTS.md](../EXPERIMENT_RESULTS.md)를 본다. 아래 경로·run 이름은 작성 당시 기준이다.
+
 # UCF-Crime official-feature baseline 실행 안내
 
-2026-10-07. Codex는 코드 작성·정적 검토 및 기존 결과 읽기만 수행했다. 사용자 MPS full run `ucf_full_20261007_010204`가 성공했으며 branch1 AUC 88.02%/Ano-AUC 70.23%, branch2 AUC 85.69%, 원본 fine-grained AVG 6.68%다. [실험 결과표](EXPERIMENT_RESULTS.md)에 official-feature 재현과 미측정 raw sampling 표를 구분했다. 아래 명령은 실행 안내이며 동일 조건의 성공 run을 반복할 필요는 없다.
+2026-10-07. Codex는 코드 작성·정적 검토 및 기존 결과 읽기만 수행했다. 사용자 MPS full run `ucf_full_20261007_010204`가 성공했으며 branch1 AUC 88.02%/Ano-AUC 70.23%, branch2 AUC 85.69%, 원본 fine-grained AVG 6.68%다. [실험 결과표](../EXPERIMENT_RESULTS.md)에 official-feature 재현과 미측정 raw sampling 표를 구분했다. 아래 명령은 실행 안내이며 동일 조건의 성공 run을 반복할 필요는 없다.
 
 **실행 선택:** 사용자 지시에 따라 smoke는 선택적 소규모 점검이며 `--mode full --device mps`를 바로 실행할 수 있다. Full에서는 과거 smoke 보고서를 읽거나 현재 코드 hash와 비교하지 않는다. 자원·입력 audit와 checkpoint 점검, 실행별 source hash 기록은 유지한다. 기존 작은 JSON/CSV/텍스트 보고서는 `outputs/`의 원래 위치에서 공유하고 score 배열은 업로드에서 제외한다. 구조·형식은 루트 README에 정리했다.
 
@@ -113,4 +115,4 @@ Full 명령은 모델 inference부터 다시 수행하여 두 branch의 AUC/AP/A
 
 사용자 요청으로 기본 fine-grained를 원본 공개 코드 방식으로 수정하고, 앞서 준비했던 `--fine-grained`/`--official-fine-grained` 저장-score 갱신 옵션과 별도 13개 클래스 구현을 제거했다. 기존 summary/NPZ는 수정하지 않았고 새 모델 실행에서 새 run을 생성한다.
 
-새 사용자 `ucf_full_20261007_010204`의 원본 방식 mAP 11.72/7.83/6.40/4.53/2.93%, AVG 6.68%를 확인했다. 논문 표와 소수점 둘째 자리까지 일치하며 기존 coarse metric도 같다. Codex는 기존 JSON만 읽었고 모델·GT 배열 로딩·metric 계산은 실행하지 않았다. 다음 raw-video 좌표/추출 검증과 CLIP 시간 측정은 [raw reference 안내](UCF_RAW_REFERENCE.md)를 따른다.
+새 사용자 `ucf_full_20261007_010204`의 원본 방식 mAP 11.72/7.83/6.40/4.53/2.93%, AVG 6.68%를 확인했다. 논문 표와 소수점 둘째 자리까지 일치하며 기존 coarse metric도 같다. Codex는 기존 JSON만 읽었고 모델·GT 배열 로딩·metric 계산은 실행하지 않았다. 다음 raw-video 좌표/추출 검증과 CLIP 시간 측정은 [raw reference 안내](../UCF_RAW_REFERENCE.md)를 따른다.

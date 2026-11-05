@@ -1,6 +1,6 @@
 # VAD Frame Sampling
 
-Pretrained VadCLIP을 고정하고, frame sampling 방법만 바꿨을 때 이상 탐지 성능과 계산 비용이 어떻게 달라지는지 비교하는 프로젝트입니다. UCF-Crime에서 먼저 검증한 뒤 XD-Violence로 확장합니다. 연구 설계는 [연구 계획](VAD_Frame_Sampling_Research_Plan.md), 결과는 [실험 결과표](docs/EXPERIMENT_RESULTS.md)를 참고하세요.
+Pretrained VadCLIP을 고정하고, frame sampling 방법만 바꿨을 때 이상 탐지 성능과 계산 비용이 어떻게 달라지는지 비교하는 프로젝트입니다. UCF-Crime에서 먼저 검증한 뒤 XD-Violence로 확장합니다. 연구 설계는 [연구 계획](VAD_Frame_Sampling_Research_Plan.md), 지금까지의 진행과 결과는 [실험 결과](docs/EXPERIMENT_RESULTS.md), 새 컴퓨터에서의 준비·재현 절차는 [SETUP](docs/SETUP.md)을 참고하세요.
 
 ## 현재 상태
 
@@ -14,6 +14,7 @@ UCF-Crime test 290개(anomaly 140, normal 150), 평가 frame 1,109,888개 기준
 
 - Raw reference는 공식 feature 대비 AUC −0.83pp입니다. 저장 점수로 민감도 분석을 한 결과, 이 차이는 전부 공식 feature를 재현하지 못한 가장 긴 float32 영상 4개 때문입니다(4개만 공식 점수로 바꾸면 +0.002pp). 나머지 float16 286개는 상대 L2 ≤ 0.005로 재현됩니다.
 - 공용 코드는 `vadfs/` 패키지로 정리했습니다. 리팩토링한 코드로 다시 실행한 `ucf_full_20261008_163913`과 `ucf_raw_full_20261008_164022`는 위 두 run과 290개 전부 feature·score·metric이 bit 단위로 같습니다.
+- 대용량 입력을 `data/` 아래로 옮긴 뒤(2026-11-05) 입력 점검을 다시 만들고 실행한 `ucf_full_20261105_222638`도 `163913`과 metric·점수가 같습니다. 이 run이 현재 raw 평가의 official 비교 기준입니다.
 - 다음 작업: raw reference 위에 Uniform / Random sampler 구현(budget 100/50/25/12.5%).
 
 ## 실행
@@ -35,7 +36,7 @@ UCF-Crime test 290개(anomaly 140, normal 150), 평가 frame 1,109,888개 기준
 - Smoke는 선택 사항입니다. Full은 smoke 결과 없이 바로 실행할 수 있습니다.
 - Raw smoke는 짧은 anomaly·짧은 normal·긴 영상 3개를 처리합니다. `--video Abuse028_x264.mp4`로 특정 영상을 지정할 수 있고 여러 번 쓸 수 있습니다.
 - 추출 설정은 [configs/ucf_raw_reference.json](configs/ucf_raw_reference.json)에서 읽습니다. 다른 설정은 `--config`, 다른 official 비교 run은 `--official-run`으로 지정합니다.
-- 실행 규칙과 출력의 상세 설명: [official 평가](docs/UCF_OFFICIAL_BASELINE.md), [raw reference](docs/UCF_RAW_REFERENCE.md).
+- 준비 절차와 통과 기준은 [SETUP](docs/SETUP.md), raw 추출 규칙과 출력의 상세 설명은 [raw reference](docs/UCF_RAW_REFERENCE.md)에 있습니다.
 
 ## 저장소 구조
 
@@ -57,11 +58,10 @@ UCF-Crime test 290개(anomaly 140, normal 150), 평가 frame 1,109,888개 기준
 │   ├── ucf_resources.json              # feature·checkpoint 경로
 │   └── ucf_raw_reference.json          # 확정된 raw 추출 설정과 official 비교 run
 ├── docs/
-│   ├── EXPERIMENT_RESULTS.md           # 결과표
-│   ├── UCF_OFFICIAL_BASELINE.md        # official 평가 규칙·출력
+│   ├── SETUP.md                        # 환경·자원 준비, 입력 점검, 재현 확인
+│   ├── EXPERIMENT_RESULTS.md           # 진행 요약·결과표·sampling 기록 규칙
 │   ├── UCF_RAW_REFERENCE.md            # raw 추출 recipe·근거·시간 측정·출력
-│   ├── UCF_RESOURCE_SETUP.md           # 자원 다운로드·배치
-│   └── archive/                        # 추출 방식 탐색 기록 등 지난 문서
+│   └── archive/                        # 추출 방식 탐색 기록, 이전 baseline 안내
 ├── VadCLIP/                            # upstream 모델 소스, 공식 목록·GT, LICENSE
 ├── data/                               # 데이터·feature·checkpoint (저장소에는 작은 metadata만)
 │   └── UCF-Crime/
@@ -120,7 +120,7 @@ Git에는 `summary.json`과 `cohort_sensitivity.json`만 올라가고 NPZ 배열
 
 ### GitHub에서 제외한 대용량 파일
 
-새 clone에는 들어 있지 않으므로 직접 확보해야 합니다. 다운로드 링크와 절차는 [UCF_RESOURCE_SETUP.md](docs/UCF_RESOURCE_SETUP.md)에 있습니다.
+새 clone에는 들어 있지 않으므로 직접 확보해야 합니다. 다운로드 링크와 절차는 [SETUP.md](docs/SETUP.md)에 있습니다.
 
 ```text
 ├── data/
@@ -159,7 +159,7 @@ Git에는 `summary.json`과 `cohort_sensitivity.json`만 올라가고 NPZ 배열
 }
 ```
 
-준비·점검은 이 컴퓨터에서 이미 통과했습니다. 2026-11-05에 대용량 입력을 `data/` 아래로 옮겼으므로, 이 컴퓨터에서도 아래 두 점검과 official full을 한 번 다시 실행해야 평가기의 hash 대조를 통과합니다. 다른 컴퓨터에서는 자신의 입력 기준으로 manifest·symlink·local CSV·audit를 다시 만듭니다. 이 단계에는 영상 ZIP 5개, `extracted/` 영상, 원본 annotation, `ffprobe`가 필요합니다.
+준비·점검은 이 컴퓨터에서 이미 통과했습니다. 2026-11-05에 대용량 입력을 `data/` 아래로 옮긴 뒤에도 아래 두 점검과 official full을 다시 실행해 통과했습니다(`ucf_full_20261105_222638`). 다른 컴퓨터에서는 자신의 입력 기준으로 manifest·symlink·local CSV·audit를 다시 만듭니다. 이 단계에는 영상 ZIP 5개, `extracted/` 영상, 원본 annotation, `ffprobe`가 필요합니다.
 
 ```sh
 .venv/bin/python scripts/setup/prepare_ucf_test.py

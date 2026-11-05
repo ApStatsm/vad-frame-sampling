@@ -1,53 +1,132 @@
-# VAD frame sampling 실험 결과
+# 실험 진행과 결과
 
-확인일: 2026-10-07, raw reference 갱신 2026-10-08. 사용자 실행 보고서를 읽어 기록했다.
+최종 갱신: 2026-11-05. 실제로 실행한 실험만 기록한다. 논문 보고값이나 계획을 측정값처럼 적지 않는다. Raw 추출 방식의 근거는 [UCF_RAW_REFERENCE.md](UCF_RAW_REFERENCE.md)에 있다.
 
-## Official-feature baseline 재현
+## 한눈에 보기
 
-이 결과는 미리 추출된 공식 CLIP features를 입력한 평가다. Raw-video reference 및 아래 sampling 비교표와 구분한다. Frame budget은 적용하지 않았다.
+**UCF-Crime에서 baseline 재현과 sampling 비교의 기준(raw-video reference) 확정까지 끝났다. Sampling 실험(Uniform / Random / Adaptive / Ours)과 XD-Violence는 아직 시작하지 않았다.**
 
-| Dataset | 입력 | Score branch | AUC (%) | AP (%) | Ano-AUC (%) | 평가 영상 수 | 평가 frame 수 |
-|---|---|---|---:|---:|---:|---:|---:|
-| UCF-Crime | Official CLIP features | Branch 1 / C-branch | 88.02 | 33.56 | 70.23 | 290 | 1,109,888 |
-| UCF-Crime | Official CLIP features | Branch 2 / A-branch | 85.69 | 26.50 | 65.52 | 290 | 1,109,888 |
+| 단계 (연구 계획 순서) | 상태 |
+|---|---|
+| 1. UCF-Crime test split·annotation·feature·checkpoint 확인 | 완료 |
+| 2. Official feature + pretrained checkpoint로 baseline 재현 | 완료 — AUC 88.02%, 논문 값과 일치 |
+| 3. Raw video에서 CLIP feature를 직접 뽑는 reference pipeline | 완료 — AUC 87.19%, sampling 비교의 기준으로 확정 |
+| 4. Uniform / Random, budget별 성능·시간 | **다음 작업** |
+| 5. XD-Violence baseline | 미착수 |
+| 6. Adaptive baseline, failure analysis | 미착수 |
+| 7. Ours 설계·최종 평가 | 미착수 |
 
-Ano-AUC는 이상 영상 140개의 전체 프레임(정상 구간 포함)을 모아 계산한다. 사용자가 기존 저장 score로 추가한 summary의 branch1=0.7023225741073721, branch2=0.6552197493487624를 읽어 %로 기록했다. 계산 경위는 [기존 결과에 Ano-AUC 추가](UCF_OFFICIAL_BASELINE.md#기존-결과에-ano-auc-추가-기록)를 참고한다.
+| 입력 | Run | Branch1 AUC | AP | Ano-AUC | Fine-grained AVG |
+|---|---|---:|---:|---:|---:|
+| Official CLIP features | `ucf_full_20261007_010204` | 88.02% | 33.56% | 70.23% | 6.68% |
+| Raw video, 직접 추출 | `ucf_raw_full_20261008_150142` | 87.19% | 31.80% | 69.14% | 6.83% |
+| 차이 (raw − official) | | −0.83pp | −1.75pp | −1.09pp | +0.15pp |
 
-사용자 새 full run `ucf_full_20261007_010204`에서 원본 290개/14개 클래스 fine-grained 재현을 확인했다. 기존 두 branch AUC/AP/Ano-AUC도 같은 값이다.
+## 고정한 실험 조건
 
-| Dataset / 입력 | Score branch | mAP@0.1 (%) | mAP@0.2 (%) | mAP@0.3 (%) | mAP@0.4 (%) | mAP@0.5 (%) | AVG (%) |
-|---|---|---:|---:|---:|---:|---:|---:|
-| UCF-Crime / official features / original-code reproduction | Branch 2 / A-branch | 11.72 | 7.83 | 6.40 | 4.53 | 2.93 | 6.68 |
-| UCF-Crime / earlier anomaly-only 13-class protocol | Branch 2 / A-branch | 13.09 | 8.71 | 7.15 | 5.05 | 3.28 | 7.46 |
+연구 질문은 "pretrained VadCLIP을 고정했을 때, frame sampling만 바꾸면 성능과 계산 비용이 어떻게 달라지는가"다. 아래는 모든 run에서 같다.
 
-원본 방식 결과는 논문 [Table 4](https://ojs.aaai.org/index.php/AAAI/article/download/28423/28826#page=6)의 보고값과 소수점 둘째 자리까지 일치한다. 이전 anomaly-only 값은 다른 protocol의 과거 기록이며 모델 성능 개선으로 해석하지 않는다. 이전 004524 폴더는 사용자 삭제 상태로 복구하지 않았다.
+| 항목 | 값 |
+|---|---|
+| 모델 | VadCLIP (upstream commit `c41067f`), 재학습 없음 |
+| Checkpoint | `model_ucf.pth` (SHA-256 `d064aba0…`), CLIP ViT-B/16 (`5806e77c…`) |
+| 데이터 | UCF-Crime 공식 test 290개 (anomaly 140, normal 150) |
+| 평가 시간축 | 공식 GT 전체 1,109,888 frame. Sampling 후에도 전체 시간축에서 평가 |
+| 주 지표 | Branch1(`sigmoid(logits1)`) frame-level ROC-AUC |
+| 보조 지표 | AP, Ano-AUC(이상 영상 140개 전체 frame), fine-grained mAP(branch2, 290개·14개 클래스, 원본 evaluator) |
+| Score 복원 | Token 점수를 16 frame씩 반복 (upstream 방식) |
+| Seed / 장비 | 234 / macOS arm64, MPS |
 
-- 최신 Run: `ucf_full_20261007_010204`, MPS, seed 234, success=true, 정상 포함 290개/1,109,888 frame. 근거: [summary.json](../outputs/baseline/ucf_full_20261007_010204/summary.json).
-- 원본 `excludeNormal=False` evaluator와 bundled segment/class GT를 그대로 사용했다. Normal의 label 'A'도 보존되어 결과에 기록된다.
-- UCF 주 지표는 branch1 AUC 88.02%다. Official-feature 성능 재현이며 raw-video 재현 완료를 뜻하지 않는다.
-- `cached_feature_loop_seconds`=27.88649941701442초. 모델 초기 로딩, 최종 metric 계산·전체 score 저장, decoding·CLIP visual encoding을 제외한다. Raw E2E/Speedup에 사용하지 않는다.
-- Codex는 기존 JSON만 읽었고 score NPZ/GT 배열을 로딩하거나 metric을 다시 계산하지 않았다.
+## 실험 1. Official feature 재현
 
-## Raw-video reference (sampling 비교의 기준)
+공개된 CLIP feature를 그대로 넣어 upstream VadCLIP 평가를 재현했다. Run `ucf_full_20261007_010204` ([summary.json](../outputs/baseline/ucf_full_20261007_010204/summary.json)).
 
-2026-10-08 사용자 결정: UCF sampling 비교의 기준은 직접 추출한 raw-video reference다. 추출 방식과 근거는 [UCF_RAW_REFERENCE.md](UCF_RAW_REFERENCE.md)와 [EXTRACTION_DIAGNOSTIC_RUNS.md](archive/EXTRACTION_DIAGNOSTIC_RUNS.md)에 있다. 사용자 실행 run은 `ucf_raw_full_20261008_150142`(MPS, float32, seed 234, 290개 성공)이다. 근거: [summary.json](../outputs/baseline/ucf_raw_full_20261008_150142/summary.json).
+| Branch | AUC | AP | Ano-AUC |
+|---|---:|---:|---:|
+| Branch1 (C-branch) | 88.02% | 33.56% | 70.23% |
+| Branch2 (A-branch) | 85.69% | 26.50% | 65.52% |
 
-| Dataset | 입력 | Score branch | AUC (%) | AP (%) | Ano-AUC (%) | 공식 feature 대비 AUC (pp) |
-|---|---|---|---:|---:|---:|---:|
-| UCF-Crime | Raw video, 재구성 추출 | Branch 1 / C-branch | 87.19 | 31.80 | 69.14 | −0.83 |
-| UCF-Crime | Raw video, 재구성 추출 | Branch 2 / A-branch | 84.90 | 25.22 | 64.48 | −0.80 |
+| Fine-grained (branch2) | mAP@0.1 | @0.2 | @0.3 | @0.4 | @0.5 | AVG |
+|---|---:|---:|---:|---:|---:|---:|
+| 원본 방식 (290개·14개 클래스) | 11.72 | 7.83 | 6.40 | 4.53 | 2.93 | 6.68 |
+| 이전 anomaly-only 13개 클래스 (폐기) | 13.09 | 8.71 | 7.15 | 5.05 | 3.28 | 7.46 |
 
-Fine-grained(branch 2): mAP@0.1~0.5 = 11.79 / 7.97 / 6.57 / 4.71 / 3.12, AVG 6.83%(공식 대비 +0.15pp).
+- 원본 방식은 논문 [Table 4](https://ojs.aaai.org/index.php/AAAI/article/download/28423/28826#page=6)와 소수점 둘째 자리까지 일치한다.
+- 처음에는 normal을 뺀 13개 클래스로 계산해 7.46%가 나왔다. 원본 코드(`excludeNormal=False`)와 같은 방식으로 바로잡았으며, 7.46%는 다른 protocol의 값이라 성능 개선으로 해석하지 않는다.
+- Upstream의 window 처리 이상 동작은 그대로 유지했다. 길이가 256의 배수여도 padded window를 하나 더 만들고, padding mask를 전달하지 않는다. 바꾸면 재현이 깨지기 때문이다.
+- 실행 시간(`cached_feature_loop_seconds`) 27.9초는 decode·CLIP encoding을 포함하지 않으므로 효율 비교에 쓰지 않는다.
 
-- Feature 일치: 공식 float16 286개 모두 상대 L2 ≤ 0.005(중앙값 0.0019, 최대 0.0047), token 점수 차이 최대 0.008. 가장 긴 4개(공식 float32: Shooting032, Normal924/935/940)는 0.29~0.35로 재현하지 못했다. 이 4개는 frame-level 시간축의 24.7%다.
-- AUC 차이의 원인은 4개 영상으로 **확인했다**(2026-10-08, `scripts/analyze_ucf_raw_cohorts.py`, 저장 점수만 사용, 결과 `outputs/baseline/ucf_raw_full_20261008_150142/cohort_sensitivity.json`). Raw 점수에서 float32 4개 구간만 공식 점수로 바꾸면 공식 대비 branch1 AUC +0.002pp, AP +0.013pp, Ano-AUC +0.004pp(branch2 +0.003/+0.008/+0.008)로 사실상 같다. 반대로 공식 점수에 raw 4개 구간을 넣으면 −0.836pp가 된다. 4개를 뺀 시간축에서도 raw와 공식의 차이는 +0.002pp다.
-- 리팩토링 검증(2026-10-08): `vadfs` 패키지 코드로 재실행한 `ucf_raw_full_20261008_164022`(raw)와 `ucf_full_20261008_163913`(official)이 각각 150142, 010204와 290개 전부 feature·score·metric bit 동일. 수치 기준은 바뀌지 않는다.
-- 입력 경로 이동 검증(2026-11-05): 대용량 입력을 `data/`로 옮기고 입력 점검을 다시 만든 뒤 실행한 `ucf_full_20261105_222638`(official, MPS)이 `163913`과 metric 동일, 점수 NPZ 291개 byte 동일. Raw 비교 기준 run을 이 run으로 바꿨다.
-- 시간(1회): E2E 1465.8초, CLIP forward 1221.1초, x86 색 변환 재현 95.7초(numpy 에뮬레이션, 실제 x86 비용 아님), decode 69.9초, 전처리 43.5초, VAD 24.7초. Encoder 입력 69,368장. Warm-up 2회 제외, OS cache 미통제.
+## 실험 2. Raw-video reference 구축
+
+Sampling은 CLIP encoder에 넣기 **전에** 프레임을 골라야 효율 이득이 생긴다. 그래서 원본 영상에서 직접 feature를 뽑는 pipeline이 필요했다. 공개 코드에는 feature 추출 코드가 없어서 공식 feature와 수치를 맞춰 가며 추출 방식을 재구성했다.
+
+### 확정한 추출 방식
+
+| 항목 | 값 | 근거 |
+|---|---|---|
+| 시간 단위 | 16 frame마다 token 1개 | 저자 issue 답변 |
+| 구간 내 선택 | 첫 프레임 1장 (offset 0) | 16장 평균은 시간축 오차 패턴이 맞지 않아 기각 |
+| 색 변환 | x86 libswscale YUV→RGB를 numpy로 재현 | Mac OpenCV는 약 1 grey level 어두워 상대 L2 0.042 |
+| Resize / crop | 짧은 변 256 비율 resize 후 중앙 crop을 좌우 반전 (crop 5) | 공개 crop.py의 340×256 고정 resize는 상대 L2 0.12 |
+| 꼬리 처리 | 공식 feature 길이에 맞춤 (float16은 floor, float32는 ceil) | 공식 배열 길이만 사용, GT는 쓰지 않음 |
+| Precision | CLIP float32, 저장은 공식 feature dtype | |
+
+기각한 다른 가설(JPEG 저장, chroma 보간 방식, `floor((N−1)/16)` 꼬리 규칙 등)은 [UCF_RAW_REFERENCE.md](UCF_RAW_REFERENCE.md#재구성-근거와-기각한-가설-요약)에 정리했다.
+
+### 결과
+
+Run `ucf_raw_full_20261008_150142` (MPS, float32, seed 234, 290개 성공, [summary.json](../outputs/baseline/ucf_raw_full_20261008_150142/summary.json)).
+
+| Branch | AUC | AP | Ano-AUC | 공식 대비 AUC |
+|---|---:|---:|---:|---:|
+| Branch1 | 87.19% | 31.80% | 69.14% | −0.83pp |
+| Branch2 | 84.90% | 25.22% | 64.48% | −0.80pp |
+
+- Fine-grained(branch2): mAP@0.1~0.5 = 11.79 / 7.97 / 6.57 / 4.71 / 3.12, AVG 6.83%(공식 대비 +0.15pp).
+- Feature 일치도: 공식 feature가 float16인 286개는 모두 상대 L2 ≤ 0.005다(중앙값 0.0019, 최대 0.0047). CPU와 MPS 사이의 차이와 같은 수준이고, token 점수 차이는 최대 0.008이다.
+- 공식 feature가 float32인 가장 긴 4개 영상(Shooting032, Normal924/935/940)은 상대 L2 0.29~0.35로 재현하지 못했다. 이 4개가 평가 시간축의 24.7%를 차지한다.
+
+### 차이의 원인 분석
+
+저장된 점수만으로 민감도 분석을 했다(`scripts/analyze_ucf_raw_cohorts.py`, 모델은 실행하지 않음, 결과 `outputs/baseline/ucf_raw_full_20261008_150142/cohort_sensitivity.json`).
+
+| 비교 | Branch1 AUC 차이 |
+|---|---:|
+| Raw 점수에서 float32 4개 구간만 공식 점수로 교체 | +0.002pp (공식과 사실상 같음) |
+| 공식 점수에 raw 4개 구간을 넣음 | −0.836pp |
+| 4개를 뺀 시간축에서 raw vs 공식 | +0.002pp |
+
+→ −0.83pp는 **전부 float32 4개 영상 때문**이다. 같은 교체에서 공식 대비 AP는 +0.013pp, Ano-AUC는 +0.004pp다. 사전에 정한 허용 오차(|ΔAUC| ≤ 0.5pp)는 넘었지만, 이 4개의 미재현을 제한점으로 기록하고 raw reference를 sampling 비교의 기준으로 확정했다(2026-10-08). 앞으로의 sampling Δ는 87.19%를 기준으로 계산하고, 4개 영상도 빼지 않고 290개 전체로 평가한다.
+
+## 실험 3. 재현성 검증
+
+코드나 경로를 바꿀 때마다 다시 실행해 결과가 bit 단위로 같은지 확인했다.
+
+| 날짜 | 변경 | 재실행 run | 결과 |
+|---|---|---|---|
+| 2026-10-08 | 코드를 `vadfs` 패키지로 리팩토링 | `ucf_full_20261008_163913`, `ucf_raw_full_20261008_164022` | 290개 전부 feature·선택 index·score·metric bit 동일 |
+| 2026-11-05 | 대용량 입력을 `data/`로 이동 | `ucf_full_20261105_222638` | Metric 동일, 점수 NPZ 291개 byte 동일 |
+
+각 run의 `summary.json`에는 입력·checkpoint·소스 파일 SHA-256과 commit이 기록된다. Raw 평가기는 모델·metric 소스 hash가 같은 official run만 비교 대상으로 받는다. 현재 비교 기준 official run은 `ucf_full_20261105_222638`이다.
+
+## 시간 측정 (raw reference, 1회)
+
+| 단계 | 시간 (초) |
+|---|---:|
+| End-to-end (290개 전체) | 1465.8 |
+| CLIP forward | 1221.1 |
+| x86 색 변환 재현 (numpy) | 95.7 |
+| Decode | 69.9 |
+| 전처리 | 43.5 |
+| VAD | 24.7 |
+
+- CLIP encoder 입력 69,368장이다. CLIP forward가 전체의 약 83%를 차지하므로 프레임 수를 줄이면 효과가 클 것으로 보이지만, 아직 측정하지 않았다.
+- 1회 측정이고, warm-up 2회는 제외했으며 OS cache는 통제하지 않았다. 색 변환 재현은 실제 x86 비용이 아니므로 효율 비교에서 따로 보고한다.
+- 영상은 항상 전부 decode하므로, 프레임을 덜 뽑아도 decode 시간은 줄지 않는다고 본다.
 
 ## Raw-video sampling 비교표
 
-`미측정`은 실제 측정값이 아직 확인되지 않았다는 뜻이다. Reference의 Δ=0 및 Speedup=1.00×는 기준 정의이며 실측 성과가 아니다. Random은 최종 확정한 seed 반복의 평균±표준편차로 기록한다.
+`미측정`은 실제 측정값이 아직 없다는 뜻이다. Reference의 Δ=0과 Speedup=1.00×는 기준 정의이며 실측 성과가 아니다. Random은 최종 확정한 seed 반복의 평균±표준편차로 기록한다.
 
 | Dataset | Sampling | Budget | AUC 또는 AP (%) | Δ (pp) | End-to-end (s) | Speedup | Event coverage (%) |
 |---|---|---:|---:|---:|---:|---:|---:|
@@ -62,17 +141,40 @@ Fine-grained(branch 2): mAP@0.1~0.5 = 11.79 / 7.97 / 6.57 / 4.71 / 3.12, AVG 6.8
 | XD-Violence | Adaptive | 25% | 미측정 | 미측정 | 미측정 | 미측정 | 미측정 |
 | XD-Violence | Ours | 25% | 미측정 | 미측정 | 미측정 | 미측정 | 미측정 |
 
+50%·12.5% budget도 같은 형식으로 행을 추가한다.
+
 기입 규칙:
 
 - AUC 또는 AP: UCF는 frame-level ROC-AUC, XD는 frame-level AP를 %로 기록한다. 같은 데이터셋의 모든 sampler에서 score branch와 후처리를 고정한다.
-- Δ: `해당 sampling 성능(%) − raw reference 성능(%)`. 차이의 단위는 percentage point다.
-- End-to-end: 같은 test split 전체를 처리한 총 시간을 초로 기록한다. Decoding, sampler 점수·선택, 전처리/CLIP encoding, VAD 및 원본 시간축 score 복원을 포함한다. 동일 장비·precision·batch/I/O 조건과 warm-up·동기화·반복 방식을 먼저 고정한다.
+- Δ: `해당 sampling 성능(%) − raw reference 성능(%)`. 단위는 percentage point다.
+- End-to-end: 같은 test split 전체를 처리한 총 시간(초). Decoding, sampler 점수·선택, 전처리/CLIP encoding, VAD, 원본 시간축 score 복원을 포함한다. 장비·precision·batch/I/O 조건과 warm-up·동기화·반복 방식을 먼저 고정한다.
 - Speedup: `raw reference End-to-end / 해당 sampling End-to-end`. 25% budget을 4배 speedup으로 가정하지 않는다.
-- Event coverage: `선택한 원본 frame이 하나 이상 포함된 anomaly interval 수 / 전체 anomaly interval 수 × 100`. GT는 분석에만 사용한다. 100%도 정해진 reference 후보를 모두 사용한다는 뜻이므로 coverage=100%로 가정하지 않는다.
+- Event coverage: `선택한 원본 frame이 하나 이상 포함된 anomaly interval 수 / 전체 anomaly interval 수 × 100`. GT는 분석에만 사용한다. 100%도 정해진 reference 후보를 모두 쓴다는 뜻일 뿐이므로 coverage=100%로 가정하지 않는다.
 
-## 바로 다음 작업
+## 아직 하지 않은 것
 
-1. (완료) UCF raw reference full 실행과 기준 고정(`ucf_raw_full_20261008_150142`). 민감도 분석으로 AUC 차이가 float32 4개 영상 때문임을 확인했다.
-2. Annotation 좌표 규칙은 공식 GT 시간축을 그대로 사용하므로 별도 변경하지 않는다.
-3. 공통 규칙과 주 score branch(branch1)를 고정한 뒤 Uniform/Random 25%를 먼저 비교한다. 연구 계획의 50%/12.5% budget도 이후 같은 형식으로 기록한다.
-4. XD-Violence 자원과 데이터셋별 checkpoint·AP 평가를 검증한 뒤 확장한다. Adaptive/Ours는 계획 순서에 따라 개발하며 Ours는 별도 개발 데이터에서 설계·튜닝한다.
+**Sampling 구현 전에 정해야 할 것**
+
+- 주 score branch를 branch1로 고정할지, 두 branch를 결합할지
+- 일부 프레임만 골랐을 때 window·padding·위치 정보를 어떻게 처리할지
+- 비균일 선택의 점수를 원래 시간축으로 복원하는 방법 (nearest, linear 등)
+- Random의 반복 횟수와 seed 목록 (5개로 제안만 한 상태)
+- 시간 측정 반복 횟수와 조건
+
+**측정하지 않은 실험**
+
+- UCF-Crime의 Uniform / Random / Adaptive / Ours, budget 100 / 50 / 25 / 12.5%
+- XD-Violence 전체 (데이터·feature·checkpoint 확인 전)
+- Ours 설계 (test와 분리된 개발 데이터 확보 방법도 미정)
+
+## Run 목록
+
+모든 run은 `outputs/baseline/<run ID>/`에 있다. Git에는 `summary.json`과 `cohort_sensitivity.json`만 올라가고, 점수 NPZ는 로컬에만 있다.
+
+| Run ID | 입력 | 목적 | 결과 |
+|---|---|---|---|
+| `ucf_full_20261007_010204` | Official features | Baseline 재현 | AUC 88.02% |
+| `ucf_raw_full_20261008_150142` | Raw video | Reference 확정 (+ `cohort_sensitivity.json`) | AUC 87.19% |
+| `ucf_full_20261008_163913` | Official features | 리팩토링 검증 | 010204와 bit 동일 |
+| `ucf_raw_full_20261008_164022` | Raw video | 리팩토링 검증 | 150142와 bit 동일 |
+| `ucf_full_20261105_222638` | Official features | `data/` 이동 검증, **현재 비교 기준** | 163913과 bit 동일 |
