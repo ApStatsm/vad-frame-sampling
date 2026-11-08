@@ -1,36 +1,23 @@
-# Local backups, synced references and environments
-/.local-backups/
-/sources/
+# Local environments, machine paths, setup reports and live runs
+.local/
 .venv/
 venv/
-__pycache__/
-*.py[cod]
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.ipynb_checkpoints/
-*.egg-info/
-build/
-dist/
-
-# Local machine and authentication files
-.DS_Store
-._*
-.env
-.env.*
-!.env.example
-*.pem
-*.key
-*.cookie
-*.cookies
+configs/local/*
+!configs/local/example.json
+!configs/local/xd.example.json
 configs/*.local.json
+/outputs/
+PROGRESS.md
+.local-backups/
+sources/
 
-# Large inputs; small annotations, manifests and split lists remain shareable
-/data/features/
-/data/checkpoints/
-/data/UCF-Crime/extracted/
-/data/UCF-Crime/test/Anomaly/
-/data/UCF-Crime/test/Normal/
+# Portable annotations and manifests stay versioned; large inputs stay external.
+data/features/
+data/checkpoints/
+data/UCF-Crime/extracted/
+data/UCF-Crime/test/Anomaly/
+data/UCF-Crime/test/Normal/
+data/XD-Violence/test/
 *.mp4
 *.avi
 *.mkv
@@ -42,21 +29,22 @@ configs/*.local.json
 *.part
 *.npz
 
-# Generated outputs: track only consolidated setup reports and run summaries.
-# Per-run diagnostic folders (ranking/per_block CSV, arrays, source audits) stay
-# local; docs/UCF_RAW_REFERENCE.md and the consolidated JSONs summarise them.
-/outputs/**
-!/outputs/*/
-!/outputs/setup/*.json
-!/outputs/setup/*.csv
-!/outputs/setup/*.txt
-!/outputs/setup/*.log
-!/outputs/baseline/*/
-!/outputs/baseline/*/summary.json
-!/outputs/baseline/*/cohort_sensitivity.json
-
-# Bundled GT .npy files and CLIP tokenizer .txt.gz remain tracked.
-PROGRESS.md
-
-# Local progress log moved out of PROGRESS.md (kept untracked like PROGRESS.md)
-docs/archive/progress_log_2026-10.md
+# Caches, builds and credentials
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+.DS_Store
+._*
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cookie
+*.cookies

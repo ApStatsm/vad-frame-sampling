@@ -74,3 +74,17 @@
 - ChatGPT 프로젝트의 `sources/` 등 동기화된 참조 파일이 있으면 읽기 전용으로 취급한다.
 - 데이터·checkpoint·로그 경로는 실제 확인한 위치만 `PROGRESS.md`에 기록한다. 대용량 자원을 이 안내 파일에 포함하지 않는다.
 - 연구 계획서는 목표와 설계를, 진행 기록은 현재 상태와 실험 증거를 담도록 유지한다.
+
+## 별도 개선 폴더 — 2026-11-08
+
+- 이 폴더는 원본 commit 632dd952의 별도 사본이다. SOURCE_SNAPSHOT.json과
+  docs/REFACTOR.md를 읽어 구현 범위와 미검증 상태를 확인한다.
+- 공통 실행 진입점은 scripts/run_experiment.py다. 기존 UCF 스크립트는
+  재현 비교를 위한 호환 경로로 남겨둔다.
+- 컴퓨터별 경로는 configs/local/, 준비 결과는 .local/setup/, 새 실험 결과는
+  outputs/runs/에 둔다. 과거 결과는 docs/reference_snapshot/의 읽기 전용 근거다.
+- XD official 평가 adapter는 작성됐지만 실행 미검증이며 raw 추출은 비활성이다.
+- Sampling protocol 초안은 configs/experiments/와 docs/PROTOCOL.md에 기록한다.
+  테스트셋 metric을 보고 보간·seed·후처리를 선택하지 않는다.
+- 기존의 사용자 직접 실행 규칙은 계속 적용한다. 코드·테스트를 작성해도
+  사용자 별도 요청 없이 실행하지 않으며, 정적 검사와 실행 검증을 구분한다.

@@ -9,6 +9,7 @@ padding mask to the temporal module.
 """
 
 import time
+import importlib
 
 import numpy as np
 import torch
@@ -16,7 +17,6 @@ import torch
 from .paths import ROOT, add_vadclip_src, sha256
 
 add_vadclip_src()
-import ucf_option  # noqa: E402
 from model import CLIPVAD  # noqa: E402
 from utils.tools import get_batch_mask, get_prompt_text, process_split  # noqa: E402
 
@@ -46,8 +46,11 @@ def synchronize(device):
         torch.mps.synchronize()
 
 
-def default_options(seed=None):
-    options = ucf_option.parser.parse_args([])
+def default_options(seed=None, dataset='ucf'):
+    """Keep UCF defaults for compatibility; select XD options explicitly."""
+    if dataset not in ('ucf', 'xd'):
+        raise ValueError(f'Unknown dataset: {dataset}')
+    options = importlib.import_module(f'{dataset}_option').parser.parse_args([])
     if seed is not None:
         options.seed = seed
     return options

@@ -137,7 +137,8 @@ class FfmpegYuvReader:
             raise ValueError(f'ffmpeg decode failed (exit {code}): {stderr[:500]}')
 
 
-def extract_reference(path, encoder, preprocess, device, config, output_dtype, expected_tokens=None):
+def extract_reference(path, encoder, preprocess, device, config, output_dtype,
+                      expected_tokens=None, selected_frame_indices=None):
     """Decode to EOF, encode complete blocks, and keep bounded image-batch memory.
 
     Frame positions use a zero-based decode counter. Nominal timestamps are
@@ -147,7 +148,9 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype, e
     cache or padding. The incomplete tail is dropped unless tail_policy is
     match_official_rows and the official timeline has exactly one extra row
     (ceil(N/16) cohort); then the tail block's configured frame is encoded.
-    expected_tokens is the audited official row count, never annotation labels.
+    expected_tokens is the FULL reference row count, never the sampling K.
+    selected_frame_indices optionally restricts encoding before CLIP, while
+    decode still visits every frame. None preserves the old Full extraction.
     """
     color = config_value(config, 'color_conversion', 'opencv_bgr')
     geometry = config_value(config, 'image_geometry', 'published_340x256')
@@ -161,6 +164,16 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype, e
     batches = 0
     next_progress = 1024
     clip_dtype = encoder.visual.conv1.weight.dtype
+    selected_set = None
+    if selected_frame_indices is not None:
+        if config['temporal_mode'] != 'single_frame':
+            raise ValueError('Budgeted sampling supports single_frame only')
+        selected = list(selected_frame_indices)
+        if (not selected or any(type(value) is not int or value < 0 for value in selected)
+                or any(a >= b for a, b in zip(selected, selected[1:]))
+                or any(value % 16 != config['frame_offset'] for value in selected)):
+            raise ValueError('Selected frames must be increasing unique reference candidates')
+        selected_set = set(selected)
 
     def to_rgb(frame):
         started = time.perf_counter()
@@ -250,7 +263,8 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype, e
             if not ok:
                 break
             started = time.perf_counter()
-            if config['temporal_mode'] == 'mean_block' or count % 16 == config['frame_offset']:
+            is_candidate = config['temporal_mode'] == 'mean_block' or count % 16 == config['frame_offset']
+            if is_candidate and (selected_set is None or count in selected_set):
                 block_images.append(frame)
                 block_indices.append(count)
                 block_pts.append(float('nan') if reader else float(cap.get(cv2.CAP_PROP_POS_MSEC)) / 1000)
@@ -293,11 +307,21 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype, e
     indices = np.asarray(chosen_indices, dtype=np.int64)
     pts = np.asarray(chosen_pts, dtype=np.float64)
     nominal = indices / fps
-    starts = np.arange(len(features), dtype=np.int64) * 16
+    starts = (np.arange(len(features), dtype=np.int64) * 16 if selected_set is None
+              else indices - config['frame_offset'])
     members = indices.reshape(-1, group)
-    if (len(features) != count // 16 + (1 if tail_frames_encoded else 0) or encoded != len(indices)
+    tail_candidate = (tail_policy == 'match_official_rows' and count % 16
+                      and expected_tokens == count // 16 + 1
+                      and config['frame_offset'] < count % 16)
+    reference_tokens = count // 16 + int(bool(tail_candidate))
+    expected_selected = reference_tokens if selected_set is None else len(selected_set)
+    if (len(features) != expected_selected or encoded != len(indices)
             or np.any(np.diff(indices) <= 0) or members.shape[0] != len(features)):
         raise ValueError('Candidate/encoding/token order or count mismatch')
+    if selected_set is not None and set(indices.tolist()) != selected_set:
+        raise ValueError('Not all requested candidate frames were decoded/encoded')
+    if expected_tokens is not None and reference_tokens != expected_tokens:
+        raise ValueError('Decoded candidate count differs from the fixed reference timeline')
     pts_valid = bool(reader is None and np.isfinite(pts).all() and (len(pts) == 1 or np.all(np.diff(pts) > 0)))
     stage['feature_aggregation'] += time.perf_counter() - started
     metadata = {
@@ -306,8 +330,9 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype, e
         'discarded_tail_frames': 0 if tail_frames_encoded else count % 16,
         'tail_frames_encoded': tail_frames_encoded, 'tail_policy': tail_policy,
         'color_conversion': color, 'image_geometry': geometry,
-        'candidate_frames': len(indices), 'selected_frames': len(indices),
-        'selected_fraction_of_candidates': 1.0,
+        'candidate_frames': reference_tokens if group == 1 else reference_tokens * group,
+        'selected_frames': len(indices),
+        'selected_fraction_of_candidates': len(indices) / (reference_tokens * group),
         'encoder_input_fraction_of_decoded_frames': encoded / count,
         'encoder_input_images': encoded, 'encoder_batches': batches,
         'encoder_parameter_dtype': str(clip_dtype), 'feature_dtype': str(features.dtype),

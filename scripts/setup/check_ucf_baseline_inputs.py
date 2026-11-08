@@ -192,7 +192,7 @@ def check_model(report, config):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', type=Path, default=ROOT / 'configs/ucf_resources.json')
-    parser.add_argument('--local-list', type=Path, default=ROOT / 'outputs/setup/ucf_CLIP_rgbtest.local.csv')
+    parser.add_argument('--local-list', type=Path, default=ROOT / '.local/setup/ucf/ucf_CLIP_rgbtest.local.csv')
     parser.add_argument('--check-model', action='store_true', help='Also import and load the model on CPU; no forward pass')
     args = parser.parse_args()
     report = {'generated_at': datetime.now(ZoneInfo('Asia/Seoul')).isoformat(),
@@ -213,7 +213,7 @@ def main():
         report['issues'].append(f'{type(error).__name__}: {error}')
     report['pending'] = ['Small inference/window/padding checks', 'Actual evaluation device',
                          'Score branch/reporting protocol', 'Raw-video coordinate convention']
-    report_path = ROOT / 'outputs/setup/ucf_baseline_input_check.json'
+    report_path = ROOT / '.local/setup/ucf/ucf_baseline_input_check.json'
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
     print(f'Data checks passed: {report["data_checks_passed"]}')

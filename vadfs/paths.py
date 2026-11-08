@@ -50,4 +50,4 @@ def add_vadclip_src():
 def package_hashes():
     """SHA-256 of every vadfs module, recorded with each run."""
     return {path.relative_to(ROOT).as_posix(): sha256(path)
-            for path in sorted((ROOT / 'vadfs').glob('*.py'))}
+            for path in sorted((ROOT / 'vadfs').rglob('*.py'))}

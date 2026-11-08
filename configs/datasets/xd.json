@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "key": "xd",
+  "name": "XD-Violence",
+  "official_list": "VadCLIP/list/xd_CLIP_rgbtest.csv",
+  "frame_gt": "VadCLIP/list/gt.npy",
+  "feature_identity": "name",
+  "resources": {
+    "videos_root": "data/XD-Violence/test",
+    "features_root": "data/features/official/xd/XDTestClipFeatures",
+    "clip_checkpoint": "data/checkpoints/clip/ViT-B-16.pt",
+    "vadclip_checkpoint": "data/checkpoints/vadclip/model_xd.pth",
+    "output_root": "outputs/runs",
+    "setup_manifest": null,
+    "device": "cpu"
+  },
+  "annotation_path": "VadCLIP/list/annotations.txt",
+  "raw_recipe_status": "unverified_and_disabled",
+  "primary_branch": "branch2",
+  "primary_metric": "ap"
+}

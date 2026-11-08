@@ -1,11 +1,6 @@
-"""VAD Frame Sampling research code: shared pipeline used by scripts/.
+"""Frozen-model VAD experiments.
 
-Modules
-    paths    project root, path resolution and file hashing
-    runs     run directories, provenance and summary writing
-    ucf      UCF-Crime labels and fixed input locations
-    vadclip  fixed pretrained VadCLIP loading and upstream-equivalent inference
-    color    x86 libswscale YUV420p -> RGB emulation
-    extract  raw-video reference extraction (decode, select, crop, CLIP encode)
-    metrics  frame-level AUC/AP/Ano-AUC, original fine-grained mAP, run comparison
+New entry: scripts/run_experiment.py -> pipeline.
+Dataset-specific identity lives in datasets; samplers never receive GT.
+The ucf module and original scripts are retained as legacy compatibility paths.
 """

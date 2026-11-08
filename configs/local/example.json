@@ -1,0 +1,8 @@
+{
+  "videos_root": "/workspace/shared-data/UCF-Crime/test",
+  "features_root": "/workspace/shared-data/features/official/ucf/UCFClipFeatures",
+  "clip_checkpoint": "/workspace/shared-data/checkpoints/clip/ViT-B-16.pt",
+  "vadclip_checkpoint": "/workspace/shared-data/checkpoints/vadclip/model_ucf.pth",
+  "output_root": "outputs/runs",
+  "device": "cuda"
+}

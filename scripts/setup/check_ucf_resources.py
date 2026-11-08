@@ -1,7 +1,7 @@
 """Inventory UCF resources without importing models, decoding videos or loading arrays.
 
 Run from any working directory. Relative config values resolve against the project
-root. Only derived reports/local CSV under outputs/setup are written. A successful
+root. Only derived reports/local CSV under .local/setup/ucf are written. A successful
 inventory does not establish feature/GT alignment or checkpoint loadability.
 """
 
@@ -74,6 +74,8 @@ def main():
     parser.add_argument('--config', type=Path, default=root / 'configs/ucf_resources.json')
     parser.add_argument('--write-local-list', action='store_true',
                         help='Write a separate local CSV only if all 290 mappings are valid')
+    parser.add_argument('--require-videos', action='store_true',
+                        help='Require raw video links too; official-only reproduction does not need them')
     args = parser.parse_args()
     config_path = args.config.expanduser().resolve()
     config = json.loads(config_path.read_text())
@@ -101,7 +103,7 @@ def main():
 
     missing_videos = [video['video_path'] for video in manifest
                       if not (root / 'data/UCF-Crime/test' / video['video_path']).is_file()]
-    if missing_videos:
+    if missing_videos and args.require_videos:
         issues.append('Some test video links are missing or broken')
 
     found = defaultdict(set)
@@ -139,7 +141,7 @@ def main():
     if not gt_path.is_file():
         issues.append('gt_ucf.npy is missing')
 
-    setup = root / 'outputs/setup'
+    setup = root / '.local/setup/ucf'
     setup.mkdir(parents=True, exist_ok=True)
     local_csv = setup / 'ucf_CLIP_rgbtest.local.csv'
     local_written = False

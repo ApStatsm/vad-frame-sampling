@@ -5,7 +5,7 @@ umask 077
 
 ucf_project_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)"
 ucf_feature_dir="$ucf_project_root/data/features/official/ucf"
-ucf_setup_dir="$ucf_project_root/outputs/setup"
+ucf_setup_dir="$ucf_project_root/.local/setup/ucf"
 ucf_partial="$ucf_feature_dir/UCFClipFeatures.shared.zip.part"
 ucf_complete="$ucf_feature_dir/UCFClipFeatures.shared.zip"
 ucf_share_url='https://stuxidianeducn-my.sharepoint.com/:u:/g/personal/pengwu_stu_xidian_edu_cn/Ea86YOcp5z9KhRFDQm9a8zwBcGiGGg5BuBJtgmCVByazBQ?e=tqHLHt'

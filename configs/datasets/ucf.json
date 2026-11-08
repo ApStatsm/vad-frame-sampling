@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "key": "ucf",
+  "name": "UCF-Crime",
+  "official_list": "VadCLIP/list/ucf_CLIP_rgbtest.csv",
+  "frame_gt": "VadCLIP/list/gt_ucf.npy",
+  "feature_identity": "parent_and_name",
+  "resources": {
+    "videos_root": "data/UCF-Crime/test",
+    "features_root": "data/features/official/ucf/UCFClipFeatures",
+    "clip_checkpoint": "data/checkpoints/clip/ViT-B-16.pt",
+    "vadclip_checkpoint": "data/checkpoints/vadclip/model_ucf.pth",
+    "output_root": "outputs/runs",
+    "setup_manifest": null,
+    "device": "cpu"
+  },
+  "reference_manifest": "configs/datasets/ucf_reference.json",
+  "segment_gt": "VadCLIP/list/gt_segment_ucf.npy",
+  "class_gt": "VadCLIP/list/gt_label_ucf.npy",
+  "fine_grained_source": "VadCLIP/src/utils/ucf_detectionMAP.py",
+  "extraction": {
+    "extraction_status": "reconstructed_sample_verified_float16_cohort",
+    "block_frames": 16,
+    "temporal_mode": "single_frame",
+    "frame_offset": 0,
+    "crop_type": 5,
+    "color_conversion": "x86_swscale_emulation",
+    "image_geometry": "shortside_fxfy",
+    "tail_policy": "match_official_rows",
+    "encoder_batch_size": 32,
+    "encoder_precision": "float32",
+    "feature_storage_dtype": "official",
+    "feature_l2_normalize": false,
+    "warmup_batches": 2,
+    "seed": 234
+  },
+  "raw_recipe_status": "historically_reconstructed_cloud_revalidation_pending"
+}

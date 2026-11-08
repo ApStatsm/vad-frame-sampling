@@ -1,18 +1,15 @@
-"""UCF-Crime labels and fixed input locations (inputs are read-only)."""
+"""Compatibility locations for legacy UCF scripts; new runs use datasets/ucf."""
 
 from .paths import ROOT
+from .datasets.ucf import LABELS
 
-
-LABELS = ('Normal', 'Abuse', 'Arrest', 'Arson', 'Assault', 'Burglary',
-          'Explosion', 'Fighting', 'RoadAccidents', 'Robbery', 'Shooting',
-          'Shoplifting', 'Stealing', 'Vandalism')
 
 TEST_ROOT = ROOT / 'data/UCF-Crime/test'
 MANIFEST = TEST_ROOT / 'manifest.json'
-INPUT_AUDIT = ROOT / 'outputs/setup/ucf_baseline_input_check.json'
-RESOURCE_AUDIT = ROOT / 'outputs/setup/ucf_resource_check.json'
-LOCAL_FEATURE_LIST = ROOT / 'outputs/setup/ucf_CLIP_rgbtest.local.csv'
-SMOKE_REPORT = ROOT / 'outputs/setup/ucf_smoke_check.json'
+INPUT_AUDIT = ROOT / '.local/setup/ucf/ucf_baseline_input_check.json'
+RESOURCE_AUDIT = ROOT / '.local/setup/ucf/ucf_resource_check.json'
+LOCAL_FEATURE_LIST = ROOT / '.local/setup/ucf/ucf_CLIP_rgbtest.local.csv'
+SMOKE_REPORT = ROOT / '.local/setup/ucf/ucf_smoke_check.json'
 FRAME_GT = ROOT / 'VadCLIP/list/gt_ucf.npy'
 SEGMENT_GT = ROOT / 'VadCLIP/list/gt_segment_ucf.npy'
 CLASS_GT = ROOT / 'VadCLIP/list/gt_label_ucf.npy'

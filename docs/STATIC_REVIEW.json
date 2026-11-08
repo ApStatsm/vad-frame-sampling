@@ -1,0 +1,79 @@
+{
+  "review_date": "2026-11-08",
+  "scope": "Static parsing and file/reference inspection only; project code was not imported or executed.",
+  "python_sources_parsed": 59,
+  "json_files_parsed_before_this_report": 42,
+  "pyproject_toml_parsed": true,
+  "experiment_dataset_paths_checked": true,
+  "new_document_relative_links_checked": true,
+  "preserved_core_files": [
+    {
+      "path": "VadCLIP/src/model.py",
+      "byte_identical_to_source": true,
+      "sha256": "6732d8f81f9bc302fb22e7e5ff066c418422aa9357002f9256c3d31e09ad1f3d"
+    },
+    {
+      "path": "VadCLIP/src/utils/tools.py",
+      "byte_identical_to_source": true,
+      "sha256": "1f079853afdb5416525d1c6564a1d4cfc568d7e888ead9e628038a030ec11bb2"
+    },
+    {
+      "path": "VadCLIP/src/utils/layers.py",
+      "byte_identical_to_source": true,
+      "sha256": "afea5a9d1e95282e32bd0a1e616660889679e148770ee366d7d262716156430e"
+    },
+    {
+      "path": "vadfs/metrics.py",
+      "byte_identical_to_source": true,
+      "sha256": "2f76e4936cb75843c8255e0b1919c09b839c9ba35856588f9723c5fc64c45233"
+    },
+    {
+      "path": "vadfs/color.py",
+      "byte_identical_to_source": true,
+      "sha256": "d1bd927e5456a83a7e227e285c8f96bbed3085c956bc8f91fc5d46a897873438"
+    },
+    {
+      "path": "VadCLIP/list/gt_ucf.npy",
+      "byte_identical_to_source": true,
+      "sha256": "c6448801e0f73d19adf82506cd58d60a90c4f0913e49dcc1ad1d677ee12d6301"
+    },
+    {
+      "path": "VadCLIP/list/gt.npy",
+      "byte_identical_to_source": true,
+      "sha256": "35dcda70d7fb19a09645457b043a806aab512d526ed11446fde34382b87dd0e5"
+    },
+    {
+      "path": "VadCLIP/list/gt_segment_ucf.npy",
+      "byte_identical_to_source": true,
+      "sha256": "3ca56b8dbb7a101b4384158ef3f4f514641998d696d4f864462f5aed7e025aa0"
+    },
+    {
+      "path": "VadCLIP/list/gt_label_ucf.npy",
+      "byte_identical_to_source": true,
+      "sha256": "f75afe410fc15be3d415f064a2e0abc6050935627d5937256c2d9a65082d273d"
+    }
+  ],
+  "portable_ucf_metadata": {
+    "videos": 290,
+    "official_list_rows": 290,
+    "anomaly_videos": 140,
+    "evaluation_frames_declared": 1109888,
+    "raw_video_bytes_historically_audited": 7988909023
+  },
+  "runtime_checks": {
+    "installation": "not_run",
+    "project_imports": "not_run",
+    "tests": "written_not_run",
+    "decoding": "not_run",
+    "inference": "not_run",
+    "numerical_reproduction": "not_run",
+    "benchmark": "not_run"
+  },
+  "errors": [],
+  "static_checks_passed": true,
+  "limitations": [
+    "Syntax/file checks do not establish runtime correctness.",
+    "UCF 100% equivalence and cloud reproduction require user execution.",
+    "XD official adapter is unexecuted; XD raw, Adaptive and Ours are not implemented."
+  ]
+}

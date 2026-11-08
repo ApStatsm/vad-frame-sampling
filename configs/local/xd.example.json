@@ -1,0 +1,7 @@
+{
+  "features_root": "/workspace/shared-data/features/official/xd/XDTestClipFeatures",
+  "clip_checkpoint": "/workspace/shared-data/checkpoints/clip/ViT-B-16.pt",
+  "vadclip_checkpoint": "/workspace/shared-data/checkpoints/vadclip/model_xd.pth",
+  "output_root": "outputs/runs",
+  "device": "cuda"
+}

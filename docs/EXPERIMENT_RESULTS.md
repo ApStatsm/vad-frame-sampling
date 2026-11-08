@@ -1,3 +1,6 @@
+> 이 문서는 원본 저장소의 과거 실험 기록입니다. 새 개선 버전의 실행 결과가 아닙니다.
+> 과거 보고서 사본은 docs/reference_snapshot/outputs/에 있으며 새 run은 outputs/runs/에 생성됩니다.
+
 # 실험 진행과 결과
 
 최종 갱신: 2026-11-05. 실제로 실행한 실험만 기록한다. 논문 보고값이나 계획을 측정값처럼 적지 않는다. Raw 추출 방식의 근거는 [UCF_RAW_REFERENCE.md](UCF_RAW_REFERENCE.md)에 있다.
@@ -39,7 +42,7 @@
 
 ## 실험 1. Official feature 재현
 
-공개된 CLIP feature를 그대로 넣어 upstream VadCLIP 평가를 재현했다. Run `ucf_full_20261007_010204` ([summary.json](../outputs/baseline/ucf_full_20261007_010204/summary.json)).
+공개된 CLIP feature를 그대로 넣어 upstream VadCLIP 평가를 재현했다. Run `ucf_full_20261007_010204` ([summary.json](reference_snapshot/outputs/baseline/ucf_full_20261007_010204/summary.json)).
 
 | Branch | AUC | AP | Ano-AUC |
 |---|---:|---:|---:|
@@ -75,7 +78,7 @@ Sampling은 CLIP encoder에 넣기 **전에** 프레임을 골라야 효율 이�
 
 ### 결과
 
-Run `ucf_raw_full_20261008_150142` (MPS, float32, seed 234, 290개 성공, [summary.json](../outputs/baseline/ucf_raw_full_20261008_150142/summary.json)).
+Run `ucf_raw_full_20261008_150142` (MPS, float32, seed 234, 290개 성공, [summary.json](reference_snapshot/outputs/baseline/ucf_raw_full_20261008_150142/summary.json)).
 
 | Branch | AUC | AP | Ano-AUC | 공식 대비 AUC |
 |---|---:|---:|---:|---:|

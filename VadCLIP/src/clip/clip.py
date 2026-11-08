@@ -3,7 +3,9 @@ import os
 import urllib
 import warnings
 from typing import Any, Union, List
-from pkg_resources import packaging
+# Local compatibility change: use the public packaging dependency directly.
+# This removes pkg_resources/setuptools at runtime without changing CLIP math.
+import packaging.version
 
 import torch
 from PIL import Image

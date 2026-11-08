@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "dataset_config": "configs/datasets/xd.json",
+  "input_type": "official",
+  "model_seed": 234,
+  "sampling": {
+    "method": "reference",
+    "budget": 1.0,
+    "seed": 0
+  },
+  "reference_run": null,
+  "protocol": {
+    "status": "draft",
+    "restoration": "nearest",
+    "note": "Full official-feature reproduction only; no raw encoding speedup claim"
+  }
+}

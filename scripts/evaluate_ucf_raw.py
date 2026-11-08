@@ -155,7 +155,10 @@ def main():
                                       fine_grained_source=sha256(ROOT / 'vadfs/metrics.py'))
         report['package_sha256'] = package_hashes()
         record_provenance(report)
-        official_run = project_path(args.official_run or config['official_reference_run'])
+        reference_value = args.official_run or config['official_reference_run']
+        if not reference_value:
+            raise ValueError('Legacy raw validation needs --official-run from a fresh local official evaluation')
+        official_run = project_path(reference_value)
         report['official_reference_run'] = str(official_run)
         setup_started = time.perf_counter()
         resources, manifest, audit, baseline, frame_count = read_inputs(

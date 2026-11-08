@@ -1,0 +1,4 @@
+# Optional clean Linux GPU environment; not needed on a working Vast template.
+--index-url https://download.pytorch.org/whl/cu128
+torch==2.8.0
+torchvision==0.23.0

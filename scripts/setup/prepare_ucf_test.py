@@ -175,7 +175,7 @@ def main():
               'input_sha256': {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest()
                                for p in [annotation, split, feature_csv]},
               'preparation_script_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
-    report_path = root / 'outputs/setup/ucf_test_preparation_report.json'
+    report_path = root / '.local/setup/ucf/ucf_test_preparation_report.json'
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
     (destination / 'README.md').write_text('''# UCF-Crime test set
@@ -204,7 +204,7 @@ Rebuild/revalidate from the project root:
 .venv/bin/python scripts/setup/prepare_ucf_test.py
 ```
 
-Verification report: `../../../outputs/setup/ucf_test_preparation_report.json`.
+Verification report: `../../../.local/setup/ucf/ucf_test_preparation_report.json`.
 Original archives, extracted videos and upstream VadCLIP lists are preserved.
 ''')
     print(f'Completed: {len(records)} videos; {len(warnings)} annotation warnings; {report_path}', flush=True)

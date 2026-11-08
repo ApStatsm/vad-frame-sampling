@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "dataset_config": "configs/datasets/ucf.json",
+  "input_type": "raw",
+  "model_seed": 234,
+  "sampling": {
+    "method": "uniform",
+    "budget": 1.0,
+    "seed": 0
+  },
+  "reference_run": null,
+  "protocol": {
+    "status": "draft",
+    "restoration": "nearest",
+    "positional_encoding": "upstream compressed selected-token order; timestamps saved but not injected into model",
+    "window": "unchanged upstream process_split/mask behavior",
+    "random_repeats_proposed": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "timing": "one run; repeat and control shared-machine activity before final claims"
+  }
+}
