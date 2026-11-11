@@ -16,7 +16,7 @@
 | Uniform / Random | CLIP 이전 선택 구현, 100/50/25/12.5% 설정 제공, 실행 검증 필요 |
 | 점수 복원 | 원본 candidate 위치에 nearest/linear/previous 복원 후 고정 16-frame 평가 |
 | 테스트 영상만으로 준비 | 원본 ZIP 없이 파일 SHA·이름·순서·GT 정렬 점검 경로 구현 |
-| XD official-feature 평가 | dataset별 옵션·prompt·AP 평가 연결, 실행 검증 필요 |
+| XD official-feature 평가 | branch2 AP 재현 완료, temporal mAP 평가 연결 및 실행 검증 대기 |
 | XD raw 추출 | **미지원**: 공식 추출 recipe와 tail/crop 조건 검증 후 추가 |
 | Adaptive / Ours | 미구현 |
 
@@ -138,7 +138,15 @@ python scripts/run_experiment.py --config configs/experiments/xd_official.json -
 ```
 
 XD용 checkpoint와 test feature를 별도로 확보해야 합니다. XD는 모델 layer/window/prompt가 UCF와 다릅니다.
-GT 정렬과 소규모 실행을 확인한 뒤 `--mode full`로 AP를 재현합니다.
+GT 정렬과 소규모 실행을 확인한 뒤 `--mode full`로 branch2 AP와 temporal mAP를 평가합니다.
+`summary.json`의 `metrics.fine_grained`는 UCF와 동일한 필드와 0~1 단위를 사용합니다.
+기존 full run의 영상별 `scores/*.npz`와 준비 manifest가 남아 있으면 저장된 클래스 점수를 재평가할 수 있습니다.
+아래 명령은 해당 run 폴더에 `summary_with_fine_grained.json`을 생성합니다.
+
+```bash
+python scripts/analyze/score_xd_fine_grained.py outputs/runs/xd_official_reference_1_s0_full_20261111_193333
+```
+
 XD raw를 실행하면 미지원 안내로 중단합니다. 추출 방식이 검증되었다고 가정하지 않습니다.
 
 ## 결과와 협업

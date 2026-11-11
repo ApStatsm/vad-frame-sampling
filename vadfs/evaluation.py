@@ -7,6 +7,16 @@ from .datasets import get_dataset
 from .paths import project_path
 
 
+def evaluate_xd_fine_grained(dataset_config, manifest, records, class_tokens):
+    from .metrics import compute_xd_fine_grained
+
+    return compute_xd_fine_grained(
+        class_tokens, records, manifest,
+        np.load(project_path(dataset_config['segment_gt']), allow_pickle=True),
+        np.load(project_path(dataset_config['class_gt']), allow_pickle=True),
+        project_path(dataset_config['fine_grained_source']))
+
+
 def evaluate(dataset_config, manifest, records, branch1, branch2, class_tokens):
     adapter = get_dataset(dataset_config['key'])
     gt = np.load(project_path(dataset_config['frame_gt']), allow_pickle=False)
@@ -35,8 +45,7 @@ def evaluate(dataset_config, manifest, records, branch1, branch2, class_tokens):
                 raise ValueError('Probability outside [0,1]')
             metrics[name] = {'roc_auc': float(roc_auc_score(gt, scores)),
                              'ap': float(average_precision_score(gt, scores))}
-        # XD primary AP is supported; temporal mAP awaits separate protocol validation.
-        metrics['fine_grained'] = {'status': 'not_implemented_or_validated_for_xd'}
+        metrics['fine_grained'] = evaluate_xd_fine_grained(dataset_config, manifest, records, class_tokens)
     metrics['primary'] = {'branch': adapter.SPEC.primary_branch, 'metric': adapter.SPEC.primary_metric,
                           'value': metrics[adapter.SPEC.primary_branch][adapter.SPEC.primary_metric]}
     return metrics, frames1, frames2

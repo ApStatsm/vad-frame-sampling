@@ -4,6 +4,9 @@
   "name": "XD-Violence",
   "official_list": "VadCLIP/list/xd_CLIP_rgbtest.csv",
   "frame_gt": "VadCLIP/list/gt.npy",
+  "segment_gt": "VadCLIP/list/gt_segment.npy",
+  "class_gt": "VadCLIP/list/gt_label.npy",
+  "fine_grained_source": "VadCLIP/src/utils/xd_detectionMAP.py",
   "feature_identity": "name",
   "resources": {
     "videos_root": "data/XD-Violence/test",

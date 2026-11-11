@@ -38,7 +38,7 @@ CLIP의 import 호환성과 모델 옵션 선택, 선택 index를 받는 extract
 - preparation: 파일 식별/feature/GT 정렬. decoder/모델을 실행하지 않는 사용자 준비 단계.
 - extract: 기존 Full math + 선택된 프레임만 encoder에 전달하는 경로.
 - timeline: reference candidate 좌표에서 누락 score 복원 후 고정 평가 block 확장.
-- evaluation: UCF는 기존 dense evaluator, XD official은 branch별 ROC-AUC/AP.
+- evaluation: UCF는 기존 dense evaluator, XD official은 branch별 ROC-AUC/AP와 원본 temporal mAP.
 - pipeline: 공통 처리와 측정, checkpoint/source/data/environment 기록, raw Reference 비교.
 - runs: 충돌 방지 run 폴더, atomic JSON 저장, 출처 기록.
 
@@ -68,12 +68,12 @@ CLIP의 import 호환성과 모델 옵션 선택, 선택 index를 받는 extract
 6. 25%에서도 전체 평가 길이를 유지하는지 확인하고 두 seed 이상의 smoke로 기록 분리 점검.
 7. protocol을 고정한 뒤 전체 budget과 선언한 Random seed 목록 실행.
 8. 같은 raw 기준 run, 같은 comparison signature만 집계. 시간 반복과 seed 반복은 구분.
-9. XD official의 test 800개·7개 prompt·checkpoint·GT 정렬 및 AP를 확인. XD raw는 별도 구현 전.
+9. XD official의 test 800개·7개 prompt·checkpoint·GT 정렬과 AP를 확인했다. 새 temporal mAP 경로는 실행 검증 대기 중이다.
 
 ## 아직 구현하지 않은 범위
 
 - Adaptive, Ours, sampler 학습/튜닝, train split, 온라인·실시간 주장.
-- XD raw recipe·tail·crop 검증 및 temporal fine-grained mAP.
+- XD raw recipe·tail·crop 검증.
 - 자동 resume, 자동 대량 sweep, 실행 큐·GPU 예약, 실험 추적 SaaS 연동.
 - 일반 wheel만으로 동작하는 독립 배포. 현재는 source checkout/editable workflow.
 
