@@ -39,12 +39,14 @@ def evaluate(dataset_config, manifest, records, branch1, branch2, class_tokens):
             np.load(project_path(dataset_config['class_gt']), allow_pickle=True),
             project_path(dataset_config['fine_grained_source']))
     else:
-        metrics = {'evaluation_frames': len(gt), 'test_videos': len(records), 'includes_normal': True}
+        from .metrics import compute_xd_ano_auc
+
+        scope, ano_auc = compute_xd_ano_auc(gt, frames1, frames2, records, manifest)
+        metrics = {'evaluation_frames': len(gt), 'test_videos': len(records), 'includes_normal': True, **scope}
         for name, scores in (('branch1', frames1), ('branch2', frames2)):
-            if np.any(scores < 0) or np.any(scores > 1):
-                raise ValueError('Probability outside [0,1]')
             metrics[name] = {'roc_auc': float(roc_auc_score(gt, scores)),
-                             'ap': float(average_precision_score(gt, scores))}
+                             'ap': float(average_precision_score(gt, scores)),
+                             'ano_auc': ano_auc[name]}
         metrics['fine_grained'] = evaluate_xd_fine_grained(dataset_config, manifest, records, class_tokens)
     metrics['primary'] = {'branch': adapter.SPEC.primary_branch, 'metric': adapter.SPEC.primary_metric,
                           'value': metrics[adapter.SPEC.primary_branch][adapter.SPEC.primary_metric]}

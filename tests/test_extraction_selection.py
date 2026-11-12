@@ -13,7 +13,7 @@ import cv2
 import numpy as np
 import torch
 
-from vadfs.extract import extract_reference
+from vadfs.extract import crop_image, extract_reference
 
 
 class FakeCapture:
@@ -51,6 +51,17 @@ class FakeEncoder:
 
 
 class ExtractionSelectionTests(unittest.TestCase):
+    def test_xd_crop_keeps_large_frames_at_native_size(self):
+        image = np.random.default_rng(234).integers(0, 256, (360, 640, 3), dtype=np.uint8)
+        crop = crop_image(image, 0, 'shortside_min256')
+        np.testing.assert_array_equal(crop, image[68:292, 208:432])
+
+    def test_xd_crop_upscales_small_frames_before_cropping(self):
+        image = np.random.default_rng(234).integers(0, 256, (240, 320, 3), dtype=np.uint8)
+        enlarged = cv2.resize(image, None, fx=256 / 240, fy=256 / 240, interpolation=cv2.INTER_LINEAR)
+        crop = crop_image(image, 0, 'shortside_min256')
+        np.testing.assert_array_equal(crop, enlarged[16:240, 58:282])
+
     def extract(self, frames, tokens, selected=None):
         config = {'temporal_mode': 'single_frame', 'frame_offset': 0,
                   'color_conversion': 'opencv_bgr', 'image_geometry': 'shortside_fxfy',

@@ -17,7 +17,7 @@
 | 점수 복원 | 원본 candidate 위치에 nearest/linear/previous 복원 후 고정 16-frame 평가 |
 | 테스트 영상만으로 준비 | 원본 ZIP 없이 파일 SHA·이름·순서·GT 정렬 점검 경로 구현 |
 | XD official-feature 평가 | branch2 AP 재현 완료, temporal mAP 평가 연결 및 실행 검증 대기 |
-| XD raw 추출 | **미지원**: 공식 추출 recipe와 tail/crop 조건 검증 후 추가 |
+| XD raw Reference 100% | 공식 feature로 대조한 추출 방식 연결, 전체 raw 평가 실행 검증 대기 |
 | Adaptive / Ours | 미구현 |
 
 기존 보고 성능(UCF official AUC 88.02%, raw AUC 87.19%)은 과거 Mac 실행 결과입니다.
@@ -140,6 +140,8 @@ python scripts/run_experiment.py --config configs/experiments/xd_official.json -
 XD용 checkpoint와 test feature를 별도로 확보해야 합니다. XD는 모델 layer/window/prompt가 UCF와 다릅니다.
 GT 정렬과 소규모 실행을 확인한 뒤 `--mode full`로 branch2 AP와 temporal mAP를 평가합니다.
 `summary.json`의 `metrics.fine_grained`는 UCF와 동일한 필드와 0~1 단위를 사용합니다.
+새 XD 전체 평가는 두 branch의 Ano-AUC도 `metrics.branch1.ano_auc`, `metrics.branch2.ano_auc`에 기록합니다.
+이상 영상의 정상·이상 프레임 전체를 합쳐 ROC-AUC를 계산합니다.
 기존 full run의 영상별 `scores/*.npz`와 준비 manifest가 남아 있으면 저장된 클래스 점수를 재평가할 수 있습니다.
 아래 명령은 해당 run 폴더에 `summary_with_fine_grained.json`을 생성합니다.
 
@@ -147,7 +149,34 @@ GT 정렬과 소규모 실행을 확인한 뒤 `--mode full`로 branch2 AP와 te
 python scripts/analyze/score_xd_fine_grained.py outputs/runs/xd_official_reference_1_s0_full_20261111_193333
 ```
 
-XD raw를 실행하면 미지원 안내로 중단합니다. 추출 방식이 검증되었다고 가정하지 않습니다.
+기존 XD official 또는 raw 전체 실행의 `frame_scores.npz`가 있으면 Ano-AUC를 다시 계산할 수 있습니다.
+아래 명령은 같은 run 폴더에 `summary_with_ano_auc.json`을 저장합니다.
+
+```bash
+.venv/bin/python scripts/analyze/score_xd_ano_auc.py outputs/runs/xd_official
+```
+
+### 6. XD 원본 영상 평가
+
+원본 영상에서 `0, 16, 32, …`번 프레임을 고릅니다. RGB 변환 후 짧은 변이 256px보다 작을 때만
+종횡비를 유지하며 선형 보간으로 확대하고, 중앙 224×224를 CLIP ViT-B/16으로 인코딩합니다.
+준비 단계에서 공식 `__0` feature의 행 수와 dtype을 읽어 평가 시간축을 고정합니다. 공식 행 수가
+올림한 구간 수와 일치하는 영상에서는 마지막 불완전 구간의 첫 프레임도 인코딩합니다.
+원본 영상 평가에서 모델에 입력하는 feature는 영상에서 직접 추출합니다.
+
+```bash
+.venv/bin/python scripts/setup/prepare_dataset.py --dataset configs/datasets/xd.json --input both \
+  --videos-root /workspace/vad/datasets/XD-Violence/videos
+.venv/bin/python scripts/run_experiment.py --config configs/experiments/xd_reference_100.json \
+  --device cuda --mode smoke --save-features
+.venv/bin/python scripts/run_experiment.py --config configs/experiments/xd_reference_100.json \
+  --device cuda --mode full --save-features
+```
+
+위 원본 영상 경로는 현재 서버 기준입니다. 공식 feature와 두 체크포인트는 기본 경로를 사용합니다.
+전체 평가의 `summary.json`에서 `metrics.primary.value`(branch2 AP)와 `metrics.fine_grained`를
+확인합니다. `--save-features`를 사용하면 영상별로 `features/*.npz`에 벡터와 선택 인덱스·시간이 저장됩니다.
+공식 feature 기준 AP는 84.5045%이며 전체 raw AP는 실행 확인 대기 중입니다.
 
 ## 결과와 협업
 

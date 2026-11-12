@@ -123,17 +123,12 @@ def compute_official_fine_grained(class_scores, videos, manifest, class_names,
                                    source_path, unmapped, 'gt_segment_ucf.npy and gt_label_ucf.npy')
 
 
-def compute_xd_fine_grained(class_scores, videos, manifest, gt_segments, gt_labels, source_path):
-    """Evaluate the complete official XD split in CSV order using seven prompts."""
+def _xd_evaluation_segments(videos, manifest):
     declared = validate_manifest(manifest, xd.SPEC)
-    video_count = len(declared)
-    if any(len(items) != video_count for items in (class_scores, videos, gt_segments, gt_labels)):
-        raise ValueError('Original XD fine-grained inputs must cover the complete 800-video test split')
-
-    predictions = []
+    if len(videos) != len(declared):
+        raise ValueError('XD evaluation requires the complete test split')
     offset = 0
-    anomaly_labels = {'B1', 'B2', 'B4', 'B5', 'B6', 'G'}
-    for index, (record, video, probabilities) in enumerate(zip(videos, declared, class_scores)):
+    for index, (record, video) in enumerate(zip(videos, declared)):
         name = video['filename']
         tokens = video['reference_tokens']
         frames = video['evaluation_frames']
@@ -141,9 +136,58 @@ def compute_xd_fine_grained(class_scores, videos, manifest, gt_segments, gt_labe
                 or record.get('prefix_only') is not False or record.get('case') != 'full_video'
                 or record['reference_tokens'] != tokens or record['evaluation_frames'] != frames
                 or record['gt_offset'] != offset or video['gt_offset'] != offset):
-            raise ValueError(f'XD fine-grained video order, scope or timeline mismatch: {name}')
-        segments = [[int(start), int(end)] for start, end in gt_segments[index]]
-        labels = [str(label) for label in gt_labels[index]]
+            raise ValueError(f'XD video order, scope or timeline mismatch: {name}')
+        yield video, slice(offset, offset + frames)
+        offset += frames
+
+
+def compute_xd_ano_auc(gt, branch1, branch2, videos, manifest):
+    """Pool all frames of XD anomaly videos, including their normal intervals."""
+    gt = np.asarray(gt)
+    if gt.ndim != 1 or not np.isin(gt, [0, 1]).all():
+        raise ValueError('XD frame GT must be a binary vector')
+    scores = {'branch1': np.asarray(branch1), 'branch2': np.asarray(branch2)}
+    for score in scores.values():
+        if (score.shape != gt.shape or not np.isfinite(score).all()
+                or np.any(score < 0) or np.any(score > 1)):
+            raise ValueError('XD frame scores must be finite probabilities with the GT shape')
+
+    mask = np.zeros(len(gt), dtype=bool)
+    anomaly_count = 0
+    covered_frames = 0
+    for video, segment in _xd_evaluation_segments(videos, manifest):
+        covered_frames = segment.stop
+        if covered_frames > len(gt) or video['is_anomaly'] != (video['category'] != 'A'):
+            raise ValueError(f'XD frame length or anomaly classification mismatch: {video["filename"]}')
+        if video['is_anomaly']:
+            mask[segment] = True
+            anomaly_count += 1
+        elif np.any(gt[segment]):
+            raise ValueError(f'Normal-only XD video contains positive GT: {video["filename"]}')
+    if covered_frames != len(gt):
+        raise ValueError('XD Ano-AUC requires complete official GT coverage')
+    anomaly_gt = gt[mask]
+    if np.unique(anomaly_gt).size != 2:
+        raise ValueError('XD Ano-AUC requires both frame labels within anomaly videos')
+    scope = {'anomaly_videos': anomaly_count, 'anomaly_evaluation_frames': len(anomaly_gt),
+             'ano_auc_scope': 'Pooled frames of manifest.is_anomaly videos, including normal intervals'}
+    return scope, {name: float(roc_auc_score(anomaly_gt, score[mask])) for name, score in scores.items()}
+
+
+def compute_xd_fine_grained(class_scores, videos, manifest, gt_segments, gt_labels, source_path):
+    """Evaluate the complete official XD split in CSV order using seven prompts."""
+    if any(len(items) != xd.SPEC.expected_videos for items in (class_scores, gt_segments, gt_labels)):
+        raise ValueError('Original XD fine-grained inputs must cover the complete 800-video test split')
+
+    predictions = []
+    anomaly_labels = {'B1', 'B2', 'B4', 'B5', 'B6', 'G'}
+    for (video, _), probabilities, raw_segments, raw_labels in zip(
+            _xd_evaluation_segments(videos, manifest), class_scores, gt_segments, gt_labels):
+        name = video['filename']
+        tokens = video['reference_tokens']
+        frames = video['evaluation_frames']
+        segments = [[int(start), int(end)] for start, end in raw_segments]
+        labels = [str(label) for label in raw_labels]
         if len(labels) != len(segments) or any(start < 0 or end <= start for start, end in segments):
             raise ValueError(f'Invalid bundled XD segment GT: {name}')
         if video['is_anomaly']:
@@ -152,7 +196,6 @@ def compute_xd_fine_grained(class_scores, videos, manifest, gt_segments, gt_labe
         elif segments != [[0, frames]] or labels != ['A']:
             raise ValueError(f'Bundled XD normal GT differs from the evaluation timeline: {name}')
         predictions.append(to_frames(_class_probabilities(probabilities, tokens, len(xd.PROMPTS))))
-        offset += frames
 
     return _official_detection_map('xd', predictions, xd.PROMPTS, gt_segments, gt_labels,
                                    source_path, (), 'gt_segment.npy and gt_label.npy')

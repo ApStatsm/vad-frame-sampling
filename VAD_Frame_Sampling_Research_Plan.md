@@ -155,6 +155,8 @@ Reference frame extraction / preprocessing
 - 효율: 이 Mac에서는 x86 색 변환을 numpy로 흉내 내므로 그 비용(`color_conversion`)은 실제 x86 비용이 아니다. E2E 시간에서 이 단계를 분리해 보고한다.
 - XD-Violence는 같은 방식으로 가정하지 않고, 공식 feature와 대조해 확인한 뒤 고정한다.
 
+**2026-11-12 XD raw Reference 설정:** 공식 XD `__0` feature와 대조한 결과를 바탕으로 frame `0, 16, 32, …`, OpenCV BGR→RGB, 짧은 변 256px 미만만 선형 확대, 중앙 224×224 crop, CLIP ViT-B/16을 사용한다. 공식 행 수에 맞춰 불완전한 마지막 구간을 처리하고, 공식 feature의 영상별 dtype을 유지한다. 후보 선정에 쓰지 않은 16개 영상에서 평균 상대 L2는 0.002191이었다. 전체 raw 평가 결과는 사용자 실행 후 확인한다. 구현 설정은 `configs/datasets/xd.json`과 `configs/experiments/xd_reference_100.json`에 있다.
+
 ## 6. Raw-video sampling pipeline
 
 ```text
@@ -230,6 +232,7 @@ K_v = min(N_v, max(1, ceil(r × N_v)))
 - UCF-Crime 보조 지표: Ano-AUC도 기록한다. Manifest의 anomaly 영상 전체 프레임을 모아 ROC-AUC를 계산하며, 해당 영상 내부의 정상 프레임도 포함한다. Normal-only 영상은 제외한다. 영상별 AUC의 단순 평균이 아니다.
 - UCF-Crime fine-grained 보조 평가: full 모델 평가에서 A-branch의 14개 클래스 점수를 정상 영상 포함 290개 전체에 대해 복원하여 temporal mAP@IoU 0.1/0.2/0.3/0.4/0.5 및 AVG를 기록한다. 원본 segment/class GT와 수정하지 않은 공개 evaluator를 사용하며 원본 UCF test의 excludeNormal=False 호출을 따른다. 사용자 요청으로 별도 저장-score 비교 대신 full 기본 평가를 수정했다. 이전 140개/13개 클래스 결과는 다른 protocol의 과거 기록으로 구분하고, 측정 전 논문 성능 재현을 주장하지 않는다.
 - XD-Violence: frame-level AP를 주 지표로 사용한다.
+- XD-Violence 보조 지표: 사용자 요청에 따라 UCF와 같은 이상 영상 전체 프레임 기준의 Ano-AUC를 두 branch에 기록한다.
 - XD-Violence fine-grained 보조 평가 (2026-11-11): 사용자 요청에 따라 정상 영상 포함 official test 800개와 7개 prompt의 branch2 점수로 원본 XD evaluator의 temporal mAP@IoU 0.1/0.2/0.3/0.4/0.5 및 평균을 기록한다. 원본 segment/class GT와 `excludeNormal=False`를 적용하고 UCF와 같은 summary 필드 및 단위를 사용한다.
 - Normal 영상까지 포함하여 공식 평가의 영상 순서, GT 정렬 및 집계 방식을 유지한다.
 - Sampling 결과도 원본 annotation timeline의 모든 평가 프레임에 score를 복원한다. 선택된 프레임만 평가하지 않는다.

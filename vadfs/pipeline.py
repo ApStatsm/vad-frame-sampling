@@ -68,8 +68,6 @@ def validate_experiment(experiment, spec, mode):
         raise ValueError('Official-feature mode is baseline reproduction only')
     if experiment['input_type'] == 'official' and experiment.get('reference_run'):
         raise ValueError('Raw reference comparisons are only defined for raw-video experiments')
-    if experiment['input_type'] == 'raw' and spec.key != 'ucf':
-        raise NotImplementedError('XD raw recipe/tail/preprocessing require validation. Use XD official reproduction first.')
     if experiment['protocol']['restoration'] not in ('nearest', 'linear', 'previous'):
         raise ValueError('Unknown restoration policy')
     if experiment['protocol']['status'] not in ('draft', 'fixed'):
@@ -163,7 +161,8 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
         videos = select_videos(manifest['videos'], mode, requested)
         required_input = 'raw_path' if experiment['input_type'] == 'raw' else 'feature_path'
         if any(not video.get(required_input) for video in videos):
-            raise ValueError(f'Setup lacks {required_input}; run prepare_dataset.py with the corresponding --input')
+            prepare_input = ('both' if spec.key == 'xd' else 'raw') if required_input == 'raw_path' else 'official'
+            raise ValueError(f'Setup lacks {required_input}; run prepare_dataset.py with --input {prepare_input}')
         report.update(setup_manifest=str(prepared_path), setup_id=manifest['setup_id'],
                       dataset_identity_sha256=manifest['dataset_identity_sha256'])
         report['input_sha256'].update(experiment_config=sha256(exp_path), dataset_config=sha256(data_path),
@@ -185,8 +184,11 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
         env = environment(device, torch)
         report['environment'] = env
         recipe = dataset_config.get('extraction') if experiment['input_type'] == 'raw' else None
+        if experiment['input_type'] == 'raw' and not recipe:
+            raise ValueError('Raw-video evaluation requires a dataset extraction recipe')
         if recipe:
             validate_extraction(recipe)
+            report['extraction_config'] = recipe
             if recipe['temporal_mode'] != 'single_frame':
                 raise ValueError('Common sampler pipeline requires one reference candidate per block')
             if not env['ffmpeg'] and recipe['color_conversion'] == 'x86_swscale_emulation':

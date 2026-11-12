@@ -32,8 +32,10 @@ sampler별로 조정하지 않습니다. fixed라는 설정만으로 재현 검�
 방법의 제한점이며 보고서에 기록합니다. 기본 protocol은 offline이며 온라인·실시간 성능을 주장하지 않습니다.
 
 UCF 주 지표는 branch1 ROC-AUC, 보조 AP/Ano-AUC와 원본 290영상·14클래스 fine-grained 평가입니다.
-XD official 주 지표는 원본 test가 반환하는 branch2 AP입니다. 보조 지표는 원본 XD evaluator의
-800영상·7클래스 temporal mAP@IoU 0.1~0.5입니다. Temporal mAP의 실행 검증과 XD raw recipe 검증은 대기 중입니다.
+XD 주 지표는 branch2 AP입니다. 보조 지표는 원본 XD evaluator의 800영상·7클래스 temporal mAP@IoU 0.1~0.5입니다.
+XD Ano-AUC는 UCF와 동일하게 이상 영상의 정상·이상 프레임을 합쳐 계산하는 보조 지표입니다.
+XD raw Reference는 프레임 `0, 16, 32, …`, 짧은 변 256px 미만만 선형 확대, 중앙 crop 0을 사용합니다.
+공식 행 수를 기준으로 tail을 처리합니다. 전체 raw AP와 temporal mAP의 실행 검증은 대기 중입니다.
 
 ## 시간 측정
 

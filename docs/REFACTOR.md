@@ -69,11 +69,11 @@ CLIP의 import 호환성과 모델 옵션 선택, 선택 index를 받는 extract
 7. protocol을 고정한 뒤 전체 budget과 선언한 Random seed 목록 실행.
 8. 같은 raw 기준 run, 같은 comparison signature만 집계. 시간 반복과 seed 반복은 구분.
 9. XD official의 test 800개·7개 prompt·checkpoint·GT 정렬과 AP를 확인했다. 새 temporal mAP 경로는 실행 검증 대기 중이다.
+10. XD raw Reference는 공식 feature 대조로 재구성한 전처리와 tail을 사용한다. 새 공통 경로의 전체 평가와 공식 AP 대비 차이는 실행 검증 대기 중이다.
 
 ## 아직 구현하지 않은 범위
 
 - Adaptive, Ours, sampler 학습/튜닝, train split, 온라인·실시간 주장.
-- XD raw recipe·tail·crop 검증.
 - 자동 resume, 자동 대량 sweep, 실행 큐·GPU 예약, 실험 추적 SaaS 연동.
 - 일반 wheel만으로 동작하는 독립 배포. 현재는 source checkout/editable workflow.
 
