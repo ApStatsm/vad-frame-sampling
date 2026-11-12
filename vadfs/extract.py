@@ -1,4 +1,4 @@
-"""Streaming raw UCF reference extraction.
+"""Streaming raw reference extraction.
 
 Complete consecutive 16-frame blocks define tokens. single_frame encodes one
 configured position per block; mean_block encodes all 16 and averages features.
@@ -40,9 +40,10 @@ class ReferenceImageEncoder:
 
 
 EXTRACTION_STATUSES = ('provisional_not_verified_against_official_recipe',
-                       'reconstructed_sample_verified_float16_cohort')
+                       'reconstructed_sample_verified_float16_cohort',
+                       'reconstructed_verified_against_official_feature_samples')
 COLOR_CONVERSIONS = ('opencv_bgr', 'x86_swscale_emulation')
-IMAGE_GEOMETRIES = ('published_340x256', 'shortside_fxfy')
+IMAGE_GEOMETRIES = ('published_340x256', 'shortside_fxfy', 'shortside_min256')
 TAIL_POLICIES = ('drop_incomplete', 'match_official_rows')
 
 
@@ -89,8 +90,11 @@ def crop_image(rgb, crop_type, geometry):
     """RGB uint8 frame -> 224x224 RGB crop in the upstream 10-crop index layout."""
     if geometry == 'published_340x256':
         return image_crop(cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR), crop_type)
-    scale = 256 / min(rgb.shape[:2])
-    img = cv2.resize(rgb, None, fx=scale, fy=scale, interpolation=cv2.INTER_LINEAR)
+    short_side = min(rgb.shape[:2])
+    img = rgb
+    if geometry == 'shortside_fxfy' or short_side < 256:
+        scale = 256 / short_side
+        img = cv2.resize(rgb, None, fx=scale, fy=scale, interpolation=cv2.INTER_LINEAR)
     height, width = img.shape[:2]
     y, x = (height - 224) // 2, (width - 224) // 2  # 341x256 -> [16:240, 58:282]
     base = crop_type % 5

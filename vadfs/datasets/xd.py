@@ -1,4 +1,4 @@
-"""XD official-feature adapter. Raw extraction recipe still requires validation."""
+"""XD test order and evaluation metadata for official and raw inputs."""
 
 import csv
 from pathlib import Path
@@ -41,4 +41,4 @@ def template(config):
                        'feature_parent': feature.parent.name})
     return {'schema_version': 1, 'dataset': 'xd', 'videos': videos,
             'annotation_convention': 'Upstream published intervals; validate against the bundled frame GT during setup.',
-            'raw_recipe_status': 'unverified'}
+            'raw_recipe_status': config.get('raw_recipe_status', 'unverified')}

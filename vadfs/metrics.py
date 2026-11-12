@@ -1,10 +1,7 @@
-"""UCF evaluation metrics from saved or fresh scores; no model imports.
+"""Evaluation metrics from saved or fresh scores; no model imports.
 
-compute_ucf_metrics: frame-level ROC-AUC/AP and Ano-AUC on the full official timeline.
-compute_official_fine_grained: original VadCLIP temporal mAP through the unmodified
-bundled evaluator and segment/class GT, with the upstream ucf_test.py setting
-excludeNormal=False (290 videos and 14 classes). Validation checks alignment
-without changing GT labels or evaluator behavior.
+Fine-grained evaluation uses the bundled VadCLIP evaluators and original
+segment/class ground truth with excludeNormal=False.
 """
 
 import importlib.util
@@ -12,6 +9,9 @@ import importlib.util
 import numpy as np
 from sklearn.metrics import average_precision_score, roc_auc_score
 
+from .datasets import xd
+from .datasets.base import validate_manifest
+from .timeline import to_frames
 from .ucf import LABELS
 
 
@@ -102,12 +102,7 @@ def compute_official_fine_grained(class_scores, videos, manifest, class_names,
         if (record['official_csv_index'] != index or video['official_csv_index'] != index
                 or record.get('prefix_only') is not False or record.get('case') != 'full_video'):
             raise ValueError('Original fine-grained video order/scope mismatch')
-        probabilities = np.asarray(probabilities)
-        if (probabilities.shape != (record['token_count'], len(LABELS))
-                or not np.isfinite(probabilities).all()
-                or np.any(probabilities < 0) or np.any(probabilities > 1)
-                or not np.allclose(probabilities.sum(axis=1), 1, rtol=0, atol=1e-5)):
-            raise ValueError('Invalid model class probabilities')
+        probabilities = _class_probabilities(probabilities, record['token_count'], len(LABELS))
         segments = [[int(start), int(end)] for start, end in gt_segments[index]]
         labels = [str(label) for label in gt_labels[index]]
         expected = video['intervals_raw'] if video['is_anomaly'] else [[0, record['feature_timeline_frames']]]
@@ -120,13 +115,106 @@ def compute_official_fine_grained(class_scores, videos, manifest, class_names,
             # The bundled GT generator uses 'A' for normal videos; do not remap it.
             raise ValueError('Unexpected bundled normal GT label')
         unmapped.update(label for label in labels if label not in LABELS)
-        frames = np.repeat(probabilities, 16, axis=0)
+        frames = to_frames(probabilities)
         if len(frames) != record['feature_timeline_frames']:
             raise ValueError('Original fine-grained score timeline mismatch')
         predictions.append(frames)
-    spec = importlib.util.spec_from_file_location('vadclip_original_ucf_detection_map', source_path)
+    return _official_detection_map('ucf', predictions, LABELS, gt_segments, gt_labels,
+                                   source_path, unmapped, 'gt_segment_ucf.npy and gt_label_ucf.npy')
+
+
+def _xd_evaluation_segments(videos, manifest):
+    declared = validate_manifest(manifest, xd.SPEC)
+    if len(videos) != len(declared):
+        raise ValueError('XD evaluation requires the complete test split')
+    offset = 0
+    for index, (record, video) in enumerate(zip(videos, declared)):
+        name = video['filename']
+        tokens = video['reference_tokens']
+        frames = video['evaluation_frames']
+        if (record['video'] != name or record['official_csv_index'] != index
+                or record.get('prefix_only') is not False or record.get('case') != 'full_video'
+                or record['reference_tokens'] != tokens or record['evaluation_frames'] != frames
+                or record['gt_offset'] != offset or video['gt_offset'] != offset):
+            raise ValueError(f'XD video order, scope or timeline mismatch: {name}')
+        yield video, slice(offset, offset + frames)
+        offset += frames
+
+
+def compute_xd_ano_auc(gt, branch1, branch2, videos, manifest):
+    """Pool all frames of XD anomaly videos, including their normal intervals."""
+    gt = np.asarray(gt)
+    if gt.ndim != 1 or not np.isin(gt, [0, 1]).all():
+        raise ValueError('XD frame GT must be a binary vector')
+    scores = {'branch1': np.asarray(branch1), 'branch2': np.asarray(branch2)}
+    for score in scores.values():
+        if (score.shape != gt.shape or not np.isfinite(score).all()
+                or np.any(score < 0) or np.any(score > 1)):
+            raise ValueError('XD frame scores must be finite probabilities with the GT shape')
+
+    mask = np.zeros(len(gt), dtype=bool)
+    anomaly_count = 0
+    covered_frames = 0
+    for video, segment in _xd_evaluation_segments(videos, manifest):
+        covered_frames = segment.stop
+        if covered_frames > len(gt) or video['is_anomaly'] != (video['category'] != 'A'):
+            raise ValueError(f'XD frame length or anomaly classification mismatch: {video["filename"]}')
+        if video['is_anomaly']:
+            mask[segment] = True
+            anomaly_count += 1
+        elif np.any(gt[segment]):
+            raise ValueError(f'Normal-only XD video contains positive GT: {video["filename"]}')
+    if covered_frames != len(gt):
+        raise ValueError('XD Ano-AUC requires complete official GT coverage')
+    anomaly_gt = gt[mask]
+    if np.unique(anomaly_gt).size != 2:
+        raise ValueError('XD Ano-AUC requires both frame labels within anomaly videos')
+    scope = {'anomaly_videos': anomaly_count, 'anomaly_evaluation_frames': len(anomaly_gt),
+             'ano_auc_scope': 'Pooled frames of manifest.is_anomaly videos, including normal intervals'}
+    return scope, {name: float(roc_auc_score(anomaly_gt, score[mask])) for name, score in scores.items()}
+
+
+def compute_xd_fine_grained(class_scores, videos, manifest, gt_segments, gt_labels, source_path):
+    """Evaluate the complete official XD split in CSV order using seven prompts."""
+    if any(len(items) != xd.SPEC.expected_videos for items in (class_scores, gt_segments, gt_labels)):
+        raise ValueError('Original XD fine-grained inputs must cover the complete 800-video test split')
+
+    predictions = []
+    anomaly_labels = {'B1', 'B2', 'B4', 'B5', 'B6', 'G'}
+    for (video, _), probabilities, raw_segments, raw_labels in zip(
+            _xd_evaluation_segments(videos, manifest), class_scores, gt_segments, gt_labels):
+        name = video['filename']
+        tokens = video['reference_tokens']
+        frames = video['evaluation_frames']
+        segments = [[int(start), int(end)] for start, end in raw_segments]
+        labels = [str(label) for label in raw_labels]
+        if len(labels) != len(segments) or any(start < 0 or end <= start for start, end in segments):
+            raise ValueError(f'Invalid bundled XD segment GT: {name}')
+        if video['is_anomaly']:
+            if not labels or not set(labels) <= anomaly_labels:
+                raise ValueError(f'Invalid bundled XD anomaly labels: {name}')
+        elif segments != [[0, frames]] or labels != ['A']:
+            raise ValueError(f'Bundled XD normal GT differs from the evaluation timeline: {name}')
+        predictions.append(to_frames(_class_probabilities(probabilities, tokens, len(xd.PROMPTS))))
+
+    return _official_detection_map('xd', predictions, xd.PROMPTS, gt_segments, gt_labels,
+                                   source_path, (), 'gt_segment.npy and gt_label.npy')
+
+
+def _class_probabilities(scores, token_count, class_count):
+    scores = np.asarray(scores)
+    if (scores.shape != (token_count, class_count) or not np.isfinite(scores).all()
+            or np.any(scores < 0) or np.any(scores > 1)
+            or not np.allclose(scores.sum(axis=1), 1, rtol=0, atol=1e-5)):
+        raise ValueError('Invalid model class probabilities')
+    return scores
+
+
+def _official_detection_map(dataset, predictions, class_names, gt_segments, gt_labels,
+                            source_path, unmapped, gt_names):
+    spec = importlib.util.spec_from_file_location(f'vadclip_original_{dataset}_detection_map', source_path)
     if spec is None or spec.loader is None:
-        raise ValueError('Could not locate the original UCF fine-grained evaluator')
+        raise ValueError(f'Could not locate the original {dataset} fine-grained evaluator')
     upstream = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(upstream)
     values, thresholds = upstream.getDetectionMAP(predictions, gt_segments, gt_labels, excludeNormal=False)
@@ -136,13 +224,13 @@ def compute_official_fine_grained(class_scores, videos, manifest, class_names,
         raise ValueError('Invalid original fine-grained metric output')
     values = values / 100
     return {
-        'score_branch': 'branch2', 'protocol': 'original_ucf_test_excludeNormal_false',
-        'unit': 'fraction', 'evaluation_videos': 290, 'evaluation_classes': list(LABELS),
+        'score_branch': 'branch2', 'protocol': f'original_{dataset}_test_excludeNormal_false',
+        'unit': 'fraction', 'evaluation_videos': len(predictions), 'evaluation_classes': list(class_names),
         'map_by_iou': {f'{threshold:.1f}': float(value) for threshold, value in zip(thresholds, values)},
         'mean_map': float(values.mean()),
-        'gt_source': 'Unmodified bundled gt_segment_ucf.npy and gt_label_ucf.npy; order validated against manifest',
+        'gt_source': f'Unmodified bundled {gt_names}; order validated against manifest',
         'unmapped_gt_labels_preserved': sorted(unmapped),
-        'implementation': 'Unmodified VadCLIP/src/utils/ucf_detectionMAP.py, excludeNormal=False',
+        'implementation': f'Unmodified VadCLIP/src/utils/{dataset}_detectionMAP.py, excludeNormal=False',
         'comparison_status': 'Original-code reproduction; agreement with published values still requires measurement',
     }
 

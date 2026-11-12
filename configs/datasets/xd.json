@@ -4,6 +4,9 @@
   "name": "XD-Violence",
   "official_list": "VadCLIP/list/xd_CLIP_rgbtest.csv",
   "frame_gt": "VadCLIP/list/gt.npy",
+  "segment_gt": "VadCLIP/list/gt_segment.npy",
+  "class_gt": "VadCLIP/list/gt_label.npy",
+  "fine_grained_source": "VadCLIP/src/utils/xd_detectionMAP.py",
   "feature_identity": "name",
   "resources": {
     "videos_root": "data/XD-Violence/test",
@@ -15,7 +18,23 @@
     "device": "cpu"
   },
   "annotation_path": "VadCLIP/list/annotations.txt",
-  "raw_recipe_status": "unverified_and_disabled",
+  "extraction": {
+    "extraction_status": "reconstructed_verified_against_official_feature_samples",
+    "block_frames": 16,
+    "temporal_mode": "single_frame",
+    "frame_offset": 0,
+    "crop_type": 0,
+    "color_conversion": "opencv_bgr",
+    "image_geometry": "shortside_min256",
+    "tail_policy": "match_official_rows",
+    "encoder_batch_size": 32,
+    "encoder_precision": "float32",
+    "feature_storage_dtype": "official",
+    "feature_l2_normalize": false,
+    "warmup_batches": 2,
+    "seed": 234
+  },
+  "raw_recipe_status": "reconstructed_feature_verified_full_raw_evaluation_pending",
   "primary_branch": "branch2",
   "primary_metric": "ap"
 }
