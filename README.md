@@ -115,19 +115,37 @@ python scripts/run_experiment.py --config configs/experiments/ucf_reference_100.
 
 ### 4. Sampling
 
-먼저 `ucf_uniform_100.json`, `ucf_random_100.json`으로 100% 선택의 Reference 동등성을 확인합니다.
+먼저 `ucf_uniform_100.json`으로 100% 선택의 Reference 동등성을 확인합니다.
 이후 아래 명령의 `실제_REFERENCE_RUN_폴더`를 앞 단계의 전체 raw run 경로로 교체합니다.
 
 ```bash
 python scripts/run_experiment.py --config configs/experiments/ucf_uniform_25.json --local configs/local/me.json --device cuda --mode smoke
 python scripts/run_experiment.py --config configs/experiments/ucf_uniform_25.json --local configs/local/me.json --device cuda --mode full --reference-run 실제_REFERENCE_RUN_폴더
-python scripts/run_experiment.py --config configs/experiments/ucf_random_25.json --local configs/local/me.json --device cuda --mode full --seed 0 --reference-run 실제_REFERENCE_RUN_폴더
 ```
 
 50%·12.5% 설정도 제공합니다. 12.5% 파일 이름은 `ucf_uniform_12p5.json` 형식입니다.
-Random seed 0~4는 제안이며, 본 실험 전에 protocol과 함께 확정하세요.
 기본 설정은 `protocol.status: draft`라 결과가 최종 benchmark 승인 상태로 표시되지 않습니다.
 [PROTOCOL](docs/PROTOCOL.md)을 읽고 test 결과를 보기 전에 설정을 고정하세요.
+
+기존 raw Reference의 `features/*.npz`에서 바로 Uniform 성능을 확인하려면 `--cached-reference-run`을 사용합니다.
+Uniform은 첫 후보인 원본 프레임 0부터 시작합니다. 50%, 25%, 12.5%의 원본 프레임 간격은 각각 32, 64, 128입니다.
+해당 폴더의 `summary.json`을 100% 비교 기준으로 쓰고, 폴더에 `manifest.json`이 있으면 자동으로 사용합니다.
+다음은 공용 UCF 기준 실행으로 50%, 25%, 12.5%를 평가하는 예입니다.
+
+```bash
+dataset=ucf
+reference_run=/workspace/vad/results/baselines/ucf_raw_reference
+for budget in 50 25 12p5; do
+  .venv/bin/python scripts/run_experiment.py \
+    --config "configs/experiments/${dataset}_uniform_${budget}.json" \
+    --device cuda --mode full --cached-reference-run "$reference_run" || break
+done
+```
+
+XD는 `dataset=xd`, 기준 폴더는 `/workspace/vad/results/baselines/xd_raw_reference`로
+지정합니다. 저장된 벡터를 사용해 선택한 feature로 VadCLIP만 다시 실행합니다. `summary.json`의
+`metrics.primary.value`와 `reference_comparison.primary_delta_pp`를 확인하세요. 이 실행은 캐시 기반 성능 평가이며
+원본 영상의 end-to-end speedup은 별도 raw 실행으로 측정합니다.
 
 ### 5. XD official 확장
 
@@ -176,14 +194,40 @@ python scripts/analyze/score_xd_fine_grained.py outputs/runs/xd_official_referen
 위 원본 영상 경로는 현재 서버 기준입니다. 공식 feature와 두 체크포인트는 기본 경로를 사용합니다.
 전체 평가의 `summary.json`에서 `metrics.primary.value`(branch2 AP)와 `metrics.fine_grained`를
 확인합니다. `--save-features`를 사용하면 영상별로 `features/*.npz`에 벡터와 선택 인덱스·시간이 저장됩니다.
-공식 feature 기준 AP는 84.5045%이며 전체 raw AP는 실행 확인 대기 중입니다.
+기존 전체 실행에서 공식 feature AP는 84.5045%, raw Reference AP는 84.5041%였습니다.
+
+XD Uniform은 `configs/experiments/xd_uniform_{100,50,25,12p5}.json`을 사용합니다. 100% 동등성 확인 후
+낮은 budget을 평가할 때는 동일 환경의 XD raw 100% 폴더를 `--reference-run`으로 지정합니다.
+
+### 7. 구간 내 Random 반복 평가
+
+100/50/25/12.5%에서는 원본 영상의 16/32/64/128프레임 구간마다 한 장을 무작위로 고릅니다.
+공식 평가 길이 안에서 실제 영상에 있는 프레임만 선택합니다. 점수는 Uniform과 같은 구간 시작점에
+놓고 복원하며, 영상별 `scores/*.npz`에는 `selected_frame_indices`와 `selected_score_anchor_indices`를 모두 저장합니다.
+
+기존 raw 100% 결과는 성능 기준으로 재사용합니다. 매 seed에서는 원본 영상에서 선택한 프레임만 CLIP에 넣습니다.
+아래 명령은 각각 4개 budget에서 seed 0~4를 실행합니다. 한 budget만 먼저 확인하려면 `--budgets 25`를 붙이세요.
+
+```bash
+CUDA_VISIBLE_DEVICES=0 .venv/bin/python scripts/run_random_windows.py --dataset ucf \
+  --reference-run /workspace/vad/results/baselines/ucf_raw_reference
+CUDA_VISIBLE_DEVICES=1 .venv/bin/python scripts/run_random_windows.py --dataset xd \
+  --reference-run /workspace/vad/results/baselines/xd_raw_reference
+```
+
+개별 결과는 `outputs/runs/`, budget별 집계는 `outputs/analyses/`에 기록됩니다. 집계의
+`metric_distributions`에 ROC-AUC·AP·Ano-AUC, IoU별 mAP와 Mean mAP의 평균 및 표본 표준편차가 있습니다.
+터미널에는 UCF Branch 1 AUC와 XD Branch 2 AP의 평균·표준편차가 출력됩니다.
+
+다른 터미널이나 tmux에서 이어갈 때는 성공한 실행 폴더마다 `--reuse-run <run_dir>`를 추가합니다.
+같은 설정에서 완료된 seed를 건너뛰고 해당 결과를 평균·표준편차 집계에 포함합니다. 중단된 seed는 영상 처음부터 다시 처리합니다.
 
 ## 결과와 협업
 
 - run 폴더마다 `summary.json`, `scores/*.npz`, full일 때 `frame_scores.npz`를 생성합니다.
 - `--save-features`를 지정한 경우에만 selected feature를 추가 저장합니다. 프레임 이미지는 저장하지 않습니다.
 - 선택 index·timestamp, 실제 K/N, 모델·sampler seed, 입력/소스 hash, 장비·버전을 기록합니다.
-- 실패·중단 시 마지막 완료 영상까지의 요약을 남기며 기존 run은 덮어쓰지 않습니다. 자동 resume은 아직 없습니다.
+- 실패·중단 시 마지막 완료 영상까지의 요약을 남기며 기존 run은 덮어쓰지 않습니다. 영상 단위 재개는 아직 없습니다.
 - metric은 전체 **공식 평가 시간축**에서 계산합니다. 원본 decoded frame 수와 GT 시간축 차이는 기존 제한점으로 보존합니다.
 - decoding·선택·CLIP·VAD·복원 비용을 측정합니다. 공식 feature 평가는 speedup의 근거가 아닙니다.
 - 같은 비교 signature의 full raw 100% 결과만 speedup 기준으로 받습니다.

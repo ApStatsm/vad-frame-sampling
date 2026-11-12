@@ -142,7 +142,7 @@ class FfmpegYuvReader:
 
 
 def extract_reference(path, encoder, preprocess, device, config, output_dtype,
-                      expected_tokens=None, selected_frame_indices=None):
+                      expected_tokens=None, selected_frame_indices=None, *, frame_selector=None):
     """Decode to EOF, encode complete blocks, and keep bounded image-batch memory.
 
     Frame positions use a zero-based decode counter. Nominal timestamps are
@@ -155,6 +155,8 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype,
     expected_tokens is the FULL reference row count, never the sampling K.
     selected_frame_indices optionally restricts encoding before CLIP, while
     decode still visits every frame. None preserves the old Full extraction.
+    frame_selector may instead choose off-grid frames using the header count;
+    the actual decoded count is still checked at EOF.
     """
     color = config_value(config, 'color_conversion', 'opencv_bgr')
     geometry = config_value(config, 'image_geometry', 'published_340x256')
@@ -169,6 +171,8 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype,
     next_progress = 1024
     clip_dtype = encoder.visual.conv1.weight.dtype
     selected_set = None
+    if frame_selector is not None and (selected_frame_indices is not None or group != 1):
+        raise ValueError('An off-grid frame selector requires single-frame extraction without fixed indices')
     if selected_frame_indices is not None:
         if config['temporal_mode'] != 'single_frame':
             raise ValueError('Budgeted sampling supports single_frame only')
@@ -251,6 +255,14 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype,
             raise ValueError('Video requires positive FPS and a usable header frame count')
         if abs(header_frames - round(header_frames)) > 1e-3:
             raise ValueError('Non-integer header frame count')
+        if frame_selector is not None:
+            started = time.perf_counter()
+            selected = frame_selector(round(header_frames))
+            selected_set = set(selected)
+            if (not selected or list(selected) != sorted(selected_set)
+                    or any(type(index) is not int or not 0 <= index < round(header_frames) for index in selected)):
+                raise ValueError('Frame selector must return ordered, unique decoded-frame indices')
+            stage['selection'] += time.perf_counter() - started
         backend = cap.getBackendName()
         if color == 'x86_swscale_emulation':
             # OpenCV supplies metadata only; frames come as bit-exact yuv420p planes.
@@ -267,7 +279,8 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype,
             if not ok:
                 break
             started = time.perf_counter()
-            is_candidate = config['temporal_mode'] == 'mean_block' or count % 16 == config['frame_offset']
+            is_candidate = (frame_selector is not None or group > 1
+                            or count % 16 == config['frame_offset'])
             if is_candidate and (selected_set is None or count in selected_set):
                 block_images.append(frame)
                 block_indices.append(count)
@@ -311,8 +324,11 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype,
     indices = np.asarray(chosen_indices, dtype=np.int64)
     pts = np.asarray(chosen_pts, dtype=np.float64)
     nominal = indices / fps
-    starts = (np.arange(len(features), dtype=np.int64) * 16 if selected_set is None
-              else indices - config['frame_offset'])
+    if frame_selector is not None:
+        starts = indices // 16 * 16
+    else:
+        starts = (np.arange(len(features), dtype=np.int64) * 16 if selected_set is None
+                  else indices - config['frame_offset'])
     members = indices.reshape(-1, group)
     tail_candidate = (tail_policy == 'match_official_rows' and count % 16
                       and expected_tokens == count // 16 + 1
