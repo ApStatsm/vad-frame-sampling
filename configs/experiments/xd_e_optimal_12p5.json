@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "dataset_config": "configs/datasets/xd.json",
+  "input_type": "raw",
+  "model_seed": 234,
+  "sampling": {
+    "method": "e_optimal",
+    "budget": 0.125,
+    "seed": 0,
+    "optimal": {
+      "ridge": 1,
+      "rank_rtol": 1e-8,
+      "gain_rtol": 1e-12,
+      "e_rtol": 1e-10,
+      "logdet_rtol": 1e-12,
+      "e_max_pairs": 4096,
+      "e_max_rounds": 10,
+      "e_pool_size": 64
+    }
+  },
+  "reference_run": null,
+  "protocol": {
+    "status": "draft",
+    "restoration": "nearest",
+    "positional_encoding": "unchanged compressed selected-token order",
+    "window": "unchanged upstream process_split/mask behavior",
+    "note": "Development-only frozen 80D standardization/PCA -> 8D; offline two-pass reference-grid selection. K=N bypasses artifact and optimization."
+  }
+}

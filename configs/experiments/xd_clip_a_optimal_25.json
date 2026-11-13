@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "dataset_config": "configs/datasets/xd.json",
+  "input_type": "raw",
+  "feature_source": "raw_reference_cache",
+  "model_seed": 234,
+  "sampling": {
+    "method": "a_optimal",
+    "budget": 0.25,
+    "seed": 0,
+    "representation": {
+      "kind": "clip_fixed_projection",
+      "seed": 234,
+      "dimensions": 8,
+      "normalization": "row_l2_selection_only",
+      "generator": "numpy.PCG64.standard_normal",
+      "orthogonalization": "reduced_qr_positive_R_diagonal",
+      "scale": "sqrt(512/d)",
+      "dtype": "float64"
+    },
+    "optimal": {
+      "ridge": 1,
+      "rank_rtol": 1e-8,
+      "gain_rtol": 1e-12,
+      "e_rtol": 1e-10,
+      "logdet_rtol": 1e-12,
+      "e_max_pairs": 4096,
+      "e_max_rounds": 10,
+      "e_pool_size": 64
+    }
+  },
+  "reference_run": null,
+  "protocol": {
+    "status": "draft",
+    "restoration": "nearest",
+    "positional_encoding": "unchanged compressed selected-token order",
+    "window": "unchanged upstream process_split/mask behavior",
+    "note": "Fit-free CLIP-cache performance exploration. Select original 512D rows; no PCA/training, decoding or CLIP encoding. No raw speedup claim."
+  }
+}

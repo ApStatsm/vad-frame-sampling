@@ -3,10 +3,12 @@
 import hashlib
 import math
 
-from . import random, reference, uniform
+from . import random, random_window, reference, uniform
 
 
-METHODS = {'reference': reference.select, 'uniform': uniform.select, 'random': random.select}
+METHODS = {'reference': reference.select, 'uniform': uniform.select,
+           'random': random.select, 'random_window': random_window.select}
+OPTIMAL_METHODS = ('d_optimal', 'a_optimal', 'e_optimal')
 
 
 def budget_count(count, ratio):
@@ -37,7 +39,7 @@ def choose(candidates, method, ratio, seed):
     count = budget_count(len(frames), ratio)
     if method not in METHODS:
         raise ValueError(f'Unsupported sampler: {method}; choose from {tuple(METHODS)}')
-    positions = METHODS[method](len(frames), count, seed)
+    positions = METHODS[method](len(frames), count, seed, ratio=ratio)
     if (len(positions) != count or len(set(positions)) != count
             or positions != sorted(positions)
             or any(not 0 <= value < len(frames) for value in positions)):

@@ -1,5 +1,19 @@
 # VAD Frame Sampling 연구 계획
 
+2026-11-12 구현 범위 확장: 사용자 요청으로 기존 `method.md`의 D/A/E-optimal 비교를
+UCF와 XD 양쪽에 적용하는 코드를 작성한다. 기존 데이터셋별 추출/모델/평가를 유지하며,
+같은 K에서 Uniform·구간 내 Random과 성능을 비교한다. Optimal은 reference 후보 중 선택하고
+구간 내 Random은 원본 프레임에서 선택하므로 선택 공간·score anchor 차이를 보고한다.
+2026-11-12 최신 변경: 사용자가 추가 적합 없이 기존 CLIP 표현에 적용하는 방식을 요청했다.
+우선 raw Reference의 저장된 512D CLIP feature에서 고정 무작위 직교 투영(기본 8D)을
+선택에만 사용하고 D/A/E와 동일 후보 Uniform·Random-feature의 성능을 비교한다.
+개발 데이터·PCA 적합은 이 탐색 단계에 필요하지 않다. 학습하지 않은 고정 투영은
+모든 방법·데이터셋에 공통이며 선택된 원본 512D feature를 VadCLIP에 전달한다.
+전체 CLIP feature를 이미 사용하므로 CLIP 계산 절감이나 raw end-to-end speedup을 주장하지 않는다.
+기존 raw-video 효율 연구 목표는 유지하며 실제 CLIP 이전 선택은 후속 단계다.
+최신 사양은 `method.md`이며 적합 없는 cached CLIP 경로의 코드를 작성하고 정적으로 검사했다.
+사용자 테스트·추론·전체 성능 검증은 미실행이며 실행 명령은 `docs/OPTIMAL_RUNS.md`에 있다.
+
 작성일: 2026-10-05  
 계획 수정: 2026-10-07 — 사용자 요청으로 UCF fine-grained 기본 평가를 원본 공개 코드의 290개/14개 클래스 방식으로 변경; Ano-AUC 유지
 대화 출처: 「베이스라인 VAD 모델 추천」  
@@ -44,7 +58,7 @@ Motion이나 frame difference가 크다는 사실만으로 anomaly 여부를 판
 | 제안 방법 Ours | 아직 설계하지 않음. Baseline 분석 후 구체화 |
 | 추가 모델 검증 | 시간이 허용되면 RTFM 등으로 확장 검토 |
 
-Random 반복 횟수, adaptive score의 구체적인 정의, frame-to-score 복원 방식, window 처리 규칙과 재현 허용 오차는 아래 실험 원칙을 바탕으로 구현 전에 확정한다. 이 문서의 세부 구현 제안은 이미 수행한 실험이나 확정된 성과를 뜻하지 않는다.
+Random 반복은 seed 0~4로 고정한다. Adaptive score의 구체적인 정의, frame-to-score 복원 방식, window 처리 규칙과 재현 허용 오차는 아래 실험 원칙을 바탕으로 해당 실험 전에 확정한다. 이 문서의 세부 구현 제안은 이미 수행한 실험이나 확정된 성과를 뜻하지 않는다.
 
 ## 4. VadCLIP baseline과 데이터 준비
 
@@ -192,14 +206,14 @@ Sampler가 모든 프레임을 저해상도로 살펴보거나 별도 모델을 
 | 방법 | 정의 | 확인할 특성 |
 |---|---|---|
 | Full / Reference | 기준 후보 프레임을 모두 encoder에 입력 | 성능과 시간의 기준점 |
-| Uniform | 전체 시간축에서 균등하게 K개 선택 | Coverage와 짧은 사건 누락 |
-| Random | 후보 중 K개를 중복 없이 무작위 선택 후 시간순 정렬 | Seed에 따른 성능 변동 |
+| Uniform | 첫 기준 후보부터 균등하게 K개 선택. 50%, 25%, 12.5%에서 원본 프레임 간격은 각각 32, 64, 128 | Coverage와 짧은 사건 누락 |
+| Random | 100%, 50%, 25%, 12.5%에서 원본 16, 32, 64, 128프레임 구간마다 한 장을 균등 무작위 선택 | 같은 구간에서 대표 프레임을 바꿨을 때의 성능과 seed 변동 |
 | Simple Adaptive | 저비용 frame difference 또는 motion score로 K개 선택 | 큰 정상 motion 편향과 작은 anomaly 누락 |
 | Ours | 이상 탐지에 유용한 정보와 시간축 coverage를 고려하는 방법 | 같은 budget에서 성능 보존과 실제 비용 절감 |
 
 Adaptive는 예를 들어 frame difference score 상위 K개를 선택하는 단순한 구현부터 시작한다. 점수 계산 해상도, 비교 간격, 동점 처리와 선택 규칙을 명시한다. Ours의 구체적인 구조는 아직 미정이다.
 
-Random은 동일한 seed 목록으로 반복한다. 초기 제안은 5개 seed이며 평균과 표준편차를 보고한다. 다른 방법에 무작위 요소가 있으면 같은 반복 원칙을 적용한다.
+Random은 사용자 결정에 따라 seed 0~4로 반복하고 평균과 표본 표준편차를 보고한다. 실제 선택 좌표를 저장하고, Uniform과 동일한 구간 시작 좌표에서 점수를 복원한다. 마지막 구간의 선택 범위는 실제 영상 끝과 공식 평가 길이 중 먼저 도달하는 위치까지다.
 
 ## 8. Frame budget과 공정한 비교
 
@@ -220,7 +234,7 @@ K_v = min(N_v, max(1, ceil(r × N_v)))
 
 2026-10-07 용어 보완: 본 문서의 Full은 **Reference 후보 100%**를 뜻하며 VadCLIP이 원본 모든 프레임을 사용한다는 뜻이 아니다. VadCLIP에 전달되는 16-frame 단위 feature token 수와 그 token을 만드는 CLIP image encoder의 실제 입력 수를 구분한다. 2026-10-08 진단으로 UCF 원본 encoder는 구간당 한 장(frame 16k)을 처리한 것으로 재구성됐다(Stage 2의 2026-10-08 결정 참고). 따라서 UCF reference 후보 수 `N_v`는 영상별 reference token 수(대부분 floor(N/16))이고, reference 100%의 encoder 입력 수도 `N_v`다. 고정된 reference 후보에서 추가로 일부를 선택하는 실험과 원본 프레임에서 대표 위치 자체를 변경하는 실험은 선택 공간이 다르므로 구분해 설계한다.
 
-각 영상에서 sampler마다 동일한 `K_v`를 적용한다. 짧은 영상의 반올림과 빈 영상 처리도 동일하게 한다. 비교는 데이터셋별로 `4개 budget × 모든 sampling strategy`를 수행한다. 100%에서는 모든 후보가 선택되어 reference와 같은 탐지 결과가 나오는지 확인한다.
+각 영상에서 sampler마다 동일한 `K_v`를 적용한다. 짧은 영상의 반올림과 빈 영상 처리도 동일하게 한다. 비교는 데이터셋별로 `4개 budget × 모든 sampling strategy`를 수행한다. Uniform 100%는 reference와 같은 선택과 탐지 결과가 나오는지 확인한다. 구간 내 Random 100%는 같은 수의 서로 다른 원본 프레임을 선택할 수 있으므로 별도로 평가한다.
 
 **같은 frame budget이 같은 총 계산 비용을 뜻하지는 않는다.** Sampler overhead가 다르므로, 먼저 같은 K에서 성능을 비교하고 측정된 총 시간에 따른 성능–효율 곡선도 제시한다.
 

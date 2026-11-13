@@ -62,7 +62,7 @@ class ExtractionSelectionTests(unittest.TestCase):
         crop = crop_image(image, 0, 'shortside_min256')
         np.testing.assert_array_equal(crop, enlarged[16:240, 58:282])
 
-    def extract(self, frames, tokens, selected=None):
+    def extract(self, frames, tokens, selected=None, *, frame_selector=None):
         config = {'temporal_mode': 'single_frame', 'frame_offset': 0,
                   'color_conversion': 'opencv_bgr', 'image_geometry': 'shortside_fxfy',
                   'tail_policy': 'match_official_rows', 'crop_type': 5,
@@ -71,7 +71,8 @@ class ExtractionSelectionTests(unittest.TestCase):
             return torch.as_tensor(np.asarray(image).copy()).permute(2, 0, 1).float()
         with patch('vadfs.extract.cv2.VideoCapture', return_value=FakeCapture(frames)):
             return extract_reference(Path('synthetic.mp4'), FakeEncoder(), preprocess,
-                                     'cpu', config, np.float32, tokens, selected)
+                                     'cpu', config, np.float32, tokens, selected,
+                                     frame_selector=frame_selector)
 
     def test_full_selection_matches_legacy_default_path(self):
         old, old_selection, _ = self.extract(48, 3)
@@ -93,6 +94,13 @@ class ExtractionSelectionTests(unittest.TestCase):
         self.assertEqual(len(floor), 1)
         self.assertEqual(len(ceil), 2)
         np.testing.assert_array_equal(selected['selected_frame_indices'], [0, 16])
+
+    def test_frame_selector_encodes_off_grid_frames_and_keeps_real_indices(self):
+        features, selected, metadata = self.extract(33, 3, frame_selector=lambda count: [15, count - 1])
+        np.testing.assert_array_equal(features[:, 0], [15, 32])
+        np.testing.assert_array_equal(selected['selected_frame_indices'], [15, 32])
+        self.assertEqual(metadata['candidate_frames'], 3)
+        self.assertEqual(metadata['tail_frames_encoded'], 1)
 
 
 if __name__ == '__main__':

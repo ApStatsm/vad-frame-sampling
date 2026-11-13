@@ -25,3 +25,9 @@ Completion was checked from saved JSON and tmux output, without rerunning infere
 tests or aggregation. Detailed numerical interpretation remains pending.
 
 Archived CSV line endings are normalized to LF; cell contents are unchanged.
+
+The subsequent implementation commit archives the experiment code, settings,
+comparison tools and tests. Before committing, all 25 `vadfs` source hashes
+recorded across the 74 run summaries were checked against the working files;
+all matched. This establishes package-source identity, without rerunning the
+experiments. The historical `research_commit` and dirty flags remain unchanged.

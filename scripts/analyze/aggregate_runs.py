@@ -24,7 +24,7 @@ def main():
         return (report['dataset_key'], report['input_type'], report['sampling']['method'],
                 report['sampling']['budget'], report['comparison_signature'],
                 report['metrics']['primary']['branch'], report['metrics']['primary']['metric'],
-                report.get('reference_summary_sha256'))
+                report.get('reference_summary_sha256'), report.get('sampler_signature'))
     if any(group(report) != group(reports[0]) for report in reports):
         raise ValueError('Dataset, method, budget, environment, protocol or reference differs')
     seeds = [report['sampling']['seed'] for report in reports]
@@ -43,16 +43,38 @@ def main():
                'metric_unit': 'fraction; multiply mean/std by 100 for percentage points',
                'primary_distribution': describe([report['metrics']['primary']['value'] for report in reports]),
                'comparison_signature': reports[0]['comparison_signature'],
+               'sampler_signature': reports[0].get('sampler_signature'),
+               'cache_identity_sha256': reports[0].get('cache_identity_sha256'),
+               'projection_q_sha256': reports[0].get('projection', {}).get('q_sha256'),
+               'experiment_scope': reports[0].get('experiment_scope'),
+               'speedup_eligible': all(report.get('speedup_eligible', False) for report in reports),
                'protocol_statuses': [report['experiment']['protocol']['status'] for report in reports],
                'automatic_claim_of_final_validation': False}
     summary['primary'].pop('value')
+    branch = summary['primary']['branch']
+    summary['metric_distributions'] = {branch: {
+        field: describe([report['metrics'][branch][field] for report in reports])
+        for field in ('roc_auc', 'ap', 'ano_auc')
+        if all(field in report['metrics'][branch] for report in reports)
+    }}
+    fine = [report['metrics'].get('fine_grained', {}) for report in reports]
+    if all('map_by_iou' in metrics and 'mean_map' in metrics for metrics in fine):
+        summary['metric_distributions']['fine_grained'] = {
+            'map_by_iou': {iou: describe([metrics['map_by_iou'][iou] for metrics in fine])
+                           for iou in fine[0]['map_by_iou']},
+            'mean_map': describe([metrics['mean_map'] for metrics in fine]),
+        }
     key = 'end_to_end_seconds' if reports[0]['input_type'] == 'raw' else 'cached_feature_seconds'
     summary[key] = describe([report[key] for report in reports])
-    if all('reference_comparison' in report for report in reports):
-        for field in ('primary_delta_pp', 'speedup'):
+    for field in ('primary_delta_pp', 'speedup'):
+        if all(field in report.get('reference_comparison', {}) for report in reports):
             summary[field] = describe([report['reference_comparison'][field] for report in reports])
     _, output = create_run_dir('seeds', 'aggregate', output_root=args.output_root.expanduser().resolve())
     write_json(output / 'summary.json', summary)
+    primary = summary['primary_distribution']
+    if primary['sample_std'] is not None:
+        print(f'{summary["dataset"]} {summary["budget"]:.1%} {summary["primary"]["metric"]}: '
+              f'{primary["mean"]:.4%} ± {100 * primary["sample_std"]:.4f} pp (n={primary["n"]})')
     print(f'Aggregate: {output / "summary.json"}')
 
 

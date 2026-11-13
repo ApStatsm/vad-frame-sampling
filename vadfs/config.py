@@ -8,7 +8,7 @@ from .paths import project_path
 
 
 LOCAL_KEYS = {'videos_root', 'features_root', 'clip_checkpoint', 'vadclip_checkpoint',
-              'output_root', 'setup_manifest', 'device'}
+              'output_root', 'setup_manifest', 'device', 'sampling_artifact'}
 
 
 def read_json(path):

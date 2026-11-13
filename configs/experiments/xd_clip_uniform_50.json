@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "dataset_config": "configs/datasets/xd.json",
+  "input_type": "raw",
+  "feature_source": "raw_reference_cache",
+  "model_seed": 234,
+  "sampling": {
+    "method": "uniform",
+    "budget": 0.5,
+    "seed": 0
+  },
+  "reference_run": null,
+  "protocol": {
+    "status": "draft",
+    "restoration": "nearest",
+    "positional_encoding": "unchanged compressed selected-token order",
+    "window": "unchanged upstream process_split/mask behavior",
+    "note": "Fit-free CLIP-cache performance exploration. Select original 512D rows; no PCA/training, decoding or CLIP encoding. No raw speedup claim."
+  }
+}
