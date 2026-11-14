@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "protocol_version": 2,
+  "dataset_config": "configs/datasets/ucf.json",
+  "input_type": "raw",
+  "model_seed": 234,
+  "sampling": {
+    "method": "e_optimal",
+    "budget": 0.125,
+    "seed": 0
+  },
+  "reference_run": null,
+  "selection_spec": {
+    "version": 2,
+    "thumbnail": [
+      32,
+      32
+    ],
+    "resize": "INTER_AREA",
+    "features": "RGB means,2*RGB population std,gray edge,adjacent gray difference",
+    "projection_seed": 234,
+    "dimensions": 8,
+    "ridge": 1.0,
+    "max_sweeps": 5,
+    "objective_rtol": 1e-12,
+    "e_rtol": 1e-10,
+    "anchor": "window_start"
+  },
+  "protocol": {
+    "status": "draft",
+    "restoration": "nearest",
+    "score_anchor": "window_start",
+    "random_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+}

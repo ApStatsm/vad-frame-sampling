@@ -38,3 +38,9 @@ Random-window는 seed 0–4의 평균 ± 표본 표준편차다. 나머지 방�
 원본 비교 결과: `outputs/analyses/ucf_comparison_ver2_full_20261114_030924/`. 원본 sweep: `outputs/analyses/ucf_sweep_ver2_full_20261113_154059/sweep_ver2.json`.
 
 이 커밋은 UCF 결과만 보존한다. ver2 구현·방법론은 아직 로컬 미커밋 상태이며 실행 당시 research_commit/dirty 및 package hash를 원문대로 유지했다. XD는 진행 중이므로 포함하지 않는다. 이번 보존 작업에서는 테스트·추론·재집계를 실행하지 않았다.
+
+후속 코드 보존: UCF 실행에 필요한 공통 `_ver2` 코드·테스트, UCF 설정 20개와
+[method_ver2.md](../../../method_ver2.md)를 결과 커밋 다음에 보존했다.
+보존 전 UCF 36개 실행에 기록된 모든 package source hash와 현재 파일을 대조해 일치를 확인했다.
+위의 미커밋 설명은 결과 전용 커밋 당시 상태이며, 과거 실행의 research_commit/dirty 값은 변경하지 않았다.
+XD 전용 설정은 이번 코드 커밋에서 제외했다.
