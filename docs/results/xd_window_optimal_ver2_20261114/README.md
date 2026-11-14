@@ -37,3 +37,8 @@ sweep/집계의 summary 해시는 서버의 원본 파일에 해당한다. 보�
 GPU 분할 실행기·optimal 전용 비교 도구·XD 전용 설정·방법론 추가분은 아직 로컬 미커밋 상태다.
 실행 당시 source hash와 research_commit/dirty 기록은 원본 그대로 유지했다.
 이번 보존 작업에서는 테스트·추론·재집계를 실행하지 않았다.
+
+후속 코드 보존: GPU 분할 실행기·optimal 전용 비교 도구·테스트·XD 설정 20개와
+[최신 방법론/실행 안내](../../../method_ver2.md)를 결과 커밋 다음에 HJ에 보존했다.
+보존 전 package 소스, scheduler, 실제 실행한 XD optimal 설정 12개의 hash가 모두 기록과 일치했다.
+위 미커밋 설명은 결과 전용 커밋 당시 상태이며, 실행 당시 provenance는 변경하지 않았다.

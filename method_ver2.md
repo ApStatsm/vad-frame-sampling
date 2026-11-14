@@ -2,9 +2,10 @@
 
 > 2026-11-14 UCF 인계: UCF ver2 full 36회가 사용자 실행으로 완료됐고 결과는
 > [UCF ver2 성능표](docs/results/ucf_window_optimal_ver2_20261114/README.md)에 보존했다.
-> 이번 GitHub 보존 범위는 공통 ver2 코드·테스트와 UCF 설정 20개다.
-> 아래 XD 명령과 나머지 설정 20개는 로컬 후속 실험 안내이며, XD 전용 설정은 이번 커밋에 포함하지 않는다.
-> 테스트 수행 여부는 확인하지 않았고, 이번 커밋 작업에서 테스트·추론을 재실행하지 않았다.
+> 후속 XD D/A/E 12회도 각 800개 영상 평가와 비교표 생성까지 완료했다.
+> 현재 GitHub 보존 범위는 공통 ver2 코드·분할 실행기·비교 도구·관련 테스트 및 UCF/XD 설정 각 20개다.
+> [XD 결과](docs/results/xd_window_optimal_ver2_20261114/README.md)도 보존했다.
+> 분할 실행용 사용자 테스트 5개 OK는 tmux 기록에서 확인했다. 이번 커밋 작업에서 테스트·추론을 재실행하지 않았다.
 
 
 상태: 2026-11-13 별도 `_ver2` 코드·설정 작성, 정적 검사 완료. 테스트·추론·실험 실행은 미검증이다.
@@ -256,3 +257,78 @@ Uniform 및 Random-window가 포함된 full sweep은 완료 후 자동 비교 CS
   반복 측정 speedup으로 해석하지 않는다. CPU/FFmpeg 메모리는 현재 null이다.
 
 실제 실행 검증 완료를 뜻하지 않는다. 최초 설계 문서 `docs/WINDOW_OPTIMAL_PROTOCOL.md`는 설계 당시 기록으로 보존하며 이 파일이 ver2 구현 인계의 최신 사양이다.
+
+## 11. D/A/E 전용 GPU 0·1 분할 실행 — 2026-11-14
+
+사용자 요청으로 Uniform/Random 실행을 제외하는 별도 도구를 작성했다.
+기존 선택·추출·모델 코드를 변경하지 않으며, 신규 파일명도 `_ver2`로 통일했다.
+
+- `scripts/run_optimal_split_ver2.py`: D/A/E × 4budget의 총 12회만 대상으로 한다.
+  성공한 기존 full 결과 중 설정·입력 manifest/hash·checkpoint·코드·영상별 K/전체 평가 길이가
+  일치하는 결과를 재사용한다. 실패·중단 결과는 재사용하지 않으며 해당 단일 실험만 처음부터 실행한다.
+- GPU 목록에 있는 각 GPU에 최대 한 작업을 배정한다. 먼저 끝난 GPU가 다음 조합을 맡으므로
+  방법을 GPU 하나에 고정하지 않는다. 각 자식의 CUDA_VISIBLE_DEVICES를 실제 GPU index로 덮어쓴다.
+- 같은 dataset의 기존 ver2 sweep/추론 프로세스가 감지되면 새 추론을 시작하지 않는다.
+  별도 lock으로 중복 split 실행을 방지한다. 다른 프로젝트의 GPU 예약을 관리하는 도구는 아니다.
+- Ctrl+C/SIGTERM 시 새 실행기의 자식 process group을 정리하고 완료 결과는 보존한다.
+  인스턴스 강제 종료처럼 정리 불가능한 상황은 다시 확인해야 한다.
+- `scripts/analyze/compare_optimal_ver2.py`: D/A/E 12개 결과만으로 ROC-AUC/AP/Ano-AUC,
+  fine-grained mAP·각 optimal 대비 pp 차이·Markdown 성능표를 만든다. Uniform/Random은 요구하지 않는다.
+- GPU UUID·visibility 차이는 성능 비교에서 허용하되 데이터·모델·전처리·선택·평가 소스,
+  software/precision 정책과 원본 영상 순서·K는 검증한다. GPU별 환경은 결과에 남긴다.
+- 재사용은 기록된 raw hash를 준비 manifest와 대조한다. 과거 NPZ나 모든 원본 영상의 바이트를
+  독립적으로 다시 검증하는 절차는 아니다. 재사용 시 metric을 다시 계산하지 않는다.
+- CPU·디스크·다른 GPU 작업과의 자원 경합이 있으므로 병렬 실행 및 과거 실행의 시간으로
+  최종 speedup을 주장하지 않는다. 별도 통제된 시간 측정은 후속 단계다.
+
+### 전환 순서 — 사용자가 직접 실행
+
+1. `tmux attach -t optimal-ver2`로 기존 화면에 들어가 **Ctrl+C**로 기존 sweep을 중단한다.
+   성공 완료된 UCF/XD 결과는 남는다. 중단된 현재 Random 결과는 새 실행 대상이 아니다.
+2. 기존 화면이 셸 프롬프트로 돌아왔는지 확인하고 **Ctrl+B, D**로 나온다.
+3. 새 tmux를 만든다. 기존 wrapper와 split 실행기를 동시에 시작하지 않는다.
+
+```bash
+cd /workspace/hyeongjun/vad
+tmux new -s optimal-ver2-split
+```
+
+새 tmux 안에서 사용자 테스트를 먼저 실행한다. 작성만 했으며 Codex가 실행하지 않았다.
+
+```bash
+/workspace/sangmin/.venv/bin/python -m unittest discover -s tests -p 'test_optimal_split_ver2.py' -v
+```
+
+GPU 0·1에서 XD의 남은 D/A/E만 실행한다. CUDA_VISIBLE_DEVICES의 이전 export 값은
+새 실행기가 자식별로 덮어쓰므로 별도로 두 터미널을 관리할 필요가 없다.
+
+```bash
+/workspace/sangmin/.venv/bin/python -u scripts/run_optimal_split_ver2.py \
+  --dataset xd --local configs/local/hj.xd.json \
+  --setup-manifest /workspace/vad/results/baselines/xd_raw_reference/manifest.json \
+  --gpus 0 1 --mode full
+```
+
+기본적으로 local 설정 output_root의 기존 성공 결과를 검색하며, 다른 위치는 `--reuse-root PATH`로
+추가한다. 기존 UCF D/A/E는 재실행할 필요 없다. UCF를 같은 전용 표로 다시 정리하려면 위 명령에서
+xd를 ucf로 바꾼다. 성공 기록이 현재 설정과 모두 일치하면 12회를 재사용하고 추론 없이 표만 만든다.
+`--plan-only`는 사용자가 실행 전 재사용/대기 목록만 확인할 때 사용한다. Codex는 dry-run도 실행하지 않았다.
+
+### 진행 확인과 산출물
+
+상위 tmux에는 GPU 배정·완료 0~12회·개별 log 경로가 표시된다.
+개별 영상 진행은 표시된 log에 `tail -n 20 실제_log_경로`로 확인한다.
+Ctrl+B, D로 detach해도 계속 실행되며 `tmux attach -t optimal-ver2-split`로 다시 들어간다.
+
+- 실행 기록: `outputs/analyses/*_optimal_split_ver2_full_*/sweep_optimal_ver2.json`.
+- GPU별 작업 로그: 위 폴더 `logs/*_gpu{0,1}_ver2.log`.
+- 원본 결과: 기존과 같은 `outputs/runs/*_ver2_full_*/summary.json`, `scores/`.
+- 비교표: `outputs/analyses/*_optimal_only_ver2_full_*/comparison_optimal_ver2.csv`.
+- 웹용 표: 같은 폴더 `evaluation_optimal_ver2.md` 및 `summary_optimal_ver2.json`.
+- 완료 조건: `complete=true`, 성공/재사용 결과 12개, 전용 비교표 생성.
+
+이 기능의 코드·테스트는 정적으로만 검토했다. 실제 GPU 분할·중단 처리·재사용·집계 실행은 사용자 검증 대기다.
+
+2026-11-14 실행 인계 갱신: 위 GPU0/1 분할 명령으로 XD D/A/E 12회가 완료됐고
+optimal 전용 CSV·Markdown 생성도 성공했다. 실험 당시 source hash와 scheduler hash를 현재 코드와
+대조해 일치를 확인했다. 사용자 실행 성공 기록이며 모든 예외·중단 경로를 검증했다는 뜻은 아니다.

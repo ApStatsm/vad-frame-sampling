@@ -1,4 +1,6 @@
 # 기존 CLIP feature에 적용하는 D·A·E-optimal sampling
+> 2026-11-13: 최신 후속 설계는 [구간당 한 프레임 D/A/E 프로토콜](docs/WINDOW_OPTIMAL_PROTOCOL.md)이다. 이 문서의 cached CLIP 사양과 완료 결과는 이전 탐색 실험으로 보존한다. 새 프로토콜은 구현·실행 전이다.
+
 
 수정일: 2026-11-12. 대상: UCF-Crime 및 XD-Violence.
 상태: **적합 없는 feature 기반 실행 코드 작성·정적 검사 완료. 테스트·추론·실행 검증은 미실행이다.**
