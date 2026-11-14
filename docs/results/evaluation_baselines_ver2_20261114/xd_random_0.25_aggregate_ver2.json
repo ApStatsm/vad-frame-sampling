@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "dataset": "XD-Violence",
+  "input_type": "raw",
+  "sampling_method": "random_window",
+  "budget": 0.25,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "runs": [
+    "xd_raw_random_window_0.25_s0_full_20261112_205633",
+    "xd_raw_random_window_0.25_s1_full_20261112_211920",
+    "xd_raw_random_window_0.25_s2_full_20261112_214205",
+    "xd_raw_random_window_0.25_s3_full_20261112_220459",
+    "xd_raw_random_window_0.25_s4_full_20261112_222759"
+  ],
+  "primary": {
+    "branch": "branch2",
+    "metric": "ap"
+  },
+  "metric_unit": "fraction; multiply mean/std by 100 for percentage points",
+  "primary_distribution": {
+    "n": 5,
+    "mean": 0.8179283435964596,
+    "sample_std": 0.001993409233982141
+  },
+  "comparison_signature": "0a3560e8e139e64f7e68ab8b3fb4fe981c526be689aa02359c93d691a888a21a",
+  "protocol_statuses": [
+    "draft",
+    "draft",
+    "draft",
+    "draft",
+    "draft"
+  ],
+  "automatic_claim_of_final_validation": false,
+  "metric_distributions": {
+    "branch2": {
+      "roc_auc": {
+        "n": 5,
+        "mean": 0.9377508075459623,
+        "sample_std": 0.0007541058485110865
+      },
+      "ap": {
+        "n": 5,
+        "mean": 0.8179283435964596,
+        "sample_std": 0.001993409233982141
+      },
+      "ano_auc": {
+        "n": 5,
+        "mean": 0.7985222382873914,
+        "sample_std": 0.002181116438768822
+      }
+    },
+    "fine_grained": {
+      "map_by_iou": {
+        "0.1": {
+          "n": 5,
+          "mean": 0.31235171120160765,
+          "sample_std": 0.00842614592646192
+        },
+        "0.2": {
+          "n": 5,
+          "mean": 0.24768692936370643,
+          "sample_std": 0.011662120746942397
+        },
+        "0.3": {
+          "n": 5,
+          "mean": 0.18555623912147529,
+          "sample_std": 0.011207039177023648
+        },
+        "0.4": {
+          "n": 5,
+          "mean": 0.13593266907592821,
+          "sample_std": 0.0092437857566219
+        },
+        "0.5": {
+          "n": 5,
+          "mean": 0.10404856671082219,
+          "sample_std": 0.00846814534512186
+        }
+      },
+      "mean_map": {
+        "n": 5,
+        "mean": 0.19711522309470797,
+        "sample_std": 0.009443991751213588
+      }
+    }
+  },
+  "end_to_end_seconds": {
+    "n": 5,
+    "mean": 1234.2619287384673,
+    "sample_std": 5.94024526851222
+  },
+  "primary_delta_pp": {
+    "n": 5,
+    "mean": -2.7112339399067764,
+    "sample_std": 0.1993409233982141
+  }
+}

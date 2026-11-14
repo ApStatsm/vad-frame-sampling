@@ -1,0 +1,166 @@
+{
+  "scope": "stored JSON/CSV documentation only; no inference or metric recomputation",
+  "historical_random_check": "20 successful 800-video runs; model/checkpoint/GT/prompts/recipe/vendored/evaluation/timeline/extract/color/random_window source hashes match current XD ver2",
+  "inputs": [
+    {
+      "role": "XD Uniform",
+      "budget": 0.125,
+      "original": "/workspace/hyeongjun/vad/outputs/runs/xd_uniform_0.125_s0_ver2_full_20261114_044753/summary.json",
+      "sha256": "4db63ad2e0bd3e191480a78eccc3dc8eefc62c877b2b580ac68a54f798602b64",
+      "copy": "docs/results/evaluation_baselines_ver2_20261114/xd_uniform_0.125_summary_ver2.json",
+      "copy_excludes": "top-level videos"
+    },
+    {
+      "role": "XD Uniform",
+      "budget": 0.25,
+      "original": "/workspace/hyeongjun/vad/outputs/runs/xd_uniform_0.25_s0_ver2_full_20261114_042353/summary.json",
+      "sha256": "0dfc1cead9b9c0651796de300412387dc944fa48d7a60b0124c5e0d2e22f5f1b",
+      "copy": "docs/results/evaluation_baselines_ver2_20261114/xd_uniform_0.25_summary_ver2.json",
+      "copy_excludes": "top-level videos"
+    },
+    {
+      "role": "XD Uniform",
+      "budget": 0.5,
+      "original": "/workspace/hyeongjun/vad/outputs/runs/xd_uniform_0.5_s0_ver2_full_20261114_035420/summary.json",
+      "sha256": "d0ec26de1bc16e3fdc52768e1da484136a42b1c72018840a907a01366c30a2ac",
+      "copy": "docs/results/evaluation_baselines_ver2_20261114/xd_uniform_0.5_summary_ver2.json",
+      "copy_excludes": "top-level videos"
+    },
+    {
+      "role": "XD Uniform",
+      "budget": 1.0,
+      "original": "/workspace/hyeongjun/vad/outputs/runs/xd_uniform_1_s0_ver2_full_20261114_030924/summary.json",
+      "sha256": "013018c77e23db08c25cde443c4b597b783182574e04110089682b51d94a97ac",
+      "copy": "docs/results/evaluation_baselines_ver2_20261114/xd_uniform_1_summary_ver2.json",
+      "copy_excludes": "top-level videos"
+    },
+    {
+      "role": "XD Random-window historical aggregate",
+      "budget": 1,
+      "original": "/workspace/vad/results/random/aggregates/seeds_aggregate_20261112_182243/summary.json",
+      "sha256": "4411d7de782db7013c3996e8da4af62a46011ac44763372a651e35558ac85583",
+      "copy": "docs/results/evaluation_baselines_ver2_20261114/xd_random_1_aggregate_ver2.json"
+    },
+    {
+      "role": "XD Random-window historical aggregate",
+      "budget": 0.5,
+      "original": "/workspace/vad/results/random/aggregates/seeds_aggregate_20261112_205633/summary.json",
+      "sha256": "c01f3b945352ed16e4ab623afc2b4fd7faeea8ff30bef1cb1d21a0b3f6ddc546",
+      "copy": "docs/results/evaluation_baselines_ver2_20261114/xd_random_0.5_aggregate_ver2.json"
+    },
+    {
+      "role": "XD Random-window historical aggregate",
+      "budget": 0.25,
+      "original": "/workspace/vad/results/random/aggregates/seeds_aggregate_20261112_225102/summary.json",
+      "sha256": "d6c7b94f42460ec2caf5b9d3f8bc5a738ef78fa741b2285998f5fc0cd5be7860",
+      "copy": "docs/results/evaluation_baselines_ver2_20261114/xd_random_0.25_aggregate_ver2.json"
+    },
+    {
+      "role": "XD Random-window historical aggregate",
+      "budget": 0.125,
+      "original": "/workspace/vad/results/random/aggregates/seeds_aggregate_20261113_003326/summary.json",
+      "sha256": "759a3e976ec9158367fcba28381ea4f95c6bfdfce2dae80f11f6f896318bafbc",
+      "copy": "docs/results/evaluation_baselines_ver2_20261114/xd_random_0.125_aggregate_ver2.json"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.125_s0_full_20261112_225102/summary.json",
+      "sha256": "d5f69bc9e238b58c6849a8d79838ccfbbc7400a3cf1583f879600eea00ccc966"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.125_s1_full_20261112_231135/summary.json",
+      "sha256": "f16d02029b9a4368e31024f03415b53c33a5046d80edf39d583b2790812d821a"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.125_s2_full_20261112_233210/summary.json",
+      "sha256": "92c439cd9801aa72ac00277a545a3320301713c98e154a62750360b38d40ca1b"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.125_s3_full_20261112_235235/summary.json",
+      "sha256": "a79ecac664726fa77e13f8f2539451a6b7fb0281694a1e5647df9bd02d6f4c42"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.125_s4_full_20261113_001302/summary.json",
+      "sha256": "5e4ae08a94f1d56e3ba69087f4276d900c84a7fc8cf519023fef555fefe2f87f"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.25_s0_full_20261112_205633/summary.json",
+      "sha256": "78523727ba00137a2ce0e61557294933d4a7c7b0c343c05586dc700c5965fd1f"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.25_s1_full_20261112_211920/summary.json",
+      "sha256": "3e19a1675689f3ae5117d932a946b6dcb5ffcba49c2484e9383c582a5ae3f771"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.25_s2_full_20261112_214205/summary.json",
+      "sha256": "d7af8e43c1be20e73adb059ca278d92cfa24436956df86e7c287013bdf52a4c1"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.25_s3_full_20261112_220459/summary.json",
+      "sha256": "4f76a22b3430c87c751654296c523a1b87768e3a651664b2d8e7e7df4f4c97e6"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.25_s4_full_20261112_222759/summary.json",
+      "sha256": "b346c5b47916a6de28713172b703623f7f66880fa3646280042adaeaae1c4a16"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.5_s0_full_20261112_182243/summary.json",
+      "sha256": "8d7030bd7bd74c7c6f996f122dd0ebbd31656d2b8b9b8c7cf5dc6345ecd20772"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.5_s1_full_20261112_185755/summary.json",
+      "sha256": "0dc9ce61862f67a18a63749d2021d328311ea610c3b4b4a320de4813ce060e28"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.5_s2_full_20261112_192955/summary.json",
+      "sha256": "b8edf1fbbaad225f6d54cc6b2a5758c03a4a7d5afcd52a2959ba27fe4128a3ef"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.5_s3_full_20261112_195849/summary.json",
+      "sha256": "833a6280224b92a275a1d64ab654a4477ea2d8f9b01d33c257f96e51ba49e16f"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_0.5_s4_full_20261112_202744/summary.json",
+      "sha256": "2607cc12f8fbcbb6c19ad2b33fbf319ca8a9740c343a648a8b3e9dcd5a3a77f2"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_1_s0_full_20261112_133605/summary.json",
+      "sha256": "834081a0d2e6346c5d5fed13901a7ca4b985a30c3302f06bd04fded0f5f3ecda"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_1_s1_full_20261112_143508/summary.json",
+      "sha256": "3a788cf8e3abca06598348e375090fd2adf2fa9edfbc48bdfad14b1f23587466"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_1_s2_full_20261112_153226/summary.json",
+      "sha256": "e732b67b67b27c76fb415e83a5124999dc4e2edfce115af02bbc5771fa96a014"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_1_s3_full_20261112_162851/summary.json",
+      "sha256": "c32c45337db413cb299c8e82f289345d72a9f7811e91cd2f642a33fde64aab4c"
+    },
+    {
+      "role": "XD Random historical source run",
+      "original": "/workspace/vad/results/random/runs/xd_raw_random_window_1_s4_full_20261112_172653/summary.json",
+      "sha256": "2d8c20a8cf54e7af68f6787378bc3b535f2b3260fd85f034deecb9ac6626a6b5"
+    }
+  ]
+}
