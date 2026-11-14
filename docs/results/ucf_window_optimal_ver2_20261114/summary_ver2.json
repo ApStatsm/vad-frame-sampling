@@ -1,0 +1,572 @@
+{
+  "protocol_version": 2,
+  "rows": [
+    {
+      "dataset": "ucf",
+      "method": "a_optimal",
+      "budget": 0.125,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 85.50366692355058,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": -0.3020667535605952,
+      "random_delta_pp": -0.38447403899694166,
+      "encoder_input_images": 8790,
+      "end_to_end_mean_seconds": 1581.7618427285925,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 85.50366692355058,
+      "branch1_ap_percent": 28.69136063084109,
+      "branch1_ano_auc_percent": 65.34202946123987,
+      "branch2_roc_auc_percent": 83.23890865470958,
+      "branch2_ap_percent": 23.075190288659243,
+      "branch2_ano_auc_percent": 60.241696819989166,
+      "mean_map_percent": 5.5565721895882065
+    },
+    {
+      "dataset": "ucf",
+      "method": "a_optimal",
+      "budget": 0.25,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 86.49966491016467,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": -0.00815403429835726,
+      "random_delta_pp": -0.11686042635751903,
+      "encoder_input_images": 17455,
+      "end_to_end_mean_seconds": 1647.1126293642446,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 86.49966491016467,
+      "branch1_ap_percent": 30.849148878503357,
+      "branch1_ano_auc_percent": 67.21793382945155,
+      "branch2_roc_auc_percent": 84.2790672638983,
+      "branch2_ap_percent": 24.229061620329762,
+      "branch2_ano_auc_percent": 62.73923837553994,
+      "mean_map_percent": 6.0854095158575126
+    },
+    {
+      "dataset": "ucf",
+      "method": "a_optimal",
+      "budget": 0.5,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 87.01441966485501,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": 0.0032502001434835393,
+      "random_delta_pp": -0.09437962607537997,
+      "encoder_input_images": 34751,
+      "end_to_end_mean_seconds": 1792.1723297070712,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 87.01441966485501,
+      "branch1_ap_percent": 31.583188159854714,
+      "branch1_ano_auc_percent": 68.70189066041895,
+      "branch2_roc_auc_percent": 85.13859452522608,
+      "branch2_ap_percent": 25.440715790449875,
+      "branch2_ano_auc_percent": 64.57097341639505,
+      "mean_map_percent": 7.053016171123098
+    },
+    {
+      "dataset": "ucf",
+      "method": "a_optimal",
+      "budget": 1.0,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 87.11430415235009,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": -0.07099616726266333,
+      "random_delta_pp": -0.06542216270439383,
+      "encoder_input_images": 69368,
+      "end_to_end_mean_seconds": 2222.214206648059,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 87.11430415235009,
+      "branch1_ap_percent": 31.832444371065737,
+      "branch1_ano_auc_percent": 69.08436258449827,
+      "branch2_roc_auc_percent": 84.90334860525881,
+      "branch2_ap_percent": 25.259148395524445,
+      "branch2_ano_auc_percent": 64.58642481372621,
+      "mean_map_percent": 6.527322046206352
+    },
+    {
+      "dataset": "ucf",
+      "method": "d_optimal",
+      "budget": 0.125,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 85.60823974398835,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": -0.19749393312282848,
+      "random_delta_pp": -0.27990121855917494,
+      "encoder_input_images": 8790,
+      "end_to_end_mean_seconds": 1561.039879359305,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 85.60823974398835,
+      "branch1_ap_percent": 28.839155507995184,
+      "branch1_ano_auc_percent": 65.56839333283632,
+      "branch2_roc_auc_percent": 83.33306398307539,
+      "branch2_ap_percent": 23.181246451155186,
+      "branch2_ano_auc_percent": 60.44413476079635,
+      "mean_map_percent": 5.627731207734236
+    },
+    {
+      "dataset": "ucf",
+      "method": "d_optimal",
+      "budget": 0.25,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 86.56055088819343,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": 0.05273194373040724,
+      "random_delta_pp": -0.055974448328754534,
+      "encoder_input_images": 17455,
+      "end_to_end_mean_seconds": 1661.5053827129304,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 86.56055088819343,
+      "branch1_ap_percent": 31.160806899654354,
+      "branch1_ano_auc_percent": 67.32328153032245,
+      "branch2_roc_auc_percent": 84.33587050686923,
+      "branch2_ap_percent": 24.355644178476222,
+      "branch2_ano_auc_percent": 62.81297555688915,
+      "mean_map_percent": 6.060059601632791
+    },
+    {
+      "dataset": "ucf",
+      "method": "d_optimal",
+      "budget": 0.5,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 87.03197787031083,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": 0.020808405599296975,
+      "random_delta_pp": -0.07682142061956654,
+      "encoder_input_images": 34751,
+      "end_to_end_mean_seconds": 1812.222685514018,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 87.03197787031083,
+      "branch1_ap_percent": 31.633870621719307,
+      "branch1_ano_auc_percent": 68.71086213598237,
+      "branch2_roc_auc_percent": 85.13334014712814,
+      "branch2_ap_percent": 25.446547591685746,
+      "branch2_ano_auc_percent": 64.51548049128876,
+      "mean_map_percent": 7.055224549843245
+    },
+    {
+      "dataset": "ucf",
+      "method": "d_optimal",
+      "budget": 1.0,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 87.13851773473222,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": -0.046782584880531886,
+      "random_delta_pp": -0.04120858032226238,
+      "encoder_input_images": 69368,
+      "end_to_end_mean_seconds": 2235.7703022630885,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 87.13851773473222,
+      "branch1_ap_percent": 31.81222275891654,
+      "branch1_ano_auc_percent": 69.10518235037956,
+      "branch2_roc_auc_percent": 84.9114519660976,
+      "branch2_ap_percent": 25.24691382553777,
+      "branch2_ano_auc_percent": 64.59694890630068,
+      "mean_map_percent": 6.476227285353837
+    },
+    {
+      "dataset": "ucf",
+      "method": "e_optimal",
+      "budget": 0.125,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 85.62971867400094,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": -0.176015003110237,
+      "random_delta_pp": -0.25842228854658345,
+      "encoder_input_images": 8790,
+      "end_to_end_mean_seconds": 1661.479950026609,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 85.62971867400094,
+      "branch1_ap_percent": 28.151898595925996,
+      "branch1_ano_auc_percent": 65.5059748180576,
+      "branch2_roc_auc_percent": 83.06865420825622,
+      "branch2_ap_percent": 22.72670576235669,
+      "branch2_ano_auc_percent": 59.62270193964012,
+      "mean_map_percent": 6.147878015187292
+    },
+    {
+      "dataset": "ucf",
+      "method": "e_optimal",
+      "budget": 0.25,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 86.59407983343698,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": 0.08626088897395334,
+      "random_delta_pp": -0.02244550308520843,
+      "encoder_input_images": 17455,
+      "end_to_end_mean_seconds": 1743.106053724885,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 86.59407983343698,
+      "branch1_ap_percent": 30.639572417107114,
+      "branch1_ano_auc_percent": 67.38565168935358,
+      "branch2_roc_auc_percent": 84.22730243444937,
+      "branch2_ap_percent": 24.059061695650183,
+      "branch2_ano_auc_percent": 62.61010155894502,
+      "mean_map_percent": 5.405975332636399
+    },
+    {
+      "dataset": "ucf",
+      "method": "e_optimal",
+      "budget": 0.5,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 87.03400897896636,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": 0.022839514254826554,
+      "random_delta_pp": -0.07479031196403696,
+      "encoder_input_images": 34751,
+      "end_to_end_mean_seconds": 1881.549680404365,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 87.03400897896636,
+      "branch1_ap_percent": 31.556382974694962,
+      "branch1_ano_auc_percent": 68.63215060240091,
+      "branch2_roc_auc_percent": 85.08416457577172,
+      "branch2_ap_percent": 25.42969402258931,
+      "branch2_ano_auc_percent": 64.28148194657032,
+      "mean_map_percent": 6.8099284948176395
+    },
+    {
+      "dataset": "ucf",
+      "method": "e_optimal",
+      "budget": 1.0,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 87.15590995402603,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": -0.029390365586721146,
+      "random_delta_pp": -0.023816361028451638,
+      "encoder_input_images": 69368,
+      "end_to_end_mean_seconds": 2408.523995953612,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 87.15590995402603,
+      "branch1_ap_percent": 31.918718366112408,
+      "branch1_ano_auc_percent": 69.15260799202059,
+      "branch2_roc_auc_percent": 84.86018589212038,
+      "branch2_ap_percent": 25.39496532985951,
+      "branch2_ano_auc_percent": 64.46478336443934,
+      "mean_map_percent": 6.696585152932324
+    },
+    {
+      "dataset": "ucf",
+      "method": "random_window",
+      "budget": 0.125,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 85.88814096254752,
+      "primary_std_pp": 0.05904812803775454,
+      "n_seeds": 5,
+      "uniform_delta_pp": 0.08240728543634646,
+      "random_delta_pp": 0.0,
+      "encoder_input_images": 8790,
+      "end_to_end_mean_seconds": 440.6501640567556,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 85.88814096254752,
+      "branch1_ap_percent": 29.747871213209976,
+      "branch1_ano_auc_percent": 65.9842707156224,
+      "branch2_roc_auc_percent": 83.35988250563273,
+      "branch2_ap_percent": 22.973705107896475,
+      "branch2_ano_auc_percent": 60.17906540909386,
+      "mean_map_percent": 5.824336072393386
+    },
+    {
+      "dataset": "ucf",
+      "method": "random_window",
+      "budget": 0.25,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 86.61652533652219,
+      "primary_std_pp": 0.16241979931977357,
+      "n_seeds": 5,
+      "uniform_delta_pp": 0.10870639205916177,
+      "random_delta_pp": 0.0,
+      "encoder_input_images": 17455,
+      "end_to_end_mean_seconds": 509.9092665812001,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 86.61652533652219,
+      "branch1_ap_percent": 30.974712372524937,
+      "branch1_ano_auc_percent": 67.32270166389661,
+      "branch2_roc_auc_percent": 84.28391131486232,
+      "branch2_ap_percent": 24.178059359481615,
+      "branch2_ano_auc_percent": 62.512680683439704,
+      "mean_map_percent": 5.797833942282041
+    },
+    {
+      "dataset": "ucf",
+      "method": "random_window",
+      "budget": 0.5,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 87.10879929093039,
+      "primary_std_pp": 0.12556356005692113,
+      "n_seeds": 5,
+      "uniform_delta_pp": 0.09762982621886351,
+      "random_delta_pp": 0.0,
+      "encoder_input_images": 34751,
+      "end_to_end_mean_seconds": 633.6818247245625,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 87.10879929093038,
+      "branch1_ap_percent": 31.895982208912837,
+      "branch1_ano_auc_percent": 68.81713565066286,
+      "branch2_roc_auc_percent": 85.11025765604431,
+      "branch2_ap_percent": 25.51943545344324,
+      "branch2_ano_auc_percent": 64.37736996500433,
+      "mean_map_percent": 6.513894998619703
+    },
+    {
+      "dataset": "ucf",
+      "method": "random_window",
+      "budget": 1.0,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 87.17972631505448,
+      "primary_std_pp": 0.0436288269754847,
+      "n_seeds": 5,
+      "uniform_delta_pp": -0.0055740045582695075,
+      "random_delta_pp": 0.0,
+      "encoder_input_images": 69368,
+      "end_to_end_mean_seconds": 1025.5398910721765,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 87.17972631505448,
+      "branch1_ap_percent": 32.07638078789313,
+      "branch1_ano_auc_percent": 69.21958143707687,
+      "branch2_roc_auc_percent": 84.8843997506673,
+      "branch2_ap_percent": 25.340254545445802,
+      "branch2_ano_auc_percent": 64.57840205679688,
+      "mean_map_percent": 6.387957234988074
+    },
+    {
+      "dataset": "ucf",
+      "method": "uniform",
+      "budget": 0.125,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 85.80573367711118,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": 0.0,
+      "random_delta_pp": -0.08240728543634646,
+      "encoder_input_images": 8790,
+      "end_to_end_mean_seconds": 439.2761820964515,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 85.80573367711118,
+      "branch1_ap_percent": 28.956712746660774,
+      "branch1_ano_auc_percent": 65.87881916814186,
+      "branch2_roc_auc_percent": 83.25780233009246,
+      "branch2_ap_percent": 22.54130560674408,
+      "branch2_ano_auc_percent": 59.896061509396525,
+      "mean_map_percent": 5.880762592166916
+    },
+    {
+      "dataset": "ucf",
+      "method": "uniform",
+      "budget": 0.25,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 86.50781894446303,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": 0.0,
+      "random_delta_pp": -0.10870639205916177,
+      "encoder_input_images": 17455,
+      "end_to_end_mean_seconds": 505.14724602364004,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 86.50781894446303,
+      "branch1_ap_percent": 30.705917544090493,
+      "branch1_ano_auc_percent": 67.07319596933056,
+      "branch2_roc_auc_percent": 84.2179810200574,
+      "branch2_ap_percent": 23.987806222135692,
+      "branch2_ano_auc_percent": 62.35087339034232,
+      "mean_map_percent": 5.697216538430813
+    },
+    {
+      "dataset": "ucf",
+      "method": "uniform",
+      "budget": 0.5,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 87.01116946471153,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": 0.0,
+      "random_delta_pp": -0.09762982621886351,
+      "encoder_input_images": 34751,
+      "end_to_end_mean_seconds": 691.9570653317496,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 87.01116946471153,
+      "branch1_ap_percent": 31.53512018703281,
+      "branch1_ano_auc_percent": 68.50936459118633,
+      "branch2_roc_auc_percent": 85.03737753333195,
+      "branch2_ap_percent": 25.1134416534835,
+      "branch2_ano_auc_percent": 64.14003569891999,
+      "mean_map_percent": 6.578786823915792
+    },
+    {
+      "dataset": "ucf",
+      "method": "uniform",
+      "budget": 1.0,
+      "primary_metric": "roc_auc",
+      "primary_mean_percent": 87.18530031961275,
+      "primary_std_pp": null,
+      "n_seeds": 1,
+      "uniform_delta_pp": 0.0,
+      "random_delta_pp": 0.0055740045582695075,
+      "encoder_input_images": 69368,
+      "end_to_end_mean_seconds": 1375.9557907115668,
+      "timing_note": "one execution per seed; not repeated timing evidence",
+      "branch1_roc_auc_percent": 87.18530031961275,
+      "branch1_ap_percent": 31.804990272791056,
+      "branch1_ano_auc_percent": 69.14161885905152,
+      "branch2_roc_auc_percent": 84.89586453006997,
+      "branch2_ap_percent": 25.217203449287435,
+      "branch2_ano_auc_percent": 64.48467045814641,
+      "mean_map_percent": 6.829388011538408
+    }
+  ],
+  "comparison_signature": "f3505297ad55ec58094b92cf66bc796db808671692136c5e3eb20d44cefd6404",
+  "inputs": [
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_uniform_1_s0_ver2_full_20261113_154059/summary.json",
+      "sha256": "4bf00988a95efadab183059607e4b50c61b20ac405a27d15cb0b9a50e84238ab"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_uniform_0.5_s0_ver2_full_20261113_160534/summary.json",
+      "sha256": "be1c47764982229d482217efd90f706279baa491e497c13cf7f32303a38b6f00"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_uniform_0.25_s0_ver2_full_20261113_161833/summary.json",
+      "sha256": "c7047019a0a6b77579807daba2f0a6e7cf3bbf0c159167b3239c83673394b84c"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_uniform_0.125_s0_ver2_full_20261113_162822/summary.json",
+      "sha256": "88a5457a7bf4d4040e670594d5902866d47991478e02c20d423b6e08fa51063e"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_1_s0_ver2_full_20261113_163708/summary.json",
+      "sha256": "bc28a94985d7403e49e02c04a51e9230303a8c9847300ba08e5eeb9ce78fd57f"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_1_s1_ver2_full_20261113_165535/summary.json",
+      "sha256": "9a67c613a61c26a4a475cc4b62e746067b5813477a6b5e8a5ae45af967e46ac9"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_1_s2_ver2_full_20261113_171400/summary.json",
+      "sha256": "bcd37c193dd7bb0e6a2d41e55b49853d9c254621acc73b7e4272528e7a3e9ce3"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_1_s3_ver2_full_20261113_173227/summary.json",
+      "sha256": "522d2218ee2c55416ee0999f0656a4529be4f17e088214cd56671c7815c7e6ce"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_1_s4_ver2_full_20261113_175058/summary.json",
+      "sha256": "6a62f882a0dec6da53fdceda57988336a661071c4466914a949681049d754df9"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.5_s0_ver2_full_20261113_180922/summary.json",
+      "sha256": "db875a65233719a8c98b02d82ef95d6a3fb529fb5feb9ce5d6cb9ec85bde62a9"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.5_s1_ver2_full_20261113_182118/summary.json",
+      "sha256": "b7d44fcab5fff4640ff1523d87b1f5f057bba8de45be75d13109575d2adb2185"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.5_s2_ver2_full_20261113_183318/summary.json",
+      "sha256": "0bc85e4c697ad4c980534ee5a838a59a6177146fdca4ef0e96bce09b752aa796"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.5_s3_ver2_full_20261113_184516/summary.json",
+      "sha256": "ad090c8cb75f5a72bed6c8cf151dff4e1129dfd1346f5d6b001b771255787889"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.5_s4_ver2_full_20261113_185709/summary.json",
+      "sha256": "58945df2ca8aa12b34329fec1daaafbd1496fa9cc398dff1f1789f1ed3377cfd"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.25_s0_ver2_full_20261113_190907/summary.json",
+      "sha256": "f4f0b0ecb63ddbd4862a36c9eebba55540b7541897093cf7b3686e73b3d8e4bd"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.25_s1_ver2_full_20261113_191857/summary.json",
+      "sha256": "f358532859fea898470260cba70239910100876dd860c194aa33f0697212c0c8"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.25_s2_ver2_full_20261113_192846/summary.json",
+      "sha256": "c4ec9f78c1379aa7f8f34e02b00e14636e63d8942dd5f5e68f9f0e0ca223ea26"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.25_s3_ver2_full_20261113_193837/summary.json",
+      "sha256": "147b095edd283758a9aa4d7eaf16797968e3877cc0a419bc3fd565d1412415ae"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.25_s4_ver2_full_20261113_194850/summary.json",
+      "sha256": "c9e862245b149c793bc83045c8afaed430a9e0c38fc86fe3491853f441885f21"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.125_s0_ver2_full_20261113_195844/summary.json",
+      "sha256": "aff4d7457fa6745b23e2573cdab05e60f8f3f684d80660b66efd017b3dabeac2"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.125_s1_ver2_full_20261113_200725/summary.json",
+      "sha256": "879d5b069694674575c97d647eab1f414d2df734c5fdc223387109b158de41c6"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.125_s2_ver2_full_20261113_201607/summary.json",
+      "sha256": "39abdf7f5a3661f8f8cd85044ac58f70cdb4efe629957f3e3453c409c96d0e35"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.125_s3_ver2_full_20261113_202450/summary.json",
+      "sha256": "b9fc58032470d3df96b6e68546bffa3485625b33f21344659e8f19bc9bd2cea2"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_random_window_0.125_s4_ver2_full_20261113_203333/summary.json",
+      "sha256": "c8a9cd992545b985fb52f9b1798843e3884e4743bf9fe0f31818714d08ebc607"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_d_optimal_1_s0_ver2_full_20261113_204216/summary.json",
+      "sha256": "a6e091cd488fa2349def388559e7e794b87482f3f755e9b60078c69ef301a305"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_d_optimal_0.5_s0_ver2_full_20261113_212056/summary.json",
+      "sha256": "17a1acdd0e000fceff5d1743d240766f076a4d0c5ebb8ca8992fea3aadfd5b7d"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_d_optimal_0.25_s0_ver2_full_20261113_215233/summary.json",
+      "sha256": "92becbfac6d1808ffc20e1fc98866a410b1e0f877fbd3eef8f53dcea95ac28bc"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_d_optimal_0.125_s0_ver2_full_20261113_222140/summary.json",
+      "sha256": "51c46f842eaef152e5a6b8c9d0a7a3835135d684442d6db74478354a27b944ff"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_a_optimal_1_s0_ver2_full_20261113_224908/summary.json",
+      "sha256": "e1c4553d428d5d49398e00ed9489daf996620d4b1235bb1f1a38649c589d7ad7"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_a_optimal_0.5_s0_ver2_full_20261113_232734/summary.json",
+      "sha256": "5333a3936d93a5b4cb48618e5504a04b70c422608eea5f6d2386b12a54e63c85"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_a_optimal_0.25_s0_ver2_full_20261113_235851/summary.json",
+      "sha256": "55b70cf8f64d952551d483dae31e2c97e5f9054cc5dc3d0e946b9a950b836075"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_a_optimal_0.125_s0_ver2_full_20261114_002744/summary.json",
+      "sha256": "6921e662adb0f8dcda7a8a59d8ee37089b862685b978d8d6c69dd11a13e4da45"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_e_optimal_1_s0_ver2_full_20261114_005531/summary.json",
+      "sha256": "5dd337d5b4c437702046c77aa85079f37f3f68cb23dcf27ee8452b5831673950"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_e_optimal_0.5_s0_ver2_full_20261114_013702/summary.json",
+      "sha256": "505705203d576840640a7cd3ae084a659ed21aea92423a41863ef59d5b9f32c6"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_e_optimal_0.25_s0_ver2_full_20261114_020948/summary.json",
+      "sha256": "ffd572c29a1083aedd651213c56372f2d58e5de5ed4cca546090432c6548b81a"
+    },
+    {
+      "path": "/workspace/hyeongjun/vad/outputs/runs/ucf_e_optimal_0.125_s0_ver2_full_20261114_024016/summary.json",
+      "sha256": "2a566120ca997bf74d30e99e74e924d2b144be9c8a6dabcb5b53e40c62b88cde"
+    }
+  ]
+}
