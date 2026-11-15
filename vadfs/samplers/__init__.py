@@ -8,6 +8,7 @@ from . import random, random_window, reference, uniform
 
 METHODS = {'reference': reference.select, 'uniform': uniform.select,
            'random': random.select, 'random_window': random_window.select}
+OPTIMAL_METHODS = ('d_optimal', 'a_optimal', 'e_optimal')
 
 
 def budget_count(count, ratio):

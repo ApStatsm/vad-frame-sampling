@@ -1,4 +1,20 @@
 # VAD Frame Sampling 연구 계획
+2026-11-13 설계 변경: 사용자 요청으로 기존 Random-window와 동일한 원본 16/32/64/128프레임 구간에서 한 장씩 선택하는 D/A/E 후속 실험을 설계했다. 선택용 저비용 특징과 구간 제약 좌표 교환 후 선택 프레임만 CLIP으로 추출하며 모델은 고정한다. 변경 이유는 기존 sparse CLIP cache 밖의 프레임도 선택하고 CLIP 이전 선택을 평가하기 위해서다. 최신 사양과 실행 안내는 method_ver2.md다. 별도 _ver2 코드·설정을 작성해 정적으로 검사했으며 테스트·추론은 미실행이다. 최초 설계는 docs/WINDOW_OPTIMAL_PROTOCOL.md에 보존한다. 기존 cached 결과는 탐색 기록으로 보존한다.
+
+
+2026-11-12 구현 범위 확장: 사용자 요청으로 기존 `method.md`의 D/A/E-optimal 비교를
+UCF와 XD 양쪽에 적용하는 코드를 작성한다. 기존 데이터셋별 추출/모델/평가를 유지하며,
+같은 K에서 Uniform·구간 내 Random과 성능을 비교한다. Optimal은 reference 후보 중 선택하고
+구간 내 Random은 원본 프레임에서 선택하므로 선택 공간·score anchor 차이를 보고한다.
+2026-11-12 최신 변경: 사용자가 추가 적합 없이 기존 CLIP 표현에 적용하는 방식을 요청했다.
+우선 raw Reference의 저장된 512D CLIP feature에서 고정 무작위 직교 투영(기본 8D)을
+선택에만 사용하고 D/A/E와 동일 후보 Uniform·Random-feature의 성능을 비교한다.
+개발 데이터·PCA 적합은 이 탐색 단계에 필요하지 않다. 학습하지 않은 고정 투영은
+모든 방법·데이터셋에 공통이며 선택된 원본 512D feature를 VadCLIP에 전달한다.
+전체 CLIP feature를 이미 사용하므로 CLIP 계산 절감이나 raw end-to-end speedup을 주장하지 않는다.
+기존 raw-video 효율 연구 목표는 유지하며 실제 CLIP 이전 선택은 후속 단계다.
+최신 사양은 `method.md`이며 적합 없는 cached CLIP 경로의 코드를 작성하고 정적으로 검사했다.
+사용자 테스트·추론·전체 성능 검증은 미실행이며 실행 명령은 `docs/OPTIMAL_RUNS.md`에 있다.
 
 작성일: 2026-10-05  
 계획 수정: 2026-10-07 — 사용자 요청으로 UCF fine-grained 기본 평가를 원본 공개 코드의 290개/14개 클래스 방식으로 변경; Ano-AUC 유지

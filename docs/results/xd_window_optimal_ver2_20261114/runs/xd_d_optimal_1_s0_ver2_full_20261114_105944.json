@@ -1,0 +1,325 @@
+{
+  "schema_version": 2,
+  "protocol_version": 2,
+  "run_id": "xd_d_optimal_1_s0_ver2_full_20261114_105944",
+  "started_at": "2026-11-14T10:59:44.171833+09:00",
+  "success": true,
+  "mode": "full",
+  "dataset": "XD-Violence",
+  "dataset_key": "xd",
+  "input_type": "raw",
+  "sampling": {
+    "method": "d_optimal",
+    "budget": 1.0,
+    "seed": 0
+  },
+  "experiment": {
+    "schema_version": 1,
+    "protocol_version": 2,
+    "dataset_config": "configs/datasets/xd.json",
+    "input_type": "raw",
+    "model_seed": 234,
+    "sampling": {
+      "method": "d_optimal",
+      "budget": 1.0,
+      "seed": 0
+    },
+    "reference_run": null,
+    "selection_spec": {
+      "version": 2,
+      "thumbnail": [
+        32,
+        32
+      ],
+      "resize": "INTER_AREA",
+      "features": "RGB means,2*RGB population std,gray edge,adjacent gray difference",
+      "projection_seed": 234,
+      "dimensions": 8,
+      "ridge": 1.0,
+      "max_sweeps": 5,
+      "objective_rtol": 1E-12,
+      "e_rtol": 1E-10,
+      "anchor": "window_start"
+    },
+    "protocol": {
+      "status": "draft",
+      "restoration": "nearest",
+      "score_anchor": "window_start",
+      "random_seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "resources": {
+    "videos_root": "/workspace/vad/datasets/XD-Violence/videos",
+    "features_root": "/workspace/vad/features/official/xd/XDTestClipFeatures",
+    "clip_checkpoint": "/workspace/vad/checkpoints/clip/ViT-B-16.pt",
+    "vadclip_checkpoint": "/workspace/vad/checkpoints/vadclip/model_xd.pth",
+    "output_root": "outputs/runs",
+    "setup_manifest": "/workspace/vad/results/baselines/xd_raw_reference/manifest.json",
+    "device": "cuda"
+  },
+  "command": [
+    "/workspace/hyeongjun/vad/scripts/run_experiment_ver2.py",
+    "--config",
+    "/workspace/hyeongjun/vad/configs/experiments/xd_d_optimal_100_ver2.json",
+    "--local",
+    "/workspace/hyeongjun/vad/configs/local/hj.xd.json",
+    "--setup-manifest",
+    "/workspace/vad/results/baselines/xd_raw_reference/manifest.json",
+    "--device",
+    "cuda",
+    "--mode",
+    "full",
+    "--seed",
+    "0"
+  ],
+  "output_dir": "/workspace/hyeongjun/vad/outputs/runs/xd_d_optimal_1_s0_ver2_full_20261114_105944",
+  "input_sha256": {
+    "experiment_config": "0c520765b3911ddc7c5689c8e92b333f4f37b93ae02b4f184508858322fe6a90",
+    "dataset_config": "ef7814160d2dd0424b073154f16632c23a8298e9fada51f9d6c3e3881ccc803e",
+    "setup_manifest": "ab564ba4e27226bf977ebfe6203f17233066d16cfd0b5d263db4864c45633b24",
+    "gt": "35dcda70d7fb19a09645457b043a806aab512d526ed11446fde34382b87dd0e5",
+    "local_config": "e9d641d7ed19bf93abda5ace59141f2eea44d3e4218b38215d278ab5314005ca",
+    "clip_checkpoint": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f",
+    "vadclip_checkpoint": "a676c14d794a7046f7636041e601a5d9a2bef03708dbc4cae90f8b37ac2af2b4",
+    "segment_gt": "6de0d09fc88a8079c7213d85b0a63ecd2979096f4869888a78ad2f15af063b38",
+    "class_gt": "448ba2097e474456274f1a10a619ff2e44d38daf4dabf3d6216c63fc6729602c",
+    "fine_grained_source": "96c6bb171181d1975bf3e3d13fc9621baaa1bc4d670860104416ff67ff6c4a8e",
+    "official_list": "083bb0222a25390943d4d2ecc31c9377d8fb249a6be2aa28f1ba9cadbb6667b8",
+    "tokenizer_vocabulary": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a",
+    "upstream_provenance": "97751c65d7036c6dbf6c475352c70e490a0de32d36745775c0d89f03aadb6866"
+  },
+  "metrics": {
+    "evaluation_frames": 2331296,
+    "test_videos": 800,
+    "includes_normal": true,
+    "anomaly_videos": 500,
+    "anomaly_evaluation_frames": 1078576,
+    "ano_auc_scope": "Pooled frames of manifest.is_anomaly videos, including normal intervals",
+    "branch1": {
+      "roc_auc": 0.9384988319171608,
+      "ap": 0.801337231203681,
+      "ano_auc": 0.8027109064573703
+    },
+    "branch2": {
+      "roc_auc": 0.9465565634977056,
+      "ap": 0.8442916703934412,
+      "ano_auc": 0.8267975685302766
+    },
+    "fine_grained": {
+      "score_branch": "branch2",
+      "protocol": "original_xd_test_excludeNormal_false",
+      "unit": "fraction",
+      "evaluation_videos": 800,
+      "evaluation_classes": [
+        "normal",
+        "fighting",
+        "shooting",
+        "riot",
+        "abuse",
+        "car accident",
+        "explosion"
+      ],
+      "map_by_iou": {
+        "0.1": 0.3724162613378563,
+        "0.2": 0.30802754162108753,
+        "0.3": 0.23502878832335825,
+        "0.4": 0.17927677672591083,
+        "0.5": 0.1398442852561052
+      },
+      "mean_map": 0.24691873065286365,
+      "gt_source": "Unmodified bundled gt_segment.npy and gt_label.npy; order validated against manifest",
+      "unmapped_gt_labels_preserved": [],
+      "implementation": "Unmodified VadCLIP/src/utils/xd_detectionMAP.py, excludeNormal=False",
+      "comparison_status": "Original-code reproduction; agreement with published values still requires measurement"
+    },
+    "primary": {
+      "branch": "branch2",
+      "metric": "ap",
+      "value": 0.8442916703934412
+    }
+  },
+  "experiment_scope": "raw_window_exploration_ver2",
+  "candidate_space": "raw_window",
+  "score_anchor": "window_start",
+  "eligible_for_final_benchmark": false,
+  "speedup_eligible": true,
+  "validation_status": "draft; user-run checks required",
+  "setup_manifest": "/workspace/vad/results/baselines/xd_raw_reference/manifest.json",
+  "setup_id": "xd_setup_20261112_093707",
+  "dataset_identity_sha256": "c07f46f0ac99406313bc7339b45e7edb8c8900b4e909008de8599a1d84fca3a0",
+  "extraction_config": {
+    "extraction_status": "reconstructed_verified_against_official_feature_samples",
+    "block_frames": 16,
+    "temporal_mode": "single_frame",
+    "frame_offset": 0,
+    "crop_type": 0,
+    "color_conversion": "opencv_bgr",
+    "image_geometry": "shortside_min256",
+    "tail_policy": "match_official_rows",
+    "encoder_batch_size": 32,
+    "encoder_precision": "float32",
+    "feature_storage_dtype": "official",
+    "feature_l2_normalize": false,
+    "warmup_batches": 2,
+    "seed": 234
+  },
+  "prompts": [
+    "normal",
+    "fighting",
+    "shooting",
+    "riot",
+    "abuse",
+    "car accident",
+    "explosion"
+  ],
+  "package_sha256": {
+    "vadfs/__init__.py": "3bd340daff500bfdfe07482602440551b4edec772a35e3bae2a8f4966cac9135",
+    "vadfs/clip_selection.py": "ab39f199e06a6d8ad01451d7f2a040a56f43ac3693a9679e4927febddf637b33",
+    "vadfs/color.py": "d1bd927e5456a83a7e227e285c8f96bbed3085c956bc8f91fc5d46a897873438",
+    "vadfs/config.py": "c156ed74f29d8f9fa568c03642f43f48edff3530087f355bc77ba8fa39b0d59d",
+    "vadfs/datasets/__init__.py": "5f44e0e0d941f15ddfb2e113b7076fd8314b8d7507c35ab657279433bb9495fc",
+    "vadfs/datasets/base.py": "d7ed3010fa197ab9a4d4ab28e3cbe043121010aba93d2049bba405b6f3cfce7a",
+    "vadfs/datasets/ucf.py": "28fcf51b9d8680675d6e20c1037d57c61e422f5a0c41c918af207a96b790cc76",
+    "vadfs/datasets/xd.py": "9abe679ba34d1e6561a3014d55db55a725c6835ee8dc8e8d0c60cf72b6c99375",
+    "vadfs/evaluation.py": "c532775bce30f4ed2584957a93f923a5a637509ec8867efdfcf92a0be4159e7c",
+    "vadfs/extract.py": "538eee8b1a6aeb9d8b2fbb256c5a69d57a8c6a2a85596ba538c66630c836641b",
+    "vadfs/metrics.py": "9c38c4755a62cb978be3b90e5d202fbd9ee4245b4f7084e074b0e1528511473d",
+    "vadfs/paths.py": "d1da35dee62884070eb676d36d4b14dfe55afef9909b2c93626edefdeeb7e1d7",
+    "vadfs/pipeline.py": "0d29f53bd2101f809a751fdb1adc991379de521240ae946dc4e28590e9cd3235",
+    "vadfs/pipeline_ver2.py": "c67170c114b3e4013c8435184a9bf9e5433a2f58cf6e4c5aab92843e816e8bce",
+    "vadfs/preparation.py": "cc9e84ade0dd504d0cda0096f0de3aa02349a2c178aa252351a0d8b4808ce359",
+    "vadfs/runs.py": "0e450ec14ea28f0c9cfa3fe12c3d55c7cffd0331074a91e969261a09d962a2d1",
+    "vadfs/samplers/__init__.py": "f42767ce30289bbc53e83f9f541d5dd30a733319eb0f489a569d9772034d7bef",
+    "vadfs/samplers/optimal.py": "b9817f0b754f692b8fbbfe79769b759f87dd4014356eecc28c811b43cd083606",
+    "vadfs/samplers/random.py": "a07907805d7e8529fcdffa57754209ca07eb77655ced85717e0acfbe0e07a0b1",
+    "vadfs/samplers/random_window.py": "0d032f4d5db43fb5e8787f9a758d599430037ee710d23e6f1c36a67d049b4494",
+    "vadfs/samplers/reference.py": "dfc14decbf14fcd6193f2f8215d4a26677ffe91a8c55ebb5b2ef94f01fa224da",
+    "vadfs/samplers/uniform.py": "a71f3b87368d8b80a41699332ade2a24acaee22adfddeef6963124f65617f515",
+    "vadfs/sampling_features.py": "10c0f571996a0623709d3467cb1dbb1de2c3a57a2477aff480eec4b7d56bec44",
+    "vadfs/timeline.py": "a7472c8a44a6d2d65dce7d17b354551b2bc09e11061a068aad2d0aecd11722a9",
+    "vadfs/ucf.py": "8ccc3d8c33feedf92bb3e8bdaca571c0ea0e2387aaa3209a0ef4dcaf21e527bd",
+    "vadfs/vadclip.py": "ae35cf0d2fe63eddc821bd2592f6418904947f9b4c1f62ff0851c7afbd0480b4",
+    "vadfs/window_sampling_ver2.py": "56983a30008bfce42337cb79d6867e2d20a217123cd248ae8669e2e71e3755c7"
+  },
+  "entrypoint_sha256": "1a56f0b5890b74f7ae2636ce344bc315f11b0b7151c7fa28ac7d03c8ce53b388",
+  "vendored_source_sha256": {
+    "VadCLIP/src/clip/__init__.py": "d7930eb290ebed432116795c91473200d098451a94c0aedd4ae0f934f97955e8",
+    "VadCLIP/src/clip/clip.py": "881711579e9ef4459adc054dc2b83ac64fdb2eb9e389b3b0d4ef24ec319fc81a",
+    "VadCLIP/src/clip/model.py": "7b40a72e75c659b9de2e53bdb25b51551fb11eeb2849b48865718375cf380dc1",
+    "VadCLIP/src/clip/simple_tokenizer.py": "d1b09f10ed3d1e2c343619cb98cbfacb92363dd8607526a43aa7fe2d60d15bad",
+    "VadCLIP/src/crop.py": "6ae6d129c0e1c4871005f63f684dace8091db8a42fb8e6ed56a6d3768b2d1c2d",
+    "VadCLIP/src/model.py": "6732d8f81f9bc302fb22e7e5ff066c418422aa9357002f9256c3d31e09ad1f3d",
+    "VadCLIP/src/ucf_option.py": "7ebe0a96b2f47fb04f4012489ff6e4e44975a2823a086266aac8d8065fbaf817",
+    "VadCLIP/src/ucf_test.py": "144a58e4fe9a8f94d50081c33a0b55307f6d49c0ed95de59e3f6d3e9c93fe6d1",
+    "VadCLIP/src/ucf_train.py": "26663ddca3c91feba94859f17a8340f39b2a20941ebcf9ee170fc34d1e97e5e7",
+    "VadCLIP/src/utils/dataset.py": "c934fcac6263e72d7b3062a607fd93d5422ec2e898884b734f784370f1b9bc1d",
+    "VadCLIP/src/utils/layers.py": "afea5a9d1e95282e32bd0a1e616660889679e148770ee366d7d262716156430e",
+    "VadCLIP/src/utils/lr_warmup.py": "02492f01f02a02bf80d5efbb1b7085c036fb5d1b08f8f770eac165890eff0db8",
+    "VadCLIP/src/utils/tools.py": "1f079853afdb5416525d1c6564a1d4cfc568d7e888ead9e628038a030ec11bb2",
+    "VadCLIP/src/utils/ucf_detectionMAP.py": "bedf98834dac3e178abc559e174aff6a0329421d2fbc1c3ee38a01a2f40f5e66",
+    "VadCLIP/src/utils/xd_detectionMAP.py": "96c6bb171181d1975bf3e3d13fc9621baaa1bc4d670860104416ff67ff6c4a8e",
+    "VadCLIP/src/xd_option.py": "9602d9ed018f081b576159567aec7c52a463e70742edf1cc94d71a096e79cf20",
+    "VadCLIP/src/xd_test.py": "ffcd367b88511f9fa2e286214f522a6d6fd49e78895230bd1f246d1d0f956f5c",
+    "VadCLIP/src/xd_train.py": "3beed0b55412cc2a313cda5252edecb25f3d754fef938fb22cd8648ba4afaf25"
+  },
+  "upstream_repository": "https://github.com/nwpu-zxr/VadCLIP",
+  "upstream_commit": "c41067f07d252efcda18008bea367886070c33b0",
+  "source_snapshot": {
+    "repository": "https://github.com/ApStatsm/vad-frame-sampling",
+    "commit": "632dd952eaa917de2b7d89778527d05bb75e920b",
+    "created_on": "2026-11-08",
+    "kind": "separate source copy, no .git history or large inputs copied",
+    "validation": "not executed; user-run validation required"
+  },
+  "research_commit": "f1d88a723f98581c3d60ffa8e5e9e21f6b64dd85",
+  "research_dirty": true,
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-5.15.0-190-generic-x86_64-with-glibc2.39",
+    "torch": "2.8.0+cu128",
+    "torch_cuda": "12.8",
+    "torchvision": "0.23.0+cu128",
+    "numpy": "2.2.6",
+    "opencv": "5.0.0",
+    "pillow": "11.3.0",
+    "device": "cuda",
+    "torch_threads": 28,
+    "opencv_threads": 17,
+    "CUDA_VISIBLE_DEVICES": "0",
+    "cuda_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "cudnn_benchmark": false,
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "gpu_uuid": "886635b2-14b3-ab15-5c2f-6773f32a0661",
+    "gpu_capability": [
+      8,
+      6
+    ],
+    "gpu_total_memory_bytes": 12488343552,
+    "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers"
+  },
+  "projection": {
+    "q_sha256": "ed38ea9a797edd1a45a64c2ffb519e706e0aa3aa41f9fbf5d7bf2209a0c71bc2",
+    "file": "projection_ver2.npz",
+    "file_sha256": "0b42080348e5698066b589be866e394c1f641141096c7677c050827364749fb0",
+    "specification": {
+      "version": 2,
+      "thumbnail": [
+        32,
+        32
+      ],
+      "resize": "INTER_AREA",
+      "features": "RGB means,2*RGB population std,gray edge,adjacent gray difference",
+      "projection_seed": 234,
+      "dimensions": 8,
+      "ridge": 1.0,
+      "max_sweeps": 5,
+      "objective_rtol": 1E-12,
+      "e_rtol": 1E-10,
+      "anchor": "window_start"
+    }
+  },
+  "comparison_signature": "d3df6e18ac1b934e2fec9f85d263f95616ed46eb548ced04139f9a5802b16da8",
+  "model_options": {
+    "classes_num": 7,
+    "embed_dim": 512,
+    "visual_length": 256,
+    "visual_width": 512,
+    "visual_head": 1,
+    "visual_layers": 1,
+    "attn_window": 64,
+    "prompt_prefix": 10,
+    "prompt_postfix": 10,
+    "seed": 234
+  },
+  "warmup_seconds": 0.6834710305556655,
+  "encoder_input_images": 145706,
+  "event_coverage": {
+    "valid_covered_events": 1232,
+    "valid_total_events": 1238,
+    "valid_fraction": 0.9951534733441034
+  },
+  "end_to_end_seconds": 7804.680878423154,
+  "memory": {
+    "gpu_peak_allocated_bytes": 1326321152,
+    "gpu_peak_reserved_bytes": 1512046592,
+    "process_peak_rss_bytes": null,
+    "scope": "whole run; CPU/FFmpeg child RSS unmeasured"
+  },
+  "timing_scope": {
+    "included": "wall time: all decode passes, thumbnail, projection/selection, CLIP, VAD, restore",
+    "excluded": "hashing, model setup, warmup, GT analysis, metrics, output saves",
+    "repeats_in_this_run": 1,
+    "synchronization": true,
+    "io_condition": "raw hash before processing; cache uncontrolled",
+    "concurrency": "not enforced; user must ensure idle machine"
+  },
+  "metric_seconds": 42.641880290582776,
+  "finished_at": "2026-11-14T13:12:41.703377+09:00"
+}

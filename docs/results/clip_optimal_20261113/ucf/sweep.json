@@ -1,0 +1,272 @@
+{
+  "schema_version": 2,
+  "dataset_key": "ucf",
+  "mode": "full",
+  "experiment_scope": "cached_feature_exploration",
+  "speedup_eligible": false,
+  "reference_summary_sha256": "fb7bb34c98fc28e61512326e29c23e66a6958dd4f3aae8bccd95598d0c067266",
+  "local_config_sha256": "8b3e924ec50d8c255d3b66fffa1e623cc2cbacf4b6c7422f99227c42945e13f0",
+  "complete": true,
+  "runs": [
+    {
+      "method": "reference",
+      "budget": "100",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_reference_1_s0_full_20261113_034359/summary.json",
+      "sha256": "813008ec2d54dc7d5006fa239d2dc47f2cf587d54593ff4bfb1da4290fbc9ceb"
+    },
+    {
+      "method": "uniform",
+      "budget": "100",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_uniform_1_s0_full_20261113_034506/summary.json",
+      "sha256": "abae9db9636fa35924e5e60d24c30f506a86495d2cd5b047220da9208b1a85dd"
+    },
+    {
+      "method": "uniform",
+      "budget": "50",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_uniform_0.5_s0_full_20261113_034614/summary.json",
+      "sha256": "4b463629749ecd416d58b2943f01e813ecdac2d69c158cdd58e451c664524e71"
+    },
+    {
+      "method": "uniform",
+      "budget": "25",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_uniform_0.25_s0_full_20261113_034720/summary.json",
+      "sha256": "fe563c40d543510484d3709f2c0dc6d1e593bc6e6783a3492398876040759a5d"
+    },
+    {
+      "method": "uniform",
+      "budget": "12p5",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_uniform_0.125_s0_full_20261113_034829/summary.json",
+      "sha256": "e646656026241ec2158f6a8b1ccbb818b851f9aad865d405971e4b3718d59d76"
+    },
+    {
+      "method": "random",
+      "budget": "100",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_1_s0_full_20261113_034937/summary.json",
+      "sha256": "7a557070789dd3c6e4fdd5267d7ed596e3b1815c05bfc0c5a715006a0a7c088d"
+    },
+    {
+      "method": "random",
+      "budget": "100",
+      "seed": 1,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_1_s1_full_20261113_035045/summary.json",
+      "sha256": "c497e0f290a494008f20876aa7252b88001ecadace89d637547cc015bf29fb46"
+    },
+    {
+      "method": "random",
+      "budget": "100",
+      "seed": 2,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_1_s2_full_20261113_035154/summary.json",
+      "sha256": "0b6b9002f5226997aaf78ddcaf0d3ddbd83ec2f8ef56f6d6bcfee7eb137f9ca2"
+    },
+    {
+      "method": "random",
+      "budget": "100",
+      "seed": 3,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_1_s3_full_20261113_035303/summary.json",
+      "sha256": "e3482a3bf5507b39c7004ab1f2825be659d421b450f75206ac7460e46577e789"
+    },
+    {
+      "method": "random",
+      "budget": "100",
+      "seed": 4,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_1_s4_full_20261113_035412/summary.json",
+      "sha256": "93a838353059694d1f035d2b9ee5958a887f3665dcc76c7cf70de0d20f172008"
+    },
+    {
+      "method": "random",
+      "budget": "50",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.5_s0_full_20261113_035520/summary.json",
+      "sha256": "2d58bcff97f9f5c449fe4bd05aef50d367577daeadac68e42f11d3c8086122b1"
+    },
+    {
+      "method": "random",
+      "budget": "50",
+      "seed": 1,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.5_s1_full_20261113_035629/summary.json",
+      "sha256": "ae5e51e140cb03374d9ea29f8f4c4de1a623d5026a6590d445022b552223d960"
+    },
+    {
+      "method": "random",
+      "budget": "50",
+      "seed": 2,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.5_s2_full_20261113_035737/summary.json",
+      "sha256": "0e87f3307d27b7014467c89bc91d4ad7155fc7a16546ab150ecd68c0da6fded2"
+    },
+    {
+      "method": "random",
+      "budget": "50",
+      "seed": 3,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.5_s3_full_20261113_035845/summary.json",
+      "sha256": "9e2bd8b2a343119594efc7f63def2dadff563947d82f83aeee859cbbace388a4"
+    },
+    {
+      "method": "random",
+      "budget": "50",
+      "seed": 4,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.5_s4_full_20261113_035952/summary.json",
+      "sha256": "8f75b797fdb9c3cde547ae6ffcd9438150a13ab5e0bb6b1175a54ecc5c98e15b"
+    },
+    {
+      "method": "random",
+      "budget": "25",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.25_s0_full_20261113_040100/summary.json",
+      "sha256": "d9d2bc8a3f5c633f7eba7c7b13bdcba4311900fd6f9b98d74be11f843f4b22a4"
+    },
+    {
+      "method": "random",
+      "budget": "25",
+      "seed": 1,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.25_s1_full_20261113_040206/summary.json",
+      "sha256": "201a9f4ed60301c1e28949b6931b0ac65c898b079ece8c5bc7994637917e6bf1"
+    },
+    {
+      "method": "random",
+      "budget": "25",
+      "seed": 2,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.25_s2_full_20261113_040314/summary.json",
+      "sha256": "93a2f26219c89b75cc62db4a9c9cb3c1b6796120f790038e02f1640c8524fd93"
+    },
+    {
+      "method": "random",
+      "budget": "25",
+      "seed": 3,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.25_s3_full_20261113_040419/summary.json",
+      "sha256": "054be280e1ed62f32b86209adfaea89bdaa224cbf696736c34a5e2842df9c6c1"
+    },
+    {
+      "method": "random",
+      "budget": "25",
+      "seed": 4,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.25_s4_full_20261113_040526/summary.json",
+      "sha256": "5aa56bb48b19c2ab416bacc190aaef0b8f7cc3492b6d94977a90c1e4fa22900e"
+    },
+    {
+      "method": "random",
+      "budget": "12p5",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.125_s0_full_20261113_040634/summary.json",
+      "sha256": "da2dae047940ac64c5ae6be604add4f9ec7ea2aa167b9c602b1e2aef0667a17a"
+    },
+    {
+      "method": "random",
+      "budget": "12p5",
+      "seed": 1,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.125_s1_full_20261113_040739/summary.json",
+      "sha256": "868ba10c7d71af530dc0d4852610312290c51b9a6a49137d1ab11956f4cd8bd5"
+    },
+    {
+      "method": "random",
+      "budget": "12p5",
+      "seed": 2,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.125_s2_full_20261113_040847/summary.json",
+      "sha256": "2adf02f6399cc59f8806dbc39ee098b3b49df5d18cfd52cd08fcf69632a440c5"
+    },
+    {
+      "method": "random",
+      "budget": "12p5",
+      "seed": 3,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.125_s3_full_20261113_040954/summary.json",
+      "sha256": "68d3f4ad99392f476b7b9698822052333946ade11e46f220fadd7817ca777623"
+    },
+    {
+      "method": "random",
+      "budget": "12p5",
+      "seed": 4,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_random_0.125_s4_full_20261113_041102/summary.json",
+      "sha256": "0906325da4c43f482f6bdd9c32854f9332d4c9cc478a42190f87a198abf8a4a0"
+    },
+    {
+      "method": "d_optimal",
+      "budget": "100",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_d_optimal_1_s0_full_20261113_041210/summary.json",
+      "sha256": "378f2b387f7b379587e74d22a25affe8b4de62c76fa19c1f3c081d44622abcf1"
+    },
+    {
+      "method": "d_optimal",
+      "budget": "50",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_d_optimal_0.5_s0_full_20261113_041317/summary.json",
+      "sha256": "c63b4531abecac803d4b10dd680d165e83e30ee64f88bda3fc028a9e9b726af1"
+    },
+    {
+      "method": "d_optimal",
+      "budget": "25",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_d_optimal_0.25_s0_full_20261113_043122/summary.json",
+      "sha256": "a3573f256472192c16596a966b1b6e1864fb7003721a9e5cb0089a034be7a738"
+    },
+    {
+      "method": "d_optimal",
+      "budget": "12p5",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_d_optimal_0.125_s0_full_20261113_044054/summary.json",
+      "sha256": "92a96c0da616e4aa7fa5f14ba83594f2895a5646d7e14feaaa92cade206ca488"
+    },
+    {
+      "method": "a_optimal",
+      "budget": "100",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_a_optimal_1_s0_full_20261113_044626/summary.json",
+      "sha256": "4c26ca31a3f1db226f9fce0d78bfbb0ed01df83a8fe0ec7d05e9e99e81bc28cd"
+    },
+    {
+      "method": "a_optimal",
+      "budget": "50",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_a_optimal_0.5_s0_full_20261113_044732/summary.json",
+      "sha256": "b07f66e1cf25c2e258875de40f6797c0b95f10ee4b7700b6a995db0871188178"
+    },
+    {
+      "method": "a_optimal",
+      "budget": "25",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_a_optimal_0.25_s0_full_20261113_050537/summary.json",
+      "sha256": "7854c7c31894c10d2e255725a4f0336a3e75e261a102a51cf8413059b4c99bef"
+    },
+    {
+      "method": "a_optimal",
+      "budget": "12p5",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_a_optimal_0.125_s0_full_20261113_051527/summary.json",
+      "sha256": "e783301cb3a5d565bc178b368553a0adfc02655a59319a68d1dd7d4a47ebb3ce"
+    },
+    {
+      "method": "e_optimal",
+      "budget": "100",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_e_optimal_1_s0_full_20261113_052109/summary.json",
+      "sha256": "ae4ce55396221cf4fb898dadb7e95d8d48e736224cf2eb955e67e5f9131870c3"
+    },
+    {
+      "method": "e_optimal",
+      "budget": "50",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_e_optimal_0.5_s0_full_20261113_052216/summary.json",
+      "sha256": "3a017dc4152227b9da3b5ae8aa4f93cb8cf123c1934cd4d44cfc4197f8525054"
+    },
+    {
+      "method": "e_optimal",
+      "budget": "25",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_e_optimal_0.25_s0_full_20261113_053116/summary.json",
+      "sha256": "33102a2d31ccef72c41ee0f08369941fa8e37e6f193bfd0207b78c0aca24a3d2"
+    },
+    {
+      "method": "e_optimal",
+      "budget": "12p5",
+      "seed": 0,
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/ucf_cached_raw_features_e_optimal_0.125_s0_full_20261113_053822/summary.json",
+      "sha256": "b322b6b711aea7e3383ab671f9ee54418b950e0c8b3151eb514b94b0e70a011c"
+    }
+  ],
+  "comparison_csv": "/workspace/hyeongjun/vad/outputs/analyses/ucf_sampling_comparison_20261113_054435/comparison.csv"
+}

@@ -24,7 +24,7 @@ def main():
         return (report['dataset_key'], report['input_type'], report['sampling']['method'],
                 report['sampling']['budget'], report['comparison_signature'],
                 report['metrics']['primary']['branch'], report['metrics']['primary']['metric'],
-                report.get('reference_summary_sha256'))
+                report.get('reference_summary_sha256'), report.get('sampler_signature'))
     if any(group(report) != group(reports[0]) for report in reports):
         raise ValueError('Dataset, method, budget, environment, protocol or reference differs')
     seeds = [report['sampling']['seed'] for report in reports]
@@ -43,6 +43,11 @@ def main():
                'metric_unit': 'fraction; multiply mean/std by 100 for percentage points',
                'primary_distribution': describe([report['metrics']['primary']['value'] for report in reports]),
                'comparison_signature': reports[0]['comparison_signature'],
+               'sampler_signature': reports[0].get('sampler_signature'),
+               'cache_identity_sha256': reports[0].get('cache_identity_sha256'),
+               'projection_q_sha256': reports[0].get('projection', {}).get('q_sha256'),
+               'experiment_scope': reports[0].get('experiment_scope'),
+               'speedup_eligible': all(report.get('speedup_eligible', False) for report in reports),
                'protocol_statuses': [report['experiment']['protocol']['status'] for report in reports],
                'automatic_claim_of_final_validation': False}
     summary['primary'].pop('value')

@@ -1,5 +1,12 @@
 # VAD Frame Sampling — 별도 개선 버전
 
+2026-11-12 추가: UCF/XD용 **별도 적합 없는 CLIP-feature D/A/E**와 같은 후보의
+Uniform·Random-feature 비교 경로를 작성했습니다. PCA artifact는 필요하지 않습니다.
+고정 투영은 선택에만 사용하고 VadCLIP에는 원본 512D feature를 전달합니다.
+**정적 검사만 완료했으며 테스트·추론·수치 재현은 미실행입니다.**
+사양은 [method.md](method.md), GPU 지정·tmux·실행 명령은 [D·A·E 실행 안내](docs/OPTIMAL_RUNS.md)에 있습니다.
+이전 저비용 특징/PCA raw 경로는 별도 설정으로 보존합니다. Cache 실험은 CLIP speedup의 근거가 아닙니다.
+
 고정된 CLIP/VadCLIP에서 프레임 선택 방법만 바꾸는 추론 연구 코드입니다.
 원본 저장소 commit `632dd952eaa917de2b7d89778527d05bb75e920b`를 별도 폴더에 복사해 정리했습니다.
 원본 저장소, 데이터와 기존 결과는 수정하지 않았습니다.

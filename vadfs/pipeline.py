@@ -23,7 +23,7 @@ from .datasets import get_dataset
 from .paths import ROOT, package_hashes, project_path, sha256
 from .preparation import load_prepared
 from .runs import create_run_dir, now, record_provenance, write_json
-from .samplers import METHODS, budget_count, choose, video_seed
+from .samplers import METHODS, OPTIMAL_METHODS, budget_count, choose, video_seed
 from .samplers.random_window import select_frames as select_window_frames, window_stride
 
 
@@ -57,8 +57,26 @@ def validate_experiment(experiment, spec, mode, cached_features=False, performan
     if experiment['input_type'] not in ('raw', 'official') or mode not in ('smoke', 'full'):
         raise ValueError('Invalid input type or mode')
     sampling = experiment['sampling']
-    if sampling['method'] not in METHODS:
-        raise ValueError(f'Sampling method must be one of {tuple(METHODS)}')
+    feature_source = experiment.get('feature_source')
+    if feature_source not in (None, 'raw_reference_cache'):
+        raise ValueError('Unknown feature_source')
+    if feature_source == 'raw_reference_cache' and not cached_features:
+        raise ValueError('This experiment requires --cached-reference-run; it never decodes raw videos')
+    if sampling['method'] not in (*METHODS, *OPTIMAL_METHODS):
+        raise ValueError(f'Sampling method must be one of {(*METHODS, *OPTIMAL_METHODS)}')
+    if sampling['method'] in OPTIMAL_METHODS:
+        from .samplers.optimal import settings
+        settings(sampling.get('optimal', {}))
+        representation = sampling.get('representation', {}).get('kind', 'cheap_feature_pca')
+        if representation == 'clip_fixed_projection':
+            from .clip_selection import validate_representation
+            validate_representation(sampling['representation'])
+            if not cached_features or feature_source != 'raw_reference_cache':
+                raise ValueError('CLIP optimal needs feature_source=raw_reference_cache and --cached-reference-run')
+        elif representation != 'cheap_feature_pca' or cached_features or experiment['input_type'] != 'raw':
+            raise ValueError('Legacy cheap-feature PCA optimal requires raw video; cached optimal requires explicit CLIP representation')
+        if experiment['protocol']['restoration'] != 'nearest':
+            raise ValueError('D/A/E protocol requires common nearest restoration')
     budget_count(1, sampling['budget'])
     if sampling['method'] == 'reference' and sampling['budget'] != 1:
         raise ValueError('Reference must use a 100% budget')
@@ -137,10 +155,11 @@ def check_reference(experiment, manifest, signature):
     return baseline
 
 
-def check_performance_reference(folder, manifest, report, spec, recipe):
+def check_performance_reference(folder, manifest, report, spec, recipe, *, cache_only=False):
     baseline = load_full_raw_reference(folder, manifest)
     saved = baseline.get('input_sha256', {})
-    for key in ('clip_checkpoint', 'vadclip_checkpoint', 'gt', 'official_list', 'tokenizer_vocabulary'):
+    for key in ('clip_checkpoint', 'vadclip_checkpoint', 'gt', 'segment_gt', 'class_gt',
+                'fine_grained_source', 'official_list', 'tokenizer_vocabulary'):
         if saved.get(key) != report['input_sha256'][key]:
             raise ValueError(f'Performance reference uses a different {key}')
     primary = baseline['metrics']['primary']
@@ -150,12 +169,27 @@ def check_performance_reference(folder, manifest, report, spec, recipe):
             or baseline.get('prompts') != list(spec.prompts)
             or baseline.get('vendored_source_sha256') != report['vendored_source_sha256']
             or baseline['experiment']['model_seed'] != report['experiment']['model_seed']
+            or baseline['experiment']['protocol']['restoration'] != report['experiment']['protocol']['restoration']
             or (primary.get('branch'), primary.get('metric')) != (spec.primary_branch, spec.primary_metric)):
         raise ValueError('Performance reference differs in dataset, extraction recipe, or model settings')
+    evaluation_differences = {}
+    for module in ('vadfs/vadclip.py', 'vadfs/evaluation.py', 'vadfs/metrics.py', 'vadfs/timeline.py', 'vadfs/color.py'):
+        saved_hash = baseline.get('package_sha256', {}).get(module)
+        current_hash = report['package_sha256'].get(module)
+        if not saved_hash or not current_hash:
+            raise ValueError(f'Missing frozen source identity: {module}')
+        if saved_hash != current_hash:
+            if cache_only and module in ('vadfs/evaluation.py', 'vadfs/metrics.py'):
+                # A feature cache can survive an evaluation update, but the old
+                # summary metrics cannot be used as a comparison denominator.
+                evaluation_differences[module] = {'source_sha256': saved_hash, 'current_sha256': current_hash}
+                continue
+            raise ValueError(f'Frozen model/evaluation implementation differs: {module}')
+    baseline['cache_source_evaluation_differences'] = evaluation_differences
     return baseline
 
 
-def load_cached_selection(path, grid, selected_frames, dtype):
+def load_cached_reference(path, grid, dtype, expected_fps=None):
     import numpy as np
 
     with np.load(path, allow_pickle=False) as cache:
@@ -163,9 +197,22 @@ def load_cached_selection(path, grid, selected_frames, dtype):
         indices = cache['selected_frame_indices']
         timestamps = cache['selected_timestamps_seconds']
     if (features.shape != (len(grid), 512) or features.dtype != dtype or not np.isfinite(features).all()
-            or indices.dtype.kind not in 'iu' or not np.array_equal(indices, grid)
-            or timestamps.shape != indices.shape or not np.isfinite(timestamps).all()):
+            or indices.shape != (len(grid),) or indices.dtype.kind not in 'iu' or not np.array_equal(indices, grid)
+            or timestamps.shape != indices.shape or not np.isfinite(timestamps).all()
+            or np.any(np.diff(timestamps) <= 0)):
         raise ValueError(f'Cached features do not match the full reference grid and dtype: {path}')
+    if expected_fps is not None:
+        if (not np.isfinite(expected_fps) or expected_fps <= 0
+                or not np.allclose(timestamps, indices / expected_fps, rtol=0, atol=1e-8)):
+            raise ValueError('Cached nominal timestamps disagree with the source Reference FPS')
+    return features, {'selected_frame_indices': indices, 'selected_timestamps_seconds': timestamps}
+
+
+def load_cached_selection(path, grid, selected_frames, dtype):
+    import numpy as np
+
+    features, arrays = load_cached_reference(path, grid, dtype)
+    indices, timestamps = arrays['selected_frame_indices'], arrays['selected_timestamps_seconds']
     rows = np.searchsorted(indices, selected_frames)
     if np.any(rows >= len(indices)) or not np.array_equal(indices[rows], selected_frames):
         raise ValueError('Selected frames must belong to the cached reference grid')
@@ -202,6 +249,8 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
         raise ValueError('Device must be cpu, cuda or mps')
     sampling = experiment['sampling']
     random_windows = sampling['method'] == 'random_window'
+    optimal_method = sampling['method'] in OPTIMAL_METHODS
+    clip_optimal = optimal_method and sampling.get('representation', {}).get('kind') == 'clip_fixed_projection'
     run_id, output = create_run_dir(
         f'{spec.key}_{input_type}_{sampling["method"]}_{sampling["budget"]:g}_s{sampling["seed"]}',
         mode, ('scores', 'features'), resource_path(resources, 'output_root'))
@@ -212,6 +261,11 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
               'output_dir': str(output), 'input_sha256': {}, 'videos': [], 'metrics': None,
               'eligible_for_final_benchmark': not cache_folder and mode == 'full' and experiment['protocol']['status'] == 'fixed',
               'validation_status': 'execution results only; external reproduction acceptance not automatic'}
+    if cache_folder:
+        report.update(experiment_scope='cached_feature_exploration', speedup_eligible=False,
+                      candidate_space='fixed_reference_grid', score_anchor='selected_reference_candidate',
+                      vad_input='original cached 512D feature rows; original dtype/values',
+                      feature_source='raw_reference_cache')
     try:
         import numpy as np
         import torch
@@ -258,6 +312,38 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
                 raise ValueError('Random windows require a zero-offset reference grid')
             if raw_mode and not env['ffmpeg'] and recipe['color_conversion'] == 'x86_swscale_emulation':
                 raise ValueError('Install ffmpeg before raw extraction')
+        artifact = None
+        if optimal_method and not clip_optimal:
+            from .sampling_features import collect, load_artifact, transform
+            from .samplers.optimal import select as select_optimal, settings
+            # Even short b<1 videos can take the K=N bypass without an artifact.
+            needs_artifact = any(budget_count(v['reference_tokens'], sampling['budget']) < v['reference_tokens']
+                                 for v in videos)
+            if needs_artifact:
+                artifact, artifact_record = load_artifact(
+                    resource_path(resources, 'sampling_artifact'), spec.key, recipe, manifest['videos'])
+                report['sampling_artifact'] = artifact_record
+                report['input_sha256']['sampling_artifact'] = artifact_record['sha256']
+            report['optimal_schema_version'] = 1
+            report['sampler_signature'] = fingerprint({
+                'sampling': sampling, 'optimal': settings(sampling.get('optimal', {})),
+                'artifact_sha256': report['input_sha256'].get('sampling_artifact')})
+        q = None
+        if clip_optimal:
+            from .clip_selection import fixed_projection
+            from .samplers.optimal import settings
+            needs_projection = any(budget_count(v['reference_tokens'], sampling['budget']) < v['reference_tokens']
+                                   for v in videos)
+            if needs_projection:
+                q, projection_record = fixed_projection()
+                np.savez_compressed(output / 'projection.npz', q=q)
+                projection_record.update(file='projection.npz', file_sha256=sha256(output / 'projection.npz'))
+                report['projection'] = projection_record
+            report['optimal_schema_version'] = 2
+            report['sampler_signature'] = fingerprint({
+                'sampling': sampling, 'optimal': settings(sampling.get('optimal', {})),
+                'projection_q_sha256': report.get('projection', {}).get('q_sha256'),
+                'rank_adaptation': False})
         signature_payload = {'dataset': spec.key, 'data': manifest['dataset_identity_sha256'],
                              'dataset_config_sha256': sha256(data_path), 'recipe': recipe,
                              'model_seed': experiment['model_seed'], 'restoration': experiment['protocol']['restoration'],
@@ -268,7 +354,8 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
                                                    ('gt', 'segment_gt', 'class_gt', 'fine_grained_source', 'tokenizer_vocabulary')},
                              'environment': env}
         if score_reference_folder:
-            baseline = check_performance_reference(score_reference_folder, manifest, report, spec, recipe)
+            baseline = check_performance_reference(score_reference_folder, manifest, report, spec, recipe,
+                                                   cache_only=cache_folder is not None)
             key = 'cached_reference_run' if cache_folder else 'performance_reference_run'
             report[key] = str(score_reference_folder)
             signature_payload[key + '_sha256'] = baseline['loaded_summary_sha256']
@@ -279,6 +366,31 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
             baseline = check_reference(experiment, manifest, report['comparison_signature'])
         if baseline:
             report['reference_summary_sha256'] = baseline['loaded_summary_sha256']
+        if cache_folder:
+            source_records = {v['video']: v for v in baseline['videos']}
+            if len(source_records) != len(manifest['videos']):
+                raise ValueError('Cache Reference contains duplicate or missing videos')
+            catalog = {}
+            for video in videos:
+                source = source_records.get(video['filename'], {})
+                if (source.get('reference_tokens') != video['reference_tokens']
+                        or source.get('selected_tokens') != video['reference_tokens']
+                        or source.get('evaluation_frames') != video['evaluation_frames']
+                        or source.get('official_csv_index') != video['official_csv_index']):
+                    raise ValueError('Source Reference video identity/timeline does not match the cache manifest')
+                stem = f'{video["official_csv_index"]:03d}_{Path(video["filename"]).stem}'
+                catalog[video['filename']] = sha256(cache_folder / 'features' / f'{stem}.npz')
+            report['cache_input_sha256'] = catalog
+            report['cache_identity_sha256'] = fingerprint(catalog)
+            report['cache_source'] = {'run_id': baseline['run_id'], 'summary_sha256': baseline['loaded_summary_sha256'],
+                                      'manifest_sha256': sha256(prepared_path), 'folder': str(cache_folder),
+                                      'feature_hash_scope': 'current cache bytes; not an assertion of historical bitwise provenance'}
+            report['cache_source']['evaluation_source_differences'] = baseline.get('cache_source_evaluation_differences', {})
+            report['cache_source']['historical_metrics_comparable'] = not bool(
+                baseline.get('cache_source_evaluation_differences'))
+            # All methods/seeds in the same cache experiment must bind the same files.
+            signature_payload['cache_identity_sha256'] = report['cache_identity_sha256']
+            report['comparison_signature'] = fingerprint(signature_payload)
         fixed_seed = experiment['model_seed']
         random.seed(fixed_seed)
         np.random.seed(fixed_seed)
@@ -309,6 +421,12 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
                                      options.visual_length, spec.prompts, device)
             del images
         report['warmup_seconds'] = time.perf_counter() - warm_started
+        if device == 'cuda':
+            report['gpu_memory_baseline'] = {'allocated_bytes': torch.cuda.memory_allocated(),
+                                             'reserved_bytes': torch.cuda.memory_reserved()}
+            torch.cuda.reset_peak_memory_stats()
+        else:
+            report['gpu_memory_baseline'] = None
         frames1, frames2, dense_classes = [], [], []
         covered = events = 0
         window_frames = 16 * window_stride(sampling['budget']) if random_windows else None
@@ -321,6 +439,8 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
             if cache_folder:
                 path = cache_folder / 'features' / f'{stem}.npz'
                 input_sha = sha256(path)
+                if input_sha != report['cache_input_sha256'][video['filename']]:
+                    raise ValueError('Cached feature file changed during this run')
             else:
                 path = Path(video['raw_path'] if raw_mode else video['feature_path'])
                 input_sha = video['sha256'] if raw_mode else video['official_feature_sha256']
@@ -330,14 +450,55 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
             started = time.perf_counter()
             grid = candidates(video['reference_tokens'], frame_offset=recipe['frame_offset'] if recipe else 0)
             derived_seed = video_seed(sampling['seed'], spec.key, video['filename'])
-            selected_frames = choose(grid, sampling['method'], sampling['budget'], derived_seed)
+            sampler_detail, first_pass = {}, None
+            optimal_timing = {}
+            if recipe:
+                dtype = np.dtype(video['feature_dtype'] if recipe['feature_storage_dtype'] == 'official' else 'float32')
+            full_bypass = optimal_method and budget_count(len(grid), sampling['budget']) == len(grid)
+            if cache_folder:
+                from .clip_selection import select_cached_rows
+                tick = time.perf_counter()
+                full_features, cache_arrays = load_cached_reference(
+                    path, grid, dtype, expected_fps=source_records[video['filename']].get('fps'))
+                optimal_timing['cache_load_validate'] = time.perf_counter() - tick
+                tick = time.perf_counter()
+                feature, positions, sampler_detail = select_cached_rows(
+                    full_features, grid, sampling['method'], sampling['budget'], derived_seed,
+                    q=q, options=sampling.get('optimal', {}))
+                optimal_timing['cached_selection_total'] = time.perf_counter() - tick
+                optimal_timing.update(sampler_detail.pop('timing_seconds', {}))
+                selected_frames = [grid[index] for index in positions]
+                selection = {key: value[positions] for key, value in cache_arrays.items()}
+                selection['selected_row_positions'] = np.asarray(positions, dtype=np.int64)
+                del full_features
+            elif full_bypass:
+                selected_frames = list(grid)
+                sampler_detail = {'full_budget_bypass': True, 'reason': 'K_equals_N'}
+            elif optimal_method:
+                cheap_rows, first_pass = collect(path, recipe, grid)
+                optimal_timing.update(first_pass['timing_seconds'])
+                tick = time.perf_counter()
+                z = transform(cheap_rows, artifact)
+                optimal_timing['feature_transform'] = time.perf_counter() - tick
+                tick = time.perf_counter()
+                positions, sampler_detail = select_optimal(
+                    z, budget_count(len(grid), sampling['budget']), sampling['method'],
+                    sampling['budget'], sampling.get('optimal', {}))
+                selected_frames = [grid[index] for index in positions]
+                optimal_timing['optimal_selection'] = time.perf_counter() - tick
+                del cheap_rows, z
+            else:
+                selected_frames = choose(grid, sampling['method'], sampling['budget'], derived_seed)
+            if (len(selected_frames) != budget_count(len(grid), sampling['budget'])
+                    or selected_frames != sorted(set(selected_frames)) or not set(selected_frames) <= set(grid)):
+                raise ValueError('Sampler budget/order/uniqueness/bounds mismatch')
             sampling_seconds = time.perf_counter() - started
             if recipe:
                 dtype = np.dtype(video['feature_dtype'] if recipe['feature_storage_dtype'] == 'official' else 'float32')
             if raw_mode:
                 # None retains the legacy Full path; uniform/random at 100% still
                 # exercise the explicit selection path for equivalence checks.
-                selection_arg = None if sampling['method'] == 'reference' or random_windows else selected_frames
+                selection_arg = None if sampling['method'] == 'reference' or random_windows or full_bypass else selected_frames
                 frame_selector = None
                 if random_windows:
                     def frame_selector(frame_count):
@@ -351,17 +512,24 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
                     selection['selected_score_anchor_indices'] = np.asarray(selected_frames, dtype=np.int64)
                 elif not np.array_equal(selection['selected_frame_indices'], selected_frames):
                     raise ValueError('Decoder did not encode precisely the sampler selection')
-            elif cache_folder:
-                feature, selection = load_cached_selection(path, grid, selected_frames, dtype)
-            else:
+                if first_pass and (first_pass['decoded_frames'] != metadata['decoded_frames']
+                                   or first_pass['fps'] != metadata['fps']):
+                    raise ValueError('Two decode passes disagree on frame count or FPS')
+                if optimal_method:
+                    metadata['sampler_diagnostics'] = sampler_detail
+                    metadata['timing_seconds'].update(optimal_timing)
+            elif not cache_folder:
                 feature = np.load(path, allow_pickle=False)
                 if feature.shape != (video['reference_tokens'], 512) or str(feature.dtype) != video['feature_dtype']:
                     raise ValueError('Official feature shape/dtype changed')
                 selection = {'selected_frame_indices': np.asarray(selected_frames, dtype=np.int64)}
             if not raw_mode:
-                metadata = {'timing_seconds': {}, 'encoder_input_images': 0,
+                metadata = {'timing_seconds': optimal_timing, 'encoder_input_images': 0,
                             'candidate_frames': len(grid), 'selected_frames': len(selected_frames),
                             'selected_fraction_of_candidates': len(selected_frames) / len(grid)}
+                if cache_folder:
+                    metadata['sampler_diagnostics'] = sampler_detail
+                    metadata['vad_input_original_dtype'] = str(feature.dtype)
             if feature.shape != (len(selected_frames), 512):
                 raise ValueError('Feature count differs from the actual selection K')
             vad_started = time.perf_counter()
@@ -380,6 +548,15 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
             if len(frame1) != video['evaluation_frames']:
                 raise ValueError('Restoration failed to retain the original full evaluation length')
             coverage = event_coverage(selection['selected_frame_indices'], video['intervals_raw'])
+            valid_intervals = [(max(0, a), min(video['evaluation_frames'], b))
+                               for a, b in video['intervals_raw'] if min(video['evaluation_frames'], b) > max(0, a)]
+            valid_coverage = event_coverage(selection['selected_frame_indices'], valid_intervals)
+            observable = event_coverage(np.asarray(grid), valid_intervals)['covered_events']
+            coverage.update(valid_covered_events=valid_coverage['covered_events'],
+                            valid_total_events=len(valid_intervals), reference_observable_events=observable,
+                            excluded_empty_events=len(video['intervals_raw']) - len(valid_intervals),
+                            clipped_events=sum((a, b) != (max(0, a), min(video['evaluation_frames'], b))
+                                               for a, b in video['intervals_raw']))
             covered += coverage['covered_events']
             events += coverage['total_events']
             score_path = output / 'scores' / f'{stem}.npz'
@@ -411,8 +588,23 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
         report['encoder_input_images'] = sum(video['encoder_input_images'] for video in report['videos'])
         report['event_coverage'] = {'covered_events': covered, 'total_events': events,
                                     'fraction': covered / events if events else None}
+        vc = sum(v['event_coverage']['valid_covered_events'] for v in report['videos'])
+        vt = sum(v['event_coverage']['valid_total_events'] for v in report['videos'])
+        observable = sum(v['event_coverage']['reference_observable_events'] for v in report['videos'])
+        report['event_coverage'].update(valid_covered_events=vc, valid_total_events=vt,
+                                       reference_observable_events=observable,
+                                       valid_fraction=vc / vt if vt else None,
+                                       reference_observable_fraction=vc / observable if observable and not random_windows else None)
+        report['processed_frame_ratio'] = (sum(v['selected_tokens'] for v in report['videos'])
+                                            / sum(v['reference_tokens'] for v in report['videos']))
+        report['memory'] = {
+            'gpu_peak_allocated_bytes': torch.cuda.max_memory_allocated() if device == 'cuda' else None,
+            'gpu_peak_reserved_bytes': torch.cuda.max_memory_reserved() if device == 'cuda' else None,
+            'process_peak_rss_bytes': None,
+            'rss_scope': 'not sampled; FFmpeg child memory not measured',
+            'gpu_scope': 'whole processing loop after warmup, includes model and visual copy; output saving and GT analysis may be included'}
         report['timing_scope'] = {
-            'included': 'Candidate construction and selection; raw decoding/preprocess/transfers/CLIP if raw; VadCLIP and timeline restoration',
+            'included': 'Candidate construction/selection; cache loading/validation and fit-free projection if cached; raw decoding/preprocess/transfers/CLIP if raw; VadCLIP and timeline restoration',
             'excluded': 'Setup/imports/input hashing/model loading/warm-up/GT analysis/metrics/output saves',
             'io_condition': 'Source hash read just before timed processing; file cache uncontrolled and likely warm',
             'concurrency': 'Not enforced; final timings require an otherwise idle shared machine',
@@ -426,11 +618,12 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
             report['metrics'], all1, all2 = evaluate(dataset_config, manifest, report['videos'], frames1, frames2, dense_classes)
             report['metric_seconds'] = time.perf_counter() - metric_started
             np.savez_compressed(output / 'frame_scores.npz', branch1=all1, branch2=all2)
-            if baseline:
+            if baseline and not (cache_folder and baseline.get('cache_source_evaluation_differences')):
                 current = report['metrics']['primary']['value']
                 previous = baseline['metrics']['primary']['value']
                 report['reference_comparison'] = {
                     'reference_run': baseline['run_id'], 'primary_delta_pp': 100 * (current - previous),
+                    'primary_drop_pp': 100 * (previous - current),
                 }
                 if score_reference_folder:
                     report['reference_comparison']['scope'] = 'performance_only'
@@ -438,6 +631,10 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
                     report['reference_comparison'].update(speedup=baseline['end_to_end_seconds'] / total_time,
                                                           timing_repeated=False,
                                                           final_claim_requires_repeated_measurements=True)
+            elif baseline:
+                report['reference_comparison'] = {
+                    'reference_run': baseline['run_id'], 'scope': 'cache_provenance_only',
+                    'reason': 'Archived evaluation sources differ. Re-evaluate cached 100% Reference with current code; compare_sampling uses that new Reference.'}
         else:
             report['eligible_for_final_benchmark'] = False
         report['success'] = True

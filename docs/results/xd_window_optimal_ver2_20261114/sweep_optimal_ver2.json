@@ -1,0 +1,101 @@
+{
+  "protocol_version": 2,
+  "dataset": "xd",
+  "complete": true,
+  "started_at": "2026-11-14T10:59:43.852257+09:00",
+  "gpus": [
+    "0",
+    "1"
+  ],
+  "scope": "D/A/E performance only; concurrent timing not benchmark",
+  "scheduler_sha256": "ef92f14429b56467772ae688d9ef8e33d5d68ab5a1d1f38aa880fb49890f3d0c",
+  "runs": {
+    "a_optimal_100": {
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/xd_a_optimal_1_s0_ver2_full_20261114_105944/summary.json",
+      "sha256": "bcab2a0edfddc0c5d81b857fc6ef019b3a4de52da98e46e8a8828dbe16814002",
+      "reused": false,
+      "gpu": "1",
+      "log": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_split_ver2_full_20261114_105943/logs/a_optimal_100_gpu1_ver2.log"
+    },
+    "d_optimal_100": {
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/xd_d_optimal_1_s0_ver2_full_20261114_105944/summary.json",
+      "sha256": "0e71acaca1116507f5001dc35b67bc843274036f9d073a0ba2202e758fc2b89d",
+      "reused": false,
+      "gpu": "0",
+      "log": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_split_ver2_full_20261114_105943/logs/d_optimal_100_gpu0_ver2.log"
+    },
+    "d_optimal_50": {
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/xd_d_optimal_0.5_s0_ver2_full_20261114_131247/summary.json",
+      "sha256": "f475bf84f00f76339ac761ff5b88c1a5f8df39a81644b3c72129ad734c0d2c7c",
+      "reused": false,
+      "gpu": "0",
+      "log": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_split_ver2_full_20261114_105943/logs/d_optimal_50_gpu0_ver2.log"
+    },
+    "e_optimal_100": {
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/xd_e_optimal_1_s0_ver2_full_20261114_131245/summary.json",
+      "sha256": "3a230cb49db7d08a8507bea5adc635cf1199051dc6ced082f7b87e057609bb7c",
+      "reused": false,
+      "gpu": "1",
+      "log": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_split_ver2_full_20261114_105943/logs/e_optimal_100_gpu1_ver2.log"
+    },
+    "a_optimal_50": {
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/xd_a_optimal_0.5_s0_ver2_full_20261114_150706/summary.json",
+      "sha256": "820a68cf4141d58f7133cf0c7986356ebfa05e01d58fb02aa1c27bcd4345284e",
+      "reused": false,
+      "gpu": "0",
+      "log": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_split_ver2_full_20261114_105943/logs/a_optimal_50_gpu0_ver2.log"
+    },
+    "e_optimal_50": {
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/xd_e_optimal_0.5_s0_ver2_full_20261114_152304/summary.json",
+      "sha256": "c494e434cead3f0c850b3bb57af7f7aa140463a5aed83567a6005f542528c4e2",
+      "reused": false,
+      "gpu": "1",
+      "log": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_split_ver2_full_20261114_105943/logs/e_optimal_50_gpu1_ver2.log"
+    },
+    "d_optimal_25": {
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/xd_d_optimal_0.25_s0_ver2_full_20261114_165643/summary.json",
+      "sha256": "5420d9c562f3514236d3c983d612bf1e725753698509712283a48161ec8ed4a2",
+      "reused": false,
+      "gpu": "0",
+      "log": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_split_ver2_full_20261114_105943/logs/d_optimal_25_gpu0_ver2.log"
+    },
+    "a_optimal_25": {
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/xd_a_optimal_0.25_s0_ver2_full_20261114_171423/summary.json",
+      "sha256": "4b64c19ed6609fbd7e6164d6715cefb6fbdb05d99d894a6d02a11e6de3ce0a3c",
+      "reused": false,
+      "gpu": "1",
+      "log": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_split_ver2_full_20261114_105943/logs/a_optimal_25_gpu1_ver2.log"
+    },
+    "e_optimal_25": {
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/xd_e_optimal_0.25_s0_ver2_full_20261114_183429/summary.json",
+      "sha256": "7e02f5b064ca611f8b30200bbb95243e176df2ab70998480dfebff47030daa89",
+      "reused": false,
+      "gpu": "0",
+      "log": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_split_ver2_full_20261114_105943/logs/e_optimal_25_gpu0_ver2.log"
+    },
+    "d_optimal_12p5": {
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/xd_d_optimal_0.125_s0_ver2_full_20261114_185128/summary.json",
+      "sha256": "7db0c5574298f5d0508c28048d5ee2a1dd3a55ce1282eaa90cca4daefa2224c8",
+      "reused": false,
+      "gpu": "1",
+      "log": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_split_ver2_full_20261114_105943/logs/d_optimal_12p5_gpu1_ver2.log"
+    },
+    "a_optimal_12p5": {
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/xd_a_optimal_0.125_s0_ver2_full_20261114_201454/summary.json",
+      "sha256": "050ea69a59ec2b86d406aee102c1f1d999e8bd19aa46e91f10d8893c0bff113e",
+      "reused": false,
+      "gpu": "0",
+      "log": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_split_ver2_full_20261114_105943/logs/a_optimal_12p5_gpu0_ver2.log"
+    },
+    "e_optimal_12p5": {
+      "summary": "/workspace/hyeongjun/vad/outputs/runs/xd_e_optimal_0.125_s0_ver2_full_20261114_202454/summary.json",
+      "sha256": "f33a938efe6fad478890e795e343955ab0130d57e3412617faaf8000ebb02bf6",
+      "reused": false,
+      "gpu": "1",
+      "log": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_split_ver2_full_20261114_105943/logs/e_optimal_12p5_gpu1_ver2.log"
+    }
+  },
+  "active": {},
+  "comparison_folder": "/workspace/hyeongjun/vad/outputs/analyses/xd_optimal_only_ver2_full_20261114_215901",
+  "finished_at": "2026-11-14T21:59:01.679789+09:00"
+}
