@@ -7,7 +7,7 @@ import random
 def window_stride(ratio):
     inverse = 1 / ratio
     if not math.isfinite(inverse) or ratio != 1 / round(inverse):
-        raise ValueError('Random windows require a budget reciprocal to an integer block stride')
+        raise ValueError('Window samplers require a budget reciprocal to an integer block stride')
     return round(inverse)
 
 

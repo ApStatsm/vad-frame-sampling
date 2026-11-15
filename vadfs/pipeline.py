@@ -27,6 +27,9 @@ from .samplers import METHODS, OPTIMAL_METHODS, budget_count, choose, video_seed
 from .samplers.random_window import select_frames as select_window_frames, window_stride
 
 
+WINDOW_METHODS = ('random_window', 'adaptive_window')
+
+
 def fingerprint(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, allow_nan=False).encode()).hexdigest()
 
@@ -90,9 +93,9 @@ def validate_experiment(experiment, spec, mode, cached_features=False, performan
         raise ValueError('Raw reference comparisons are only defined for raw-video experiments')
     if (cached_features or performance_reference) and (experiment['input_type'] != 'raw' or experiment.get('reference_run')):
         raise ValueError('Cached or performance-only references require a raw experiment without --reference-run')
-    if sampling['method'] == 'random_window':
+    if sampling['method'] in WINDOW_METHODS:
         if cached_features or experiment['input_type'] != 'raw':
-            raise ValueError('Random windows require the original raw video frames')
+            raise ValueError('Window samplers require the original raw video frames')
         window_stride(sampling['budget'])
     if experiment['protocol']['restoration'] not in ('nearest', 'linear', 'previous'):
         raise ValueError('Unknown restoration policy')
@@ -137,7 +140,7 @@ def load_full_raw_reference(folder, manifest):
     baseline = read_json(summary_path)
     if (baseline.get('schema_version') != 2 or not baseline.get('success') or baseline.get('mode') != 'full'
             or baseline.get('input_type') != 'raw' or baseline.get('sampling', {}).get('budget') != 1
-            or baseline.get('sampling', {}).get('method') == 'random_window'
+            or baseline.get('sampling', {}).get('method') in WINDOW_METHODS
             or len(baseline.get('videos', [])) != len(manifest['videos'])
             or not baseline.get('metrics')):
         raise ValueError('Reference must be a successful complete 100% raw run from this pipeline')
@@ -249,6 +252,8 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
         raise ValueError('Device must be cpu, cuda or mps')
     sampling = experiment['sampling']
     random_windows = sampling['method'] == 'random_window'
+    adaptive_windows = sampling['method'] == 'adaptive_window'
+    windowed = sampling['method'] in WINDOW_METHODS
     optimal_method = sampling['method'] in OPTIMAL_METHODS
     clip_optimal = optimal_method and sampling.get('representation', {}).get('kind') == 'clip_fixed_projection'
     run_id, output = create_run_dir(
@@ -308,8 +313,8 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
             report['extraction_config'] = recipe
             if recipe['temporal_mode'] != 'single_frame':
                 raise ValueError('Common sampler pipeline requires one reference candidate per block')
-            if random_windows and recipe['frame_offset'] != 0:
-                raise ValueError('Random windows require a zero-offset reference grid')
+            if windowed and recipe['frame_offset'] != 0:
+                raise ValueError('Window samplers require a zero-offset reference grid')
             if raw_mode and not env['ffmpeg'] and recipe['color_conversion'] == 'x86_swscale_emulation':
                 raise ValueError('Install ffmpeg before raw extraction')
         artifact = None
@@ -429,9 +434,14 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
             report['gpu_memory_baseline'] = None
         frames1, frames2, dense_classes = [], [], []
         covered = events = 0
-        window_frames = 16 * window_stride(sampling['budget']) if random_windows else None
-        if random_windows:
+        window_frames = 16 * window_stride(sampling['budget']) if windowed else None
+        if windowed:
             report['sampling'].update(window_frames=window_frames, score_anchor='window_start')
+        if adaptive_windows:
+            luma_source = ('decoded_y_plane' if recipe['color_conversion'] == 'x86_swscale_emulation'
+                           else 'opencv_bgr_to_gray')
+            report['sampling'].update(difference='mean_absolute_native_luma_difference_to_previous_frame',
+                                      luma_source=luma_source, tie_break='earliest_frame')
         loop_started = time.perf_counter()
         for video in videos:
             report['current_video'] = video['filename']
@@ -498,7 +508,8 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
             if raw_mode:
                 # None retains the legacy Full path; uniform/random at 100% still
                 # exercise the explicit selection path for equivalence checks.
-                selection_arg = None if sampling['method'] == 'reference' or random_windows or full_bypass else selected_frames
+                use_legacy_extraction = sampling['method'] == 'reference' or full_bypass
+                selection_arg = None if windowed or use_legacy_extraction else selected_frames
                 frame_selector = None
                 if random_windows:
                     def frame_selector(frame_count):
@@ -507,8 +518,9 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
                 feature, selection, metadata = extract_reference(
                     path, encoder, preprocess, device, recipe, dtype,
                     expected_tokens=video['reference_tokens'], selected_frame_indices=selection_arg,
-                    frame_selector=frame_selector)
-                if random_windows:
+                    frame_selector=frame_selector,
+                    adaptive_window_frames=window_frames if adaptive_windows else None)
+                if windowed:
                     selection['selected_score_anchor_indices'] = np.asarray(selected_frames, dtype=np.int64)
                 elif not np.array_equal(selection['selected_frame_indices'], selected_frames):
                     raise ValueError('Decoder did not encode precisely the sampler selection')
@@ -594,7 +606,7 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
         report['event_coverage'].update(valid_covered_events=vc, valid_total_events=vt,
                                        reference_observable_events=observable,
                                        valid_fraction=vc / vt if vt else None,
-                                       reference_observable_fraction=vc / observable if observable and not random_windows else None)
+                                       reference_observable_fraction=vc / observable if observable and not windowed else None)
         report['processed_frame_ratio'] = (sum(v['selected_tokens'] for v in report['videos'])
                                             / sum(v['reference_tokens'] for v in report['videos']))
         report['memory'] = {

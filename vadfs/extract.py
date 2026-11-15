@@ -23,6 +23,7 @@ import torch
 
 from .color import yuv420p_to_rgb_x86
 from .paths import add_vadclip_src
+from .samplers.adaptive_window import LumaWindowSelector
 from .vadclip import synchronize
 
 add_vadclip_src()
@@ -142,7 +143,8 @@ class FfmpegYuvReader:
 
 
 def extract_reference(path, encoder, preprocess, device, config, output_dtype,
-                      expected_tokens=None, selected_frame_indices=None, *, frame_selector=None):
+                      expected_tokens=None, selected_frame_indices=None, *, frame_selector=None,
+                      adaptive_window_frames=None):
     """Decode to EOF, encode complete blocks, and keep bounded image-batch memory.
 
     Frame positions use a zero-based decode counter. Nominal timestamps are
@@ -157,6 +159,7 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype,
     decode still visits every frame. None preserves the old Full extraction.
     frame_selector may instead choose off-grid frames using the header count;
     the actual decoded count is still checked at EOF.
+    Adaptive selection compares native luma during that same decode pass.
     """
     color = config_value(config, 'color_conversion', 'opencv_bgr')
     geometry = config_value(config, 'image_geometry', 'published_340x256')
@@ -171,6 +174,15 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype,
     next_progress = 1024
     clip_dtype = encoder.visual.conv1.weight.dtype
     selected_set = None
+    adaptive = None
+    adaptive_scores = []
+    if adaptive_window_frames is not None and (
+            type(adaptive_window_frames) is not int or adaptive_window_frames < 16
+            or adaptive_window_frames % 16 != 0 or color not in COLOR_CONVERSIONS
+            or type(expected_tokens) is not int or expected_tokens < 1
+            or group != 1 or config['frame_offset'] != 0
+            or selected_frame_indices is not None or frame_selector is not None):
+        raise ValueError('Adaptive windows require a supported zero-offset, single-frame recipe and reference length')
     if frame_selector is not None and (selected_frame_indices is not None or group != 1):
         raise ValueError('An off-grid frame selector requires single-frame extraction without fixed indices')
     if selected_frame_indices is not None:
@@ -271,6 +283,10 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype,
             reader = FfmpegYuvReader(path, width, height)
             backend = 'ffmpeg_cli_yuv420p'
             stage['decode'] += time.perf_counter() - started
+        if adaptive_window_frames is not None:
+            stop = min(round(header_frames), expected_tokens * 16)
+            adaptive = LumaWindowSelector(adaptive_window_frames, stop,
+                                          yuv_pixel_count=width * height if reader is not None else None)
         source = reader or cap
         while True:
             started = time.perf_counter()
@@ -279,6 +295,20 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype,
             if not ok:
                 break
             started = time.perf_counter()
+            if adaptive is not None:
+                pts = float('nan') if reader else float(cap.get(cv2.CAP_PROP_POS_MSEC)) / 1000
+                winner = adaptive.observe(count, frame, pts)
+                count += 1
+                if winner is not None:
+                    index, image, difference, winner_pts = winner
+                    chosen_indices.append(index)
+                    chosen_pts.append(winner_pts)
+                    adaptive_scores.append(difference)
+                    tail_frames_encoded += int(index >= round(header_frames) // 16 * 16)
+                stage['selection'] += time.perf_counter() - started
+                if winner is not None:
+                    encode_images((image,))
+                continue
             is_candidate = (frame_selector is not None or group > 1
                             or count % 16 == config['frame_offset'])
             if is_candidate and (selected_set is None or count in selected_set):
@@ -324,7 +354,7 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype,
     indices = np.asarray(chosen_indices, dtype=np.int64)
     pts = np.asarray(chosen_pts, dtype=np.float64)
     nominal = indices / fps
-    if frame_selector is not None:
+    if frame_selector is not None or adaptive is not None:
         starts = indices // 16 * 16
     else:
         starts = (np.arange(len(features), dtype=np.int64) * 16 if selected_set is None
@@ -334,7 +364,14 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype,
                       and expected_tokens == count // 16 + 1
                       and config['frame_offset'] < count % 16)
     reference_tokens = count // 16 + int(bool(tail_candidate))
-    expected_selected = reference_tokens if selected_set is None else len(selected_set)
+    if adaptive is not None:
+        window_blocks = adaptive_window_frames // 16
+        expected_selected = (reference_tokens + window_blocks - 1) // window_blocks
+        expected_windows = np.arange(expected_selected)
+        if not np.array_equal(indices // adaptive_window_frames, expected_windows):
+            raise ValueError('Adaptive extraction must encode exactly one frame per window')
+    else:
+        expected_selected = reference_tokens if selected_set is None else len(selected_set)
     if (len(features) != expected_selected or encoded != len(indices)
             or np.any(np.diff(indices) <= 0) or members.shape[0] != len(features)):
         raise ValueError('Candidate/encoding/token order or count mismatch')
@@ -367,6 +404,8 @@ def extract_reference(path, encoder, preprocess, device, config, output_dtype,
     arrays = {'selected_frame_indices': indices, 'selected_timestamps_seconds': nominal,
               'decoder_timestamps_seconds': pts, 'token_member_frame_indices': members,
               'token_start_frames': starts, 'token_end_frames': starts + 16}
+    if adaptive is not None:
+        arrays['selected_frame_difference'] = np.asarray(adaptive_scores, dtype=np.float64)
     return features, arrays, metadata
 
 
