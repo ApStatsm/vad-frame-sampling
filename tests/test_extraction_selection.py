@@ -102,6 +102,61 @@ class ExtractionSelectionTests(unittest.TestCase):
         self.assertEqual(metadata['candidate_frames'], 3)
         self.assertEqual(metadata['tail_frames_encoded'], 1)
 
+    def test_adaptive_yuv_windows_choose_earliest_maximum_and_follow_official_tail(self):
+        width = height = 224
+        pixels = width * height
+        # A chroma-only change at frame 1 must not win the luma comparison.
+        luma = [0] * 5 + [100] + [0] * 122 + [200]
+        frames = [bytes([value]) * pixels + bytes([0 if i == 1 else 255]) * (pixels // 2)
+                  for i, value in enumerate(luma)]
+        config = {'temporal_mode': 'single_frame', 'frame_offset': 0,
+                  'color_conversion': 'x86_swscale_emulation', 'image_geometry': 'shortside_fxfy',
+                  'tail_policy': 'match_official_rows', 'crop_type': 5,
+                  'encoder_batch_size': 2, 'feature_l2_normalize': False}
+        def as_rgb(frame, width, height):
+            return np.full((height, width, 3), frame[0], dtype=np.uint8)
+
+        for tokens, indices, differences in ((8, [5], [100]), (9, [5, 128], [100, 200])):
+            reader = SimpleNamespace(read=iter([(True, frame) for frame in frames] + [(False, None)]).__next__,
+                                     release=lambda check: None)
+            with (patch('vadfs.extract.cv2.VideoCapture', return_value=FakeCapture(len(frames))),
+                  patch('vadfs.extract.FfmpegYuvReader', return_value=reader),
+                  patch('vadfs.extract.yuv420p_to_rgb_x86', side_effect=as_rgb)):
+                features, selection, metadata = extract_reference(
+                    Path('synthetic.mp4'), FakeEncoder(), lambda image: torch.tensor(np.asarray(image)).float(),
+                    'cpu', config, np.float32, expected_tokens=tokens, adaptive_window_frames=128)
+            np.testing.assert_array_equal(selection['selected_frame_indices'], indices)
+            np.testing.assert_array_equal(selection['selected_frame_difference'], differences)
+            np.testing.assert_array_equal(features[:, 0], [luma[index] for index in indices])
+            self.assertEqual(metadata['decoded_frames'], len(frames))
+            self.assertEqual(metadata['encoder_input_images'], len(indices))
+
+    def test_adaptive_bgr_windows_preserve_color_frames_and_winner_timestamps(self):
+        class ColorCapture(FakeCapture):
+            def read(self):
+                index = self.position
+                ok, frame = super().read()
+                if ok:
+                    frame[:] = {1: (200, 0, 0), 5: (0, 0, 100), 32: (0, 200, 0)}.get(index, (0, 0, 0))
+                return ok, frame
+
+        config = {'temporal_mode': 'single_frame', 'frame_offset': 0,
+                  'color_conversion': 'opencv_bgr', 'image_geometry': 'shortside_min256',
+                  'tail_policy': 'match_official_rows', 'crop_type': 0,
+                  'encoder_batch_size': 2, 'feature_l2_normalize': False}
+
+        def preprocess(image):
+            return torch.tensor(np.asarray(image)).permute(2, 0, 1).float()
+
+        with patch('vadfs.extract.cv2.VideoCapture', return_value=ColorCapture(33)):
+            features, selection, metadata = extract_reference(
+                Path('synthetic.mp4'), FakeEncoder(), preprocess, 'cpu', config, np.float32,
+                expected_tokens=3, adaptive_window_frames=32)
+        np.testing.assert_array_equal(selection['selected_frame_indices'], [5, 32])
+        np.testing.assert_allclose(selection['decoder_timestamps_seconds'], [6 / 30, 33 / 30])
+        np.testing.assert_allclose(features[:, 0], [100 / 3, 200 / 3], rtol=1e-6)
+        self.assertEqual(metadata['encoder_input_images'], 2)
+
 
 if __name__ == '__main__':
     unittest.main()

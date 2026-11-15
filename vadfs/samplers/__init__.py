@@ -7,7 +7,8 @@ from . import random, random_window, reference, uniform
 
 
 METHODS = {'reference': reference.select, 'uniform': uniform.select,
-           'random': random.select, 'random_window': random_window.select}
+           'random': random.select, 'random_window': random_window.select,
+           'adaptive_window': random_window.select}  # Both window methods use the same anchors.
 OPTIMAL_METHODS = ('d_optimal', 'a_optimal', 'e_optimal')
 
 
