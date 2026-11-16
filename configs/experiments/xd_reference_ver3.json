@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "dataset_config": "configs/datasets/xd.json",
+  "input_type": "raw",
+  "feature_source": "raw_reference_cache",
+  "model_seed": 234,
+  "sampling": {"method": "reference", "budget": 1.0, "seed": 0},
+  "reference_run": null,
+  "protocol": {"status": "draft", "restoration": "nearest", "note": "ver3 cached Full control; exploratory; no speedup claim"}
+}

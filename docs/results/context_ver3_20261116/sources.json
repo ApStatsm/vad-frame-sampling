@@ -1,0 +1,27 @@
+[
+  {
+    "source": "outputs/analyses/xd_context_ver3_full_20261116_022711/sweep_ver3.json",
+    "destination": "docs/results/context_ver3_20261116/sweep_ver3.json",
+    "sha256": "a84057f93116aeb37c845882d532006b37d3f62ede75579eaf67cfbb0434fdd0"
+  },
+  {
+    "source": "outputs/analyses/xd_context_ver3_full_20261116_022711/comparison_ver3.csv",
+    "destination": "docs/results/context_ver3_20261116/comparison_ver3.csv",
+    "sha256": "fda7ddc0ed07871756fdfa20fb4b23c80024dfc70ae37b28af7eb181d21864cf"
+  },
+  {
+    "source": "outputs/analyses/xd_context_ver3_full_20261116_022711/runs_ver3.csv",
+    "destination": "docs/results/context_ver3_20261116/runs_ver3.csv",
+    "sha256": "b1bab8d0f576c2d2becdb015e9ed9fe12568e9360a2ada849ba6448067a8e50b"
+  },
+  {
+    "source": "outputs/analyses/xd_context_ver3_full_20261116_022711/common_frame_changes_ver3.csv",
+    "destination": "docs/results/context_ver3_20261116/common_frame_changes_ver3.csv",
+    "sha256": "c2a4c48aad5c2409c4a5e761411482cfeaa499c983b570b694fa5d067ad25630"
+  },
+  {
+    "source": "outputs/analyses/xd_context_ver3_full_20261116_022711/analysis_ver3.json",
+    "destination": "docs/results/context_ver3_20261116/analysis_ver3.json",
+    "sha256": "8dd3450a5e4227344eef28a1ea8e8ef83665b9df7f2f70cb72a26d6630101049"
+  }
+]

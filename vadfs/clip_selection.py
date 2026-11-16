@@ -7,6 +7,7 @@ import numpy as np
 
 from .samplers import OPTIMAL_METHODS, budget_count, choose
 from .samplers.optimal import select
+from .samplers.context_ver3 import METHODS_VER3, select_ver3
 
 
 PROJECTION_SPEC = {'kind': 'clip_fixed_projection', 'seed': 234, 'dimensions': 8,
@@ -60,7 +61,7 @@ def select_cached_rows(features, grid, method, ratio, seed, q=None, options=None
     No decoder, CLIP encoder, GT, PCA, SVD, normalization of the VAD input, or
     data-dependent dimension adaptation is invoked by this boundary.
     """
-    if method not in ('reference', 'uniform', 'random', *OPTIMAL_METHODS):
+    if method not in ('reference', 'uniform', 'random', *OPTIMAL_METHODS, *METHODS_VER3):
         raise ValueError('Unsupported cached-grid method')
     if any(a >= b for a, b in zip(grid, grid[1:])):
         raise ValueError('Reference grid must be strictly increasing')
@@ -68,7 +69,11 @@ def select_cached_rows(features, grid, method, ratio, seed, q=None, options=None
             or features.dtype.kind != 'f' or not np.isfinite(features).all()):
         raise ValueError('Invalid full CLIP feature cache')
     count = budget_count(len(grid), ratio)
-    if count == len(grid):
+    if method in METHODS_VER3:
+        if ratio != 0.125:
+            raise ValueError('ver3 budget is fixed at 12.5%')
+        positions, detail = select_ver3(len(grid), method, seed)
+    elif count == len(grid):
         positions = list(range(len(grid)))
         detail = {'full_budget_bypass': True, 'reason': 'K_equals_N', 'dimension': None}
     elif method in OPTIMAL_METHODS:

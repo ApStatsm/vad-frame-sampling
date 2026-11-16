@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "dataset_config": "configs/datasets/xd.json",
+  "input_type": "raw",
+  "feature_source": "raw_reference_cache",
+  "model_seed": 234,
+  "sampling": {"method": "paired_ver3", "budget": 0.125, "seed": 0},
+  "reference_run": null,
+  "protocol": {"status": "draft", "restoration": "nearest", "note": "ver3 slots3/4 of each complete 8-slot group become adjacent reference rows; actual anchors"}
+}

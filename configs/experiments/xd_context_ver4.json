@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "dataset_config": "configs/datasets/xd.json",
+  "input_type": "raw",
+  "feature_source": "raw_reference_cache",
+  "model_seed": 234,
+  "sampling": {"method": "uniform_ver3", "budget": 0.125, "seed": 0},
+  "reference_run": null,
+  "protocol": {
+    "status": "draft",
+    "restoration": "nearest",
+    "note": "ver4 targeted diagnostic; fix target feature/slot/K and replace only its two neighbors; not a whole-timeline benchmark"
+  },
+  "context_ver4": {
+    "version": 4,
+    "dataset": "xd",
+    "budget": 0.125,
+    "target_quantiles": [0.3333333333333333, 0.6666666666666666],
+    "neighbor_radius_slots": 1,
+    "near_gap_reference_rows": 1,
+    "window": 256,
+    "attention_block": 64,
+    "stored_score_atol": 0.00001,
+    "repeat_score_atol": 0.000001,
+    "target_selection": "geometry_only; no_GT_or_score_input",
+    "scope": "exploratory_cached_diagnostics; no_speedup"
+  }
+}

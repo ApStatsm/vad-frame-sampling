@@ -1,0 +1,51 @@
+[
+  {
+    "source": "outputs/analyses/xd_decomposition_ver4_full_20261116_030537/decomposition_comparison_ver4.csv",
+    "destination": "docs/results/context_ver4_20261116/decomposition/decomposition_comparison_ver4.csv",
+    "sha256": "8fc123619c0f956fe4c9452457b630235868c5c38ba3efb388b81f6cfaacb7f2"
+  },
+  {
+    "source": "outputs/analyses/xd_decomposition_ver4_full_20261116_030537/decomposition_runs_ver4.csv",
+    "destination": "docs/results/context_ver4_20261116/decomposition/decomposition_runs_ver4.csv",
+    "sha256": "15a7cdc1f79944a5637ee4a5223757c1bd64d2ae80a4671e9de12689105070bb"
+  },
+  {
+    "source": "outputs/runs/xd_context_probe_ver4_full_20261116_030706/target_comparison_ver4.csv",
+    "destination": "docs/results/context_ver4_20261116/probe/target_comparison_ver4.csv",
+    "sha256": "f4f2007c4d7ff077cc05e1139afe5d7e5962a76c3a98544fb58bee4b0313de4a"
+  },
+  {
+    "source": "outputs/runs/xd_context_probe_ver4_full_20261116_030706/target_scores_ver4.csv",
+    "destination": "docs/results/context_ver4_20261116/probe/target_scores_ver4.csv",
+    "sha256": "7b8a31126065fbbdbd702636768304cc69df5a31c89d14250f9193ac10dc47c8"
+  },
+  {
+    "source": "outputs/analyses/xd_context_ver4_decomposition_20261116_030536/sweep_ver4.json",
+    "destination": "docs/results/context_ver4_20261116/decomposition/sweep_ver4.json",
+    "sha256": "26dff45b412daac23fd4c68393de95414c6d29fb7935042e1b09fc8a0bc2a788"
+  },
+  {
+    "source": "outputs/analyses/xd_context_ver4_context_20261116_030700/sweep_ver4.json",
+    "destination": "docs/results/context_ver4_20261116/probe/sweep_ver4.json",
+    "sha256": "0eb21c5f8fec981e796a278ad6364e89515ca8c6c6b94c51af6a11aa5dff8d11"
+  },
+  {
+    "source": "outputs/analyses/xd_decomposition_ver4_full_20261116_030537/summary_ver4.json",
+    "destination": "docs/results/context_ver4_20261116/decomposition/summary_compact_ver4.json",
+    "original_sha256": "167b0c3497ffd887d234a16458679d422689affcf7e49ac59e61d60acdc9795f",
+    "compact_sha256": "17c5b2c72dc41d70619f739dcfcac4667a9b2cd8b3962712e0828371b1a9bb58",
+    "omitted": {
+      "score_input_sha256": 6408
+    }
+  },
+  {
+    "source": "outputs/runs/xd_context_probe_ver4_full_20261116_030706/summary_ver4.json",
+    "destination": "docs/results/context_ver4_20261116/probe/summary_compact_ver4.json",
+    "original_sha256": "90f8a840dd59e10fe5ee60a0b81e6bf79415907363fefcede36078146f653c8e",
+    "compact_sha256": "8154d3e12f7d9dddc1960d75f650ab47b4d7c34b388f3984790efb4817f79ff3",
+    "omitted": {
+      "videos": 800,
+      "targets": 3072
+    }
+  }
+]

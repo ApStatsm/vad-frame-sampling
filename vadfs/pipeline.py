@@ -25,6 +25,7 @@ from .preparation import load_prepared
 from .runs import create_run_dir, now, record_provenance, write_json
 from .samplers import METHODS, OPTIMAL_METHODS, budget_count, choose, video_seed
 from .samplers.random_window import select_frames as select_window_frames, window_stride
+from .samplers.context_ver3 import METHODS_VER3
 
 
 def fingerprint(value):
@@ -62,7 +63,13 @@ def validate_experiment(experiment, spec, mode, cached_features=False, performan
         raise ValueError('Unknown feature_source')
     if feature_source == 'raw_reference_cache' and not cached_features:
         raise ValueError('This experiment requires --cached-reference-run; it never decodes raw videos')
-    if sampling['method'] not in (*METHODS, *OPTIMAL_METHODS):
+    if sampling['method'] in METHODS_VER3:
+        if (not cached_features or feature_source != 'raw_reference_cache'
+                or sampling['budget'] != 0.125 or spec.key != 'xd'
+                or experiment['protocol']['restoration'] != 'nearest'
+                or experiment['protocol']['status'] != 'draft'):
+            raise ValueError('ver3 requires XD cached 12.5%, draft protocol and nearest restoration')
+    if sampling['method'] not in (*METHODS, *OPTIMAL_METHODS, *METHODS_VER3):
         raise ValueError(f'Sampling method must be one of {(*METHODS, *OPTIMAL_METHODS)}')
     if sampling['method'] in OPTIMAL_METHODS:
         from .samplers.optimal import settings
@@ -266,6 +273,10 @@ def run_experiment(config_path, local_path=None, mode='smoke', requested=None,
                       candidate_space='fixed_reference_grid', score_anchor='selected_reference_candidate',
                       vad_input='original cached 512D feature rows; original dtype/values',
                       feature_source='raw_reference_cache')
+    if sampling['method'] in METHODS_VER3:
+        from .samplers.context_ver3 import SPEC_VER3
+        report['context_protocol_ver3'] = deepcopy(SPEC_VER3)
+        report['sampler_signature'] = fingerprint({'method': sampling['method'], 'protocol': SPEC_VER3})
     try:
         import numpy as np
         import torch

@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "error": null,
+  "stage": "decomposition",
+  "context_mode": "smoke",
+  "source_sweep": "/workspace/hyeongjun/vad/outputs/analyses/xd_context_ver3_full_20261116_022711/sweep_ver3.json",
+  "source_sweep_sha256": "a84057f93116aeb37c845882d532006b37d3f62ede75579eaf67cfbb0434fdd0",
+  "entrypoint_sha256": "56842e81cd84e151ae0d7a002a0a65032515a2bc2b51ef0a9c166a6fe5e157f5",
+  "outputs": {
+    "decomposition": "/workspace/hyeongjun/vad/outputs/analyses/xd_decomposition_ver4_full_20261116_030537"
+  }
+}
